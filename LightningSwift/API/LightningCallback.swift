@@ -1,0 +1,36 @@
+//
+//  LightningCallback.swift
+//  LightningSwift
+//
+//  Created by De MicheliStefano on 09.12.19.
+//  Copyright © 2019 De MicheliStefano. All rights reserved.
+//
+
+import Foundation
+import Lndmobile
+import SwiftProtobuf
+
+final class LightningCallback<Response: SwiftProtobuf.Message>: NSObject, LndmobileCallbackProtocol, LndmobileRecvStreamProtocol {
+    
+    private let completion: (Result<Response, Error>) -> Void
+
+    init(_ completion: @escaping (Result<Response, Error>) -> Void) {
+        self.completion = completion
+    }
+
+    func onError(_ error: Error?) {
+        guard let error = error else {
+            completion(.failure(LightningError.unknown))
+            return
+        }
+        completion(.failure(error))
+    }
+
+    func onResponse(_ data: Data?) {
+        guard let data = data, let result = try? Response(serializedData: data) else {
+            completion(.success(Response()))
+            return
+        }
+        completion(.success(result))
+    }
+}
