@@ -6,4 +6,7 @@
 //  Copyright © 2019 De MicheliStefano. All rights reserved.
 //
 
-import Foundation
+enum LightningError: Error {
+    case requestUnkown
+    case unknown
+}
