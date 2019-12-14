@@ -80,7 +80,7 @@ private extension SwiftProtobuf.Message {
         case is Lnrpc_ChannelBackupSubscription: LndmobileSubscribeChannelBackups(try? self.serializedData(), LightningCallback(completion))
         case is Lnrpc_BakeMacaroonRequest: LndmobileBakeMacaroon(try? self.serializedData(), LightningCallback(completion))
         case is Lnrpc_ListPeersRequest: LndmobileListPeers(try? self.serializedData(), LightningCallback(completion))
-        default: throw LightningError.requestUnkown
+        default: throw LNSError.requestUnkown
         }
     }
 }

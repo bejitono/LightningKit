@@ -20,7 +20,7 @@ final class LightningCallback<Response: SwiftProtobuf.Message>: NSObject, Lndmob
 
     func onError(_ error: Error?) {
         guard let error = error else {
-            completion(.failure(LightningError.unknown))
+            completion(.failure(LNSError.unknown))
             return
         }
         completion(.failure(error))

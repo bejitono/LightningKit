@@ -1,12 +1,12 @@
 //
-//  LightningError.swift
+//  LNSError.swift
 //  LightningSwift
 //
-//  Created by De MicheliStefano on 09.12.19.
+//  Created by De MicheliStefano on 14.12.19.
 //  Copyright © 2019 De MicheliStefano. All rights reserved.
 //
 
-enum LightningError: Error {
+public enum LNSError: Error {
     case requestUnkown
     case unknown
 }

@@ -6,7 +6,7 @@
 //  Copyright © 2019 De MicheliStefano. All rights reserved.
 //
 
-public struct Macaroon {
+public struct LNSMacaroon {
     
     // TODO: Implement
 }

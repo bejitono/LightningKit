@@ -6,9 +6,9 @@
 //  Copyright © 2019 De MicheliStefano. All rights reserved.
 //
 
-public struct LightningSwiftConfiguration {
+public struct LNSConfiguration {
     
-    let macaroon: Macaroon?
+    let macaroon: LNSMacaroon?
     let btcEnvironment: BTCEnvironment
     let btcNode: BTCNode
 }
