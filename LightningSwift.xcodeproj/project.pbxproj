@@ -136,22 +136,19 @@
 		3D70CD8723A47CB9001BE339 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3D70CD8823A47CB9001BE339 /* LightningSwift */,
-				3D70CD9723A48835001BE339 /* LNSWallet */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		3D70CD8823A47CB9001BE339 /* LightningSwift */ = {
-			isa = PBXGroup;
-			children = (
+				3D70CDA423A506B3001BE339 /* BTCAddress.swift */,
 				3D70CD8A23A47CB9001BE339 /* BTCEnvironment.swift */,
 				3D70CD8B23A47CB9001BE339 /* BTCNode.swift */,
+				3D70CDA623A5085E001BE339 /* LNSChannelBalance.swift */,
 				3D70CD8C23A47CB9001BE339 /* LNSConfiguration.swift */,
-				3D70CDA823A50E9F001BE339 /* LNSInfo.swift */,
 				3D70CD8923A47CB9001BE339 /* LNSMacaroon.swift */,
+				3D70CDA823A50E9F001BE339 /* LNSInfo.swift */,
+				3D70CD9C23A4F57C001BE339 /* LNSSeed.swift */,
+				3D70CD9A23A4F566001BE339 /* LNSSeedConfiguration.swift */,
+				3D70CDA223A505C5001BE339 /* LNSTransaction.swift */,
+				3D70CDA023A50019001BE339 /* LNSWalletBalance.swift */,
 			);
-			path = LightningSwift;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		3D70CD9323A486D4001BE339 /* LNSWallet */ = {
@@ -159,19 +156,6 @@
 			children = (
 				3D70CD9423A48703001BE339 /* LNSWallet.swift */,
 				3D70CD9E23A4FD08001BE339 /* LNSWalletError.swift */,
-			);
-			path = LNSWallet;
-			sourceTree = "<group>";
-		};
-		3D70CD9723A48835001BE339 /* LNSWallet */ = {
-			isa = PBXGroup;
-			children = (
-				3D70CDA423A506B3001BE339 /* BTCAddress.swift */,
-				3D70CDA623A5085E001BE339 /* LNSChannelBalance.swift */,
-				3D70CD9C23A4F57C001BE339 /* LNSSeed.swift */,
-				3D70CD9A23A4F566001BE339 /* LNSSeedConfiguration.swift */,
-				3D70CDA223A505C5001BE339 /* LNSTransaction.swift */,
-				3D70CDA023A50019001BE339 /* LNSWalletBalance.swift */,
 			);
 			path = LNSWallet;
 			sourceTree = "<group>";
