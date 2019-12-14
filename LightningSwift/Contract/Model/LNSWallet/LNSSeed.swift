@@ -6,4 +6,10 @@
 //  Copyright © 2019 De MicheliStefano. All rights reserved.
 //
 
-import Foundation
+import Foundation.NSData
+
+public struct LNSSeed {
+    
+    let phrase: [String]
+    let encipheredSeed: Data?
+}
