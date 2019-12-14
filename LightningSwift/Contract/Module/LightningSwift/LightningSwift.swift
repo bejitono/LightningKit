@@ -7,6 +7,7 @@
 //
 
 public typealias LNSCompletion = (Result<Bool, Error>) -> Void
+public typealias LNSInfoCompletion = (Result<LNSInfo, Error>) -> Void
 
 public protocol LightningSwift {
     
@@ -15,4 +16,6 @@ public protocol LightningSwift {
     var isRunning: Bool { get }
     
     func start(withConfig: LNSConfiguration, completion: @escaping LNSCompletion)
+    
+    func getInfo(completion: @escaping LNSInfoCompletion)
 }
