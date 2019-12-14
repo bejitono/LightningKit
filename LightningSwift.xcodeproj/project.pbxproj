@@ -17,6 +17,10 @@
 		3D70CD9B23A4F566001BE339 /* LNSSeedConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD9A23A4F566001BE339 /* LNSSeedConfiguration.swift */; };
 		3D70CD9D23A4F57C001BE339 /* LNSSeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD9C23A4F57C001BE339 /* LNSSeed.swift */; };
 		3D70CD9F23A4FD08001BE339 /* LNSWalletError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD9E23A4FD08001BE339 /* LNSWalletError.swift */; };
+		3D70CDA123A5001A001BE339 /* LNSWalletBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CDA023A50019001BE339 /* LNSWalletBalance.swift */; };
+		3D70CDA323A505C5001BE339 /* LNSTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CDA223A505C5001BE339 /* LNSTransaction.swift */; };
+		3D70CDA523A506B3001BE339 /* BTCAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CDA423A506B3001BE339 /* BTCAddress.swift */; };
+		3D70CDA723A5085E001BE339 /* LNSChannelBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CDA623A5085E001BE339 /* LNSChannelBalance.swift */; };
 		3D743E1D239E86DA005B2804 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E1C239E86DA005B2804 /* AppDelegate.swift */; };
 		3D743E1F239E86DA005B2804 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E1E239E86DA005B2804 /* SceneDelegate.swift */; };
 		3D743E23239E86DD005B2804 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D743E22239E86DD005B2804 /* Assets.xcassets */; };
@@ -57,6 +61,10 @@
 		3D70CD9A23A4F566001BE339 /* LNSSeedConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNSSeedConfiguration.swift; sourceTree = "<group>"; };
 		3D70CD9C23A4F57C001BE339 /* LNSSeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNSSeed.swift; sourceTree = "<group>"; };
 		3D70CD9E23A4FD08001BE339 /* LNSWalletError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNSWalletError.swift; sourceTree = "<group>"; };
+		3D70CDA023A50019001BE339 /* LNSWalletBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNSWalletBalance.swift; sourceTree = "<group>"; };
+		3D70CDA223A505C5001BE339 /* LNSTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNSTransaction.swift; sourceTree = "<group>"; };
+		3D70CDA423A506B3001BE339 /* BTCAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTCAddress.swift; sourceTree = "<group>"; };
+		3D70CDA623A5085E001BE339 /* LNSChannelBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNSChannelBalance.swift; sourceTree = "<group>"; };
 		3D743E19239E86DA005B2804 /* LightningSwiftApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightningSwiftApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D743E1C239E86DA005B2804 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D743E1E239E86DA005B2804 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -155,8 +163,12 @@
 		3D70CD9723A48835001BE339 /* LNSWallet */ = {
 			isa = PBXGroup;
 			children = (
+				3D70CDA423A506B3001BE339 /* BTCAddress.swift */,
+				3D70CDA623A5085E001BE339 /* LNSChannelBalance.swift */,
 				3D70CD9C23A4F57C001BE339 /* LNSSeed.swift */,
 				3D70CD9A23A4F566001BE339 /* LNSSeedConfiguration.swift */,
+				3D70CDA223A505C5001BE339 /* LNSTransaction.swift */,
+				3D70CDA023A50019001BE339 /* LNSWalletBalance.swift */,
 			);
 			path = LNSWallet;
 			sourceTree = "<group>";
@@ -368,8 +380,12 @@
 				3D743E4E239E89AD005B2804 /* LightningCallback.swift in Sources */,
 				3D743E46239E892F005B2804 /* LightningClientImplementation.swift in Sources */,
 				3D70CD9D23A4F57C001BE339 /* LNSSeed.swift in Sources */,
+				3D70CDA323A505C5001BE339 /* LNSTransaction.swift in Sources */,
 				3D743E4C239E896C005B2804 /* LightningMobileAPI.swift in Sources */,
+				3D70CDA723A5085E001BE339 /* LNSChannelBalance.swift in Sources */,
+				3D70CDA123A5001A001BE339 /* LNSWalletBalance.swift in Sources */,
 				3D743E3C239E878A005B2804 /* LightningClient.swift in Sources */,
+				3D70CDA523A506B3001BE339 /* BTCAddress.swift in Sources */,
 				3D743E49239E8953005B2804 /* LightningAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

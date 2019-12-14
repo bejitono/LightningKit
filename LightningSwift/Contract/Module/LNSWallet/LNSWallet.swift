@@ -9,6 +9,9 @@
 public typealias LNSSeedCompletion = (Result<LNSSeed, Error>) -> Void
 public typealias LNSInitWalletCompletion = (Result<Bool, Error>) -> Void
 public typealias LNSUnlockWalletCompletion = (Result<Bool, Error>) -> Void
+public typealias LNSWalletBalanceCompletion = (Result<LNSWalletBalance, Error>) -> Void
+public typealias LNSTransactionsCompletion = (Result<LNSTransaction, Error>) -> Void
+public typealias LNSChannelBalanceCompletion = (Result<LNSChannelBalance, Error>) -> Void
 
 public protocol LNSWallet {
     
@@ -23,4 +26,10 @@ public protocol LNSWallet {
     func unlockWallet(withPassword password: String, completion: @escaping LNSUnlockWalletCompletion)
     
     func changeWallet(password: String, to newPassword: String)
+    
+    func getWalletBalance(completion: @escaping LNSWalletBalanceCompletion)
+    
+    func getChannelBalance(completion: @escaping LNSChannelBalanceCompletion)
+    
+    func getTransactions(completion: @escaping LNSTransactionsCompletion)
 }
