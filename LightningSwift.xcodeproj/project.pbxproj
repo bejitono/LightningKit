@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D70CD8D23A47CB9001BE339 /* LightningSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD8623A47CB9001BE339 /* LightningSwift.swift */; };
+		3D70CD8E23A47CB9001BE339 /* Macaroon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD8923A47CB9001BE339 /* Macaroon.swift */; };
+		3D70CD8F23A47CB9001BE339 /* BTCEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD8A23A47CB9001BE339 /* BTCEnvironment.swift */; };
+		3D70CD9023A47CB9001BE339 /* BTCNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD8B23A47CB9001BE339 /* BTCNode.swift */; };
+		3D70CD9123A47CB9001BE339 /* LightningSwiftConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD8C23A47CB9001BE339 /* LightningSwiftConfiguration.swift */; };
 		3D743E1D239E86DA005B2804 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E1C239E86DA005B2804 /* AppDelegate.swift */; };
 		3D743E1F239E86DA005B2804 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E1E239E86DA005B2804 /* SceneDelegate.swift */; };
 		3D743E23239E86DD005B2804 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D743E22239E86DD005B2804 /* Assets.xcassets */; };
@@ -38,6 +43,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3D70CD8623A47CB9001BE339 /* LightningSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightningSwift.swift; sourceTree = "<group>"; };
+		3D70CD8923A47CB9001BE339 /* Macaroon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Macaroon.swift; sourceTree = "<group>"; };
+		3D70CD8A23A47CB9001BE339 /* BTCEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTCEnvironment.swift; sourceTree = "<group>"; };
+		3D70CD8B23A47CB9001BE339 /* BTCNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTCNode.swift; sourceTree = "<group>"; };
+		3D70CD8C23A47CB9001BE339 /* LightningSwiftConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightningSwiftConfiguration.swift; sourceTree = "<group>"; };
 		3D743E19239E86DA005B2804 /* LightningSwiftApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightningSwiftApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D743E1C239E86DA005B2804 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D743E1E239E86DA005B2804 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +88,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D70CD8323A47CB9001BE339 /* Contract */ = {
+			isa = PBXGroup;
+			children = (
+				3D70CD8423A47CB9001BE339 /* Module */,
+				3D70CD8723A47CB9001BE339 /* Model */,
+			);
+			path = Contract;
+			sourceTree = "<group>";
+		};
+		3D70CD8423A47CB9001BE339 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				3D70CD8523A47CB9001BE339 /* LightningSwift */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		3D70CD8523A47CB9001BE339 /* LightningSwift */ = {
+			isa = PBXGroup;
+			children = (
+				3D70CD8623A47CB9001BE339 /* LightningSwift.swift */,
+			);
+			path = LightningSwift;
+			sourceTree = "<group>";
+		};
+		3D70CD8723A47CB9001BE339 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3D70CD8823A47CB9001BE339 /* Configuration */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3D70CD8823A47CB9001BE339 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				3D70CD8A23A47CB9001BE339 /* BTCEnvironment.swift */,
+				3D70CD8B23A47CB9001BE339 /* BTCNode.swift */,
+				3D70CD8C23A47CB9001BE339 /* LightningSwiftConfiguration.swift */,
+				3D70CD8923A47CB9001BE339 /* Macaroon.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
 		3D743E10239E86DA005B2804 = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +177,7 @@
 			children = (
 				3D743E4A239E8957005B2804 /* API */,
 				3D743E47239E8942005B2804 /* Client */,
+				3D70CD8323A47CB9001BE339 /* Contract */,
 				3D743E3D239E87A9005B2804 /* Generated */,
 				3D743E57239E8F54005B2804 /* LightningError.swift */,
 			);
@@ -264,7 +319,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D743E1D239E86DA005B2804 /* AppDelegate.swift in Sources */,
+				3D70CD9123A47CB9001BE339 /* LightningSwiftConfiguration.swift in Sources */,
+				3D70CD8E23A47CB9001BE339 /* Macaroon.swift in Sources */,
+				3D70CD8F23A47CB9001BE339 /* BTCEnvironment.swift in Sources */,
 				3D743E1F239E86DA005B2804 /* SceneDelegate.swift in Sources */,
+				3D70CD8D23A47CB9001BE339 /* LightningSwift.swift in Sources */,
+				3D70CD9023A47CB9001BE339 /* BTCNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
