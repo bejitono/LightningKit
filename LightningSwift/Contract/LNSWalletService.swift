@@ -13,7 +13,7 @@ public typealias LNSWalletBalanceCompletion = (Result<LNSWalletBalance, LNSWalle
 public typealias LNSTransactionsCompletion = (Result<LNSTransaction, LNSWalletError>) -> Void
 public typealias LNSChannelBalanceCompletion = (Result<LNSChannelBalance, LNSWalletError>) -> Void
 
-public protocol LNSWallet {
+public protocol LNSWalletService {
     
     var instantiated: Bool { get }
     

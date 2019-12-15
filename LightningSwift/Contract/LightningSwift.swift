@@ -6,13 +6,14 @@
 //  Copyright © 2019 De MicheliStefano. All rights reserved.
 //
 
+public typealias LNSSuccessCompletion = (Result<Bool, Error>) -> Void
 public typealias LNSInfoCompletion = (Result<LNSInfo, LNSError>) -> Void
 
 public protocol LightningSwift {
     
     var shared: LightningSwift { get }
     
-    var wallet: LNSWallet { get }
+    var wallet: LNSWalletService { get }
     
     var isRunning: Bool { get }
     
