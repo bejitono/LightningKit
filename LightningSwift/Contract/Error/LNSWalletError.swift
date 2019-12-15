@@ -6,6 +6,6 @@
 //  Copyright © 2019 De MicheliStefano. All rights reserved.
 //
 
-enum LNSWalletError: Error {
+public enum LNSWalletError: Error {
     case alreadyCreated
 }

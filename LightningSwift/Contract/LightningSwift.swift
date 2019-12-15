@@ -6,16 +6,17 @@
 //  Copyright © 2019 De MicheliStefano. All rights reserved.
 //
 
-public typealias LNSCompletion = (Result<Bool, Error>) -> Void
-public typealias LNSInfoCompletion = (Result<LNSInfo, Error>) -> Void
+public typealias LNSInfoCompletion = (Result<LNSInfo, LNSError>) -> Void
 
 public protocol LightningSwift {
     
     var shared: LightningSwift { get }
     
+    var wallet: LNSWallet { get }
+    
     var isRunning: Bool { get }
     
-    func start(withConfig: LNSConfiguration, completion: @escaping LNSCompletion)
+    func start(withConfig: LNSConfiguration) throws
     
     func getInfo(completion: @escaping LNSInfoCompletion)
 }

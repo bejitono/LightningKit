@@ -6,7 +6,7 @@
 //  Copyright © 2019 De MicheliStefano. All rights reserved.
 //
 
-struct LNSInfo {
+public struct LNSInfo {
     
     let pubKey: String
     let alias: String
