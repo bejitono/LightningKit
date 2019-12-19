@@ -9,7 +9,7 @@
 public typealias LNSSuccessCompletion = (Result<Bool, Error>) -> Void
 public typealias LNSInfoCompletion = (Result<LNSInfo, LNSError>) -> Void
 
-public protocol LightningSwift {
+public protocol LightningSwiftCore {
     
     var shared: LightningSwift { get }
     
