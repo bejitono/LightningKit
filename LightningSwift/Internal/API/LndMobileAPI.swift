@@ -9,7 +9,7 @@
 import Lndmobile
 import SwiftProtobuf
 
-final class LightningMobileAPI: LightningAPI {
+final class LndMobileAPI: LndAPI {
 
     func call<Request, Response>(
         request: Request,

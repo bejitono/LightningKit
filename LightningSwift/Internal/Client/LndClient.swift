@@ -8,7 +8,7 @@
 
 import SwiftProtobuf
 
-protocol LightningClient {
+protocol LndClient {
     
     func request<Request, Response, Model>(
         _ request: Request,

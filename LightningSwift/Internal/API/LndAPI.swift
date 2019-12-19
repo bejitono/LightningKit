@@ -8,7 +8,7 @@
 
 import SwiftProtobuf
 
-protocol LightningAPI {
+protocol LndAPI {
     
     func call<Request, Response>(
         request: Request,

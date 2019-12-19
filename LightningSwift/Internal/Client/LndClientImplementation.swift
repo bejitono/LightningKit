@@ -8,7 +8,7 @@
 
 import SwiftProtobuf
 
-final class LightningClientImplementation: LightningClient {
+final class LndClientImplementation: LndClient {
     
     let api: LightningAPI
     
