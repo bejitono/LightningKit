@@ -15,7 +15,9 @@ public typealias LNSChannelBalanceCompletion = (Result<LNSChannelBalance, LNSWal
 
 public protocol LNSWalletService {
     
-    var instantiated: Bool { get }
+    var initialized: Bool { get }
+    
+    var unlocked: Bool { get }
     
     func generateSeed(completion: @escaping LNSSeedCompletion) // TODO: Hide implementation detail
     
