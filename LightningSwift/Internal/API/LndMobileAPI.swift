@@ -12,6 +12,8 @@ import SwiftProtobuf
 final class LndMobileAPI: LndAPI {
     
     func start(withArgs args: String?) {
+        // TODO: Change as it will have two callbacks:
+        // once when wallet unlocker is ready, and once rpcserver is ready
         LndmobileStart(args, LndEmptyCallback())
     }
     
