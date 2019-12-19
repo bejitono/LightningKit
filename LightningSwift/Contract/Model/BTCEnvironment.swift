@@ -17,7 +17,7 @@ public extension BTCEnvironment {
     
     var networkDescription: String {
         switch self {
-        case .mainnet: return "bitcoin.mainnet"
+        case .mainnet: return "bitcoin.active"
         case .regtest: return "bitcoin.regtest"
         case .simnet: return "bitcoin.simnet"
         case .testnet: return "bitcoin.testnet"

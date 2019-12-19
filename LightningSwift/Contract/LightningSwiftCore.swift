@@ -11,7 +11,7 @@ public typealias LNSInfoCompletion = (Result<LNSInfo, LNSError>) -> Void
 
 public protocol LightningSwiftCore {
     
-    var shared: LightningSwift { get }
+    var shared: LightningSwiftCore { get }
     
     var wallet: LNSWalletService { get }
     

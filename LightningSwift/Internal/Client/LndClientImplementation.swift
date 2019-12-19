@@ -11,20 +11,21 @@ import SwiftProtobuf
 final class LndClientImplementation: LndClient {
     
     let api: LndAPI
-    //let argParser: LndArgumentParser
+    let argParser: LndArgumentParser
     
-    init(api: LndAPI) {
+    init(api: LndAPI,
+         argParser: LndArgumentParser) {
         self.api = api
+        self.argParser = argParser
     }
     
-    func start(withConfig: LNSConfiguration) {
-        // TODO: Parse args
-        // let args = argParser.parse(config: LNSConfiguration)
-        api.start(withArgs: "--bitcoin.active --bitcoin.testnet --no-macaroons --bitcoin.node=neutrino")
+    func start(withConfig config: LNSConfiguration) {
+        let args = argParser.parse(config: config)
+        api.start(withArgs: args)
     }
     
     func stop() {
-        
+        api.stop()
     }
     
     func request<Request, Response, Model>(

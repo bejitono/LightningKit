@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0BE0179F23AB0FDB00C07F2F /* LightningSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE0179E23AB0FDB00C07F2F /* LightningSwift.swift */; };
 		3D70CD9B23A4F566001BE339 /* LNSSeedConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD9A23A4F566001BE339 /* LNSSeedConfiguration.swift */; };
 		3D70CD9D23A4F57C001BE339 /* LNSSeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD9C23A4F57C001BE339 /* LNSSeed.swift */; };
 		3D70CDA123A5001A001BE339 /* LNSWalletBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CDA023A50019001BE339 /* LNSWalletBalance.swift */; };
@@ -30,6 +29,7 @@
 		3D70CDC523A60086001BE339 /* LNSInvoiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CDC423A60086001BE339 /* LNSInvoiceRequest.swift */; };
 		3D70CDC723A60129001BE339 /* LNSTransactionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CDC623A60129001BE339 /* LNSTransactionError.swift */; };
 		3D70CDC923A60233001BE339 /* LNSPaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CDC823A60233001BE339 /* LNSPaymentRequest.swift */; };
+		3D70CDD023ABC3A8001BE339 /* LndArgumentParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CDCF23ABC3A8001BE339 /* LndArgumentParser.swift */; };
 		3D743E1D239E86DA005B2804 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E1C239E86DA005B2804 /* AppDelegate.swift */; };
 		3D743E1F239E86DA005B2804 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E1E239E86DA005B2804 /* SceneDelegate.swift */; };
 		3D743E23239E86DD005B2804 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D743E22239E86DD005B2804 /* Assets.xcassets */; };
@@ -60,7 +60,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0BE0179E23AB0FDB00C07F2F /* LightningSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightningSwift.swift; sourceTree = "<group>"; };
 		3D70CD8623A47CB9001BE339 /* LightningSwiftCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightningSwiftCore.swift; sourceTree = "<group>"; };
 		3D70CD8923A47CB9001BE339 /* LNSMacaroon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LNSMacaroon.swift; sourceTree = "<group>"; };
 		3D70CD8A23A47CB9001BE339 /* BTCEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTCEnvironment.swift; sourceTree = "<group>"; };
@@ -83,6 +82,7 @@
 		3D70CDC423A60086001BE339 /* LNSInvoiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNSInvoiceRequest.swift; sourceTree = "<group>"; };
 		3D70CDC623A60129001BE339 /* LNSTransactionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNSTransactionError.swift; sourceTree = "<group>"; };
 		3D70CDC823A60233001BE339 /* LNSPaymentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNSPaymentRequest.swift; sourceTree = "<group>"; };
+		3D70CDCF23ABC3A8001BE339 /* LndArgumentParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LndArgumentParser.swift; sourceTree = "<group>"; };
 		3D743E19239E86DA005B2804 /* LightningSwiftApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightningSwiftApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D743E1C239E86DA005B2804 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D743E1E239E86DA005B2804 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -122,14 +122,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0BE0179D23AB0FA000C07F2F /* LightningSwift */ = {
-			isa = PBXGroup;
-			children = (
-				0BE0179E23AB0FDB00C07F2F /* LightningSwift.swift */,
-			);
-			path = LightningSwift;
-			sourceTree = "<group>";
-		};
 		3D70CD8323A47CB9001BE339 /* Contract */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +172,7 @@
 				3D743E4A239E8957005B2804 /* API */,
 				3D70CDBA23A5F52B001BE339 /* Builder */,
 				3D743E47239E8942005B2804 /* Client */,
+				3D70CDCE23ABC38F001BE339 /* Utils */,
 			);
 			path = Internal;
 			sourceTree = "<group>";
@@ -190,6 +183,14 @@
 				3D70CDBC23A5F574001BE339 /* LNSWalletBuilder.swift */,
 			);
 			path = Builder;
+			sourceTree = "<group>";
+		};
+		3D70CDCE23ABC38F001BE339 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				3D70CDCF23ABC3A8001BE339 /* LndArgumentParser.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		3D743E10239E86DA005B2804 = {
@@ -238,7 +239,6 @@
 				3D70CD8323A47CB9001BE339 /* Contract */,
 				3D70CDAE23A5EC56001BE339 /* Internal */,
 				3D743E3D239E87A9005B2804 /* Generated */,
-				0BE0179D23AB0FA000C07F2F /* LightningSwift */,
 			);
 			path = LightningSwift;
 			sourceTree = "<group>";
@@ -397,11 +397,11 @@
 				3D70CDB723A5ECEE001BE339 /* LNSConfiguration.swift in Sources */,
 				3D743E46239E892F005B2804 /* LndClientImplementation.swift in Sources */,
 				3D70CD9D23A4F57C001BE339 /* LNSSeed.swift in Sources */,
-				0BE0179F23AB0FDB00C07F2F /* LightningSwift.swift in Sources */,
 				3D70CDC123A5FAD0001BE339 /* LNSTransactionService.swift in Sources */,
 				3D70CDBD23A5F574001BE339 /* LNSWalletBuilder.swift in Sources */,
 				3D70CDA323A505C5001BE339 /* LNSTransaction.swift in Sources */,
 				3D70CDC923A60233001BE339 /* LNSPaymentRequest.swift in Sources */,
+				3D70CDD023ABC3A8001BE339 /* LndArgumentParser.swift in Sources */,
 				3D70CDB423A5ECDC001BE339 /* LNSWalletError.swift in Sources */,
 				3D70CDB123A5ECD3001BE339 /* LNSWalletService.swift in Sources */,
 				3D70CDB523A5ECE4001BE339 /* BTCEnvironment.swift in Sources */,

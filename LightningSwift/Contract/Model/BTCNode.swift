@@ -11,3 +11,15 @@ public enum BTCNode {
     case bitcoin
     case neutrino
 }
+
+public extension BTCNode {
+    
+    var configString: String {
+        let key = "--bitcoin.node="
+        switch self {
+        case .autopilot: return key + "autopilot"
+        case .bitcoin: return key + "bitcoin"
+        case .neutrino: return key + "neutrino"
+        }
+    }
+}
