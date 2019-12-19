@@ -10,6 +10,10 @@ import SwiftProtobuf
 
 protocol LndClient {
     
+    func start(withConfig: LNSConfiguration)
+    
+    func stop()
+    
     func request<Request, Response, Model>(
         _ request: Request,
         map: @escaping (Response) -> Model,

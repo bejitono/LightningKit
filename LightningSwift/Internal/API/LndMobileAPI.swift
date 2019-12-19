@@ -10,7 +10,15 @@ import Lndmobile
 import SwiftProtobuf
 
 final class LndMobileAPI: LndAPI {
-
+    
+    func start(withArgs args: String?) {
+        LndmobileStart(args, LndEmptyCallback())
+    }
+    
+    func stop() {
+        LndmobileStopDaemon(try? Lnrpc_StopRequest().serializedData(), LndEmptyCallback())
+    }
+    
     func call<Request, Response>(
         request: Request,
         completion: @escaping ((Result<Response, Error>) -> Void)

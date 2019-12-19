@@ -10,6 +10,10 @@ import SwiftProtobuf
 
 protocol LndAPI {
     
+    func start(withArgs args: String?)
+    
+    func stop()
+    
     func call<Request, Response>(
         request: Request,
         completion: @escaping ((Result<Response, Error>) -> Void)
