@@ -41,7 +41,7 @@
 		3D743E46239E892F005B2804 /* LightningClientImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E45239E892F005B2804 /* LightningClientImplementation.swift */; };
 		3D743E49239E8953005B2804 /* LightningAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E48239E8953005B2804 /* LightningAPI.swift */; };
 		3D743E4C239E896C005B2804 /* LightningMobileAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E4B239E896C005B2804 /* LightningMobileAPI.swift */; };
-		3D743E4E239E89AD005B2804 /* LightningCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E4D239E89AD005B2804 /* LightningCallback.swift */; };
+		3D743E4E239E89AD005B2804 /* LndCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E4D239E89AD005B2804 /* LndCallback.swift */; };
 		3D743E51239E8A58005B2804 /* Lndmobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D743E50239E8A58005B2804 /* Lndmobile.framework */; };
 		3D743E54239E8AC7005B2804 /* Lndmobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D743E50239E8A58005B2804 /* Lndmobile.framework */; platformFilter = ios; };
 /* End PBXBuildFile section */
@@ -94,7 +94,7 @@
 		3D743E45239E892F005B2804 /* LightningClientImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightningClientImplementation.swift; sourceTree = "<group>"; };
 		3D743E48239E8953005B2804 /* LightningAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightningAPI.swift; sourceTree = "<group>"; };
 		3D743E4B239E896C005B2804 /* LightningMobileAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightningMobileAPI.swift; sourceTree = "<group>"; };
-		3D743E4D239E89AD005B2804 /* LightningCallback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightningCallback.swift; sourceTree = "<group>"; };
+		3D743E4D239E89AD005B2804 /* LndCallback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LndCallback.swift; sourceTree = "<group>"; };
 		3D743E50239E8A58005B2804 /* Lndmobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lndmobile.framework; path = ../Desktop/LightningTest/LightningTest/Lndmobile.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -262,7 +262,7 @@
 			children = (
 				3D743E48239E8953005B2804 /* LightningAPI.swift */,
 				3D743E4B239E896C005B2804 /* LightningMobileAPI.swift */,
-				3D743E4D239E89AD005B2804 /* LightningCallback.swift */,
+				3D743E4D239E89AD005B2804 /* LndCallback.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -388,7 +388,7 @@
 				3D70CDC723A60129001BE339 /* LNSTransactionError.swift in Sources */,
 				3D70CD9B23A4F566001BE339 /* LNSSeedConfiguration.swift in Sources */,
 				3D743E3F239E87B9005B2804 /* rpc.pb.swift in Sources */,
-				3D743E4E239E89AD005B2804 /* LightningCallback.swift in Sources */,
+				3D743E4E239E89AD005B2804 /* LndCallback.swift in Sources */,
 				3D70CDAF23A5ECCF001BE339 /* LightningSwift.swift in Sources */,
 				3D70CDB823A5ECF1001BE339 /* LNSMacaroon.swift in Sources */,
 				3D70CDB723A5ECEE001BE339 /* LNSConfiguration.swift in Sources */,

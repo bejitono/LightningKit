@@ -10,7 +10,7 @@ import Foundation
 import Lndmobile
 import SwiftProtobuf
 
-final class LightningCallback<Response: SwiftProtobuf.Message>: NSObject, LndmobileCallbackProtocol, LndmobileRecvStreamProtocol {
+final class LndCallback<Response: SwiftProtobuf.Message>: NSObject, LndmobileCallbackProtocol, LndmobileRecvStreamProtocol {
     
     private let completion: (Result<Response, Error>) -> Void
 
@@ -33,4 +33,13 @@ final class LightningCallback<Response: SwiftProtobuf.Message>: NSObject, Lndmob
         }
         completion(.success(result))
     }
+}
+
+final class LndEmptyCallback: NSObject, LndmobileCallbackProtocol {
+    func onError(_ error: Error?) {
+        guard let error = error else { return }
+        print(error)
+    }
+
+    func onResponse(_ data: Data?) { }
 }
