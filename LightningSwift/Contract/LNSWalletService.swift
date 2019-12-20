@@ -6,12 +6,10 @@
 //  Copyright © 2019 De MicheliStefano. All rights reserved.
 //
 
-public typealias LNSSeedCompletion = (Result<LNSSeed, LNSWalletError>) -> Void
-public typealias LNSInitWalletCompletion = (Result<Bool, LNSWalletError>) -> Void
-public typealias LNSUnlockWalletCompletion = (Result<Bool, LNSWalletError>) -> Void
-public typealias LNSWalletBalanceCompletion = (Result<LNSWalletBalance, LNSWalletError>) -> Void
-public typealias LNSTransactionsCompletion = (Result<LNSTransaction, LNSWalletError>) -> Void
-public typealias LNSChannelBalanceCompletion = (Result<LNSChannelBalance, LNSWalletError>) -> Void
+public typealias LNSSeedCompletion = (Result<LNSSeed, Error>) -> Void
+public typealias LNSWalletBalanceCompletion = (Result<LNSWalletBalance, Error>) -> Void
+public typealias LNSTransactionsCompletion = (Result<[LNSTransaction], Error>) -> Void
+public typealias LNSChannelBalanceCompletion = (Result<LNSChannelBalance, Error>) -> Void
 
 public protocol LNSWalletService {
     
@@ -23,13 +21,13 @@ public protocol LNSWalletService {
     
     func generateSeed(withConfig config: LNSSeedConfiguration, completion: @escaping LNSSeedCompletion) // TODO: Hide implementation detail
     
-    func initializeWalletWith(password: String, seed: LNSSeed, completion: @escaping LNSInitWalletCompletion)
+    func initializeWalletWith(password: String, seed: LNSSeed, completion: @escaping LNSSuccessCompletion)
     
-    func unlockWallet(withPassword password: String, completion: @escaping LNSUnlockWalletCompletion)
+    func unlockWallet(withPassword password: String, completion: @escaping LNSSuccessCompletion)
     
     // TODO: Add wallet recovery with seed
     
-    func changeWallet(password: String, to newPassword: String)
+    func changeWallet(password: String, to newPassword: String, completion: @escaping LNSSuccessCompletion)
     
     func getWalletBalance(completion: @escaping LNSWalletBalanceCompletion)
     
