@@ -93,3 +93,47 @@ struct LNSWalletMapperImplementation: LNSWalletRequestMapper {
         return Lnrpc_GetTransactionsRequest()
     }
 }
+
+extension LNSWalletMapperImplementation: LNSWalletResponseMapper {
+    
+    func map(seedResponse response: Lnrpc_GenSeedResponse) -> LNSSeed {
+        return LNSSeed(phrase: response.cipherSeedMnemonic, encipheredSeed: response.encipheredSeed)
+    }
+    
+    func map(initWalletResponse response: Lnrpc_InitWalletResponse) -> Bool {
+        return true
+    }
+    
+    func map(unlockWalletResponse response: Lnrpc_UnlockWalletResponse) -> Bool {
+        return true
+    }
+    
+    func map(changePasswordResponse response: Lnrpc_ChangePasswordResponse) -> Bool {
+        return true
+    }
+    
+    func map(walletBalanceResponse response: Lnrpc_WalletBalanceResponse) -> LNSWalletBalance {
+        return LNSWalletBalance(
+            totalBalance: Int(response.totalBalance),
+            confirmedBalance: Int(response.confirmedBalance),
+            unconfirmedBalance: Int(response.unconfirmedBalance)
+        )
+    }
+    
+    func map(channelBalanceResponse response: Lnrpc_ChannelBalanceResponse) -> LNSChannelBalance {
+        return LNSChannelBalance(balance: Int(response.balance), pendingBalance: Int(response.pendingOpenBalance))
+    }
+    
+    func map(transactionsResponse response: Lnrpc_TransactionDetails) -> [LNSTransaction] {
+        return response.transactions.map {
+            LNSTransaction(
+                hash: $0.txHash,
+                amount: Int($0.amount),
+                numberOfConfirmations: Int($0.numConfirmations),
+                timestamp: Date(timeIntervalSince1970: TimeInterval($0.timeStamp)),
+                fees: Int($0.totalFees),
+                destinationAdresses: $0.destAddresses.map { BTCAddress(address: $0) }
+            )
+        }
+    }
+}
