@@ -6,31 +6,55 @@
 //  Copyright © 2019 De MicheliStefano. All rights reserved.
 //
 
-protocol WalletRequestMapper {
+import Foundation.NSDate
+
+typealias LNSWalletMapper = LNSWalletRequestMapper & LNSWalletResponseMapper
+
+protocol LNSWalletRequestMapper {
     
-    func request(config: LNSSeedConfiguration) -> Lnrpc_GenSeedRequest
+    func requestGenerateSeed(withConfig config: LNSSeedConfiguration?) -> Lnrpc_GenSeedRequest
     
-    func request(password: String, seed: LNSSeed) -> Lnrpc_InitWalletRequest
+    func requestInitWalletWith(password: String, seed: LNSSeed) -> Lnrpc_InitWalletRequest
     
-    func request(password: String, newPassword: String) -> Lnrpc_ChangePasswordRequest
+    func requestUnlockWallet(withPassword password: String) -> Lnrpc_UnlockWalletRequest
     
-    func request() -> Lnrpc_WalletBalanceRequest
+    func requestChange(password: String, to newPassword: String) -> Lnrpc_ChangePasswordRequest
     
-    func request() -> Lnrpc_ChannelBalanceRequest
+    func requestWalletBalance() -> Lnrpc_WalletBalanceRequest
     
-    func request() -> Lnrpc_GetTransactionsRequest
+    func requestChannelBalance() -> Lnrpc_ChannelBalanceRequest
+    
+    func requestTransactions() -> Lnrpc_GetTransactionsRequest
 }
 
-struct WalletMapperImplementation: WalletRequestMapper {
+protocol LNSWalletResponseMapper {
     
-    func request(config: LNSSeedConfiguration) -> Lnrpc_GenSeedRequest {
+    func map(seedResponse response: Lnrpc_GenSeedResponse) -> LNSSeed
+    
+    func map(initWalletResponse response: Lnrpc_InitWalletResponse) -> Bool
+    
+    func map(unlockWalletResponse response: Lnrpc_UnlockWalletResponse) -> Bool
+    
+    func map(changePasswordResponse response: Lnrpc_ChangePasswordResponse) -> Bool
+    
+    func map(walletBalanceResponse response: Lnrpc_WalletBalanceResponse) -> LNSWalletBalance
+    
+    func map(channelBalanceResponse response: Lnrpc_ChannelBalanceResponse) -> LNSChannelBalance
+    
+    func map(transactionsResponse response: Lnrpc_TransactionDetails) -> [LNSTransaction]
+}
+
+struct LNSWalletMapperImplementation: LNSWalletRequestMapper {
+    
+    func requestGenerateSeed(withConfig config: LNSSeedConfiguration?) -> Lnrpc_GenSeedRequest {
         var req = Lnrpc_GenSeedRequest()
+        guard let config = config else { return req }
         req.aezeedPassphrase = config.passphrase
         req.seedEntropy = config.entropy
         return req
     }
     
-    func request(password: String, seed: LNSSeed) -> Lnrpc_InitWalletRequest {
+    func requestInitWalletWith(password: String, seed: LNSSeed) -> Lnrpc_InitWalletRequest {
         var req = Lnrpc_InitWalletRequest()
         guard let passwordData = password.data(using: .utf8) else { return req }
         req.walletPassword = passwordData
@@ -39,7 +63,7 @@ struct WalletMapperImplementation: WalletRequestMapper {
         return req
     }
     
-    func request(password: String, newPassword: String) -> Lnrpc_ChangePasswordRequest {
+    func requestChange(password: String, to newPassword: String) -> Lnrpc_ChangePasswordRequest {
         var req = Lnrpc_ChangePasswordRequest()
         guard
             let passwordData = password.data(using: .utf8),
@@ -50,15 +74,22 @@ struct WalletMapperImplementation: WalletRequestMapper {
         return req
     }
     
-    func request() -> Lnrpc_WalletBalanceRequest {
+    func requestUnlockWallet(withPassword password: String) -> Lnrpc_UnlockWalletRequest {
+        var req = Lnrpc_UnlockWalletRequest()
+        guard let passwordData = password.data(using: .utf8) else { return req }
+        req.walletPassword = passwordData
+        return req
+    }
+    
+    func requestWalletBalance() -> Lnrpc_WalletBalanceRequest {
         return Lnrpc_WalletBalanceRequest()
     }
     
-    func request() -> Lnrpc_ChannelBalanceRequest {
+    func requestChannelBalance() -> Lnrpc_ChannelBalanceRequest {
         return Lnrpc_ChannelBalanceRequest()
     }
     
-    func request() -> Lnrpc_GetTransactionsRequest {
+    func requestTransactions() -> Lnrpc_GetTransactionsRequest {
         return Lnrpc_GetTransactionsRequest()
     }
 }
