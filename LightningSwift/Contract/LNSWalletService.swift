@@ -27,6 +27,8 @@ public protocol LNSWalletService {
     
     func unlockWallet(withPassword password: String, completion: @escaping LNSUnlockWalletCompletion)
     
+    // TODO: Add wallet recovery with seed
+    
     func changeWallet(password: String, to newPassword: String)
     
     func getWalletBalance(completion: @escaping LNSWalletBalanceCompletion)

@@ -46,6 +46,7 @@
 		3D743E4E239E89AD005B2804 /* LndCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E4D239E89AD005B2804 /* LndCallback.swift */; };
 		3D743E51239E8A58005B2804 /* Lndmobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D743E50239E8A58005B2804 /* Lndmobile.framework */; };
 		3D743E54239E8AC7005B2804 /* Lndmobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D743E50239E8A58005B2804 /* Lndmobile.framework */; platformFilter = ios; };
+		3D790AF523AC5ABD00DF1EEB /* WalletMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D790AF423AC5ABD00DF1EEB /* WalletMapper.swift */; };
 		3DD153B123ABC9620064A542 /* LNSWalletServiceImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD153B023ABC9620064A542 /* LNSWalletServiceImplementation.swift */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +102,7 @@
 		3D743E4B239E896C005B2804 /* LndMobileAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LndMobileAPI.swift; sourceTree = "<group>"; };
 		3D743E4D239E89AD005B2804 /* LndCallback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LndCallback.swift; sourceTree = "<group>"; };
 		3D743E50239E8A58005B2804 /* Lndmobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lndmobile.framework; path = ../Desktop/LightningTest/LightningTest/Lndmobile.framework; sourceTree = "<group>"; };
+		3D790AF423AC5ABD00DF1EEB /* WalletMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletMapper.swift; sourceTree = "<group>"; };
 		3DD153B023ABC9620064A542 /* LNSWalletServiceImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNSWalletServiceImplementation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -176,6 +178,7 @@
 				3D743E4A239E8957005B2804 /* API */,
 				3D70CDBA23A5F52B001BE339 /* Builder */,
 				3D743E47239E8942005B2804 /* Client */,
+				3D790AF323AC5AAA00DF1EEB /* Mapper */,
 				3DD153AF23ABC94B0064A542 /* Service */,
 				3D70CDCE23ABC38F001BE339 /* Utils */,
 			);
@@ -290,6 +293,14 @@
 				3D743E50239E8A58005B2804 /* Lndmobile.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3D790AF323AC5AAA00DF1EEB /* Mapper */ = {
+			isa = PBXGroup;
+			children = (
+				3D790AF423AC5ABD00DF1EEB /* WalletMapper.swift */,
+			);
+			path = Mapper;
 			sourceTree = "<group>";
 		};
 		3DD153AF23ABC94B0064A542 /* Service */ = {
@@ -435,6 +446,7 @@
 				3D70CDA123A5001A001BE339 /* LNSWalletBalance.swift in Sources */,
 				3D743E3C239E878A005B2804 /* LndClient.swift in Sources */,
 				3D70CDB623A5ECE7001BE339 /* BTCNode.swift in Sources */,
+				3D790AF523AC5ABD00DF1EEB /* WalletMapper.swift in Sources */,
 				3D70CDA523A506B3001BE339 /* BTCAddress.swift in Sources */,
 				3D743E49239E8953005B2804 /* LndAPI.swift in Sources */,
 				3D70CDBF23A5FA05001BE339 /* LNSChannelService.swift in Sources */,
