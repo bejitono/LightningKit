@@ -8,11 +8,20 @@
 
 public class LightningSwift: LightningSwiftCore {
     
-    //public let shared: LightningSwiftCore = LightningSwift()
+    public static var shared: LightningSwiftCore = LightningSwift()
     public let wallet: LNSWalletService
     public let isRunning: Bool = false
     
     private let client: LndClient
+
+    public convenience init() {
+        let clientBuilder = LndClientBuilder()
+        let serviceBuilder = LNSServiceBuilder(lndClientBuilder: clientBuilder)
+        self.init(
+            client: clientBuilder.build(.mobile),
+            wallet: serviceBuilder.buildWalletService()
+        )
+    }
     
     init(client: LndClient,
          wallet: LNSWalletService) {
