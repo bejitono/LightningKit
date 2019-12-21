@@ -40,6 +40,10 @@ public class LightningSwift: LNSCoreService {
     public func start(withConfig config: LNSConfiguration) throws {
         client.start(withConfig: config)
     }
+
+    public func stop() {
+        client.stop()
+    }
     
     public func getInfo(completion: @escaping LNSInfoCompletion) {
         client.request(mapper.requestGetInfo(), map: mapper.map(getInfoResponse:), completion: completion)
