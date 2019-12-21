@@ -6,7 +6,7 @@
 //  Copyright © 2019 De MicheliStefano. All rights reserved.
 //
 
-public typealias LNSAddInvoiceCompletion = (Result<LNSInvoice, LNSTransactionError>) -> Void
+public typealias LNSAddInvoiceCompletion = (Result<LNSInvoice, Error>) -> Void
 
 protocol LNSTransactionService {
     
