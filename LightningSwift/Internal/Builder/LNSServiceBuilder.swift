@@ -8,12 +8,23 @@
 
 struct LNSServiceBuilder {
 
-    let lndClientBuilder: LndClientBuilder
+    let lndClient: LndClient
+
+    init(lndClient: LndClient) {
+        self.lndClient = lndClient
+    }
 
     func buildWalletService() -> LNSWalletService {
         return LNSWalletServiceImplementation(
-            client: lndClientBuilder.build(.mobile),
+            client: lndClient,
             mapper: LNSWalletMapperImplementation()
+        )
+    }
+
+    func buildTransactionService() -> LNSTransactionService {
+        return LNSTransactionServiceImplementation(
+            client: lndClient,
+            mapper: LNSTransactionMapperImplementation()
         )
     }
 }
