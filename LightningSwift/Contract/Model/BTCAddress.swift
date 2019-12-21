@@ -11,8 +11,8 @@ public struct BTCAddress {
     public let address: String
     // let type: BTCAddressType
 
-    public init() {
-        
+    public init(address: String) {
+        self.address = address
     }
 }
 

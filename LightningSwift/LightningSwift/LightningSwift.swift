@@ -10,7 +10,6 @@ public class LightningSwift: LNSCoreService {
     
     public static var shared: LNSCoreService = LightningSwift()
     public let wallet: LNSWalletService
-    public let transaction: LNSTransactionService
     public let isRunning: Bool = false
     
     private let client: LndClient
@@ -22,18 +21,15 @@ public class LightningSwift: LNSCoreService {
         self.init(
             client: lndClient,
             wallet: serviceBuilder.buildWalletService(),
-            transaction: serviceBuilder.buildTransactionService(),
             mapper: LNSCoreMapperImplementation()
         )
     }
     
     init(client: LndClient,
          wallet: LNSWalletService,
-         transaction: LNSTransactionService,
          mapper: LNSCoreMapper) {
         self.client = client
         self.wallet = wallet
-        self.transaction = transaction
         self.mapper = mapper
     }
     
@@ -47,5 +43,17 @@ public class LightningSwift: LNSCoreService {
     
     public func getInfo(completion: @escaping LNSInfoCompletion) {
         client.request(mapper.requestGetInfo(), map: mapper.map(getInfoResponse:), completion: completion)
+    }
+
+    public func addInvoice(withRequest request: LNSInvoiceRequest, completion: @escaping LNSAddInvoiceCompletion) {
+        client.request(mapper.requestAddInvoice(withRequest: request), map: mapper.map(addInvoiceResponse:), completion: completion)
+    }
+
+    public func sendPayment(withRequest request: LNSPaymentRequest, completion: @escaping LNSSuccessCompletion) {
+        client.request(mapper.requestSendPayment(withRequest: request), map: mapper.map(sendPaymentResponse:), completion: completion)
+    }
+
+    public func sendPayment(withRequest request: LNSEncodedPaymentRequest, completion: @escaping LNSSuccessCompletion) {
+        client.request(mapper.requestSendPayment(withEndcodedRequest: request), map: mapper.map(sendEncodedPaymentResponse:), completion: completion)
     }
 }
