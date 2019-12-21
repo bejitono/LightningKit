@@ -8,7 +8,7 @@
 
 public typealias LNSAddInvoiceCompletion = (Result<LNSInvoice, Error>) -> Void
 
-protocol LNSTransactionService {
+public protocol LNSTransactionService {
     
     func addInvoice(withRequest request: LNSInvoiceRequest, completion: @escaping LNSAddInvoiceCompletion)
     
