@@ -6,27 +6,35 @@
 //  Copyright © 2019 De MicheliStefano. All rights reserved.
 //
 
-public class LightningSwift: LightningSwiftCore {
+public class LightningSwift: LNSCoreService {
     
-    public static var shared: LightningSwiftCore = LightningSwift()
+    public static var shared: LNSCoreService = LightningSwift()
     public let wallet: LNSWalletService
+    public let transaction: LNSTransactionService
     public let isRunning: Bool = false
     
     private let client: LndClient
+    private let mapper: LNSCoreMapper
 
     public convenience init() {
-        let clientBuilder = LndClientBuilder()
-        let serviceBuilder = LNSServiceBuilder(lndClientBuilder: clientBuilder)
+        let lndClient = LndClientBuilder().build(.mobile)
+        let serviceBuilder = LNSServiceBuilder(lndClient: lndClient)
         self.init(
-            client: clientBuilder.build(.mobile),
-            wallet: serviceBuilder.buildWalletService()
+            client: lndClient,
+            wallet: serviceBuilder.buildWalletService(),
+            transaction: serviceBuilder.buildTransactionService(),
+            mapper: LNSCoreMapperImplementation()
         )
     }
     
     init(client: LndClient,
-         wallet: LNSWalletService) {
+         wallet: LNSWalletService,
+         transaction: LNSTransactionService,
+         mapper: LNSCoreMapper) {
         self.client = client
         self.wallet = wallet
+        self.transaction = transaction
+        self.mapper = mapper
     }
     
     public func start(withConfig config: LNSConfiguration) throws {
@@ -34,6 +42,6 @@ public class LightningSwift: LightningSwiftCore {
     }
     
     public func getInfo(completion: @escaping LNSInfoCompletion) {
-        
+        client.request(mapper.requestGetInfo(), map: mapper.map(getInfoResponse:), completion: completion)
     }
 }
