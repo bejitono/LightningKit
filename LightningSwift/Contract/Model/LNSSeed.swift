@@ -10,6 +10,12 @@ import Foundation.NSData
 
 public struct LNSSeed {
     
-    let phrase: [String]
-    let encipheredSeed: Data?
+    public let phrase: [String]
+    public let encipheredSeed: Data?
+
+    public init(phrase: [String],
+                encipheredSeed: Data?) {
+        self.phrase = phrase
+        self.encipheredSeed = encipheredSeed
+    }
 }

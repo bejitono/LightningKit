@@ -10,7 +10,15 @@ import Foundation.NSDate
 
 public struct LNSInvoiceRequest {
     
-    let amount: Int
-    let memo: String?
-    let expiryDate: Date?
+    public let amount: Int
+    public let memo: String?
+    public let expiryDate: Date?
+
+    public init(amount: Int,
+                memo: String?,
+                expiryDate: Date?) {
+        self.amount = amount
+        self.memo = memo
+        self.expiryDate = expiryDate
+    }
 }

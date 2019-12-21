@@ -8,8 +8,12 @@
 
 public struct BTCAddress {
     
-    let address: String
+    public let address: String
     // let type: BTCAddressType
+
+    public init() {
+        
+    }
 }
 
 public enum BTCAddressType {

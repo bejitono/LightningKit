@@ -9,4 +9,6 @@
 public struct LNSMacaroon {
     
     // TODO: Implement
+
+    public init() { }
 }

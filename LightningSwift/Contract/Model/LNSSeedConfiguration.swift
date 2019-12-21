@@ -10,6 +10,12 @@ import Foundation.NSData
 
 public struct LNSSeedConfiguration {
     
-    let passphrase: Data
-    let entropy: Data
+    public let passphrase: Data
+    public let entropy: Data
+
+    public init(passphrase: Data,
+                entropy: Data) {
+        self.passphrase = passphrase
+        self.entropy = entropy
+    }
 }

@@ -10,10 +10,24 @@ import Foundation.NSDate
 
 public struct LNSTransaction {
     
-    let hash: String
-    let amount: Int
-    let numberOfConfirmations: Int
-    let timestamp: Date
-    let fees: Int
-    let destinationAdresses: [BTCAddress]
+    public let hash: String
+    public let amount: Int
+    public let numberOfConfirmations: Int
+    public let timestamp: Date
+    public let fees: Int
+    public let destinationAdresses: [BTCAddress]
+
+    public init(hash: String,
+                amount: Int,
+                numberOfConfirmations: Int,
+                timestamp: Date,
+                fees: Int,
+                destinationAdresses: [BTCAddress]) {
+        self.hash = hash
+        self.amount = amount
+        self.numberOfConfirmations = numberOfConfirmations
+        self.timestamp = timestamp
+        self.fees = fees
+        self.destinationAdresses = destinationAdresses
+    }
 }

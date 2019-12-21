@@ -8,7 +8,15 @@
 
 public struct LNSConfiguration {
     
-    let macaroon: LNSMacaroon?
-    let btcEnvironment: BTCEnvironment
-    let btcNode: BTCNode
+    public let macaroon: LNSMacaroon?
+    public let btcEnvironment: BTCEnvironment
+    public let btcNode: BTCNode
+
+    public init(macaroon: LNSMacaroon?,
+                btcEnvironment: BTCEnvironment,
+                btcNode: BTCNode) {
+        self.macaroon = macaroon
+        self.btcEnvironment = btcEnvironment
+        self.btcNode = btcNode
+    }
 }
