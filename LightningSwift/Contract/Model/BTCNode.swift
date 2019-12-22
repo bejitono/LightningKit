@@ -14,7 +14,7 @@ public enum BTCNode {
 
 public extension BTCNode {
     
-    var configString: String {
+    var argumentString: String {
         let key = "--bitcoin.node="
         switch self {
         case .autopilot: return key + "autopilot"

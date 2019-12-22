@@ -15,6 +15,6 @@ struct LndArgumentParserImplementation: LndArgumentParser {
     
     func parse(config: LNSConfiguration) -> String {
         // TODO: Macaroons parsing
-        return "\(config.btcEnvironment.networkDescription) --no-macaroons \(config.btcNode.configString)"
+        return "--bitcoin.active \(config.btcEnvironment.argumentString) --no-macaroons \(config.btcNode.argumentString)"
     }
 }
