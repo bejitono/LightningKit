@@ -24,8 +24,12 @@ final class LndMobileAPI: LndAPI {
     func call<Request, Response>(
         request: Request,
         completion: @escaping ((Result<Response, Error>) -> Void)
-    ) throws where Request: SwiftProtobuf.Message, Response: SwiftProtobuf.Message {
-        try? request.send(completion: completion)
+    ) where Request: SwiftProtobuf.Message, Response: SwiftProtobuf.Message {
+        do {
+            try request.send(completion: completion)
+        } catch {
+            completion(.failure(error))
+        }
     }
 }
 

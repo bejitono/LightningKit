@@ -33,6 +33,6 @@ final class LndClientImplementation: LndClient {
         map: @escaping (Response) -> Model,
         completion: @escaping (Result<Model, Error>) -> Void
     ) where Request: SwiftProtobuf.Message, Response: SwiftProtobuf.Message {
-        try? api.call(request: request, completion: { completion($0.map(map)) })
+        api.call(request: request, completion: { completion($0.map(map)) })
     }
 }

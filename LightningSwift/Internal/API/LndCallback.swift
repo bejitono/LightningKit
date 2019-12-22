@@ -36,6 +36,7 @@ final class LndCallback<Response: SwiftProtobuf.Message>: NSObject, LndmobileCal
 }
 
 final class LndEmptyCallback: NSObject, LndmobileCallbackProtocol {
+    
     func onError(_ error: Error?) {
         guard let error = error else { return }
         print(error)

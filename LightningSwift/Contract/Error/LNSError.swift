@@ -7,6 +7,7 @@
 //
 
 public enum LNSError: Error {
+    case startFailed
     case requestUnkown
     case unknown
 }

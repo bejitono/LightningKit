@@ -20,9 +20,9 @@ public protocol LNSCoreService {
     
     var isRunning: Bool { get }
     
-    func start(withConfig: LNSConfiguration) throws
+    func start(withConfig: LNSConfiguration)
 
-    func stop() throws
+    func stop()
     
     func getInfo(completion: @escaping LNSInfoCompletion)
 

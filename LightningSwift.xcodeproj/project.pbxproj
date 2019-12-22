@@ -48,9 +48,20 @@
 		3D743E4E239E89AD005B2804 /* LndCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E4D239E89AD005B2804 /* LndCallback.swift */; };
 		3D743E51239E8A58005B2804 /* Lndmobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D743E50239E8A58005B2804 /* Lndmobile.framework */; };
 		3D743E54239E8AC7005B2804 /* Lndmobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D743E50239E8A58005B2804 /* Lndmobile.framework */; platformFilter = ios; };
+		3D76931E23AE62A900C6D726 /* libLightningSwift.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D743E34239E8762005B2804 /* libLightningSwift.a */; };
 		3D790AF523AC5ABD00DF1EEB /* LNSWalletMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D790AF423AC5ABD00DF1EEB /* LNSWalletMapper.swift */; };
 		3DD153B123ABC9620064A542 /* LNSWalletServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD153B023ABC9620064A542 /* LNSWalletServiceImpl.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3D76931C23AE62A400C6D726 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3D743E11239E86DA005B2804 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3D743E33239E8762005B2804;
+			remoteInfo = LightningSwift;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		3D743E32239E8762005B2804 /* CopyFiles */ = {
@@ -115,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D76931E23AE62A900C6D726 /* libLightningSwift.a in Frameworks */,
 				3D743E51239E8A58005B2804 /* Lndmobile.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -331,6 +343,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3D76931D23AE62A400C6D726 /* PBXTargetDependency */,
 			);
 			name = LightningSwiftApp;
 			productName = LightningSwift;
@@ -463,6 +476,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3D76931D23AE62A400C6D726 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3D743E33239E8762005B2804 /* LightningSwift */;
+			targetProxy = 3D76931C23AE62A400C6D726 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3D743E27239E86DD005B2804 /* LaunchScreen.storyboard */ = {

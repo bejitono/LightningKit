@@ -33,7 +33,7 @@ public class LightningSwift: LNSCoreService {
         self.mapper = mapper
     }
     
-    public func start(withConfig config: LNSConfiguration) throws {
+    public func start(withConfig config: LNSConfiguration) {
         client.start(withConfig: config)
     }
 

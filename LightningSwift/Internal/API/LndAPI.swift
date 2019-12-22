@@ -17,5 +17,5 @@ protocol LndAPI {
     func call<Request, Response>(
         request: Request,
         completion: @escaping ((Result<Response, Error>) -> Void)
-    ) throws where Request: SwiftProtobuf.Message, Response: SwiftProtobuf.Message
+    ) where Request: SwiftProtobuf.Message, Response: SwiftProtobuf.Message
 }
