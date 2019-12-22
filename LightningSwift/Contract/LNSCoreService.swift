@@ -21,6 +21,8 @@ public protocol LNSCoreService {
     var isRunning: Bool { get }
     
     func start(withConfig: LNSConfiguration)
+    
+    func start()
 
     func stop()
     

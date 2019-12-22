@@ -20,3 +20,10 @@ public struct LNSConfiguration {
         self.btcNode = btcNode
     }
 }
+
+extension LNSConfiguration {
+    
+    static var defaultConfig: LNSConfiguration {
+        return .init(macaroon: nil, btcEnvironment: .testnet, btcNode: .neutrino)
+    }
+}

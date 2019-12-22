@@ -36,6 +36,10 @@ public class LightningSwift: LNSCoreService {
     public func start(withConfig config: LNSConfiguration) {
         client.start(withConfig: config)
     }
+    
+    public func start() {
+        client.start(withConfig: .defaultConfig)
+    }
 
     public func stop() {
         client.stop()
