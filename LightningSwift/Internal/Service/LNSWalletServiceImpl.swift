@@ -51,4 +51,13 @@ final class LNSWalletServiceImplementation: LNSWalletService {
     func getTransactions(completion: @escaping LNSTransactionsCompletion) {
         client.request(mapper.requestTransactions(), map: mapper.map(transactionsResponse:), completion: completion)
     }
+    
+    func generateNewAddress(forType type: LNSAddressType, completion: @escaping LNSNewAddressCompletion) {
+        client.request(mapper.requestNewAddress(forType: type), map: mapper.map(newAddressResponse:), completion: completion)
+    }
+    
+    // Default: p2wkh / witnessPubkeyHash
+    func generateNewAddress(completion: @escaping LNSNewAddressCompletion) {
+        client.request(mapper.requestNewAddress(forType: nil), map: mapper.map(newAddressResponse:), completion: completion)
+    }
 }

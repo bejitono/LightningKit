@@ -21,3 +21,8 @@ public enum BTCAddressType {
     case P2SH
     case Bech32
 }
+
+public enum LNSAddressType {
+    case p2wkh // witnessPubkeyHash
+    case np2wkh // nestedPubkeyHash
+}

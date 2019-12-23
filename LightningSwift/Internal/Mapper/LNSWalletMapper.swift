@@ -25,6 +25,8 @@ protocol LNSWalletRequestMapper {
     func requestChannelBalance() -> Lnrpc_ChannelBalanceRequest
     
     func requestTransactions() -> Lnrpc_GetTransactionsRequest
+    
+    func requestNewAddress(forType type: LNSAddressType?) -> Lnrpc_NewAddressRequest
 }
 
 protocol LNSWalletResponseMapper {
@@ -42,6 +44,8 @@ protocol LNSWalletResponseMapper {
     func map(channelBalanceResponse response: Lnrpc_ChannelBalanceResponse) -> LNSChannelBalance
     
     func map(transactionsResponse response: Lnrpc_TransactionDetails) -> [LNSTransaction]
+    
+    func map(newAddressResponse response: Lnrpc_NewAddressResponse) -> BTCAddress
 }
 
 struct LNSWalletMapperImplementation: LNSWalletRequestMapper {
@@ -59,7 +63,8 @@ struct LNSWalletMapperImplementation: LNSWalletRequestMapper {
         guard let passwordData = password.data(using: .utf8) else { return req }
         req.walletPassword = passwordData
         req.cipherSeedMnemonic = seed.phrase
-        if let encipheredSeed = seed.encipheredSeed { req.aezeedPassphrase = encipheredSeed }
+        // TODO: getting error "invalid passphrase"
+        //if let encipheredSeed = seed.encipheredSeed { req.aezeedPassphrase = encipheredSeed }
         return req
     }
     
@@ -91,6 +96,13 @@ struct LNSWalletMapperImplementation: LNSWalletRequestMapper {
     
     func requestTransactions() -> Lnrpc_GetTransactionsRequest {
         return Lnrpc_GetTransactionsRequest()
+    }
+    
+    func requestNewAddress(forType type: LNSAddressType?) -> Lnrpc_NewAddressRequest {
+        var req = Lnrpc_NewAddressRequest()
+        guard let type = type else { return req }
+        req.type = type.lndAddressType
+        return req
     }
 }
 
@@ -135,5 +147,9 @@ extension LNSWalletMapperImplementation: LNSWalletResponseMapper {
                 destinationAdresses: $0.destAddresses.map { BTCAddress(address: $0) }
             )
         }
+    }
+    
+    func map(newAddressResponse response: Lnrpc_NewAddressResponse) -> BTCAddress {
+        return BTCAddress(address: response.address)
     }
 }

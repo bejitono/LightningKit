@@ -10,6 +10,7 @@ public typealias LNSSeedCompletion = (Result<LNSSeed, Error>) -> Void
 public typealias LNSWalletBalanceCompletion = (Result<LNSWalletBalance, Error>) -> Void
 public typealias LNSTransactionsCompletion = (Result<[LNSTransaction], Error>) -> Void
 public typealias LNSChannelBalanceCompletion = (Result<LNSChannelBalance, Error>) -> Void
+public typealias LNSNewAddressCompletion = (Result<BTCAddress, Error>) -> Void
 
 public protocol LNSWalletService {
     
@@ -34,4 +35,8 @@ public protocol LNSWalletService {
     func getChannelBalance(completion: @escaping LNSChannelBalanceCompletion)
     
     func getTransactions(completion: @escaping LNSTransactionsCompletion)
+    
+    func generateNewAddress(forType type: LNSAddressType, completion: @escaping LNSNewAddressCompletion)
+    
+    func generateNewAddress(completion: @escaping LNSNewAddressCompletion)
 }
