@@ -33,4 +33,6 @@ public protocol LNSCoreService {
     func sendPayment(withRequest request: LNSPaymentRequest, completion: @escaping LNSSuccessCompletion)
 
     func sendPayment(withRequest request: LNSEncodedPaymentRequest, completion: @escaping LNSSuccessCompletion)
+    
+    func connectPeer(withConfig config: LNSConnectPeerConfiguration, completion: @escaping LNSSuccessCompletion)
 }

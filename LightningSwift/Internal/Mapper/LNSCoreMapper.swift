@@ -19,6 +19,8 @@ protocol LNSCoreRequestMapper {
     func requestSendPayment(withRequest request: LNSPaymentRequest) -> Lnrpc_SendRequest
 
     func requestSendPayment(withEndcodedRequest request: LNSEncodedPaymentRequest) -> Lnrpc_SendRequest
+
+    func requestConnectPeer(withConnectPeerConfig config: LNSConnectPeerConfiguration) -> Lnrpc_ConnectPeerRequest
 }
 
 protocol LNSCoreResponseMapper {
@@ -30,6 +32,8 @@ protocol LNSCoreResponseMapper {
     func map(sendPaymentResponse response: Lnrpc_SendResponse) -> Bool
 
     func map(sendEncodedPaymentResponse response: Lnrpc_SendResponse) -> Bool
+
+    func map(connectPeerResponse response: Lnrpc_ConnectPeerResponse) -> Bool
 }
 
 struct LNSCoreMapperImplementation: LNSCoreRequestMapper {
@@ -65,6 +69,14 @@ struct LNSCoreMapperImplementation: LNSCoreRequestMapper {
     func requestSendPayment(withEndcodedRequest request: LNSEncodedPaymentRequest) -> Lnrpc_SendRequest {
         var req = Lnrpc_SendRequest()
         req.paymentRequest = request
+        return req
+    }
+    
+    func requestConnectPeer(withConnectPeerConfig config: LNSConnectPeerConfiguration) -> Lnrpc_ConnectPeerRequest {
+        var req = Lnrpc_ConnectPeerRequest()
+        req.addr.pubkey = config.address.pubkey
+        req.addr.host = config.address.host
+        req.perm = config.permanent
         return req
     }
 }
@@ -105,6 +117,10 @@ extension LNSCoreMapperImplementation: LNSCoreResponseMapper {
     }
 
     func map(sendEncodedPaymentResponse response: Lnrpc_SendResponse) -> Bool {
+        return true
+    }
+    
+    func map(connectPeerResponse response: Lnrpc_ConnectPeerResponse) -> Bool {
         return true
     }
 }

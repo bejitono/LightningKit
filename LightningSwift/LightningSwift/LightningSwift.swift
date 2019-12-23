@@ -60,4 +60,8 @@ public class LightningSwift: LNSCoreService {
     public func sendPayment(withRequest request: LNSEncodedPaymentRequest, completion: @escaping LNSSuccessCompletion) {
         client.request(mapper.requestSendPayment(withEndcodedRequest: request), map: mapper.map(sendEncodedPaymentResponse:), completion: completion)
     }
+    
+    public func connectPeer(withConfig config: LNSConnectPeerConfiguration, completion: @escaping LNSSuccessCompletion) {
+        client.request(mapper.requestConnectPeer(withConnectPeerConfig: config), map: mapper.map(connectPeerResponse:), completion: completion)
+    }
 }
