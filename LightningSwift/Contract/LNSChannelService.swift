@@ -6,7 +6,9 @@
 //  Copyright © 2019 De MicheliStefano. All rights reserved.
 //
 
-protocol LNSChannelService {
+public typealias LNSOpenChannelCompletion = (Result<LNSChannelPoint, Error>) -> Void
+
+public protocol LNSChannelService {
     
-    // TODO: Using auto pilot for now
+    func openChannel(withConfig config: LNSOpenChannelConfiguration, completion: @escaping LNSOpenChannelCompletion)
 }

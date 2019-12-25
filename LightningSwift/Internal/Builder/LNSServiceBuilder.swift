@@ -20,4 +20,11 @@ struct LNSServiceBuilder {
             mapper: LNSWalletMapperImplementation()
         )
     }
+
+    func buildChannelService() -> LNSChannelService {
+        return LNSChannelServiceImplementation(
+            client: lndClient,
+            mapper: LNSChannelMapperImplementation()
+        )
+    }
 }

@@ -6,4 +6,18 @@
 //  Copyright © 2019 De MicheliStefano. All rights reserved.
 //
 
-import Foundation
+final class LNSChannelServiceImplementation: LNSChannelService {
+    
+    private let client: LndClient
+    private let mapper: LNSChannelMapper
+    
+    init(client: LndClient,
+         mapper: LNSChannelMapper) {
+        self.client = client
+        self.mapper = mapper
+    }
+    
+    func openChannel(withConfig config: LNSOpenChannelConfiguration, completion: @escaping LNSOpenChannelCompletion) {
+        client.request(mapper.requestOpenChannel(withConfig: config), map: mapper.map(openChannelResponse:), completion: completion)
+    }
+}

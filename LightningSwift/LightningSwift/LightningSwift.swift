@@ -10,6 +10,7 @@ public class LightningSwift: LNSCoreService {
     
     public static var shared: LNSCoreService = LightningSwift()
     public let wallet: LNSWalletService
+    public let channel: LNSChannelService
     public let isRunning: Bool = false
     
     private let client: LndClient
@@ -21,15 +22,18 @@ public class LightningSwift: LNSCoreService {
         self.init(
             client: lndClient,
             wallet: serviceBuilder.buildWalletService(),
+            channel: serviceBuilder.buildChannelService(),
             mapper: LNSCoreMapperImplementation()
         )
     }
     
     init(client: LndClient,
          wallet: LNSWalletService,
+         channel: LNSChannelService,
          mapper: LNSCoreMapper) {
         self.client = client
         self.wallet = wallet
+        self.channel = channel
         self.mapper = mapper
     }
     

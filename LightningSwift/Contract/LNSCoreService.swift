@@ -18,6 +18,8 @@ public protocol LNSCoreService {
     
     var wallet: LNSWalletService { get }
     
+    var channel: LNSChannelService { get }
+    
     var isRunning: Bool { get }
     
     func start(withConfig: LNSConfiguration)
