@@ -44,7 +44,7 @@ struct LNSCoreMapperImplementation: LNSCoreRequestMapper {
 
     func requestAddInvoice(withRequest request: LNSInvoiceRequest) -> Lnrpc_Invoice {
         var req = Lnrpc_Invoice()
-        req.amtPaid = Int64(request.amount) // TODO: sat, msat?
+        req.value = Int64(request.amount) // TODO: sat, msat?
         req.creationDate = Int64(Date().timeIntervalSince1970)
         if let memo = request.memo,
            let timestamp = request.expiryDate?.timeIntervalSince1970 {
