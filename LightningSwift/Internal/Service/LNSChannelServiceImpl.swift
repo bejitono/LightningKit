@@ -20,4 +20,8 @@ final class LNSChannelServiceImplementation: LNSChannelService {
     func openChannel(withConfig config: LNSOpenChannelConfiguration, completion: @escaping LNSOpenChannelCompletion) {
         client.request(mapper.requestOpenChannel(withConfig: config), map: mapper.map(openChannelResponse:), completion: completion)
     }
+    
+    func listChannels(completion: @escaping LNSListChannelCompletion) {
+        client.request(mapper.requestListChannels(), map: mapper.map(listChannelsResponse:), completion: completion)
+    }
 }

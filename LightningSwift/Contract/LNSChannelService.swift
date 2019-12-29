@@ -7,8 +7,11 @@
 //
 
 public typealias LNSOpenChannelCompletion = (Result<LNSChannelPoint, Error>) -> Void
+public typealias LNSListChannelCompletion = (Result<[LNSChannel], Error>) -> Void
 
 public protocol LNSChannelService {
     
     func openChannel(withConfig config: LNSOpenChannelConfiguration, completion: @escaping LNSOpenChannelCompletion)
+    
+    func listChannels(completion: @escaping LNSListChannelCompletion)
 }

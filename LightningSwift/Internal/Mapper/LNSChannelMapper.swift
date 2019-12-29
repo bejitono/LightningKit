@@ -11,11 +11,15 @@ typealias LNSChannelMapper = LNSChannelRequestMapper & LNSChannelResponseMapper
 protocol LNSChannelRequestMapper {
     
     func requestOpenChannel(withConfig config: LNSOpenChannelConfiguration) -> Lnrpc_OpenChannelRequest
+    
+    func requestListChannels() -> Lnrpc_ListChannelsRequest
 }
 
 protocol LNSChannelResponseMapper {
 
     func map(openChannelResponse resp: Lnrpc_OpenStatusUpdate) -> LNSChannelPoint
+
+    func map(listChannelsResponse resp: Lnrpc_ListChannelsResponse) -> [LNSChannel]
 }
 
 
@@ -34,6 +38,10 @@ struct LNSChannelMapperImplementation: LNSChannelRequestMapper {
         }
         return req
     }
+    
+    func requestListChannels() -> Lnrpc_ListChannelsRequest {
+        return Lnrpc_ListChannelsRequest()
+    }
 }
 
 extension LNSChannelMapperImplementation: LNSChannelResponseMapper {
@@ -41,5 +49,23 @@ extension LNSChannelMapperImplementation: LNSChannelResponseMapper {
     func map(openChannelResponse resp: Lnrpc_OpenStatusUpdate) -> LNSChannelPoint {
         let chanPoint = resp.chanOpen.channelPoint
         return LNSChannelPoint(fundingTransactionId: chanPoint.fundingTxidStr, outputIndex: Int(chanPoint.outputIndex))
+    }
+    
+    func map(listChannelsResponse resp: Lnrpc_ListChannelsResponse) -> [LNSChannel] {
+        return resp.channels.map {
+            LNSChannel(
+                id: Int($0.chanID),
+                active: $0.active,
+                localBalance: Int($0.localBalance),
+                remoteBalance: Int($0.remoteBalance),
+                capacity: Int($0.capacity),
+                remotePubKey: $0.remotePubkey,
+                channelPoint: $0.channelPoint,
+                totalSent: Int($0.totalSatoshisSent),
+                totalReceived: Int($0.totalSatoshisReceived),
+                isPrivate: $0.private,
+                csvDelay: Int($0.csvDelay)
+            )
+        }
     }
 }
