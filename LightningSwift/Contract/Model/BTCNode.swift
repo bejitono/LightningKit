@@ -17,9 +17,9 @@ public extension BTCNode {
     var argumentString: String {
         let key = "--bitcoin.node="
         switch self {
-        case .autopilot: return key + "autopilot"
+        case .autopilot: return key + "autopilot "
         case .bitcoin: return key + "bitcoin"
-        case .neutrino: return key + "neutrino"
+        case .neutrino: return key + "neutrino --neutrino.connect=faucet.lightning.community"
         }
     }
 }
