@@ -12,12 +12,16 @@ protocol LNSChannelRequestMapper {
     
     func requestOpenChannel(withConfig config: LNSOpenChannelConfiguration) -> Lnrpc_OpenChannelRequest
     
+    func requestCloseChannel(withConfig config: LNSCloseChannelConfiguration) -> Lnrpc_CloseChannelRequest
+    
     func requestListChannels() -> Lnrpc_ListChannelsRequest
 }
 
 protocol LNSChannelResponseMapper {
 
     func map(openChannelResponse resp: Lnrpc_OpenStatusUpdate) -> LNSChannelPoint
+
+    func map(closeChannelResponse resp: Lnrpc_CloseStatusUpdate) -> LNSCloseChannelStatusUpdate
 
     func map(listChannelsResponse resp: Lnrpc_ListChannelsResponse) -> [LNSChannel]
 }
@@ -39,6 +43,17 @@ struct LNSChannelMapperImplementation: LNSChannelRequestMapper {
         return req
     }
     
+    func requestCloseChannel(withConfig config: LNSCloseChannelConfiguration) -> Lnrpc_CloseChannelRequest {
+        var req = Lnrpc_CloseChannelRequest()
+        var channelPoint = Lnrpc_ChannelPoint()
+        channelPoint.outputIndex = UInt32(config.channelPoint.outputIndex)
+        channelPoint.fundingTxidStr = config.channelPoint.fundingTransactionId
+        req.channelPoint = channelPoint
+        req.force = config.isForced
+        req.targetConf = Int32(config.targetConfirmations)
+        return req
+    }
+    
     func requestListChannels() -> Lnrpc_ListChannelsRequest {
         return Lnrpc_ListChannelsRequest()
     }
@@ -49,6 +64,14 @@ extension LNSChannelMapperImplementation: LNSChannelResponseMapper {
     func map(openChannelResponse resp: Lnrpc_OpenStatusUpdate) -> LNSChannelPoint {
         let chanPoint = resp.chanOpen.channelPoint
         return LNSChannelPoint(fundingTransactionId: chanPoint.fundingTxidStr, outputIndex: Int(chanPoint.outputIndex))
+    }
+    
+    func map(closeChannelResponse resp: Lnrpc_CloseStatusUpdate) -> LNSCloseChannelStatusUpdate {
+        guard let update = resp.update else { return .pending }
+        switch update {
+        case .closePending: return .pending
+        case .chanClose: return .closed
+        }
     }
     
     func map(listChannelsResponse resp: Lnrpc_ListChannelsResponse) -> [LNSChannel] {
