@@ -11,6 +11,7 @@ public typealias LightningSwiftService = LNSCoreService & LNSWalletService
 public typealias LNSSuccessCompletion = (Result<Bool, Error>) -> Void
 public typealias LNSInfoCompletion = (Result<LNSInfo, Error>) -> Void
 public typealias LNSAddInvoiceCompletion = (Result<LNSInvoice, Error>) -> Void
+public typealias LNSListPaymentsCompletion = (Result<[LNSPayment], Error>) -> Void
 
 public protocol LNSCoreService {
     
@@ -35,6 +36,8 @@ public protocol LNSCoreService {
     func sendPayment(withRequest request: LNSPaymentRequest, completion: @escaping LNSSuccessCompletion)
 
     func sendPayment(withRequest request: LNSEncodedPaymentRequest, completion: @escaping LNSSuccessCompletion)
+
+    func listPayments(completion: @escaping LNSListPaymentsCompletion)
     
     func connectPeer(withConfig config: LNSConnectPeerConfiguration, completion: @escaping LNSSuccessCompletion)
 }

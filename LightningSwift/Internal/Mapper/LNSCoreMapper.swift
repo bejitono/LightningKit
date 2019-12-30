@@ -20,6 +20,8 @@ protocol LNSCoreRequestMapper {
 
     func requestSendPayment(withEndcodedRequest request: LNSEncodedPaymentRequest) -> Lnrpc_SendRequest
 
+    func requestListPayments() -> Lnrpc_ListPaymentsRequest
+
     func requestConnectPeer(withConnectPeerConfig config: LNSConnectPeerConfiguration) -> Lnrpc_ConnectPeerRequest
 }
 
@@ -32,6 +34,8 @@ protocol LNSCoreResponseMapper {
     func map(sendPaymentResponse response: Lnrpc_SendResponse) -> Bool
 
     func map(sendEncodedPaymentResponse response: Lnrpc_SendResponse) -> Bool
+
+    func map(listPaymentsResponse response: Lnrpc_ListPaymentsResponse) -> [LNSPayment]
 
     func map(connectPeerResponse response: Lnrpc_ConnectPeerResponse) -> Bool
 }
@@ -69,6 +73,12 @@ struct LNSCoreMapperImplementation: LNSCoreRequestMapper {
     func requestSendPayment(withEndcodedRequest request: LNSEncodedPaymentRequest) -> Lnrpc_SendRequest {
         var req = Lnrpc_SendRequest()
         req.paymentRequest = request
+        return req
+    }
+    
+    func requestListPayments() -> Lnrpc_ListPaymentsRequest {
+        var req = Lnrpc_ListPaymentsRequest()
+        req.includeIncomplete = false
         return req
     }
     
@@ -118,6 +128,20 @@ extension LNSCoreMapperImplementation: LNSCoreResponseMapper {
 
     func map(sendEncodedPaymentResponse response: Lnrpc_SendResponse) -> Bool {
         return true
+    }
+    
+    func map(listPaymentsResponse response: Lnrpc_ListPaymentsResponse) -> [LNSPayment] {
+        return response.payments.map {
+            LNSPayment(
+                paymentHash: $0.paymentHash,
+                memo: nil,
+                amount: Int($0.value),
+                date: Date(timeIntervalSince1970: TimeInterval($0.creationDate)),
+                fees: Int($0.fee),
+                destination: $0.path.last ?? "",
+                preimage: $0.paymentPreimage
+            )
+        }
     }
     
     func map(connectPeerResponse response: Lnrpc_ConnectPeerResponse) -> Bool {

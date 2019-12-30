@@ -8,31 +8,28 @@
 
 import Foundation.NSDate
 
-public struct Payment: Equatable {
+public struct LNSPayment: Equatable {
     
-    public let id: String
+    public let paymentHash: String
     public let memo: String?
     public let amount: Int
     public let date: Date
     public let fees: Int
-    public let paymentHash: String
     public let destination: String
     public let preimage: String
     
-    public init(id: String,
+    public init(paymentHash: String,
                 memo: String?,
                 amount: Int,
                 date: Date,
                 fees: Int,
-                paymentHash: String,
                 destination: String,
                 preimage: String) {
-        self.id = id
+        self.paymentHash = paymentHash
         self.memo = memo
         self.amount = amount
         self.date = date
         self.fees = fees
-        self.paymentHash = paymentHash
         self.destination = destination
         self.preimage = preimage
     }
