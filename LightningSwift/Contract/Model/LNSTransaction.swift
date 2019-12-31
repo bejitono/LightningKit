@@ -8,6 +8,8 @@
 
 import Foundation.NSDate
 
+public typealias LNSTransactionId = String
+
 public struct LNSTransaction {
     
     public let hash: String

@@ -27,6 +27,8 @@ protocol LNSWalletRequestMapper {
     func mapTransactionsRequest() -> Lnrpc_GetTransactionsRequest
     
     func mapNewAddressRequest(forType type: LNSAddressType?) -> Lnrpc_NewAddressRequest
+    
+    func mapSendCoinsRequest(withConfig config: LNSSendCoinsConfiguration) -> Lnrpc_SendCoinsRequest
 }
 
 protocol LNSWalletResponseMapper {
@@ -46,6 +48,8 @@ protocol LNSWalletResponseMapper {
     func map(transactionsResponse response: Lnrpc_TransactionDetails) -> [LNSTransaction]
     
     func map(newAddressResponse response: Lnrpc_NewAddressResponse) -> BTCAddress
+    
+    func map(sendCoinsResponse response: Lnrpc_SendCoinsResponse) -> LNSTransactionId
 }
 
 struct LNSWalletMapperImplementation: LNSWalletRequestMapper {
@@ -104,6 +108,15 @@ struct LNSWalletMapperImplementation: LNSWalletRequestMapper {
         req.type = type.lndAddressType
         return req
     }
+    
+    func mapSendCoinsRequest(withConfig config: LNSSendCoinsConfiguration) -> Lnrpc_SendCoinsRequest {
+        var req = Lnrpc_SendCoinsRequest()
+        req.addr = config.address
+        req.amount = Int64(config.amount)
+        req.targetConf = Int32(config.targetConfirmations)
+        req.sendAll = config.sendAll
+        return req
+    }
 }
 
 extension LNSWalletMapperImplementation: LNSWalletResponseMapper {
@@ -151,5 +164,9 @@ extension LNSWalletMapperImplementation: LNSWalletResponseMapper {
     
     func map(newAddressResponse response: Lnrpc_NewAddressResponse) -> BTCAddress {
         return BTCAddress(address: response.address)
+    }
+    
+    func map(sendCoinsResponse response: Lnrpc_SendCoinsResponse) -> LNSTransactionId {
+        return response.txid
     }
 }
