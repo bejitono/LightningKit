@@ -6,6 +6,9 @@
 //  Copyright © 2019 De MicheliStefano. All rights reserved.
 //
 
+import Lndmobile
+import SwiftProtobuf
+
 extension SwiftProtobuf.Message {
     
     func send<Response>(completion: @escaping (Result<Response, Error>) -> Void) throws where Response: SwiftProtobuf.Message {

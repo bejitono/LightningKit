@@ -9,7 +9,8 @@
 public typealias LNSOpenChannelCompletion = (Result<LNSChannelPoint, Error>) -> Void
 public typealias LNSCloseChannelCompletion = (Result<LNSCloseChannelStatusUpdate, Error>) -> Void
 public typealias LNSListChannelCompletion = (Result<[LNSChannel], Error>) -> Void
-
+public typealias LNSListPendingChannelCompletion = (Result<LNSPendingChannels, Error>) -> Void
+ 
 public protocol LNSChannelService {
     
     func openChannel(withConfig config: LNSOpenChannelConfiguration, completion: @escaping LNSOpenChannelCompletion)
@@ -17,4 +18,6 @@ public protocol LNSChannelService {
     func closeChannel(withConfig config: LNSCloseChannelConfiguration, completion: @escaping LNSCloseChannelCompletion)
     
     func listChannels(completion: @escaping LNSListChannelCompletion)
+    
+    func listPendingChannels(completion: @escaping LNSListPendingChannelCompletion)
 }

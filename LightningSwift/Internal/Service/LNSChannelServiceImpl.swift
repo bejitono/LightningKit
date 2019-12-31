@@ -28,4 +28,8 @@ final class LNSChannelServiceImplementation: LNSChannelService {
     func listChannels(completion: @escaping LNSListChannelCompletion) {
         client.request(mapper.requestListChannels(), map: mapper.map(listChannelsResponse:), completion: completion)
     }
+    
+    func listPendingChannels(completion: @escaping LNSListPendingChannelCompletion) {
+        client.request(mapper.requestPendingChannels(), map: mapper.map(pendingChannelsResponse:), completion: completion)
+    }
 }
