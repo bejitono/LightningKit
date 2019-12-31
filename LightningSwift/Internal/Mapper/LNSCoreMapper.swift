@@ -12,17 +12,17 @@ typealias LNSCoreMapper = LNSCoreRequestMapper & LNSCoreResponseMapper
 
 protocol LNSCoreRequestMapper {
 
-    func requestGetInfo() -> Lnrpc_GetInfoRequest
+    func mapGetInfoRequest() -> Lnrpc_GetInfoRequest
     
-    func requestAddInvoice(withRequest request: LNSInvoiceRequest) -> Lnrpc_Invoice
+    func mapAddInvoiceRequest(withRequest request: LNSInvoiceRequest) -> Lnrpc_Invoice
 
-    func requestSendPayment(withRequest request: LNSPaymentRequest) -> Lnrpc_SendRequest
+    func mapSendPaymentRequest(withRequest request: LNSPaymentRequest) -> Lnrpc_SendRequest
 
-    func requestSendPayment(withEndcodedRequest request: LNSEncodedPaymentRequest) -> Lnrpc_SendRequest
+    func mapSendPaymentRequest(withEndcodedRequest request: LNSEncodedPaymentRequest) -> Lnrpc_SendRequest
 
-    func requestListPayments() -> Lnrpc_ListPaymentsRequest
+    func mapListPaymentsRequest() -> Lnrpc_ListPaymentsRequest
 
-    func requestConnectPeer(withConnectPeerConfig config: LNSConnectPeerConfiguration) -> Lnrpc_ConnectPeerRequest
+    func mapConnectPeerRequest(withConnectPeerConfig config: LNSConnectPeerConfiguration) -> Lnrpc_ConnectPeerRequest
 }
 
 protocol LNSCoreResponseMapper {
@@ -42,11 +42,11 @@ protocol LNSCoreResponseMapper {
 
 struct LNSCoreMapperImplementation: LNSCoreRequestMapper {
 
-    func requestGetInfo() -> Lnrpc_GetInfoRequest {
+    func mapGetInfoRequest() -> Lnrpc_GetInfoRequest {
         return Lnrpc_GetInfoRequest()
     }
 
-    func requestAddInvoice(withRequest request: LNSInvoiceRequest) -> Lnrpc_Invoice {
+    func mapAddInvoiceRequest(withRequest request: LNSInvoiceRequest) -> Lnrpc_Invoice {
         var req = Lnrpc_Invoice()
         req.value = Int64(request.amount) // TODO: sat, msat?
         req.creationDate = Int64(Date().timeIntervalSince1970)
@@ -58,7 +58,7 @@ struct LNSCoreMapperImplementation: LNSCoreRequestMapper {
         return req
     }
 
-    func requestSendPayment(withRequest request: LNSPaymentRequest) -> Lnrpc_SendRequest {
+    func mapSendPaymentRequest(withRequest request: LNSPaymentRequest) -> Lnrpc_SendRequest {
         var req = Lnrpc_SendRequest()
         guard
             let paymentHashData = request.paymentHash.data(using: .utf8),
@@ -70,19 +70,19 @@ struct LNSCoreMapperImplementation: LNSCoreRequestMapper {
         return req
     }
 
-    func requestSendPayment(withEndcodedRequest request: LNSEncodedPaymentRequest) -> Lnrpc_SendRequest {
+    func mapSendPaymentRequest(withEndcodedRequest request: LNSEncodedPaymentRequest) -> Lnrpc_SendRequest {
         var req = Lnrpc_SendRequest()
         req.paymentRequest = request
         return req
     }
     
-    func requestListPayments() -> Lnrpc_ListPaymentsRequest {
+    func mapListPaymentsRequest() -> Lnrpc_ListPaymentsRequest {
         var req = Lnrpc_ListPaymentsRequest()
         req.includeIncomplete = false
         return req
     }
     
-    func requestConnectPeer(withConnectPeerConfig config: LNSConnectPeerConfiguration) -> Lnrpc_ConnectPeerRequest {
+    func mapConnectPeerRequest(withConnectPeerConfig config: LNSConnectPeerConfiguration) -> Lnrpc_ConnectPeerRequest {
         var req = Lnrpc_ConnectPeerRequest()
         req.addr.pubkey = config.address.pubkey
         req.addr.host = config.address.host

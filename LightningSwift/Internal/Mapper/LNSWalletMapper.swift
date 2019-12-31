@@ -12,21 +12,21 @@ typealias LNSWalletMapper = LNSWalletRequestMapper & LNSWalletResponseMapper
 
 protocol LNSWalletRequestMapper {
     
-    func requestGenerateSeed(withConfig config: LNSSeedConfiguration?) -> Lnrpc_GenSeedRequest
+    func mapGenerateSeedRequest(withConfig config: LNSSeedConfiguration?) -> Lnrpc_GenSeedRequest
     
-    func requestInitWalletWith(password: String, seed: LNSSeed) -> Lnrpc_InitWalletRequest
+    func mapInitWalletRequestWith(password: String, seed: LNSSeed) -> Lnrpc_InitWalletRequest
     
-    func requestUnlockWallet(withPassword password: String) -> Lnrpc_UnlockWalletRequest
+    func mapUnlockWalletRequest(withPassword password: String) -> Lnrpc_UnlockWalletRequest
     
-    func requestChange(password: String, to newPassword: String) -> Lnrpc_ChangePasswordRequest
+    func mapChangeRequest(password: String, to newPassword: String) -> Lnrpc_ChangePasswordRequest
     
-    func requestWalletBalance() -> Lnrpc_WalletBalanceRequest
+    func mapWalletBalanceRequest() -> Lnrpc_WalletBalanceRequest
     
-    func requestChannelBalance() -> Lnrpc_ChannelBalanceRequest
+    func mapChannelBalanceRequest() -> Lnrpc_ChannelBalanceRequest
     
-    func requestTransactions() -> Lnrpc_GetTransactionsRequest
+    func mapTransactionsRequest() -> Lnrpc_GetTransactionsRequest
     
-    func requestNewAddress(forType type: LNSAddressType?) -> Lnrpc_NewAddressRequest
+    func mapNewAddressRequest(forType type: LNSAddressType?) -> Lnrpc_NewAddressRequest
 }
 
 protocol LNSWalletResponseMapper {
@@ -50,7 +50,7 @@ protocol LNSWalletResponseMapper {
 
 struct LNSWalletMapperImplementation: LNSWalletRequestMapper {
     
-    func requestGenerateSeed(withConfig config: LNSSeedConfiguration?) -> Lnrpc_GenSeedRequest {
+    func mapGenerateSeedRequest(withConfig config: LNSSeedConfiguration?) -> Lnrpc_GenSeedRequest {
         var req = Lnrpc_GenSeedRequest()
         guard let config = config else { return req }
         req.aezeedPassphrase = config.passphrase
@@ -58,7 +58,7 @@ struct LNSWalletMapperImplementation: LNSWalletRequestMapper {
         return req
     }
     
-    func requestInitWalletWith(password: String, seed: LNSSeed) -> Lnrpc_InitWalletRequest {
+    func mapInitWalletRequestWith(password: String, seed: LNSSeed) -> Lnrpc_InitWalletRequest {
         var req = Lnrpc_InitWalletRequest()
         guard let passwordData = password.data(using: .utf8) else { return req }
         req.walletPassword = passwordData
@@ -68,7 +68,7 @@ struct LNSWalletMapperImplementation: LNSWalletRequestMapper {
         return req
     }
     
-    func requestChange(password: String, to newPassword: String) -> Lnrpc_ChangePasswordRequest {
+    func mapChangeRequest(password: String, to newPassword: String) -> Lnrpc_ChangePasswordRequest {
         var req = Lnrpc_ChangePasswordRequest()
         guard
             let passwordData = password.data(using: .utf8),
@@ -79,26 +79,26 @@ struct LNSWalletMapperImplementation: LNSWalletRequestMapper {
         return req
     }
     
-    func requestUnlockWallet(withPassword password: String) -> Lnrpc_UnlockWalletRequest {
+    func mapUnlockWalletRequest(withPassword password: String) -> Lnrpc_UnlockWalletRequest {
         var req = Lnrpc_UnlockWalletRequest()
         guard let passwordData = password.data(using: .utf8) else { return req }
         req.walletPassword = passwordData
         return req
     }
     
-    func requestWalletBalance() -> Lnrpc_WalletBalanceRequest {
+    func mapWalletBalanceRequest() -> Lnrpc_WalletBalanceRequest {
         return Lnrpc_WalletBalanceRequest()
     }
     
-    func requestChannelBalance() -> Lnrpc_ChannelBalanceRequest {
+    func mapChannelBalanceRequest() -> Lnrpc_ChannelBalanceRequest {
         return Lnrpc_ChannelBalanceRequest()
     }
     
-    func requestTransactions() -> Lnrpc_GetTransactionsRequest {
+    func mapTransactionsRequest() -> Lnrpc_GetTransactionsRequest {
         return Lnrpc_GetTransactionsRequest()
     }
     
-    func requestNewAddress(forType type: LNSAddressType?) -> Lnrpc_NewAddressRequest {
+    func mapNewAddressRequest(forType type: LNSAddressType?) -> Lnrpc_NewAddressRequest {
         var req = Lnrpc_NewAddressRequest()
         guard let type = type else { return req }
         req.type = type.lndAddressType

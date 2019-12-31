@@ -10,13 +10,13 @@ typealias LNSChannelMapper = LNSChannelRequestMapper & LNSChannelResponseMapper
 
 protocol LNSChannelRequestMapper {
     
-    func requestOpenChannel(withConfig config: LNSOpenChannelConfiguration) -> Lnrpc_OpenChannelRequest
+    func mapOpenChannelRequest(withConfig config: LNSOpenChannelConfiguration) -> Lnrpc_OpenChannelRequest
     
-    func requestCloseChannel(withConfig config: LNSCloseChannelConfiguration) -> Lnrpc_CloseChannelRequest
+    func mapCloseChannelRequest(withConfig config: LNSCloseChannelConfiguration) -> Lnrpc_CloseChannelRequest
     
-    func requestListChannels() -> Lnrpc_ListChannelsRequest
+    func mapListChannelsRequest() -> Lnrpc_ListChannelsRequest
     
-    func requestPendingChannels() -> Lnrpc_PendingChannelsRequest
+    func mapPendingChannelsRequest() -> Lnrpc_PendingChannelsRequest
 }
 
 protocol LNSChannelResponseMapper {
@@ -33,7 +33,7 @@ protocol LNSChannelResponseMapper {
 
 struct LNSChannelMapperImplementation: LNSChannelRequestMapper {
     
-    func requestOpenChannel(withConfig config: LNSOpenChannelConfiguration) -> Lnrpc_OpenChannelRequest {
+    func mapOpenChannelRequest(withConfig config: LNSOpenChannelConfiguration) -> Lnrpc_OpenChannelRequest {
         var req = Lnrpc_OpenChannelRequest()
         req.nodePubkeyString = config.pubKey
         req.localFundingAmount = Int64(config.localFundingAmount)
@@ -47,7 +47,7 @@ struct LNSChannelMapperImplementation: LNSChannelRequestMapper {
         return req
     }
     
-    func requestCloseChannel(withConfig config: LNSCloseChannelConfiguration) -> Lnrpc_CloseChannelRequest {
+    func mapCloseChannelRequest(withConfig config: LNSCloseChannelConfiguration) -> Lnrpc_CloseChannelRequest {
         var req = Lnrpc_CloseChannelRequest()
         var channelPoint = Lnrpc_ChannelPoint()
         channelPoint.outputIndex = UInt32(config.channelPoint.outputIndex)
@@ -58,11 +58,11 @@ struct LNSChannelMapperImplementation: LNSChannelRequestMapper {
         return req
     }
     
-    func requestListChannels() -> Lnrpc_ListChannelsRequest {
+    func mapListChannelsRequest() -> Lnrpc_ListChannelsRequest {
         return Lnrpc_ListChannelsRequest()
     }
     
-    func requestPendingChannels() -> Lnrpc_PendingChannelsRequest {
+    func mapPendingChannelsRequest() -> Lnrpc_PendingChannelsRequest {
         return Lnrpc_PendingChannelsRequest()
     }
 }

@@ -50,26 +50,26 @@ public class LightningSwift: LNSCoreService {
     }
     
     public func getInfo(completion: @escaping LNSInfoCompletion) {
-        client.request(mapper.requestGetInfo(), map: mapper.map(getInfoResponse:), completion: completion)
+        client.request(mapper.mapGetInfoRequest(), map: mapper.map(getInfoResponse:), completion: completion)
     }
 
     public func addInvoice(withRequest request: LNSInvoiceRequest, completion: @escaping LNSAddInvoiceCompletion) {
-        client.request(mapper.requestAddInvoice(withRequest: request), map: mapper.map(addInvoiceResponse:), completion: completion)
+        client.request(mapper.mapAddInvoiceRequest(withRequest: request), map: mapper.map(addInvoiceResponse:), completion: completion)
     }
 
     public func sendPayment(withRequest request: LNSPaymentRequest, completion: @escaping LNSSuccessCompletion) {
-        client.request(mapper.requestSendPayment(withRequest: request), map: mapper.map(sendPaymentResponse:), completion: completion)
+        client.request(mapper.mapSendPaymentRequest(withRequest: request), map: mapper.map(sendPaymentResponse:), completion: completion)
     }
 
     public func sendPayment(withRequest request: LNSEncodedPaymentRequest, completion: @escaping LNSSuccessCompletion) {
-        client.request(mapper.requestSendPayment(withEndcodedRequest: request), map: mapper.map(sendEncodedPaymentResponse:), completion: completion)
+        client.request(mapper.mapSendPaymentRequest(withEndcodedRequest: request), map: mapper.map(sendEncodedPaymentResponse:), completion: completion)
     }
     
     public func listPayments(completion: @escaping LNSListPaymentsCompletion) {
-        client.request(mapper.requestListPayments(), map: mapper.map(listPaymentsResponse:), completion: completion)
+        client.request(mapper.mapListPaymentsRequest(), map: mapper.map(listPaymentsResponse:), completion: completion)
     }
     
     public func connectPeer(withConfig config: LNSConnectPeerConfiguration, completion: @escaping LNSSuccessCompletion) {
-        client.request(mapper.requestConnectPeer(withConnectPeerConfig: config), map: mapper.map(connectPeerResponse:), completion: completion)
+        client.request(mapper.mapConnectPeerRequest(withConnectPeerConfig: config), map: mapper.map(connectPeerResponse:), completion: completion)
     }
 }

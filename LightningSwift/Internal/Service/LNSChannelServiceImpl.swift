@@ -18,18 +18,18 @@ final class LNSChannelServiceImplementation: LNSChannelService {
     }
     
     func openChannel(withConfig config: LNSOpenChannelConfiguration, completion: @escaping LNSOpenChannelCompletion) {
-        client.request(mapper.requestOpenChannel(withConfig: config), map: mapper.map(openChannelResponse:), completion: completion)
+        client.request(mapper.mapOpenChannelRequest(withConfig: config), map: mapper.map(openChannelResponse:), completion: completion)
     }
     
     func closeChannel(withConfig config: LNSCloseChannelConfiguration, completion: @escaping LNSCloseChannelCompletion) {
-        client.request(mapper.requestCloseChannel(withConfig: config), map: mapper.map(closeChannelResponse:), completion: completion)
+        client.request(mapper.mapCloseChannelRequest(withConfig: config), map: mapper.map(closeChannelResponse:), completion: completion)
     }
     
     func listChannels(completion: @escaping LNSListChannelCompletion) {
-        client.request(mapper.requestListChannels(), map: mapper.map(listChannelsResponse:), completion: completion)
+        client.request(mapper.mapListChannelsRequest(), map: mapper.map(listChannelsResponse:), completion: completion)
     }
     
     func listPendingChannels(completion: @escaping LNSListPendingChannelCompletion) {
-        client.request(mapper.requestPendingChannels(), map: mapper.map(pendingChannelsResponse:), completion: completion)
+        client.request(mapper.mapPendingChannelsRequest(), map: mapper.map(pendingChannelsResponse:), completion: completion)
     }
 }
