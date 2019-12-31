@@ -60,4 +60,8 @@ final class LNSWalletServiceImplementation: LNSWalletService {
     func generateNewAddress(completion: @escaping LNSNewAddressCompletion) {
         client.request(mapper.mapNewAddressRequest(forType: nil), map: mapper.map(newAddressResponse:), completion: completion)
     }
+    
+    func sendCoins(withConfig config: LNSSendCoinsConfiguration, completion: @escaping LNSSendCoinsCompletion) {
+        client.request(mapper.mapSendCoinsRequest(withConfig: config), map: mapper.map(sendCoinsResponse:), completion: completion)
+    }
 }

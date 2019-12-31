@@ -11,6 +11,7 @@ public typealias LNSWalletBalanceCompletion = (Result<LNSWalletBalance, Error>) 
 public typealias LNSTransactionsCompletion = (Result<[LNSTransaction], Error>) -> Void
 public typealias LNSChannelBalanceCompletion = (Result<LNSChannelBalance, Error>) -> Void
 public typealias LNSNewAddressCompletion = (Result<BTCAddress, Error>) -> Void
+public typealias LNSSendCoinsCompletion = (Result<LNSTransactionId, Error>) -> Void
 
 public protocol LNSWalletService {
     
@@ -39,4 +40,6 @@ public protocol LNSWalletService {
     func generateNewAddress(forType type: LNSAddressType, completion: @escaping LNSNewAddressCompletion)
     
     func generateNewAddress(completion: @escaping LNSNewAddressCompletion)
+    
+    func sendCoins(withConfig config: LNSSendCoinsConfiguration, completion: @escaping LNSSendCoinsCompletion)
 }
