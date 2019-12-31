@@ -11,12 +11,4 @@ public struct LNSWalletBalance {
     public let totalBalance: Int
     public let confirmedBalance: Int
     public let unconfirmedBalance: Int
-
-    public init(totalBalance: Int,
-                confirmedBalance: Int,
-                unconfirmedBalance: Int) {
-        self.totalBalance = totalBalance
-        self.confirmedBalance = confirmedBalance
-        self.unconfirmedBalance = unconfirmedBalance
-    }
 }

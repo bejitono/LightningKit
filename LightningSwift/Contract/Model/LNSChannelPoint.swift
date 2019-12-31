@@ -10,10 +10,4 @@ public struct LNSChannelPoint {
 
     public let fundingTransactionId: String
     public let outputIndex: Int
-    
-    public init(fundingTransactionId: String,
-                outputIndex: Int) {
-        self.fundingTransactionId = fundingTransactionId
-        self.outputIndex = outputIndex
-    }
 }

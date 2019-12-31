@@ -12,10 +12,4 @@ public struct LNSSeed {
     
     public let phrase: [String]
     public let encipheredSeed: Data?
-
-    public init(phrase: [String],
-                encipheredSeed: Data?) {
-        self.phrase = phrase
-        self.encipheredSeed = encipheredSeed
-    }
 }

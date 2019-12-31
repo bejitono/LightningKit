@@ -17,18 +17,6 @@ public struct LNSInvoice {
     public let timestamp: Date
     public let expiryDate: Date
     public let state: LNSInvoiceState
-
-    public init(hash: Data,
-                paymentRequest: LNSEncodedPaymentRequest,
-                timestamp: Date,
-                expiryDate: Date,
-                state: LNSInvoiceState) {
-        self.hash = hash
-        self.paymentRequest = paymentRequest
-        self.timestamp = timestamp
-        self.expiryDate = expiryDate
-        self.state = state
-    }
 }
 
 public enum LNSInvoiceState {

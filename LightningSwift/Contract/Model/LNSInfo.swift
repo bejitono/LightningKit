@@ -22,34 +22,4 @@ public struct LNSInfo {
     public let uris: [String]
     public let bestHeaderTimestamp: Int
     public let version: String
-
-    public init(pubKey: String,
-                alias: String,
-                numPendingChannels: Int,
-                numActiveChannels: Int,
-                numInactiveChannels: Int,
-                numPeers: Int,
-                blockHeight: Int,
-                blockHash: String,
-                syncedToChain: Bool,
-                syncedToGraph: Bool,
-                testnet: Bool,
-                uris: [String],
-                bestHeaderTimestamp: Int,
-                version: String) {
-        self.pubKey = pubKey
-        self.alias = alias
-        self.numPendingChannels = numPendingChannels
-        self.numActiveChannels = numActiveChannels
-        self.numInactiveChannels = numInactiveChannels
-        self.numPeers = numPeers
-        self.blockHeight = blockHeight
-        self.blockHash = blockHash
-        self.syncedToChain = syncedToChain
-        self.syncedToGraph = syncedToGraph
-        self.testnet = testnet
-        self.uris = uris
-        self.bestHeaderTimestamp = bestHeaderTimestamp
-        self.version = version
-    }
 }

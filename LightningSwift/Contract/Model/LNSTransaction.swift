@@ -18,18 +18,4 @@ public struct LNSTransaction {
     public let timestamp: Date
     public let fees: Int
     public let destinationAdresses: [BTCAddress]
-
-    public init(hash: String,
-                amount: Int,
-                numberOfConfirmations: Int,
-                timestamp: Date,
-                fees: Int,
-                destinationAdresses: [BTCAddress]) {
-        self.hash = hash
-        self.amount = amount
-        self.numberOfConfirmations = numberOfConfirmations
-        self.timestamp = timestamp
-        self.fees = fees
-        self.destinationAdresses = destinationAdresses
-    }
 }

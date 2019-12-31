@@ -17,20 +17,4 @@ public struct LNSPayment: Equatable {
     public let fees: Int
     public let destination: String
     public let preimage: String
-    
-    public init(paymentHash: String,
-                memo: String?,
-                amount: Int,
-                date: Date,
-                fees: Int,
-                destination: String,
-                preimage: String) {
-        self.paymentHash = paymentHash
-        self.memo = memo
-        self.amount = amount
-        self.date = date
-        self.fees = fees
-        self.destination = destination
-        self.preimage = preimage
-    }
 }
