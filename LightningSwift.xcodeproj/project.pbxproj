@@ -16,6 +16,7 @@
 		3D2AD55E23B9DE0B00B3C840 /* LNSCloseChannelStatusUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD55D23B9DE0B00B3C840 /* LNSCloseChannelStatusUpdate.swift */; };
 		3D2AD56023B9DE2E00B3C840 /* LNSOpenChannelStatusUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD55F23B9DE2E00B3C840 /* LNSOpenChannelStatusUpdate.swift */; };
 		3D2AD56223B9E34E00B3C840 /* LNSPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD56123B9E34E00B3C840 /* LNSPayment.swift */; };
+		3D2AD56523BAF85C00B3C840 /* Message+Lndmobile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD56423BAF85C00B3C840 /* Message+Lndmobile.swift */; };
 		3D70CD9B23A4F566001BE339 /* LNSSeedConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD9A23A4F566001BE339 /* LNSSeedConfiguration.swift */; };
 		3D70CD9D23A4F57C001BE339 /* LNSSeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD9C23A4F57C001BE339 /* LNSSeed.swift */; };
 		3D70CDA123A5001A001BE339 /* LNSWalletBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CDA023A50019001BE339 /* LNSWalletBalance.swift */; };
@@ -97,6 +98,7 @@
 		3D2AD55D23B9DE0B00B3C840 /* LNSCloseChannelStatusUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNSCloseChannelStatusUpdate.swift; sourceTree = "<group>"; };
 		3D2AD55F23B9DE2E00B3C840 /* LNSOpenChannelStatusUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNSOpenChannelStatusUpdate.swift; sourceTree = "<group>"; };
 		3D2AD56123B9E34E00B3C840 /* LNSPayment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNSPayment.swift; sourceTree = "<group>"; };
+		3D2AD56423BAF85C00B3C840 /* Message+Lndmobile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message+Lndmobile.swift"; sourceTree = "<group>"; };
 		3D70CD8623A47CB9001BE339 /* LNSCoreService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LNSCoreService.swift; sourceTree = "<group>"; };
 		3D70CD8923A47CB9001BE339 /* LNSMacaroon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LNSMacaroon.swift; sourceTree = "<group>"; };
 		3D70CD8A23A47CB9001BE339 /* BTCEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTCEnvironment.swift; sourceTree = "<group>"; };
@@ -168,6 +170,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D2AD56323BAF81B00B3C840 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				3D2AD56423BAF85C00B3C840 /* Message+Lndmobile.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		3D70CD8323A47CB9001BE339 /* Contract */ = {
 			isa = PBXGroup;
 			children = (
@@ -333,6 +343,7 @@
 				3D743E48239E8953005B2804 /* LndAPI.swift */,
 				3D743E4D239E89AD005B2804 /* LndCallback.swift */,
 				3D743E4B239E896C005B2804 /* LndMobileAPI.swift */,
+				3D2AD56323BAF81B00B3C840 /* Extension */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -510,6 +521,7 @@
 				3D70CDC923A60233001BE339 /* LNSPaymentRequest.swift in Sources */,
 				3D70CDD023ABC3A8001BE339 /* LndArgumentParser.swift in Sources */,
 				3D70CDB423A5ECDC001BE339 /* LNSWalletError.swift in Sources */,
+				3D2AD56523BAF85C00B3C840 /* Message+Lndmobile.swift in Sources */,
 				3D70CDB123A5ECD3001BE339 /* LNSWalletService.swift in Sources */,
 				3DD153B123ABC9620064A542 /* LNSWalletServiceImpl.swift in Sources */,
 				3D70CDB523A5ECE4001BE339 /* BTCEnvironment.swift in Sources */,
