@@ -48,3 +48,48 @@ public struct LNSChannel {
         //self.closeAddress = closeAddress
     }
 }
+
+public struct LNSPendingChannels {
+    
+    public let pendingOpenChannels: [LNSPendingChannel]
+    public let pendingClosingChannels: [LNSPendingCloseChannel]
+    public let pendingForceClosingChannels: [LNSPendingCloseChannel]
+    public let waitingCloseChannels: [LNSPendingChannel]
+    
+    public init(pendingOpenChannels: [LNSPendingChannel],
+                pendingClosingChannels: [LNSPendingCloseChannel],
+                pendingForceClosingChannels: [LNSPendingCloseChannel],
+                waitingCloseChannels: [LNSPendingChannel]) {
+        self.pendingOpenChannels = pendingOpenChannels
+        self.pendingClosingChannels = pendingClosingChannels
+        self.pendingForceClosingChannels = pendingForceClosingChannels
+        self.waitingCloseChannels = waitingCloseChannels
+    }
+}
+
+public struct LNSPendingCloseChannel {
+    
+    public let pendingChannel: LNSPendingChannel
+    public let closingTxId: String
+}
+
+public struct LNSPendingChannel {
+    
+    public let remoteNodePubKey: String
+    public let channelPoint: String
+    public let capacity: Int
+    public let localBalance: Int
+    public let remoteBalance: Int
+    
+    public init(remoteNodePubKey: String,
+                channelPoint: String,
+                capacity: Int,
+                localBalance: Int,
+                remoteBalance: Int) {
+        self.remoteNodePubKey = remoteNodePubKey
+        self.channelPoint = channelPoint
+        self.capacity = capacity
+        self.localBalance = localBalance
+        self.remoteBalance = remoteBalance
+    }
+}

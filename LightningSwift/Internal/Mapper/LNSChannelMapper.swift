@@ -15,6 +15,8 @@ protocol LNSChannelRequestMapper {
     func requestCloseChannel(withConfig config: LNSCloseChannelConfiguration) -> Lnrpc_CloseChannelRequest
     
     func requestListChannels() -> Lnrpc_ListChannelsRequest
+    
+    func requestPendingChannels() -> Lnrpc_PendingChannelsRequest
 }
 
 protocol LNSChannelResponseMapper {
@@ -24,6 +26,8 @@ protocol LNSChannelResponseMapper {
     func map(closeChannelResponse resp: Lnrpc_CloseStatusUpdate) -> LNSCloseChannelStatusUpdate
 
     func map(listChannelsResponse resp: Lnrpc_ListChannelsResponse) -> [LNSChannel]
+
+    func map(pendingChannelsResponse resp: Lnrpc_PendingChannelsResponse) -> LNSPendingChannels
 }
 
 
@@ -56,6 +60,10 @@ struct LNSChannelMapperImplementation: LNSChannelRequestMapper {
     
     func requestListChannels() -> Lnrpc_ListChannelsRequest {
         return Lnrpc_ListChannelsRequest()
+    }
+    
+    func requestPendingChannels() -> Lnrpc_PendingChannelsRequest {
+        return Lnrpc_PendingChannelsRequest()
     }
 }
 
@@ -90,5 +98,35 @@ extension LNSChannelMapperImplementation: LNSChannelResponseMapper {
                 csvDelay: Int($0.csvDelay)
             )
         }
+    }
+    
+    func map(pendingChannelsResponse resp: Lnrpc_PendingChannelsResponse) -> LNSPendingChannels {
+        let pendingOpenChannels = resp.pendingOpenChannels.map { map(pendingChannel: $0.channel) }
+        let pendingClosingChannels = resp.pendingClosingChannels.map {
+            LNSPendingCloseChannel(pendingChannel: map(pendingChannel: $0.channel), closingTxId: $0.closingTxid)
+        }
+        let pendingForceClosingChannels = resp.pendingForceClosingChannels.map {
+            LNSPendingCloseChannel(pendingChannel: map(pendingChannel: $0.channel), closingTxId: $0.closingTxid)
+        }
+        let waitingCloseChannels = resp.waitingCloseChannels.map { map(pendingChannel: $0.channel) }
+        return LNSPendingChannels(
+            pendingOpenChannels: pendingOpenChannels,
+            pendingClosingChannels: pendingClosingChannels,
+            pendingForceClosingChannels: pendingForceClosingChannels,
+            waitingCloseChannels: waitingCloseChannels
+        )
+    }
+}
+
+private extension LNSChannelMapperImplementation {
+    
+    func map(pendingChannel: Lnrpc_PendingChannelsResponse.PendingChannel)  -> LNSPendingChannel {
+        return LNSPendingChannel(
+            remoteNodePubKey: pendingChannel.remoteNodePub,
+            channelPoint: pendingChannel.channelPoint,
+            capacity: Int(pendingChannel.capacity),
+            localBalance: Int(pendingChannel.localBalance),
+            remoteBalance: Int(pendingChannel.remoteBalance)
+        )
     }
 }
