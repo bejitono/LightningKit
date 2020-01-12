@@ -8,7 +8,7 @@
 
 struct LNSServiceBuilder {
 
-    let lndClient: LndClient
+    private let lndClient: LndClient
 
     init(lndClient: LndClient) {
         self.lndClient = lndClient

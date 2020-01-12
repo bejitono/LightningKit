@@ -10,8 +10,8 @@ import SwiftProtobuf
 
 final class LndClientImplementation: LndClient {
     
-    let api: LndAPI
-    let argParser: LndArgumentParser
+    private let api: LndAPI
+    private let argParser: LndArgumentParser
     
     init(api: LndAPI,
          argParser: LndArgumentParser) {
