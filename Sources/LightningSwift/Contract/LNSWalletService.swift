@@ -23,7 +23,7 @@ public protocol LNSWalletService {
     
     func generateSeed(withConfig config: LNSSeedConfiguration, completion: @escaping LNSSeedCompletion) // TODO: Hide implementation detail
     
-    func initializeWalletWith(password: String, seed: LNSSeed, completion: @escaping LNSSuccessCompletion)
+    func initializeWalletWith(password: String, seed: [String], completion: @escaping LNSSuccessCompletion)
     
     func unlockWallet(withPassword password: String, completion: @escaping LNSSuccessCompletion)
     

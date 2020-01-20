@@ -28,7 +28,7 @@ final class LNSWalletServiceImplementation: LNSWalletService {
         client.request(mapper.mapGenerateSeedRequest(withConfig: config), map: mapper.map(seedResponse:), completion: completion)
     }
     
-    func initializeWalletWith(password: String, seed: LNSSeed, completion: @escaping LNSSuccessCompletion) {
+    func initializeWalletWith(password: String, seed: [String], completion: @escaping LNSSuccessCompletion) {
         client.request(mapper.mapInitWalletRequestWith(password: password, seed: seed), map: mapper.map(initWalletResponse:), completion: completion)
     }
     

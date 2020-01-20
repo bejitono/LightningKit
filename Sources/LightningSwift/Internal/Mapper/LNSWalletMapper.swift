@@ -14,7 +14,7 @@ protocol LNSWalletRequestMapper {
     
     func mapGenerateSeedRequest(withConfig config: LNSSeedConfiguration?) -> Lnrpc_GenSeedRequest
     
-    func mapInitWalletRequestWith(password: String, seed: LNSSeed) -> Lnrpc_InitWalletRequest
+    func mapInitWalletRequestWith(password: String, seed: [String]) -> Lnrpc_InitWalletRequest
     
     func mapUnlockWalletRequest(withPassword password: String) -> Lnrpc_UnlockWalletRequest
     
@@ -62,11 +62,11 @@ struct LNSWalletMapperImplementation: LNSWalletRequestMapper {
         return req
     }
     
-    func mapInitWalletRequestWith(password: String, seed: LNSSeed) -> Lnrpc_InitWalletRequest {
+    func mapInitWalletRequestWith(password: String, seed: [String]) -> Lnrpc_InitWalletRequest {
         var req = Lnrpc_InitWalletRequest()
         guard let passwordData = password.data(using: .utf8) else { return req }
         req.walletPassword = passwordData
-        req.cipherSeedMnemonic = seed.phrase
+        req.cipherSeedMnemonic = seed
         // TODO: getting error "invalid passphrase"
         //if let encipheredSeed = seed.encipheredSeed { req.aezeedPassphrase = encipheredSeed }
         return req
