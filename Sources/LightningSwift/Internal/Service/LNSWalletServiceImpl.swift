@@ -46,7 +46,7 @@ final class LNSWalletServiceImplementation: LNSWalletService {
     }
     
     func getTransactions(completion: @escaping LNSTransactionsCompletion) {
-        client.request(Lnrpc_GetTransactionsRequest(), map: Array.init, completion: completion)
+        client.request(Lnrpc_GetTransactionsRequest(), map: Array.init(transactionDetails:), completion: completion)
     }
     
     func generateNewAddress(forType type: LNSAddressType, completion: @escaping LNSNewAddressCompletion) {

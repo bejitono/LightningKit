@@ -101,7 +101,7 @@ extension Lnrpc_SendCoinsRequest {
 extension LNSSeed {
     
     init(response: Lnrpc_GenSeedResponse) {
-        self = .init(
+        self.init(
             phrase: response.cipherSeedMnemonic,
             encipheredSeed: response.encipheredSeed
         )
@@ -126,7 +126,7 @@ extension Bool {
 extension LNSWalletBalance {
     
     init(response: Lnrpc_WalletBalanceResponse) {
-        self = .init(
+        self.init(
             totalBalance: Int(response.totalBalance),
             confirmedBalance: Int(response.confirmedBalance),
             unconfirmedBalance: Int(response.unconfirmedBalance)
@@ -146,8 +146,8 @@ extension LNSChannelBalance {
 
 extension Array where Element == LNSTransaction {
     
-    init(response: Lnrpc_TransactionDetails) {
-        self = response.transactions.map {
+    init(transactionDetails: Lnrpc_TransactionDetails) {
+        self = transactionDetails.transactions.map {
             LNSTransaction(
                 hash: $0.txHash,
                 amount: Int($0.amount),
