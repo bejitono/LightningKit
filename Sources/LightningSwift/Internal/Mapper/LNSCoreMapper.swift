@@ -138,7 +138,6 @@ extension LNSCoreMapperImplementation: LNSCoreResponseMapper {
                 amount: Int($0.value),
                 date: Date(timeIntervalSince1970: TimeInterval($0.creationDate)),
                 fees: Int($0.fee),
-                destination: $0.path.last ?? "",
                 preimage: $0.paymentPreimage
             )
         }

@@ -15,6 +15,5 @@ public struct LNSPayment: Equatable {
     public let amount: Int
     public let date: Date
     public let fees: Int
-    public let destination: String
     public let preimage: String
 }

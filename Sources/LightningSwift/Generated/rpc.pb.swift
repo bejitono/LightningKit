@@ -19,7 +19,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-///* 
+///*
 ///`AddressType` has to be one of:
 ///
 ///- `p2wkh`: Pay to witness key hash (`WITNESS_PUBKEY_HASH` = 0)
@@ -72,6 +72,160 @@ extension Lnrpc_AddressType: CaseIterable {
 
 #endif  // swift(>=4.2)
 
+enum Lnrpc_CommitmentType: SwiftProtobuf.Enum {
+  typealias RawValue = Int
+
+  ///*
+  ///A channel using the legacy commitment format having tweaked to_remote
+  ///keys.
+  case legacy // = 0
+
+  ///*
+  ///A channel that uses the modern commitment format where the key in the
+  ///output of the remote party does not change each state. This makes back
+  ///up and recovery easier as when the channel is closed, the funds go
+  ///directly to that key.
+  case staticRemoteKey // = 1
+
+  ///*
+  ///A channel that uses a commitment format that has anchor outputs on the
+  ///commitments, allowing fee bumping after a force close transaction has
+  ///been broadcast.
+  case anchors // = 2
+
+  ///*
+  ///Returned when the commitment type isn't known or unavailable.
+  case unknownCommitmentType // = 999
+  case UNRECOGNIZED(Int)
+
+  init() {
+    self = .legacy
+  }
+
+  init?(rawValue: Int) {
+    switch rawValue {
+    case 0: self = .legacy
+    case 1: self = .staticRemoteKey
+    case 2: self = .anchors
+    case 999: self = .unknownCommitmentType
+    default: self = .UNRECOGNIZED(rawValue)
+    }
+  }
+
+  var rawValue: Int {
+    switch self {
+    case .legacy: return 0
+    case .staticRemoteKey: return 1
+    case .anchors: return 2
+    case .unknownCommitmentType: return 999
+    case .UNRECOGNIZED(let i): return i
+    }
+  }
+
+}
+
+#if swift(>=4.2)
+
+extension Lnrpc_CommitmentType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  static var allCases: [Lnrpc_CommitmentType] = [
+    .legacy,
+    .staticRemoteKey,
+    .anchors,
+    .unknownCommitmentType,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
+enum Lnrpc_Initiator: SwiftProtobuf.Enum {
+  typealias RawValue = Int
+  case unknown // = 0
+  case local // = 1
+  case remote // = 2
+  case both // = 3
+  case UNRECOGNIZED(Int)
+
+  init() {
+    self = .unknown
+  }
+
+  init?(rawValue: Int) {
+    switch rawValue {
+    case 0: self = .unknown
+    case 1: self = .local
+    case 2: self = .remote
+    case 3: self = .both
+    default: self = .UNRECOGNIZED(rawValue)
+    }
+  }
+
+  var rawValue: Int {
+    switch self {
+    case .unknown: return 0
+    case .local: return 1
+    case .remote: return 2
+    case .both: return 3
+    case .UNRECOGNIZED(let i): return i
+    }
+  }
+
+}
+
+#if swift(>=4.2)
+
+extension Lnrpc_Initiator: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  static var allCases: [Lnrpc_Initiator] = [
+    .unknown,
+    .local,
+    .remote,
+    .both,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
+enum Lnrpc_NodeMetricType: SwiftProtobuf.Enum {
+  typealias RawValue = Int
+  case unknown // = 0
+  case betweennessCentrality // = 1
+  case UNRECOGNIZED(Int)
+
+  init() {
+    self = .unknown
+  }
+
+  init?(rawValue: Int) {
+    switch rawValue {
+    case 0: self = .unknown
+    case 1: self = .betweennessCentrality
+    default: self = .UNRECOGNIZED(rawValue)
+    }
+  }
+
+  var rawValue: Int {
+    switch self {
+    case .unknown: return 0
+    case .betweennessCentrality: return 1
+    case .UNRECOGNIZED(let i): return i
+    }
+  }
+
+}
+
+#if swift(>=4.2)
+
+extension Lnrpc_NodeMetricType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  static var allCases: [Lnrpc_NodeMetricType] = [
+    .unknown,
+    .betweennessCentrality,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 enum Lnrpc_InvoiceHTLCState: SwiftProtobuf.Enum {
   typealias RawValue = Int
   case accepted // = 0
@@ -111,6 +265,182 @@ extension Lnrpc_InvoiceHTLCState: CaseIterable {
     .accepted,
     .settled,
     .canceled,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
+enum Lnrpc_PaymentFailureReason: SwiftProtobuf.Enum {
+  typealias RawValue = Int
+
+  ///*
+  ///Payment isn't failed (yet).
+  case failureReasonNone // = 0
+
+  ///*
+  ///There are more routes to try, but the payment timeout was exceeded.
+  case failureReasonTimeout // = 1
+
+  ///*
+  ///All possible routes were tried and failed permanently. Or were no
+  ///routes to the destination at all.
+  case failureReasonNoRoute // = 2
+
+  ///*
+  ///A non-recoverable error has occured.
+  case failureReasonError // = 3
+
+  ///*
+  ///Payment details incorrect (unknown hash, invalid amt or
+  ///invalid final cltv delta)
+  case failureReasonIncorrectPaymentDetails // = 4
+
+  ///*
+  ///Insufficient local balance.
+  case failureReasonInsufficientBalance // = 5
+  case UNRECOGNIZED(Int)
+
+  init() {
+    self = .failureReasonNone
+  }
+
+  init?(rawValue: Int) {
+    switch rawValue {
+    case 0: self = .failureReasonNone
+    case 1: self = .failureReasonTimeout
+    case 2: self = .failureReasonNoRoute
+    case 3: self = .failureReasonError
+    case 4: self = .failureReasonIncorrectPaymentDetails
+    case 5: self = .failureReasonInsufficientBalance
+    default: self = .UNRECOGNIZED(rawValue)
+    }
+  }
+
+  var rawValue: Int {
+    switch self {
+    case .failureReasonNone: return 0
+    case .failureReasonTimeout: return 1
+    case .failureReasonNoRoute: return 2
+    case .failureReasonError: return 3
+    case .failureReasonIncorrectPaymentDetails: return 4
+    case .failureReasonInsufficientBalance: return 5
+    case .UNRECOGNIZED(let i): return i
+    }
+  }
+
+}
+
+#if swift(>=4.2)
+
+extension Lnrpc_PaymentFailureReason: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  static var allCases: [Lnrpc_PaymentFailureReason] = [
+    .failureReasonNone,
+    .failureReasonTimeout,
+    .failureReasonNoRoute,
+    .failureReasonError,
+    .failureReasonIncorrectPaymentDetails,
+    .failureReasonInsufficientBalance,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
+enum Lnrpc_FeatureBit: SwiftProtobuf.Enum {
+  typealias RawValue = Int
+  case datalossProtectReq // = 0
+  case datalossProtectOpt // = 1
+  case initialRouingSync // = 3
+  case upfrontShutdownScriptReq // = 4
+  case upfrontShutdownScriptOpt // = 5
+  case gossipQueriesReq // = 6
+  case gossipQueriesOpt // = 7
+  case tlvOnionReq // = 8
+  case tlvOnionOpt // = 9
+  case extGossipQueriesReq // = 10
+  case extGossipQueriesOpt // = 11
+  case staticRemoteKeyReq // = 12
+  case staticRemoteKeyOpt // = 13
+  case paymentAddrReq // = 14
+  case paymentAddrOpt // = 15
+  case mppReq // = 16
+  case mppOpt // = 17
+  case UNRECOGNIZED(Int)
+
+  init() {
+    self = .datalossProtectReq
+  }
+
+  init?(rawValue: Int) {
+    switch rawValue {
+    case 0: self = .datalossProtectReq
+    case 1: self = .datalossProtectOpt
+    case 3: self = .initialRouingSync
+    case 4: self = .upfrontShutdownScriptReq
+    case 5: self = .upfrontShutdownScriptOpt
+    case 6: self = .gossipQueriesReq
+    case 7: self = .gossipQueriesOpt
+    case 8: self = .tlvOnionReq
+    case 9: self = .tlvOnionOpt
+    case 10: self = .extGossipQueriesReq
+    case 11: self = .extGossipQueriesOpt
+    case 12: self = .staticRemoteKeyReq
+    case 13: self = .staticRemoteKeyOpt
+    case 14: self = .paymentAddrReq
+    case 15: self = .paymentAddrOpt
+    case 16: self = .mppReq
+    case 17: self = .mppOpt
+    default: self = .UNRECOGNIZED(rawValue)
+    }
+  }
+
+  var rawValue: Int {
+    switch self {
+    case .datalossProtectReq: return 0
+    case .datalossProtectOpt: return 1
+    case .initialRouingSync: return 3
+    case .upfrontShutdownScriptReq: return 4
+    case .upfrontShutdownScriptOpt: return 5
+    case .gossipQueriesReq: return 6
+    case .gossipQueriesOpt: return 7
+    case .tlvOnionReq: return 8
+    case .tlvOnionOpt: return 9
+    case .extGossipQueriesReq: return 10
+    case .extGossipQueriesOpt: return 11
+    case .staticRemoteKeyReq: return 12
+    case .staticRemoteKeyOpt: return 13
+    case .paymentAddrReq: return 14
+    case .paymentAddrOpt: return 15
+    case .mppReq: return 16
+    case .mppOpt: return 17
+    case .UNRECOGNIZED(let i): return i
+    }
+  }
+
+}
+
+#if swift(>=4.2)
+
+extension Lnrpc_FeatureBit: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  static var allCases: [Lnrpc_FeatureBit] = [
+    .datalossProtectReq,
+    .datalossProtectOpt,
+    .initialRouingSync,
+    .upfrontShutdownScriptReq,
+    .upfrontShutdownScriptOpt,
+    .gossipQueriesReq,
+    .gossipQueriesOpt,
+    .tlvOnionReq,
+    .tlvOnionOpt,
+    .extGossipQueriesReq,
+    .extGossipQueriesOpt,
+    .staticRemoteKeyReq,
+    .staticRemoteKeyOpt,
+    .paymentAddrReq,
+    .paymentAddrOpt,
+    .mppReq,
+    .mppOpt,
   ]
 }
 
@@ -314,7 +644,7 @@ struct Lnrpc_Utxo {
   // methods supported on all messages.
 
   //// The type of address
-  var type: Lnrpc_AddressType = .witnessPubkeyHash
+  var addressType: Lnrpc_AddressType = .witnessPubkeyHash
 
   //// The address
   var address: String = String()
@@ -365,7 +695,7 @@ struct Lnrpc_Transaction {
   //// The height of the block this transaction was included in
   var blockHeight: Int32 = 0
 
-  //// Timestamp of this transaction 
+  //// Timestamp of this transaction
   var timeStamp: Int64 = 0
 
   //// Fees paid for this transaction
@@ -547,21 +877,30 @@ struct Lnrpc_SendRequest {
   ///The pubkey of the last hop of the route. If empty, any hop may be used.
   var lastHopPubkey: Data = SwiftProtobuf.Internal.emptyData
 
-  ///* 
+  ///*
   ///An optional maximum total time lock for the route. This should not exceed
   ///lnd's `--max-cltv-expiry` setting. If zero, then the value of
   ///`--max-cltv-expiry` is enforced.
   var cltvLimit: UInt32 = 0
 
-  ///* 
+  ///*
   ///An optional field that can be used to pass an arbitrary set of TLV records
   ///to a peer which understands the new records. This can be used to pass
-  ///application specific data during the payment attempt. When using REST, the
-  ///values must be encoded as base64.
-  var destTlv: Dictionary<UInt64,Data> = [:]
+  ///application specific data during the payment attempt. Record types are
+  ///required to be in the custom range >= 65536. When using REST, the values
+  ///must be encoded as base64.
+  var destCustomRecords: Dictionary<UInt64,Data> = [:]
 
   //// If set, circular payments to self are permitted.
   var allowSelfPayment: Bool = false
+
+  ///*
+  ///Features assumed to be supported by the final node. All transitive feature
+  ///dependencies must also be set properly. For a given feature bit pair, either
+  ///optional or remote may be set, but not both. If this field is nil or empty,
+  ///the router will try to load destination features from the graph as a
+  ///fallback.
+  var destFeatures: [Lnrpc_FeatureBit] = []
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -643,7 +982,8 @@ struct Lnrpc_ChannelAcceptRequest {
   //// The pending channel id.
   var pendingChanID: Data = SwiftProtobuf.Internal.emptyData
 
-  //// The funding amount in satoshis that initiator wishes to use in the channel.
+  //// The funding amount in satoshis that initiator wishes to use in the
+  //// channel.
   var fundingAmt: UInt64 = 0
 
   //// The push amount of the proposed channel in millisatoshis.
@@ -652,27 +992,31 @@ struct Lnrpc_ChannelAcceptRequest {
   //// The dust limit of the initiator's commitment tx.
   var dustLimit: UInt64 = 0
 
-  //// The maximum amount of coins in millisatoshis that can be pending in this channel.
+  //// The maximum amount of coins in millisatoshis that can be pending in this
+  //// channel.
   var maxValueInFlight: UInt64 = 0
 
-  //// The minimum amount of satoshis the initiator requires us to have at all times.
+  //// The minimum amount of satoshis the initiator requires us to have at all
+  //// times.
   var channelReserve: UInt64 = 0
 
   //// The smallest HTLC in millisatoshis that the initiator will accept.
   var minHtlc: UInt64 = 0
 
-  //// The initial fee rate that the initiator suggests for both commitment transactions.
+  //// The initial fee rate that the initiator suggests for both commitment
+  //// transactions.
   var feePerKw: UInt64 = 0
 
   ///*
-  ///The number of blocks to use for the relative time lock in the pay-to-self output
-  ///of both commitment transactions.
+  ///The number of blocks to use for the relative time lock in the pay-to-self
+  ///output of both commitment transactions.
   var csvDelay: UInt32 = 0
 
   //// The total number of incoming HTLC's that the initiator will accept.
   var maxAcceptedHtlcs: UInt32 = 0
 
-  //// A bit-field which the initiator uses to specify proposed channel behavior.
+  //// A bit-field which the initiator uses to specify proposed channel
+  //// behavior.
   var channelFlags: UInt32 = 0
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -781,7 +1125,8 @@ struct Lnrpc_LightningAddress {
   //// The identity pubkey of the Lightning node
   var pubkey: String = String()
 
-  //// The network location of the lightning node, e.g. `69.69.69.69:1337` or `localhost:10011`
+  //// The network location of the lightning node, e.g. `69.69.69.69:1337` or
+  //// `localhost:10011`
   var host: String = String()
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -797,7 +1142,8 @@ struct Lnrpc_EstimateFeeRequest {
   //// The map from addresses to amounts for the transaction.
   var addrToAmount: Dictionary<String,Int64> = [:]
 
-  //// The target number of blocks that this transaction should be confirmed by.
+  //// The target number of blocks that this transaction should be confirmed
+  //// by.
   var targetConf: Int32 = 0
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -829,10 +1175,12 @@ struct Lnrpc_SendManyRequest {
   //// The map from addresses to amounts
   var addrToAmount: Dictionary<String,Int64> = [:]
 
-  //// The target number of blocks that this transaction should be confirmed by.
+  //// The target number of blocks that this transaction should be confirmed
+  //// by.
   var targetConf: Int32 = 0
 
-  //// A manual fee rate set in sat/byte that should be used when crafting the transaction.
+  //// A manual fee rate set in sat/byte that should be used when crafting the
+  //// transaction.
   var satPerByte: Int64 = 0
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -858,16 +1206,18 @@ struct Lnrpc_SendCoinsRequest {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  //// The address to send coins to 
+  //// The address to send coins to
   var addr: String = String()
 
   //// The amount in satoshis to send
   var amount: Int64 = 0
 
-  //// The target number of blocks that this transaction should be confirmed by.
+  //// The target number of blocks that this transaction should be confirmed
+  //// by.
   var targetConf: Int32 = 0
 
-  //// A manual fee rate set in sat/byte that should be used when crafting the transaction.
+  //// A manual fee rate set in sat/byte that should be used when crafting the
+  //// transaction.
   var satPerByte: Int64 = 0
 
   ///*
@@ -1027,7 +1377,7 @@ struct Lnrpc_ConnectPeerRequest {
   mutating func clearAddr() {self._addr = nil}
 
   ///* If set, the daemon will attempt to persistently connect to the target
-  /// peer. Otherwise, the call will be synchronous. 
+  /// peer. Otherwise, the call will be synchronous.
   var perm: Bool = false
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -1239,14 +1589,16 @@ struct Lnrpc_Channel {
     set {_uniqueStorage()._remoteChanReserveSat = newValue}
   }
 
-  ///*
-  ///If true, then this channel uses the modern commitment format where the key
-  ///in the output of the remote party does not change each state. This makes
-  ///back up and recovery easier as when the channel is closed, the funds go
-  ///directly to that key. 
+  //// Deprecated. Use commitment_type.
   var staticRemoteKey: Bool {
     get {return _storage._staticRemoteKey}
     set {_uniqueStorage()._staticRemoteKey = newValue}
+  }
+
+  //// The commitment type used by this channel.
+  var commitmentType: Lnrpc_CommitmentType {
+    get {return _storage._commitmentType}
+    set {_uniqueStorage()._commitmentType = newValue}
   }
 
   ///*
@@ -1260,10 +1612,44 @@ struct Lnrpc_Channel {
 
   ///*
   ///The number of seconds that the remote peer has been observed as being online
-  ///by the channel scoring system over the lifetime of the channel [EXPERIMENTAL].
+  ///by the channel scoring system over the lifetime of the channel
+  ///[EXPERIMENTAL].
   var uptime: Int64 {
     get {return _storage._uptime}
     set {_uniqueStorage()._uptime = newValue}
+  }
+
+  ///*
+  ///Close address is the address that we will enforce payout to on cooperative
+  ///close if the channel was opened utilizing option upfront shutdown. This
+  ///value can be set on channel open by setting close_address in an open channel
+  ///request. If this value is not set, you can still choose a payout address by
+  ///cooperatively closing with the delivery_address field set.
+  var closeAddress: String {
+    get {return _storage._closeAddress}
+    set {_uniqueStorage()._closeAddress = newValue}
+  }
+
+  ///
+  ///The amount that the initiator of the channel optionally pushed to the remote
+  ///party on channel open. This amount will be zero if the channel initiator did
+  ///not push any funds to the remote peer. If the initiator field is true, we
+  ///pushed this amount to our peer, if it is false, the remote peer pushed this
+  ///amount to us.
+  var pushAmountSat: UInt64 {
+    get {return _storage._pushAmountSat}
+    set {_uniqueStorage()._pushAmountSat = newValue}
+  }
+
+  ///*
+  ///This uint32 indicates if this channel is to be considered 'frozen'. A
+  ///frozen channel doest not allow a cooperative channel close by the
+  ///initiator. The thaw_height is the height that this restriction stops
+  ///applying to the channel. This field is optional, not setting it or using a
+  ///value of zero will mean the channel has no additional restrictions.
+  var thawHeight: UInt32 {
+    get {return _storage._thawHeight}
+    set {_uniqueStorage()._thawHeight = newValue}
   }
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -1285,6 +1671,11 @@ struct Lnrpc_ListChannelsRequest {
   var publicOnly: Bool = false
 
   var privateOnly: Bool = false
+
+  ///*
+  ///Filters the response for channels with a target peer's pubkey. If peer is
+  ///empty, all channels will be returned.
+  var peer: Data = SwiftProtobuf.Internal.emptyData
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -1309,10 +1700,10 @@ struct Lnrpc_ChannelCloseSummary {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  //// The outpoint (txid:index) of the funding transaction. 
+  //// The outpoint (txid:index) of the funding transaction.
   var channelPoint: String = String()
 
-  ////  The unique channel ID for the channel. 
+  ////  The unique channel ID for the channel.
   var chanID: UInt64 = 0
 
   //// The hash of the genesis block that this channel resides within.
@@ -1338,6 +1729,20 @@ struct Lnrpc_ChannelCloseSummary {
 
   //// Details on how the channel was closed.
   var closeType: Lnrpc_ChannelCloseSummary.ClosureType = .cooperativeClose
+
+  ///*
+  ///Open initiator is the party that initiated opening the channel. Note that
+  ///this value may be unknown if the channel was closed before we migrated to
+  ///store open channel information after close.
+  var openInitiator: Lnrpc_Initiator = .unknown
+
+  ///*
+  ///Close initiator indicates which party initiated the close. This value will
+  ///be unknown for channels that were cooperatively closed before we started
+  ///tracking cooperative close initiators. Note that this indicates which party
+  ///initiated a close, and it is possible for both to initiate cooperative or
+  ///force closes, although only one party's close will be confirmed on chain.
+  var closeInitiator: Lnrpc_Initiator = .unknown
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -1466,6 +1871,17 @@ struct Lnrpc_Peer {
   /// The type of sync we are currently performing with this peer.
   var syncType: Lnrpc_Peer.SyncType = .unknownSync
 
+  //// Features advertised by the remote peer in their init message.
+  var features: Dictionary<UInt32,Lnrpc_Feature> = [:]
+
+  ///
+  ///The latest errors received from our peer with timestamps, limited to the 10
+  ///most recent errors. These errors are tracked across peer connections, but
+  ///are not persisted across lnd restarts. Note that these errors are only
+  ///stored for peers that we have channels open with, to prevent peers from
+  ///spamming us with errors at no cost.
+  var errors: [Lnrpc_TimestampedError] = []
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   enum SyncType: SwiftProtobuf.Enum {
@@ -1524,10 +1940,32 @@ extension Lnrpc_Peer.SyncType: CaseIterable {
 
 #endif  // swift(>=4.2)
 
+struct Lnrpc_TimestampedError {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// The unix timestamp in seconds when the error occurred.
+  var timestamp: UInt64 = 0
+
+  /// The string representation of the error sent by our peer.
+  var error: String = String()
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
 struct Lnrpc_ListPeersRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
+
+  ///
+  ///If true, only the last error that our peer sent us will be returned with
+  ///the peer's information, rather than the full set of historic errors we have
+  ///stored.
+  var latestError: Bool = false
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -1547,6 +1985,71 @@ struct Lnrpc_ListPeersResponse {
   init() {}
 }
 
+struct Lnrpc_PeerEventSubscription {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Lnrpc_PeerEvent {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  //// The identity pubkey of the peer.
+  var pubKey: String = String()
+
+  var type: Lnrpc_PeerEvent.EventType = .peerOnline
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  enum EventType: SwiftProtobuf.Enum {
+    typealias RawValue = Int
+    case peerOnline // = 0
+    case peerOffline // = 1
+    case UNRECOGNIZED(Int)
+
+    init() {
+      self = .peerOnline
+    }
+
+    init?(rawValue: Int) {
+      switch rawValue {
+      case 0: self = .peerOnline
+      case 1: self = .peerOffline
+      default: self = .UNRECOGNIZED(rawValue)
+      }
+    }
+
+    var rawValue: Int {
+      switch self {
+      case .peerOnline: return 0
+      case .peerOffline: return 1
+      case .UNRECOGNIZED(let i): return i
+      }
+    }
+
+  }
+
+  init() {}
+}
+
+#if swift(>=4.2)
+
+extension Lnrpc_PeerEvent.EventType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  static var allCases: [Lnrpc_PeerEvent.EventType] = [
+    .peerOnline,
+    .peerOffline,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 struct Lnrpc_GetInfoRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -1562,59 +2065,123 @@ struct Lnrpc_GetInfoResponse {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  //// The version of the LND software that the node is running.
+  var version: String {
+    get {return _storage._version}
+    set {_uniqueStorage()._version = newValue}
+  }
+
+  //// The SHA1 commit hash that the daemon is compiled with.
+  var commitHash: String {
+    get {return _storage._commitHash}
+    set {_uniqueStorage()._commitHash = newValue}
+  }
+
   //// The identity pubkey of the current node.
-  var identityPubkey: String = String()
+  var identityPubkey: String {
+    get {return _storage._identityPubkey}
+    set {_uniqueStorage()._identityPubkey = newValue}
+  }
 
   //// If applicable, the alias of the current node, e.g. "bob"
-  var alias: String = String()
-
-  //// Number of pending channels
-  var numPendingChannels: UInt32 = 0
-
-  //// Number of active channels
-  var numActiveChannels: UInt32 = 0
-
-  //// Number of peers
-  var numPeers: UInt32 = 0
-
-  //// The node's current view of the height of the best block
-  var blockHeight: UInt32 = 0
-
-  //// The node's current view of the hash of the best block
-  var blockHash: String = String()
-
-  //// Whether the wallet's view is synced to the main chain
-  var syncedToChain: Bool = false
-
-  ///* 
-  ///Whether the current node is connected to testnet. This field is 
-  ///deprecated and the network field should be used instead 
-  var testnet: Bool = false
-
-  //// The URIs of the current node.
-  var uris: [String] = []
-
-  //// Timestamp of the block best known to the wallet
-  var bestHeaderTimestamp: Int64 = 0
-
-  //// The version of the LND software that the node is running.
-  var version: String = String()
-
-  //// Number of inactive channels
-  var numInactiveChannels: UInt32 = 0
-
-  //// A list of active chains the node is connected to
-  var chains: [Lnrpc_Chain] = []
+  var alias: String {
+    get {return _storage._alias}
+    set {_uniqueStorage()._alias = newValue}
+  }
 
   //// The color of the current node in hex code format
-  var color: String = String()
+  var color: String {
+    get {return _storage._color}
+    set {_uniqueStorage()._color = newValue}
+  }
+
+  //// Number of pending channels
+  var numPendingChannels: UInt32 {
+    get {return _storage._numPendingChannels}
+    set {_uniqueStorage()._numPendingChannels = newValue}
+  }
+
+  //// Number of active channels
+  var numActiveChannels: UInt32 {
+    get {return _storage._numActiveChannels}
+    set {_uniqueStorage()._numActiveChannels = newValue}
+  }
+
+  //// Number of inactive channels
+  var numInactiveChannels: UInt32 {
+    get {return _storage._numInactiveChannels}
+    set {_uniqueStorage()._numInactiveChannels = newValue}
+  }
+
+  //// Number of peers
+  var numPeers: UInt32 {
+    get {return _storage._numPeers}
+    set {_uniqueStorage()._numPeers = newValue}
+  }
+
+  //// The node's current view of the height of the best block
+  var blockHeight: UInt32 {
+    get {return _storage._blockHeight}
+    set {_uniqueStorage()._blockHeight = newValue}
+  }
+
+  //// The node's current view of the hash of the best block
+  var blockHash: String {
+    get {return _storage._blockHash}
+    set {_uniqueStorage()._blockHash = newValue}
+  }
+
+  //// Timestamp of the block best known to the wallet
+  var bestHeaderTimestamp: Int64 {
+    get {return _storage._bestHeaderTimestamp}
+    set {_uniqueStorage()._bestHeaderTimestamp = newValue}
+  }
+
+  //// Whether the wallet's view is synced to the main chain
+  var syncedToChain: Bool {
+    get {return _storage._syncedToChain}
+    set {_uniqueStorage()._syncedToChain = newValue}
+  }
 
   /// Whether we consider ourselves synced with the public channel graph.
-  var syncedToGraph: Bool = false
+  var syncedToGraph: Bool {
+    get {return _storage._syncedToGraph}
+    set {_uniqueStorage()._syncedToGraph = newValue}
+  }
+
+  ///*
+  ///Whether the current node is connected to testnet. This field is
+  ///deprecated and the network field should be used instead
+  var testnet: Bool {
+    get {return _storage._testnet}
+    set {_uniqueStorage()._testnet = newValue}
+  }
+
+  //// A list of active chains the node is connected to
+  var chains: [Lnrpc_Chain] {
+    get {return _storage._chains}
+    set {_uniqueStorage()._chains = newValue}
+  }
+
+  //// The URIs of the current node.
+  var uris: [String] {
+    get {return _storage._uris}
+    set {_uniqueStorage()._uris = newValue}
+  }
+
+  ///
+  ///Features that our node has advertised in our init message, node
+  ///announcements and invoices.
+  var features: Dictionary<UInt32,Lnrpc_Feature> {
+    get {return _storage._features}
+    set {_uniqueStorage()._features = newValue}
+  }
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 struct Lnrpc_Chain {
@@ -1702,14 +2269,24 @@ struct Lnrpc_CloseChannelRequest {
   /// Clears the value of `channelPoint`. Subsequent reads from it will return its default value.
   mutating func clearChannelPoint() {self._channelPoint = nil}
 
-  //// If true, then the channel will be closed forcibly. This means the current commitment transaction will be signed and broadcast.
+  //// If true, then the channel will be closed forcibly. This means the
+  //// current commitment transaction will be signed and broadcast.
   var force: Bool = false
 
-  //// The target number of blocks that the closure transaction should be confirmed by.
+  //// The target number of blocks that the closure transaction should be
+  //// confirmed by.
   var targetConf: Int32 = 0
 
-  //// A manual fee rate set in sat/byte that should be used when crafting the closure transaction.
+  //// A manual fee rate set in sat/byte that should be used when crafting the
+  //// closure transaction.
   var satPerByte: Int64 = 0
+
+  ///
+  ///An optional address to send funds to in the case of a cooperative close.
+  ///If the channel was opened with an upfront shutdown script and this field
+  ///is set, the request to close will fail because the channel must pay out
+  ///to the upfront shutdown addresss.
+  var deliveryAddress: String = String()
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -1775,6 +2352,33 @@ struct Lnrpc_PendingUpdate {
   init() {}
 }
 
+struct Lnrpc_ReadyForPsbtFunding {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  ///*
+  ///The P2WSH address of the channel funding multisig address that the below
+  ///specified amount in satoshis needs to be sent to.
+  var fundingAddress: String = String()
+
+  ///*
+  ///The exact amount in satoshis that needs to be sent to the above address to
+  ///fund the pending channel.
+  var fundingAmount: Int64 = 0
+
+  ///*
+  ///A raw PSBT that contains the pending channel output. If a base PSBT was
+  ///provided in the PsbtShim, this is the base PSBT with one additional output.
+  ///If no base PSBT was specified, this is an otherwise empty PSBT with exactly
+  ///one output.
+  var psbt: Data = SwiftProtobuf.Internal.emptyData
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
 struct Lnrpc_OpenChannelRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -1793,33 +2397,69 @@ struct Lnrpc_OpenChannelRequest {
   //// The number of satoshis the wallet should commit to the channel
   var localFundingAmount: Int64 = 0
 
-  //// The number of satoshis to push to the remote side as part of the initial commitment state
+  //// The number of satoshis to push to the remote side as part of the initial
+  //// commitment state
   var pushSat: Int64 = 0
 
-  //// The target number of blocks that the funding transaction should be confirmed by.
+  //// The target number of blocks that the funding transaction should be
+  //// confirmed by.
   var targetConf: Int32 = 0
 
-  //// A manual fee rate set in sat/byte that should be used when crafting the funding transaction.
+  //// A manual fee rate set in sat/byte that should be used when crafting the
+  //// funding transaction.
   var satPerByte: Int64 = 0
 
-  //// Whether this channel should be private, not announced to the greater network.
+  //// Whether this channel should be private, not announced to the greater
+  //// network.
   var `private`: Bool = false
 
-  //// The minimum value in millisatoshi we will require for incoming HTLCs on the channel.
+  //// The minimum value in millisatoshi we will require for incoming HTLCs on
+  //// the channel.
   var minHtlcMsat: Int64 = 0
 
-  //// The delay we require on the remote's commitment transaction. If this is not set, it will be scaled automatically with the channel size.
+  //// The delay we require on the remote's commitment transaction. If this is
+  //// not set, it will be scaled automatically with the channel size.
   var remoteCsvDelay: UInt32 = 0
 
-  //// The minimum number of confirmations each one of your outputs used for the funding transaction must satisfy.
+  //// The minimum number of confirmations each one of your outputs used for
+  //// the funding transaction must satisfy.
   var minConfs: Int32 = 0
 
-  //// Whether unconfirmed outputs should be used as inputs for the funding transaction.
+  //// Whether unconfirmed outputs should be used as inputs for the funding
+  //// transaction.
   var spendUnconfirmed: Bool = false
+
+  ///
+  ///Close address is an optional address which specifies the address to which
+  ///funds should be paid out to upon cooperative close. This field may only be
+  ///set if the peer supports the option upfront feature bit (call listpeers
+  ///to check). The remote peer will only accept cooperative closes to this
+  ///address if it is set.
+  ///
+  ///Note: If this value is set on channel creation, you will *not* be able to
+  ///cooperatively close out to a different address.
+  var closeAddress: String = String()
+
+  ///*
+  ///Funding shims are an optional argument that allow the caller to intercept
+  ///certain funding functionality. For example, a shim can be provided to use a
+  ///particular key for the commitment key (ideally cold) rather than use one
+  ///that is generated by the wallet as normal, or signal that signing will be
+  ///carried out in an interactive manner (PSBT based).
+  var fundingShim: Lnrpc_FundingShim {
+    get {return _fundingShim ?? Lnrpc_FundingShim()}
+    set {_fundingShim = newValue}
+  }
+  /// Returns true if `fundingShim` has been explicitly set.
+  var hasFundingShim: Bool {return self._fundingShim != nil}
+  /// Clears the value of `fundingShim`. Subsequent reads from it will return its default value.
+  mutating func clearFundingShim() {self._fundingShim = nil}
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
+
+  fileprivate var _fundingShim: Lnrpc_FundingShim? = nil
 }
 
 struct Lnrpc_OpenStatusUpdate {
@@ -1829,6 +2469,9 @@ struct Lnrpc_OpenStatusUpdate {
 
   var update: Lnrpc_OpenStatusUpdate.OneOf_Update? = nil
 
+  ///*
+  ///Signals that the channel is now fully negotiated and the funding
+  ///transaction published.
   var chanPending: Lnrpc_PendingUpdate {
     get {
       if case .chanPending(let v)? = update {return v}
@@ -1837,6 +2480,9 @@ struct Lnrpc_OpenStatusUpdate {
     set {update = .chanPending(newValue)}
   }
 
+  ///*
+  ///Signals that the channel's funding transaction has now reached the
+  ///required number of confirmations on chain and can be used.
   var chanOpen: Lnrpc_ChannelOpenUpdate {
     get {
       if case .chanOpen(let v)? = update {return v}
@@ -1845,22 +2491,375 @@ struct Lnrpc_OpenStatusUpdate {
     set {update = .chanOpen(newValue)}
   }
 
+  ///*
+  ///Signals that the funding process has been suspended and the construction
+  ///of a PSBT that funds the channel PK script is now required.
+  var psbtFund: Lnrpc_ReadyForPsbtFunding {
+    get {
+      if case .psbtFund(let v)? = update {return v}
+      return Lnrpc_ReadyForPsbtFunding()
+    }
+    set {update = .psbtFund(newValue)}
+  }
+
+  ///*
+  ///The pending channel ID of the created channel. This value may be used to
+  ///further the funding flow manually via the FundingStateStep method.
+  var pendingChanID: Data = SwiftProtobuf.Internal.emptyData
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   enum OneOf_Update: Equatable {
+    ///*
+    ///Signals that the channel is now fully negotiated and the funding
+    ///transaction published.
     case chanPending(Lnrpc_PendingUpdate)
+    ///*
+    ///Signals that the channel's funding transaction has now reached the
+    ///required number of confirmations on chain and can be used.
     case chanOpen(Lnrpc_ChannelOpenUpdate)
+    ///*
+    ///Signals that the funding process has been suspended and the construction
+    ///of a PSBT that funds the channel PK script is now required.
+    case psbtFund(Lnrpc_ReadyForPsbtFunding)
 
   #if !swift(>=4.1)
     static func ==(lhs: Lnrpc_OpenStatusUpdate.OneOf_Update, rhs: Lnrpc_OpenStatusUpdate.OneOf_Update) -> Bool {
       switch (lhs, rhs) {
       case (.chanPending(let l), .chanPending(let r)): return l == r
       case (.chanOpen(let l), .chanOpen(let r)): return l == r
+      case (.psbtFund(let l), .psbtFund(let r)): return l == r
       default: return false
       }
     }
   #endif
   }
+
+  init() {}
+}
+
+struct Lnrpc_KeyLocator {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  //// The family of key being identified.
+  var keyFamily: Int32 = 0
+
+  //// The precise index of the key being identified.
+  var keyIndex: Int32 = 0
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Lnrpc_KeyDescriptor {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  ///*
+  ///The raw bytes of the key being identified.
+  var rawKeyBytes: Data = SwiftProtobuf.Internal.emptyData
+
+  ///*
+  ///The key locator that identifies which key to use for signing.
+  var keyLoc: Lnrpc_KeyLocator {
+    get {return _keyLoc ?? Lnrpc_KeyLocator()}
+    set {_keyLoc = newValue}
+  }
+  /// Returns true if `keyLoc` has been explicitly set.
+  var hasKeyLoc: Bool {return self._keyLoc != nil}
+  /// Clears the value of `keyLoc`. Subsequent reads from it will return its default value.
+  mutating func clearKeyLoc() {self._keyLoc = nil}
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _keyLoc: Lnrpc_KeyLocator? = nil
+}
+
+struct Lnrpc_ChanPointShim {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  ///*
+  ///The size of the pre-crafted output to be used as the channel point for this
+  ///channel funding.
+  var amt: Int64 = 0
+
+  //// The target channel point to refrence in created commitment transactions.
+  var chanPoint: Lnrpc_ChannelPoint {
+    get {return _chanPoint ?? Lnrpc_ChannelPoint()}
+    set {_chanPoint = newValue}
+  }
+  /// Returns true if `chanPoint` has been explicitly set.
+  var hasChanPoint: Bool {return self._chanPoint != nil}
+  /// Clears the value of `chanPoint`. Subsequent reads from it will return its default value.
+  mutating func clearChanPoint() {self._chanPoint = nil}
+
+  //// Our local key to use when creating the multi-sig output.
+  var localKey: Lnrpc_KeyDescriptor {
+    get {return _localKey ?? Lnrpc_KeyDescriptor()}
+    set {_localKey = newValue}
+  }
+  /// Returns true if `localKey` has been explicitly set.
+  var hasLocalKey: Bool {return self._localKey != nil}
+  /// Clears the value of `localKey`. Subsequent reads from it will return its default value.
+  mutating func clearLocalKey() {self._localKey = nil}
+
+  //// The key of the remote party to use when creating the multi-sig output.
+  var remoteKey: Data = SwiftProtobuf.Internal.emptyData
+
+  ///*
+  ///If non-zero, then this will be used as the pending channel ID on the wire
+  ///protocol to initate the funding request. This is an optional field, and
+  ///should only be set if the responder is already expecting a specific pending
+  ///channel ID.
+  var pendingChanID: Data = SwiftProtobuf.Internal.emptyData
+
+  ///*
+  ///This uint32 indicates if this channel is to be considered 'frozen'. A
+  ///frozen channel does not allow a cooperative channel close by the
+  ///initiator. The thaw_height is the height that this restriction stops
+  ///applying to the channel.
+  var thawHeight: UInt32 = 0
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _chanPoint: Lnrpc_ChannelPoint? = nil
+  fileprivate var _localKey: Lnrpc_KeyDescriptor? = nil
+}
+
+struct Lnrpc_PsbtShim {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  ///*
+  ///A unique identifier of 32 random bytes that will be used as the pending
+  ///channel ID to identify the PSBT state machine when interacting with it and
+  ///on the wire protocol to initiate the funding request.
+  var pendingChanID: Data = SwiftProtobuf.Internal.emptyData
+
+  ///*
+  ///An optional base PSBT the new channel output will be added to. If this is
+  ///non-empty, it must be a binary serialized PSBT.
+  var basePsbt: Data = SwiftProtobuf.Internal.emptyData
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Lnrpc_FundingShim {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var shim: Lnrpc_FundingShim.OneOf_Shim? = nil
+
+  ///*
+  ///A channel shim where the channel point was fully constructed outside
+  ///of lnd's wallet and the transaction might already be published.
+  var chanPointShim: Lnrpc_ChanPointShim {
+    get {
+      if case .chanPointShim(let v)? = shim {return v}
+      return Lnrpc_ChanPointShim()
+    }
+    set {shim = .chanPointShim(newValue)}
+  }
+
+  ///*
+  ///A channel shim that uses a PSBT to fund and sign the channel funding
+  ///transaction.
+  var psbtShim: Lnrpc_PsbtShim {
+    get {
+      if case .psbtShim(let v)? = shim {return v}
+      return Lnrpc_PsbtShim()
+    }
+    set {shim = .psbtShim(newValue)}
+  }
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  enum OneOf_Shim: Equatable {
+    ///*
+    ///A channel shim where the channel point was fully constructed outside
+    ///of lnd's wallet and the transaction might already be published.
+    case chanPointShim(Lnrpc_ChanPointShim)
+    ///*
+    ///A channel shim that uses a PSBT to fund and sign the channel funding
+    ///transaction.
+    case psbtShim(Lnrpc_PsbtShim)
+
+  #if !swift(>=4.1)
+    static func ==(lhs: Lnrpc_FundingShim.OneOf_Shim, rhs: Lnrpc_FundingShim.OneOf_Shim) -> Bool {
+      switch (lhs, rhs) {
+      case (.chanPointShim(let l), .chanPointShim(let r)): return l == r
+      case (.psbtShim(let l), .psbtShim(let r)): return l == r
+      default: return false
+      }
+    }
+  #endif
+  }
+
+  init() {}
+}
+
+struct Lnrpc_FundingShimCancel {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  //// The pending channel ID of the channel to cancel the funding shim for.
+  var pendingChanID: Data = SwiftProtobuf.Internal.emptyData
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Lnrpc_FundingPsbtVerify {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  ///*
+  ///The funded but not yet signed PSBT that sends the exact channel capacity
+  ///amount to the PK script returned in the open channel message in a previous
+  ///step.
+  var fundedPsbt: Data = SwiftProtobuf.Internal.emptyData
+
+  //// The pending channel ID of the channel to get the PSBT for.
+  var pendingChanID: Data = SwiftProtobuf.Internal.emptyData
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Lnrpc_FundingPsbtFinalize {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  ///*
+  ///The funded PSBT that contains all witness data to send the exact channel
+  ///capacity amount to the PK script returned in the open channel message in a
+  ///previous step.
+  var signedPsbt: Data = SwiftProtobuf.Internal.emptyData
+
+  //// The pending channel ID of the channel to get the PSBT for.
+  var pendingChanID: Data = SwiftProtobuf.Internal.emptyData
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Lnrpc_FundingTransitionMsg {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var trigger: Lnrpc_FundingTransitionMsg.OneOf_Trigger? = nil
+
+  ///*
+  ///The funding shim to register. This should be used before any
+  ///channel funding has began by the remote party, as it is intended as a
+  ///preparatory step for the full channel funding.
+  var shimRegister: Lnrpc_FundingShim {
+    get {
+      if case .shimRegister(let v)? = trigger {return v}
+      return Lnrpc_FundingShim()
+    }
+    set {trigger = .shimRegister(newValue)}
+  }
+
+  //// Used to cancel an existing registered funding shim.
+  var shimCancel: Lnrpc_FundingShimCancel {
+    get {
+      if case .shimCancel(let v)? = trigger {return v}
+      return Lnrpc_FundingShimCancel()
+    }
+    set {trigger = .shimCancel(newValue)}
+  }
+
+  ///*
+  ///Used to continue a funding flow that was initiated to be executed
+  ///through a PSBT. This step verifies that the PSBT contains the correct
+  ///outputs to fund the channel.
+  var psbtVerify: Lnrpc_FundingPsbtVerify {
+    get {
+      if case .psbtVerify(let v)? = trigger {return v}
+      return Lnrpc_FundingPsbtVerify()
+    }
+    set {trigger = .psbtVerify(newValue)}
+  }
+
+  ///*
+  ///Used to continue a funding flow that was initiated to be executed
+  ///through a PSBT. This step finalizes the funded and signed PSBT, finishes
+  ///negotiation with the peer and finally publishes the resulting funding
+  ///transaction.
+  var psbtFinalize: Lnrpc_FundingPsbtFinalize {
+    get {
+      if case .psbtFinalize(let v)? = trigger {return v}
+      return Lnrpc_FundingPsbtFinalize()
+    }
+    set {trigger = .psbtFinalize(newValue)}
+  }
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  enum OneOf_Trigger: Equatable {
+    ///*
+    ///The funding shim to register. This should be used before any
+    ///channel funding has began by the remote party, as it is intended as a
+    ///preparatory step for the full channel funding.
+    case shimRegister(Lnrpc_FundingShim)
+    //// Used to cancel an existing registered funding shim.
+    case shimCancel(Lnrpc_FundingShimCancel)
+    ///*
+    ///Used to continue a funding flow that was initiated to be executed
+    ///through a PSBT. This step verifies that the PSBT contains the correct
+    ///outputs to fund the channel.
+    case psbtVerify(Lnrpc_FundingPsbtVerify)
+    ///*
+    ///Used to continue a funding flow that was initiated to be executed
+    ///through a PSBT. This step finalizes the funded and signed PSBT, finishes
+    ///negotiation with the peer and finally publishes the resulting funding
+    ///transaction.
+    case psbtFinalize(Lnrpc_FundingPsbtFinalize)
+
+  #if !swift(>=4.1)
+    static func ==(lhs: Lnrpc_FundingTransitionMsg.OneOf_Trigger, rhs: Lnrpc_FundingTransitionMsg.OneOf_Trigger) -> Bool {
+      switch (lhs, rhs) {
+      case (.shimRegister(let l), .shimRegister(let r)): return l == r
+      case (.shimCancel(let l), .shimCancel(let r)): return l == r
+      case (.psbtVerify(let l), .psbtVerify(let r)): return l == r
+      case (.psbtFinalize(let l), .psbtFinalize(let r)): return l == r
+      default: return false
+      }
+    }
+  #endif
+  }
+
+  init() {}
+}
+
+struct Lnrpc_FundingStateStepResp {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
 }
@@ -1917,7 +2916,10 @@ struct Lnrpc_PendingChannelsResponse {
   //// Channels pending opening
   var pendingOpenChannels: [Lnrpc_PendingChannelsResponse.PendingOpenChannel] = []
 
-  //// Channels pending closing
+  ///
+  ///Deprecated: Channels pending closing previously contained cooperatively
+  ///closed channels with a single confirmation. These channels are now
+  ///considered closed from the time we see them on chain.
   var pendingClosingChannels: [Lnrpc_PendingChannelsResponse.ClosedChannel] = []
 
   //// Channels pending force closing
@@ -1943,13 +2945,20 @@ struct Lnrpc_PendingChannelsResponse {
 
     var remoteBalance: Int64 = 0
 
-    //// The minimum satoshis this node is required to reserve in its balance.
+    //// The minimum satoshis this node is required to reserve in its
+    //// balance.
     var localChanReserveSat: Int64 = 0
 
     ///*
     ///The minimum satoshis the other node is required to reserve in its
     ///balance.
     var remoteChanReserveSat: Int64 = 0
+
+    /// The party that initiated opening the channel.
+    var initiator: Lnrpc_Initiator = .unknown
+
+    //// The commitment type used by this channel.
+    var commitmentType: Lnrpc_CommitmentType = .legacy
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -2016,11 +3025,58 @@ struct Lnrpc_PendingChannelsResponse {
     //// The balance in satoshis encumbered in this channel
     var limboBalance: Int64 = 0
 
+    ///*
+    ///A list of valid commitment transactions. Any of these can confirm at
+    ///this point.
+    var commitments: Lnrpc_PendingChannelsResponse.Commitments {
+      get {return _commitments ?? Lnrpc_PendingChannelsResponse.Commitments()}
+      set {_commitments = newValue}
+    }
+    /// Returns true if `commitments` has been explicitly set.
+    var hasCommitments: Bool {return self._commitments != nil}
+    /// Clears the value of `commitments`. Subsequent reads from it will return its default value.
+    mutating func clearCommitments() {self._commitments = nil}
+
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
     init() {}
 
     fileprivate var _channel: Lnrpc_PendingChannelsResponse.PendingChannel? = nil
+    fileprivate var _commitments: Lnrpc_PendingChannelsResponse.Commitments? = nil
+  }
+
+  struct Commitments {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    //// Hash of the local version of the commitment tx.
+    var localTxid: String = String()
+
+    //// Hash of the remote version of the commitment tx.
+    var remoteTxid: String = String()
+
+    //// Hash of the remote pending version of the commitment tx.
+    var remotePendingTxid: String = String()
+
+    ///
+    ///The amount in satoshis calculated to be paid in fees for the local
+    ///commitment.
+    var localCommitFeeSat: UInt64 = 0
+
+    ///
+    ///The amount in satoshis calculated to be paid in fees for the remote
+    ///commitment.
+    var remoteCommitFeeSat: UInt64 = 0
+
+    ///
+    ///The amount in satoshis calculated to be paid in fees for the remote
+    ///pending commitment.
+    var remotePendingCommitFeeSat: UInt64 = 0
+
+    var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    init() {}
   }
 
   struct ClosedChannel {
@@ -2083,7 +3139,40 @@ struct Lnrpc_PendingChannelsResponse {
 
     var pendingHtlcs: [Lnrpc_PendingHTLC] = []
 
+    var anchor: Lnrpc_PendingChannelsResponse.ForceClosedChannel.AnchorState = .limbo
+
     var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    enum AnchorState: SwiftProtobuf.Enum {
+      typealias RawValue = Int
+      case limbo // = 0
+      case recovered // = 1
+      case lost // = 2
+      case UNRECOGNIZED(Int)
+
+      init() {
+        self = .limbo
+      }
+
+      init?(rawValue: Int) {
+        switch rawValue {
+        case 0: self = .limbo
+        case 1: self = .recovered
+        case 2: self = .lost
+        default: self = .UNRECOGNIZED(rawValue)
+        }
+      }
+
+      var rawValue: Int {
+        switch self {
+        case .limbo: return 0
+        case .recovered: return 1
+        case .lost: return 2
+        case .UNRECOGNIZED(let i): return i
+        }
+      }
+
+    }
 
     init() {}
 
@@ -2142,6 +3231,14 @@ struct Lnrpc_ChannelEventUpdate {
     set {channel = .inactiveChannel(newValue)}
   }
 
+  var pendingOpenChannel: Lnrpc_PendingUpdate {
+    get {
+      if case .pendingOpenChannel(let v)? = channel {return v}
+      return Lnrpc_PendingUpdate()
+    }
+    set {channel = .pendingOpenChannel(newValue)}
+  }
+
   var type: Lnrpc_ChannelEventUpdate.UpdateType = .openChannel
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -2151,6 +3248,7 @@ struct Lnrpc_ChannelEventUpdate {
     case closedChannel(Lnrpc_ChannelCloseSummary)
     case activeChannel(Lnrpc_ChannelPoint)
     case inactiveChannel(Lnrpc_ChannelPoint)
+    case pendingOpenChannel(Lnrpc_PendingUpdate)
 
   #if !swift(>=4.1)
     static func ==(lhs: Lnrpc_ChannelEventUpdate.OneOf_Channel, rhs: Lnrpc_ChannelEventUpdate.OneOf_Channel) -> Bool {
@@ -2159,6 +3257,7 @@ struct Lnrpc_ChannelEventUpdate {
       case (.closedChannel(let l), .closedChannel(let r)): return l == r
       case (.activeChannel(let l), .activeChannel(let r)): return l == r
       case (.inactiveChannel(let l), .inactiveChannel(let r)): return l == r
+      case (.pendingOpenChannel(let l), .pendingOpenChannel(let r)): return l == r
       default: return false
       }
     }
@@ -2171,6 +3270,7 @@ struct Lnrpc_ChannelEventUpdate {
     case closedChannel // = 1
     case activeChannel // = 2
     case inactiveChannel // = 3
+    case pendingOpenChannel // = 4
     case UNRECOGNIZED(Int)
 
     init() {
@@ -2183,6 +3283,7 @@ struct Lnrpc_ChannelEventUpdate {
       case 1: self = .closedChannel
       case 2: self = .activeChannel
       case 3: self = .inactiveChannel
+      case 4: self = .pendingOpenChannel
       default: self = .UNRECOGNIZED(rawValue)
       }
     }
@@ -2193,6 +3294,7 @@ struct Lnrpc_ChannelEventUpdate {
       case .closedChannel: return 1
       case .activeChannel: return 2
       case .inactiveChannel: return 3
+      case .pendingOpenChannel: return 4
       case .UNRECOGNIZED(let i): return i
       }
     }
@@ -2211,6 +3313,7 @@ extension Lnrpc_ChannelEventUpdate.UpdateType: CaseIterable {
     .closedChannel,
     .activeChannel,
     .inactiveChannel,
+    .pendingOpenChannel,
   ]
 }
 
@@ -2291,7 +3394,12 @@ struct Lnrpc_QueryRoutesRequest {
   ///The fields amt and amt_msat are mutually exclusive.
   var amtMsat: Int64 = 0
 
-  //// An optional CLTV delta from the current height that should be used for the timelock of the final hop
+  ///*
+  ///An optional CLTV delta from the current height that should be used for the
+  ///timelock of the final hop. Note that unlike SendPayment, QueryRoutes does
+  ///not add any additional block padding on top of final_ctlv_delta. This
+  ///padding of a few blocks needs to be added manually or otherwise failures may
+  ///happen when a block comes in while the payment is in flight.
   var finalCltvDelta: Int32 = 0
 
   ///*
@@ -2331,11 +3439,41 @@ struct Lnrpc_QueryRoutesRequest {
   ///A list of directed node pairs that will be ignored during path finding.
   var ignoredPairs: [Lnrpc_NodePair] = []
 
-  ///* 
+  ///*
   ///An optional maximum total time lock for the route. If the source is empty or
   ///ourselves, this should not exceed lnd's `--max-cltv-expiry` setting. If
   ///zero, then the value of `--max-cltv-expiry` is used as the limit.
   var cltvLimit: UInt32 = 0
+
+  ///*
+  ///An optional field that can be used to pass an arbitrary set of TLV records
+  ///to a peer which understands the new records. This can be used to pass
+  ///application specific data during the payment attempt. If the destination
+  ///does not support the specified recrods, and error will be returned.
+  ///Record types are required to be in the custom range >= 65536. When using
+  ///REST, the values must be encoded as base64.
+  var destCustomRecords: Dictionary<UInt64,Data> = [:]
+
+  ///*
+  ///The channel id of the channel that must be taken to the first hop. If zero,
+  ///any channel may be used.
+  var outgoingChanID: UInt64 = 0
+
+  ///*
+  ///The pubkey of the last hop of the route. If empty, any hop may be used.
+  var lastHopPubkey: Data = SwiftProtobuf.Internal.emptyData
+
+  ///*
+  ///Optional route hints to reach the destination through private channels.
+  var routeHints: [Lnrpc_RouteHint] = []
+
+  ///*
+  ///Features assumed to be supported by the final node. All transitive feature
+  ///dependencies must also be set properly. For a given feature bit pair, either
+  ///optional or remote may be set, but not both. If this field is nil or empty,
+  ///the router will try to load destination features from the graph as a
+  ///fallback.
+  var destFeatures: [Lnrpc_FeatureBit] = []
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -2432,13 +3570,14 @@ struct Lnrpc_Hop {
   ///can be executed without relying on a copy of the channel graph.
   var pubKey: String = String()
 
-  ///* 
+  ///*
   ///If set to true, then this hop will be encoded using the new variable length
-  ///TLV format.
+  ///TLV format. Note that if any custom tlv_records below are specified, then
+  ///this field MUST be set to true for them to be encoded properly.
   var tlvPayload: Bool = false
 
   ///*
-  ///An optional TLV record tha singals the use of an MPP payment. If present,
+  ///An optional TLV record that signals the use of an MPP payment. If present,
   ///the receiver will enforce that that the same mpp_record is included in the
   ///final hop payload of all non-zero payments in the HTLC set. If empty, a
   ///regular single-shot payment is or was attempted.
@@ -2450,6 +3589,12 @@ struct Lnrpc_Hop {
   var hasMppRecord: Bool {return self._mppRecord != nil}
   /// Clears the value of `mppRecord`. Subsequent reads from it will return its default value.
   mutating func clearMppRecord() {self._mppRecord = nil}
+
+  ///*
+  ///An optional set of key-value TLV records. This is useful within the context
+  ///of the SendToRoute call as it allows callers to specify arbitrary K-V pairs
+  ///to drop off at each hop within the onion.
+  var customRecords: Dictionary<UInt64,Data> = [:]
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -2536,7 +3681,7 @@ struct Lnrpc_NodeInfoRequest {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  //// The 33-byte hex-encoded compressed public of the target node 
+  //// The 33-byte hex-encoded compressed public of the target node
   var pubKey: String = String()
 
   //// If true, will include all known channels associated with the node.
@@ -2601,6 +3746,8 @@ struct Lnrpc_LightningNode {
   var addresses: [Lnrpc_NodeAddress] = []
 
   var color: String = String()
+
+  var features: Dictionary<UInt32,Lnrpc_Feature> = [:]
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -2725,6 +3872,53 @@ struct Lnrpc_ChannelGraph {
 
   //// The list of `ChannelEdge`s in this channel graph
   var edges: [Lnrpc_ChannelEdge] = []
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Lnrpc_NodeMetricsRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  //// The requested node metrics.
+  var types: [Lnrpc_NodeMetricType] = []
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Lnrpc_NodeMetricsResponse {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  ///*
+  ///Betweenness centrality is the sum of the ratio of shortest paths that pass
+  ///through the node for each pair of nodes in the graph (not counting paths
+  ///starting or ending at this node).
+  ///Map of node pubkey to betweenness centrality of the node. Normalized
+  ///values are in the [0,1] closed interval.
+  var betweennessCentrality: Dictionary<String,Lnrpc_FloatMetric> = [:]
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Lnrpc_FloatMetric {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  //// Arbitrary float value.
+  var value: Double = 0
+
+  //// The value normalized to [0,1] or [-1,1].
+  var normalizedValue: Double = 0
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -3154,6 +4348,20 @@ struct Lnrpc_Invoice {
     set {_uniqueStorage()._htlcs = newValue}
   }
 
+  //// List of features advertised on the invoice.
+  var features: Dictionary<UInt32,Lnrpc_Feature> {
+    get {return _storage._features}
+    set {_uniqueStorage()._features = newValue}
+  }
+
+  ///*
+  ///Indicates if this invoice was a spontaneous payment that arrived via keysend
+  ///[EXPERIMENTAL].
+  var isKeysend: Bool {
+    get {return _storage._isKeysend}
+    set {_uniqueStorage()._isKeysend = newValue}
+  }
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   enum InvoiceState: SwiftProtobuf.Enum {
@@ -3239,6 +4447,12 @@ struct Lnrpc_InvoiceHTLC {
   //// Current state the htlc is in.
   var state: Lnrpc_InvoiceHTLCState = .accepted
 
+  //// Custom tlv records.
+  var customRecords: Dictionary<UInt64,Data> = [:]
+
+  //// The total amount of the mpp payment in msat.
+  var mppTotalAmtMsat: UInt64 = 0
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -3296,7 +4510,9 @@ struct Lnrpc_ListInvoiceRequest {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  //// If set, only unsettled invoices will be returned in the response.
+  ///*
+  ///If set, only invoices that are not settled and not canceled will be returned
+  ///in the response.
   var pendingOnly: Bool = false
 
   ///*
@@ -3380,9 +4596,6 @@ struct Lnrpc_Payment {
   //// Deprecated, use creation_time_ns
   var creationDate: Int64 = 0
 
-  //// The path this payment took.
-  var path: [String] = []
-
   //// Deprecated, use fee_sat or fee_msat.
   var fee: Int64 = 0
 
@@ -3410,8 +4623,16 @@ struct Lnrpc_Payment {
   //// The time in UNIX nanoseconds at which the payment was created.
   var creationTimeNs: Int64 = 0
 
-  //// The HTLCs made in attempt to settle the payment [EXPERIMENTAL].
+  //// The HTLCs made in attempt to settle the payment.
   var htlcs: [Lnrpc_HTLCAttempt] = []
+
+  ///*
+  ///The creation index of this payment. Each payment can be uniquely identified
+  ///by this index, which may not strictly increment by 1 for payments made in
+  ///older versions of lnd.
+  var paymentIndex: UInt64 = 0
+
+  var failureReason: Lnrpc_PaymentFailureReason = .failureReasonNone
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -3492,6 +4713,16 @@ struct Lnrpc_HTLCAttempt {
   ///This value will not be set if the HTLC is still IN_FLIGHT.
   var resolveTimeNs: Int64 = 0
 
+  /// Detailed htlc failure info.
+  var failure: Lnrpc_Failure {
+    get {return _failure ?? Lnrpc_Failure()}
+    set {_failure = newValue}
+  }
+  /// Returns true if `failure` has been explicitly set.
+  var hasFailure: Bool {return self._failure != nil}
+  /// Clears the value of `failure`. Subsequent reads from it will return its default value.
+  mutating func clearFailure() {self._failure = nil}
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   enum HTLCStatus: SwiftProtobuf.Enum {
@@ -3528,6 +4759,7 @@ struct Lnrpc_HTLCAttempt {
   init() {}
 
   fileprivate var _route: Lnrpc_Route? = nil
+  fileprivate var _failure: Lnrpc_Failure? = nil
 }
 
 #if swift(>=4.2)
@@ -3551,8 +4783,26 @@ struct Lnrpc_ListPaymentsRequest {
   ///*
   ///If true, then return payments that have not yet fully completed. This means
   ///that pending payments, as well as failed payments will show up if this
-  ///field is set to True.
+  ///field is set to true. This flag doesn't change the meaning of the indices,
+  ///which are tied to individual payments.
   var includeIncomplete: Bool = false
+
+  ///*
+  ///The index of a payment that will be used as either the start or end of a
+  ///query to determine which payments should be returned in the response. The
+  ///index_offset is exclusive. In the case of a zero index_offset, the query
+  ///will start with the oldest payment when paginating forwards, or will end
+  ///with the most recent payment when paginating backwards.
+  var indexOffset: UInt64 = 0
+
+  //// The maximal number of payments returned in the response to this query.
+  var maxPayments: UInt64 = 0
+
+  ///*
+  ///If set, the payments returned will result from seeking backwards from the
+  ///specified index offset. This can be used to paginate backwards. The order
+  ///of the returned payments is always oldest first (ascending index order).
+  var reversed: Bool = false
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -3566,6 +4816,16 @@ struct Lnrpc_ListPaymentsResponse {
 
   //// The list of payments
   var payments: [Lnrpc_Payment] = []
+
+  ///*
+  ///The index of the first item in the set of returned payments. This can be
+  ///used as the index_offset to continue seeking backwards in the next request.
+  var firstIndexOffset: UInt64 = 0
+
+  ///*
+  ///The index of the last item in the set of returned payments. This can be used
+  ///as the index_offset to continue seeking forwards in the next request.
+  var lastIndexOffset: UInt64 = 0
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -3687,6 +4947,28 @@ struct Lnrpc_PayReq {
 
   var routeHints: [Lnrpc_RouteHint] = []
 
+  var paymentAddr: Data = SwiftProtobuf.Internal.emptyData
+
+  var numMsat: Int64 = 0
+
+  var features: Dictionary<UInt32,Lnrpc_Feature> = [:]
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Lnrpc_Feature {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var name: String = String()
+
+  var isRequired: Bool = false
+
+  var isKnown: Bool = false
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -3707,16 +4989,21 @@ struct Lnrpc_ChannelFeeReport {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  //// The short channel id that this fee report belongs to.
+  var chanID: UInt64 = 0
+
   //// The channel that this fee report belongs to.
-  var chanPoint: String = String()
+  var channelPoint: String = String()
 
   //// The base fee charged regardless of the number of milli-satoshis sent.
   var baseFeeMsat: Int64 = 0
 
-  //// The amount charged per milli-satoshis transferred expressed in millionths of a satoshi.
+  //// The amount charged per milli-satoshis transferred expressed in
+  //// millionths of a satoshi.
   var feePerMil: Int64 = 0
 
-  //// The effective fee rate in milli-satoshis. Computed by dividing the fee_per_mil value by 1 million.
+  //// The effective fee rate in milli-satoshis. Computed by dividing the
+  //// fee_per_mil value by 1 million.
   var feeRate: Double = 0
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -3729,16 +5016,20 @@ struct Lnrpc_FeeReportResponse {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  //// An array of channel fee reports which describes the current fee schedule for each channel.
+  //// An array of channel fee reports which describes the current fee schedule
+  //// for each channel.
   var channelFees: [Lnrpc_ChannelFeeReport] = []
 
-  //// The total amount of fee revenue (in satoshis) the switch has collected over the past 24 hrs.
+  //// The total amount of fee revenue (in satoshis) the switch has collected
+  //// over the past 24 hrs.
   var dayFeeSum: UInt64 = 0
 
-  //// The total amount of fee revenue (in satoshis) the switch has collected over the past 1 week.
+  //// The total amount of fee revenue (in satoshis) the switch has collected
+  //// over the past 1 week.
   var weekFeeSum: UInt64 = 0
 
-  //// The total amount of fee revenue (in satoshis) the switch has collected over the past 1 month.
+  //// The total amount of fee revenue (in satoshis) the switch has collected
+  //// over the past 1 month.
   var monthFeeSum: UInt64 = 0
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -3774,14 +5065,23 @@ struct Lnrpc_PolicyUpdateRequest {
   //// The base fee charged regardless of the number of milli-satoshis sent.
   var baseFeeMsat: Int64 = 0
 
-  //// The effective fee rate in milli-satoshis. The precision of this value goes up to 6 decimal places, so 1e-6.
+  //// The effective fee rate in milli-satoshis. The precision of this value
+  //// goes up to 6 decimal places, so 1e-6.
   var feeRate: Double = 0
 
   //// The required timelock delta for HTLCs forwarded over the channel.
   var timeLockDelta: UInt32 = 0
 
-  //// If set, the maximum HTLC size in milli-satoshis. If unset, the maximum HTLC will be unchanged.
+  //// If set, the maximum HTLC size in milli-satoshis. If unset, the maximum
+  //// HTLC will be unchanged.
   var maxHtlcMsat: UInt64 = 0
+
+  //// The minimum HTLC size in milli-satoshis. Only applied if
+  //// min_htlc_msat_specified is true.
+  var minHtlcMsat: UInt64 = 0
+
+  //// If true, min_htlc_msat is applied.
+  var minHtlcMsatSpecified: Bool = false
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -3820,13 +5120,19 @@ struct Lnrpc_ForwardingHistoryRequest {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  //// Start time is the starting point of the forwarding history request. All records beyond this point will be included, respecting the end time, and the index offset.
+  //// Start time is the starting point of the forwarding history request. All
+  //// records beyond this point will be included, respecting the end time, and
+  //// the index offset.
   var startTime: UInt64 = 0
 
-  //// End time is the end point of the forwarding history request. The response will carry at most 50k records between the start time and the end time. The index offset can be used to implement pagination.
+  //// End time is the end point of the forwarding history request. The
+  //// response will carry at most 50k records between the start time and the
+  //// end time. The index offset can be used to implement pagination.
   var endTime: UInt64 = 0
 
-  //// Index offset is the offset in the time series to start at. As each response can only contain 50k records, callers can use this to skip around within a packed time series.
+  //// Index offset is the offset in the time series to start at. As each
+  //// response can only contain 50k records, callers can use this to skip
+  //// around within a packed time series.
   var indexOffset: UInt32 = 0
 
   //// The max number of events to return in the response to this query.
@@ -3842,19 +5148,23 @@ struct Lnrpc_ForwardingEvent {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  //// Timestamp is the time (unix epoch offset) that this circuit was completed.
+  //// Timestamp is the time (unix epoch offset) that this circuit was
+  //// completed.
   var timestamp: UInt64 = 0
 
   //// The incoming channel ID that carried the HTLC that created the circuit.
   var chanIDIn: UInt64 = 0
 
-  //// The outgoing channel ID that carried the preimage that completed the circuit.
+  //// The outgoing channel ID that carried the preimage that completed the
+  //// circuit.
   var chanIDOut: UInt64 = 0
 
-  //// The total amount (in satoshis) of the incoming HTLC that created half the circuit.
+  //// The total amount (in satoshis) of the incoming HTLC that created half
+  //// the circuit.
   var amtIn: UInt64 = 0
 
-  //// The total amount (in satoshis) of the outgoing HTLC that created the second half of the circuit.
+  //// The total amount (in satoshis) of the outgoing HTLC that created the
+  //// second half of the circuit.
   var amtOut: UInt64 = 0
 
   //// The total fee (in satoshis) that this payment circuit carried.
@@ -3863,10 +5173,12 @@ struct Lnrpc_ForwardingEvent {
   //// The total fee (in milli-satoshis) that this payment circuit carried.
   var feeMsat: UInt64 = 0
 
-  //// The total amount (in milli-satoshis) of the incoming HTLC that created half the circuit.
+  //// The total amount (in milli-satoshis) of the incoming HTLC that created
+  //// half the circuit.
   var amtInMsat: UInt64 = 0
 
-  //// The total amount (in milli-satoshis) of the outgoing HTLC that created the second half of the circuit.
+  //// The total amount (in milli-satoshis) of the outgoing HTLC that created
+  //// the second half of the circuit.
   var amtOutMsat: UInt64 = 0
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -3879,10 +5191,12 @@ struct Lnrpc_ForwardingHistoryResponse {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  //// A list of forwarding events from the time slice of the time series specified in the request.
+  //// A list of forwarding events from the time slice of the time series
+  //// specified in the request.
   var forwardingEvents: [Lnrpc_ForwardingEvent] = []
 
-  //// The index of the last time in the set of returned forwarding events. Can be used to seek further, pagination style.
+  //// The index of the last time in the set of returned forwarding events. Can
+  //// be used to seek further, pagination style.
   var lastOffsetIndex: UInt32 = 0
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -4149,6 +5463,285 @@ struct Lnrpc_BakeMacaroonResponse {
   init() {}
 }
 
+struct Lnrpc_Failure {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  //// Failure code as defined in the Lightning spec
+  var code: Lnrpc_Failure.FailureCode = .reserved
+
+  //// An optional channel update message.
+  var channelUpdate: Lnrpc_ChannelUpdate {
+    get {return _channelUpdate ?? Lnrpc_ChannelUpdate()}
+    set {_channelUpdate = newValue}
+  }
+  /// Returns true if `channelUpdate` has been explicitly set.
+  var hasChannelUpdate: Bool {return self._channelUpdate != nil}
+  /// Clears the value of `channelUpdate`. Subsequent reads from it will return its default value.
+  mutating func clearChannelUpdate() {self._channelUpdate = nil}
+
+  //// A failure type-dependent htlc value.
+  var htlcMsat: UInt64 = 0
+
+  //// The sha256 sum of the onion payload.
+  var onionSha256: Data = SwiftProtobuf.Internal.emptyData
+
+  //// A failure type-dependent cltv expiry value.
+  var cltvExpiry: UInt32 = 0
+
+  //// A failure type-dependent flags value.
+  var flags: UInt32 = 0
+
+  ///*
+  ///The position in the path of the intermediate or final node that generated
+  ///the failure message. Position zero is the sender node.
+  var failureSourceIndex: UInt32 = 0
+
+  //// A failure type-dependent block height.
+  var height: UInt32 = 0
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  enum FailureCode: SwiftProtobuf.Enum {
+    typealias RawValue = Int
+
+    ///*
+    ///The numbers assigned in this enumeration match the failure codes as
+    ///defined in BOLT #4. Because protobuf 3 requires enums to start with 0,
+    ///a RESERVED value is added.
+    case reserved // = 0
+    case incorrectOrUnknownPaymentDetails // = 1
+    case incorrectPaymentAmount // = 2
+    case finalIncorrectCltvExpiry // = 3
+    case finalIncorrectHtlcAmount // = 4
+    case finalExpiryTooSoon // = 5
+    case invalidRealm // = 6
+    case expiryTooSoon // = 7
+    case invalidOnionVersion // = 8
+    case invalidOnionHmac // = 9
+    case invalidOnionKey // = 10
+    case amountBelowMinimum // = 11
+    case feeInsufficient // = 12
+    case incorrectCltvExpiry // = 13
+    case channelDisabled // = 14
+    case temporaryChannelFailure // = 15
+    case requiredNodeFeatureMissing // = 16
+    case requiredChannelFeatureMissing // = 17
+    case unknownNextPeer // = 18
+    case temporaryNodeFailure // = 19
+    case permanentNodeFailure // = 20
+    case permanentChannelFailure // = 21
+    case expiryTooFar // = 22
+    case mppTimeout // = 23
+
+    ///*
+    ///An internal error occurred.
+    case internalFailure // = 997
+
+    ///*
+    ///The error source is known, but the failure itself couldn't be decoded.
+    case unknownFailure // = 998
+
+    ///*
+    ///An unreadable failure result is returned if the received failure message
+    ///cannot be decrypted. In that case the error source is unknown.
+    case unreadableFailure // = 999
+    case UNRECOGNIZED(Int)
+
+    init() {
+      self = .reserved
+    }
+
+    init?(rawValue: Int) {
+      switch rawValue {
+      case 0: self = .reserved
+      case 1: self = .incorrectOrUnknownPaymentDetails
+      case 2: self = .incorrectPaymentAmount
+      case 3: self = .finalIncorrectCltvExpiry
+      case 4: self = .finalIncorrectHtlcAmount
+      case 5: self = .finalExpiryTooSoon
+      case 6: self = .invalidRealm
+      case 7: self = .expiryTooSoon
+      case 8: self = .invalidOnionVersion
+      case 9: self = .invalidOnionHmac
+      case 10: self = .invalidOnionKey
+      case 11: self = .amountBelowMinimum
+      case 12: self = .feeInsufficient
+      case 13: self = .incorrectCltvExpiry
+      case 14: self = .channelDisabled
+      case 15: self = .temporaryChannelFailure
+      case 16: self = .requiredNodeFeatureMissing
+      case 17: self = .requiredChannelFeatureMissing
+      case 18: self = .unknownNextPeer
+      case 19: self = .temporaryNodeFailure
+      case 20: self = .permanentNodeFailure
+      case 21: self = .permanentChannelFailure
+      case 22: self = .expiryTooFar
+      case 23: self = .mppTimeout
+      case 997: self = .internalFailure
+      case 998: self = .unknownFailure
+      case 999: self = .unreadableFailure
+      default: self = .UNRECOGNIZED(rawValue)
+      }
+    }
+
+    var rawValue: Int {
+      switch self {
+      case .reserved: return 0
+      case .incorrectOrUnknownPaymentDetails: return 1
+      case .incorrectPaymentAmount: return 2
+      case .finalIncorrectCltvExpiry: return 3
+      case .finalIncorrectHtlcAmount: return 4
+      case .finalExpiryTooSoon: return 5
+      case .invalidRealm: return 6
+      case .expiryTooSoon: return 7
+      case .invalidOnionVersion: return 8
+      case .invalidOnionHmac: return 9
+      case .invalidOnionKey: return 10
+      case .amountBelowMinimum: return 11
+      case .feeInsufficient: return 12
+      case .incorrectCltvExpiry: return 13
+      case .channelDisabled: return 14
+      case .temporaryChannelFailure: return 15
+      case .requiredNodeFeatureMissing: return 16
+      case .requiredChannelFeatureMissing: return 17
+      case .unknownNextPeer: return 18
+      case .temporaryNodeFailure: return 19
+      case .permanentNodeFailure: return 20
+      case .permanentChannelFailure: return 21
+      case .expiryTooFar: return 22
+      case .mppTimeout: return 23
+      case .internalFailure: return 997
+      case .unknownFailure: return 998
+      case .unreadableFailure: return 999
+      case .UNRECOGNIZED(let i): return i
+      }
+    }
+
+  }
+
+  init() {}
+
+  fileprivate var _channelUpdate: Lnrpc_ChannelUpdate? = nil
+}
+
+#if swift(>=4.2)
+
+extension Lnrpc_Failure.FailureCode: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  static var allCases: [Lnrpc_Failure.FailureCode] = [
+    .reserved,
+    .incorrectOrUnknownPaymentDetails,
+    .incorrectPaymentAmount,
+    .finalIncorrectCltvExpiry,
+    .finalIncorrectHtlcAmount,
+    .finalExpiryTooSoon,
+    .invalidRealm,
+    .expiryTooSoon,
+    .invalidOnionVersion,
+    .invalidOnionHmac,
+    .invalidOnionKey,
+    .amountBelowMinimum,
+    .feeInsufficient,
+    .incorrectCltvExpiry,
+    .channelDisabled,
+    .temporaryChannelFailure,
+    .requiredNodeFeatureMissing,
+    .requiredChannelFeatureMissing,
+    .unknownNextPeer,
+    .temporaryNodeFailure,
+    .permanentNodeFailure,
+    .permanentChannelFailure,
+    .expiryTooFar,
+    .mppTimeout,
+    .internalFailure,
+    .unknownFailure,
+    .unreadableFailure,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
+struct Lnrpc_ChannelUpdate {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  ///*
+  ///The signature that validates the announced data and proves the ownership
+  ///of node id.
+  var signature: Data = SwiftProtobuf.Internal.emptyData
+
+  ///*
+  ///The target chain that this channel was opened within. This value
+  ///should be the genesis hash of the target chain. Along with the short
+  ///channel ID, this uniquely identifies the channel globally in a
+  ///blockchain.
+  var chainHash: Data = SwiftProtobuf.Internal.emptyData
+
+  ///*
+  ///The unique description of the funding transaction.
+  var chanID: UInt64 = 0
+
+  ///*
+  ///A timestamp that allows ordering in the case of multiple announcements.
+  ///We should ignore the message if timestamp is not greater than the
+  ///last-received.
+  var timestamp: UInt32 = 0
+
+  ///*
+  ///The bitfield that describes whether optional fields are present in this
+  ///update. Currently, the least-significant bit must be set to 1 if the
+  ///optional field MaxHtlc is present.
+  var messageFlags: UInt32 = 0
+
+  ///*
+  ///The bitfield that describes additional meta-data concerning how the
+  ///update is to be interpreted. Currently, the least-significant bit must be
+  ///set to 0 if the creating node corresponds to the first node in the
+  ///previously sent channel announcement and 1 otherwise. If the second bit
+  ///is set, then the channel is set to be disabled.
+  var channelFlags: UInt32 = 0
+
+  ///*
+  ///The minimum number of blocks this node requires to be added to the expiry
+  ///of HTLCs. This is a security parameter determined by the node operator.
+  ///This value represents the required gap between the time locks of the
+  ///incoming and outgoing HTLC's set to this node.
+  var timeLockDelta: UInt32 = 0
+
+  ///*
+  ///The minimum HTLC value which will be accepted.
+  var htlcMinimumMsat: UInt64 = 0
+
+  ///*
+  ///The base fee that must be used for incoming HTLC's to this particular
+  ///channel. This value will be tacked onto the required for a payment
+  ///independent of the size of the payment.
+  var baseFee: UInt32 = 0
+
+  ///*
+  ///The fee rate that will be charged per millionth of a satoshi.
+  var feeRate: UInt32 = 0
+
+  ///*
+  ///The maximum HTLC value which will be accepted.
+  var htlcMaximumMsat: UInt64 = 0
+
+  ///*
+  ///The set of data that was appended to this message, some of which we may
+  ///not actually know how to iterate or parse. By holding onto this data, we
+  ///ensure that we're able to properly validate the set of signatures that
+  ///cover these new fields, and ensure we're able to make upgrades to the
+  ///network in a forwards compatible manner.
+  var extraOpaqueData: Data = SwiftProtobuf.Internal.emptyData
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "lnrpc"
@@ -4162,11 +5755,69 @@ extension Lnrpc_AddressType: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
+extension Lnrpc_CommitmentType: SwiftProtobuf._ProtoNameProviding {
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "LEGACY"),
+    1: .same(proto: "STATIC_REMOTE_KEY"),
+    2: .same(proto: "ANCHORS"),
+    999: .same(proto: "UNKNOWN_COMMITMENT_TYPE"),
+  ]
+}
+
+extension Lnrpc_Initiator: SwiftProtobuf._ProtoNameProviding {
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "INITIATOR_UNKNOWN"),
+    1: .same(proto: "INITIATOR_LOCAL"),
+    2: .same(proto: "INITIATOR_REMOTE"),
+    3: .same(proto: "INITIATOR_BOTH"),
+  ]
+}
+
+extension Lnrpc_NodeMetricType: SwiftProtobuf._ProtoNameProviding {
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "UNKNOWN"),
+    1: .same(proto: "BETWEENNESS_CENTRALITY"),
+  ]
+}
+
 extension Lnrpc_InvoiceHTLCState: SwiftProtobuf._ProtoNameProviding {
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "ACCEPTED"),
     1: .same(proto: "SETTLED"),
     2: .same(proto: "CANCELED"),
+  ]
+}
+
+extension Lnrpc_PaymentFailureReason: SwiftProtobuf._ProtoNameProviding {
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "FAILURE_REASON_NONE"),
+    1: .same(proto: "FAILURE_REASON_TIMEOUT"),
+    2: .same(proto: "FAILURE_REASON_NO_ROUTE"),
+    3: .same(proto: "FAILURE_REASON_ERROR"),
+    4: .same(proto: "FAILURE_REASON_INCORRECT_PAYMENT_DETAILS"),
+    5: .same(proto: "FAILURE_REASON_INSUFFICIENT_BALANCE"),
+  ]
+}
+
+extension Lnrpc_FeatureBit: SwiftProtobuf._ProtoNameProviding {
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "DATALOSS_PROTECT_REQ"),
+    1: .same(proto: "DATALOSS_PROTECT_OPT"),
+    3: .same(proto: "INITIAL_ROUING_SYNC"),
+    4: .same(proto: "UPFRONT_SHUTDOWN_SCRIPT_REQ"),
+    5: .same(proto: "UPFRONT_SHUTDOWN_SCRIPT_OPT"),
+    6: .same(proto: "GOSSIP_QUERIES_REQ"),
+    7: .same(proto: "GOSSIP_QUERIES_OPT"),
+    8: .same(proto: "TLV_ONION_REQ"),
+    9: .same(proto: "TLV_ONION_OPT"),
+    10: .same(proto: "EXT_GOSSIP_QUERIES_REQ"),
+    11: .same(proto: "EXT_GOSSIP_QUERIES_OPT"),
+    12: .same(proto: "STATIC_REMOTE_KEY_REQ"),
+    13: .same(proto: "STATIC_REMOTE_KEY_OPT"),
+    14: .same(proto: "PAYMENT_ADDR_REQ"),
+    15: .same(proto: "PAYMENT_ADDR_OPT"),
+    16: .same(proto: "MPP_REQ"),
+    17: .same(proto: "MPP_OPT"),
   ]
 }
 
@@ -4429,10 +6080,10 @@ extension Lnrpc_ChangePasswordResponse: SwiftProtobuf.Message, SwiftProtobuf._Me
 extension Lnrpc_Utxo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".Utxo"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .unique(proto: "type", json: "address_type"),
+    1: .standard(proto: "address_type"),
     2: .same(proto: "address"),
-    3: .same(proto: "amount_sat"),
-    4: .same(proto: "pk_script"),
+    3: .standard(proto: "amount_sat"),
+    4: .standard(proto: "pk_script"),
     5: .same(proto: "outpoint"),
     6: .same(proto: "confirmations"),
   ]
@@ -4440,7 +6091,7 @@ extension Lnrpc_Utxo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
-      case 1: try decoder.decodeSingularEnumField(value: &self.type)
+      case 1: try decoder.decodeSingularEnumField(value: &self.addressType)
       case 2: try decoder.decodeSingularStringField(value: &self.address)
       case 3: try decoder.decodeSingularInt64Field(value: &self.amountSat)
       case 4: try decoder.decodeSingularStringField(value: &self.pkScript)
@@ -4452,8 +6103,8 @@ extension Lnrpc_Utxo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.type != .witnessPubkeyHash {
-      try visitor.visitSingularEnumField(value: self.type, fieldNumber: 1)
+    if self.addressType != .witnessPubkeyHash {
+      try visitor.visitSingularEnumField(value: self.addressType, fieldNumber: 1)
     }
     if !self.address.isEmpty {
       try visitor.visitSingularStringField(value: self.address, fieldNumber: 2)
@@ -4474,7 +6125,7 @@ extension Lnrpc_Utxo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
   }
 
   static func ==(lhs: Lnrpc_Utxo, rhs: Lnrpc_Utxo) -> Bool {
-    if lhs.type != rhs.type {return false}
+    if lhs.addressType != rhs.addressType {return false}
     if lhs.address != rhs.address {return false}
     if lhs.amountSat != rhs.amountSat {return false}
     if lhs.pkScript != rhs.pkScript {return false}
@@ -4488,15 +6139,15 @@ extension Lnrpc_Utxo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
 extension Lnrpc_Transaction: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".Transaction"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "tx_hash"),
+    1: .standard(proto: "tx_hash"),
     2: .same(proto: "amount"),
-    3: .same(proto: "num_confirmations"),
-    4: .same(proto: "block_hash"),
-    5: .same(proto: "block_height"),
-    6: .same(proto: "time_stamp"),
-    7: .same(proto: "total_fees"),
-    8: .same(proto: "dest_addresses"),
-    9: .same(proto: "raw_tx_hex"),
+    3: .standard(proto: "num_confirmations"),
+    4: .standard(proto: "block_hash"),
+    5: .standard(proto: "block_height"),
+    6: .standard(proto: "time_stamp"),
+    7: .standard(proto: "total_fees"),
+    8: .standard(proto: "dest_addresses"),
+    9: .standard(proto: "raw_tx_hex"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -4676,8 +6327,9 @@ extension Lnrpc_SendRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
     9: .standard(proto: "outgoing_chan_id"),
     13: .standard(proto: "last_hop_pubkey"),
     10: .standard(proto: "cltv_limit"),
-    11: .standard(proto: "dest_tlv"),
+    11: .standard(proto: "dest_custom_records"),
     14: .standard(proto: "allow_self_payment"),
+    15: .standard(proto: "dest_features"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -4693,10 +6345,11 @@ extension Lnrpc_SendRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
       case 8: try decoder.decodeSingularMessageField(value: &self._feeLimit)
       case 9: try decoder.decodeSingularUInt64Field(value: &self.outgoingChanID)
       case 10: try decoder.decodeSingularUInt32Field(value: &self.cltvLimit)
-      case 11: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufUInt64,SwiftProtobuf.ProtobufBytes>.self, value: &self.destTlv)
+      case 11: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufUInt64,SwiftProtobuf.ProtobufBytes>.self, value: &self.destCustomRecords)
       case 12: try decoder.decodeSingularInt64Field(value: &self.amtMsat)
       case 13: try decoder.decodeSingularBytesField(value: &self.lastHopPubkey)
       case 14: try decoder.decodeSingularBoolField(value: &self.allowSelfPayment)
+      case 15: try decoder.decodeRepeatedEnumField(value: &self.destFeatures)
       default: break
       }
     }
@@ -4733,8 +6386,8 @@ extension Lnrpc_SendRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
     if self.cltvLimit != 0 {
       try visitor.visitSingularUInt32Field(value: self.cltvLimit, fieldNumber: 10)
     }
-    if !self.destTlv.isEmpty {
-      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufUInt64,SwiftProtobuf.ProtobufBytes>.self, value: self.destTlv, fieldNumber: 11)
+    if !self.destCustomRecords.isEmpty {
+      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufUInt64,SwiftProtobuf.ProtobufBytes>.self, value: self.destCustomRecords, fieldNumber: 11)
     }
     if self.amtMsat != 0 {
       try visitor.visitSingularInt64Field(value: self.amtMsat, fieldNumber: 12)
@@ -4744,6 +6397,9 @@ extension Lnrpc_SendRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
     }
     if self.allowSelfPayment != false {
       try visitor.visitSingularBoolField(value: self.allowSelfPayment, fieldNumber: 14)
+    }
+    if !self.destFeatures.isEmpty {
+      try visitor.visitPackedEnumField(value: self.destFeatures, fieldNumber: 15)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -4761,8 +6417,9 @@ extension Lnrpc_SendRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
     if lhs.outgoingChanID != rhs.outgoingChanID {return false}
     if lhs.lastHopPubkey != rhs.lastHopPubkey {return false}
     if lhs.cltvLimit != rhs.cltvLimit {return false}
-    if lhs.destTlv != rhs.destTlv {return false}
+    if lhs.destCustomRecords != rhs.destCustomRecords {return false}
     if lhs.allowSelfPayment != rhs.allowSelfPayment {return false}
+    if lhs.destFeatures != rhs.destFeatures {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -4771,10 +6428,10 @@ extension Lnrpc_SendRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
 extension Lnrpc_SendResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".SendResponse"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "payment_error"),
-    2: .same(proto: "payment_preimage"),
-    3: .same(proto: "payment_route"),
-    4: .same(proto: "payment_hash"),
+    1: .standard(proto: "payment_error"),
+    2: .standard(proto: "payment_preimage"),
+    3: .standard(proto: "payment_route"),
+    4: .standard(proto: "payment_hash"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -4995,9 +6652,9 @@ extension Lnrpc_ChannelAcceptResponse: SwiftProtobuf.Message, SwiftProtobuf._Mes
 extension Lnrpc_ChannelPoint: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".ChannelPoint"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "funding_txid_bytes"),
-    2: .same(proto: "funding_txid_str"),
-    3: .same(proto: "output_index"),
+    1: .standard(proto: "funding_txid_bytes"),
+    2: .standard(proto: "funding_txid_str"),
+    3: .standard(proto: "output_index"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -5044,9 +6701,9 @@ extension Lnrpc_ChannelPoint: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
 extension Lnrpc_OutPoint: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".OutPoint"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "txid_bytes"),
-    2: .same(proto: "txid_str"),
-    3: .same(proto: "output_index"),
+    1: .standard(proto: "txid_bytes"),
+    2: .standard(proto: "txid_str"),
+    3: .standard(proto: "output_index"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -5155,8 +6812,8 @@ extension Lnrpc_EstimateFeeRequest: SwiftProtobuf.Message, SwiftProtobuf._Messag
 extension Lnrpc_EstimateFeeResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".EstimateFeeResponse"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "fee_sat"),
-    2: .same(proto: "feerate_sat_per_byte"),
+    1: .standard(proto: "fee_sat"),
+    2: .standard(proto: "feerate_sat_per_byte"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -5646,7 +7303,7 @@ extension Lnrpc_ConnectPeerResponse: SwiftProtobuf.Message, SwiftProtobuf._Messa
 extension Lnrpc_DisconnectPeerRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".DisconnectPeerRequest"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "pub_key"),
+    1: .standard(proto: "pub_key"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -5696,8 +7353,8 @@ extension Lnrpc_HTLC: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "incoming"),
     2: .same(proto: "amount"),
-    3: .same(proto: "hash_lock"),
-    4: .same(proto: "expiration_height"),
+    3: .standard(proto: "hash_lock"),
+    4: .standard(proto: "expiration_height"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -5742,29 +7399,33 @@ extension Lnrpc_Channel: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
   static let protoMessageName: String = _protobuf_package + ".Channel"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "active"),
-    2: .same(proto: "remote_pubkey"),
-    3: .same(proto: "channel_point"),
-    4: .same(proto: "chan_id"),
+    2: .standard(proto: "remote_pubkey"),
+    3: .standard(proto: "channel_point"),
+    4: .standard(proto: "chan_id"),
     5: .same(proto: "capacity"),
-    6: .same(proto: "local_balance"),
-    7: .same(proto: "remote_balance"),
-    8: .same(proto: "commit_fee"),
-    9: .same(proto: "commit_weight"),
-    10: .same(proto: "fee_per_kw"),
-    11: .same(proto: "unsettled_balance"),
-    12: .same(proto: "total_satoshis_sent"),
-    13: .same(proto: "total_satoshis_received"),
-    14: .same(proto: "num_updates"),
-    15: .same(proto: "pending_htlcs"),
-    16: .same(proto: "csv_delay"),
+    6: .standard(proto: "local_balance"),
+    7: .standard(proto: "remote_balance"),
+    8: .standard(proto: "commit_fee"),
+    9: .standard(proto: "commit_weight"),
+    10: .standard(proto: "fee_per_kw"),
+    11: .standard(proto: "unsettled_balance"),
+    12: .standard(proto: "total_satoshis_sent"),
+    13: .standard(proto: "total_satoshis_received"),
+    14: .standard(proto: "num_updates"),
+    15: .standard(proto: "pending_htlcs"),
+    16: .standard(proto: "csv_delay"),
     17: .same(proto: "private"),
     18: .same(proto: "initiator"),
-    19: .same(proto: "chan_status_flags"),
-    20: .same(proto: "local_chan_reserve_sat"),
-    21: .same(proto: "remote_chan_reserve_sat"),
-    22: .same(proto: "static_remote_key"),
+    19: .standard(proto: "chan_status_flags"),
+    20: .standard(proto: "local_chan_reserve_sat"),
+    21: .standard(proto: "remote_chan_reserve_sat"),
+    22: .standard(proto: "static_remote_key"),
+    26: .standard(proto: "commitment_type"),
     23: .same(proto: "lifetime"),
     24: .same(proto: "uptime"),
+    25: .standard(proto: "close_address"),
+    27: .standard(proto: "push_amount_sat"),
+    28: .standard(proto: "thaw_height"),
   ]
 
   fileprivate class _StorageClass {
@@ -5790,8 +7451,12 @@ extension Lnrpc_Channel: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
     var _localChanReserveSat: Int64 = 0
     var _remoteChanReserveSat: Int64 = 0
     var _staticRemoteKey: Bool = false
+    var _commitmentType: Lnrpc_CommitmentType = .legacy
     var _lifetime: Int64 = 0
     var _uptime: Int64 = 0
+    var _closeAddress: String = String()
+    var _pushAmountSat: UInt64 = 0
+    var _thawHeight: UInt32 = 0
 
     static let defaultInstance = _StorageClass()
 
@@ -5820,8 +7485,12 @@ extension Lnrpc_Channel: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
       _localChanReserveSat = source._localChanReserveSat
       _remoteChanReserveSat = source._remoteChanReserveSat
       _staticRemoteKey = source._staticRemoteKey
+      _commitmentType = source._commitmentType
       _lifetime = source._lifetime
       _uptime = source._uptime
+      _closeAddress = source._closeAddress
+      _pushAmountSat = source._pushAmountSat
+      _thawHeight = source._thawHeight
     }
   }
 
@@ -5861,6 +7530,10 @@ extension Lnrpc_Channel: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
         case 22: try decoder.decodeSingularBoolField(value: &_storage._staticRemoteKey)
         case 23: try decoder.decodeSingularInt64Field(value: &_storage._lifetime)
         case 24: try decoder.decodeSingularInt64Field(value: &_storage._uptime)
+        case 25: try decoder.decodeSingularStringField(value: &_storage._closeAddress)
+        case 26: try decoder.decodeSingularEnumField(value: &_storage._commitmentType)
+        case 27: try decoder.decodeSingularUInt64Field(value: &_storage._pushAmountSat)
+        case 28: try decoder.decodeSingularUInt32Field(value: &_storage._thawHeight)
         default: break
         }
       }
@@ -5941,6 +7614,18 @@ extension Lnrpc_Channel: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
       if _storage._uptime != 0 {
         try visitor.visitSingularInt64Field(value: _storage._uptime, fieldNumber: 24)
       }
+      if !_storage._closeAddress.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._closeAddress, fieldNumber: 25)
+      }
+      if _storage._commitmentType != .legacy {
+        try visitor.visitSingularEnumField(value: _storage._commitmentType, fieldNumber: 26)
+      }
+      if _storage._pushAmountSat != 0 {
+        try visitor.visitSingularUInt64Field(value: _storage._pushAmountSat, fieldNumber: 27)
+      }
+      if _storage._thawHeight != 0 {
+        try visitor.visitSingularUInt32Field(value: _storage._thawHeight, fieldNumber: 28)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -5972,8 +7657,12 @@ extension Lnrpc_Channel: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
         if _storage._localChanReserveSat != rhs_storage._localChanReserveSat {return false}
         if _storage._remoteChanReserveSat != rhs_storage._remoteChanReserveSat {return false}
         if _storage._staticRemoteKey != rhs_storage._staticRemoteKey {return false}
+        if _storage._commitmentType != rhs_storage._commitmentType {return false}
         if _storage._lifetime != rhs_storage._lifetime {return false}
         if _storage._uptime != rhs_storage._uptime {return false}
+        if _storage._closeAddress != rhs_storage._closeAddress {return false}
+        if _storage._pushAmountSat != rhs_storage._pushAmountSat {return false}
+        if _storage._thawHeight != rhs_storage._thawHeight {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -5990,6 +7679,7 @@ extension Lnrpc_ListChannelsRequest: SwiftProtobuf.Message, SwiftProtobuf._Messa
     2: .standard(proto: "inactive_only"),
     3: .standard(proto: "public_only"),
     4: .standard(proto: "private_only"),
+    5: .same(proto: "peer"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -5999,6 +7689,7 @@ extension Lnrpc_ListChannelsRequest: SwiftProtobuf.Message, SwiftProtobuf._Messa
       case 2: try decoder.decodeSingularBoolField(value: &self.inactiveOnly)
       case 3: try decoder.decodeSingularBoolField(value: &self.publicOnly)
       case 4: try decoder.decodeSingularBoolField(value: &self.privateOnly)
+      case 5: try decoder.decodeSingularBytesField(value: &self.peer)
       default: break
       }
     }
@@ -6017,6 +7708,9 @@ extension Lnrpc_ListChannelsRequest: SwiftProtobuf.Message, SwiftProtobuf._Messa
     if self.privateOnly != false {
       try visitor.visitSingularBoolField(value: self.privateOnly, fieldNumber: 4)
     }
+    if !self.peer.isEmpty {
+      try visitor.visitSingularBytesField(value: self.peer, fieldNumber: 5)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -6025,6 +7719,7 @@ extension Lnrpc_ListChannelsRequest: SwiftProtobuf.Message, SwiftProtobuf._Messa
     if lhs.inactiveOnly != rhs.inactiveOnly {return false}
     if lhs.publicOnly != rhs.publicOnly {return false}
     if lhs.privateOnly != rhs.privateOnly {return false}
+    if lhs.peer != rhs.peer {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -6062,16 +7757,18 @@ extension Lnrpc_ListChannelsResponse: SwiftProtobuf.Message, SwiftProtobuf._Mess
 extension Lnrpc_ChannelCloseSummary: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".ChannelCloseSummary"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "channel_point"),
-    2: .same(proto: "chan_id"),
-    3: .same(proto: "chain_hash"),
-    4: .same(proto: "closing_tx_hash"),
-    5: .same(proto: "remote_pubkey"),
+    1: .standard(proto: "channel_point"),
+    2: .standard(proto: "chan_id"),
+    3: .standard(proto: "chain_hash"),
+    4: .standard(proto: "closing_tx_hash"),
+    5: .standard(proto: "remote_pubkey"),
     6: .same(proto: "capacity"),
-    7: .same(proto: "close_height"),
-    8: .same(proto: "settled_balance"),
-    9: .same(proto: "time_locked_balance"),
-    10: .same(proto: "close_type"),
+    7: .standard(proto: "close_height"),
+    8: .standard(proto: "settled_balance"),
+    9: .standard(proto: "time_locked_balance"),
+    10: .standard(proto: "close_type"),
+    11: .standard(proto: "open_initiator"),
+    12: .standard(proto: "close_initiator"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -6087,6 +7784,8 @@ extension Lnrpc_ChannelCloseSummary: SwiftProtobuf.Message, SwiftProtobuf._Messa
       case 8: try decoder.decodeSingularInt64Field(value: &self.settledBalance)
       case 9: try decoder.decodeSingularInt64Field(value: &self.timeLockedBalance)
       case 10: try decoder.decodeSingularEnumField(value: &self.closeType)
+      case 11: try decoder.decodeSingularEnumField(value: &self.openInitiator)
+      case 12: try decoder.decodeSingularEnumField(value: &self.closeInitiator)
       default: break
       }
     }
@@ -6123,6 +7822,12 @@ extension Lnrpc_ChannelCloseSummary: SwiftProtobuf.Message, SwiftProtobuf._Messa
     if self.closeType != .cooperativeClose {
       try visitor.visitSingularEnumField(value: self.closeType, fieldNumber: 10)
     }
+    if self.openInitiator != .unknown {
+      try visitor.visitSingularEnumField(value: self.openInitiator, fieldNumber: 11)
+    }
+    if self.closeInitiator != .unknown {
+      try visitor.visitSingularEnumField(value: self.closeInitiator, fieldNumber: 12)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -6137,6 +7842,8 @@ extension Lnrpc_ChannelCloseSummary: SwiftProtobuf.Message, SwiftProtobuf._Messa
     if lhs.settledBalance != rhs.settledBalance {return false}
     if lhs.timeLockedBalance != rhs.timeLockedBalance {return false}
     if lhs.closeType != rhs.closeType {return false}
+    if lhs.openInitiator != rhs.openInitiator {return false}
+    if lhs.closeInitiator != rhs.closeInitiator {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -6244,15 +7951,17 @@ extension Lnrpc_ClosedChannelsResponse: SwiftProtobuf.Message, SwiftProtobuf._Me
 extension Lnrpc_Peer: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".Peer"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "pub_key"),
+    1: .standard(proto: "pub_key"),
     3: .same(proto: "address"),
-    4: .same(proto: "bytes_sent"),
-    5: .same(proto: "bytes_recv"),
-    6: .same(proto: "sat_sent"),
-    7: .same(proto: "sat_recv"),
+    4: .standard(proto: "bytes_sent"),
+    5: .standard(proto: "bytes_recv"),
+    6: .standard(proto: "sat_sent"),
+    7: .standard(proto: "sat_recv"),
     8: .same(proto: "inbound"),
-    9: .same(proto: "ping_time"),
-    10: .same(proto: "sync_type"),
+    9: .standard(proto: "ping_time"),
+    10: .standard(proto: "sync_type"),
+    11: .same(proto: "features"),
+    12: .same(proto: "errors"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -6267,6 +7976,8 @@ extension Lnrpc_Peer: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
       case 8: try decoder.decodeSingularBoolField(value: &self.inbound)
       case 9: try decoder.decodeSingularInt64Field(value: &self.pingTime)
       case 10: try decoder.decodeSingularEnumField(value: &self.syncType)
+      case 11: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufUInt32,Lnrpc_Feature>.self, value: &self.features)
+      case 12: try decoder.decodeRepeatedMessageField(value: &self.errors)
       default: break
       }
     }
@@ -6300,6 +8011,12 @@ extension Lnrpc_Peer: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
     if self.syncType != .unknownSync {
       try visitor.visitSingularEnumField(value: self.syncType, fieldNumber: 10)
     }
+    if !self.features.isEmpty {
+      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufUInt32,Lnrpc_Feature>.self, value: self.features, fieldNumber: 11)
+    }
+    if !self.errors.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.errors, fieldNumber: 12)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -6313,6 +8030,8 @@ extension Lnrpc_Peer: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
     if lhs.inbound != rhs.inbound {return false}
     if lhs.pingTime != rhs.pingTime {return false}
     if lhs.syncType != rhs.syncType {return false}
+    if lhs.features != rhs.features {return false}
+    if lhs.errors != rhs.errors {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -6326,20 +8045,65 @@ extension Lnrpc_Peer.SyncType: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Lnrpc_ListPeersRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let protoMessageName: String = _protobuf_package + ".ListPeersRequest"
-  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+extension Lnrpc_TimestampedError: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".TimestampedError"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "timestamp"),
+    2: .same(proto: "error"),
+  ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularUInt64Field(value: &self.timestamp)
+      case 2: try decoder.decodeSingularStringField(value: &self.error)
+      default: break
+      }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.timestamp != 0 {
+      try visitor.visitSingularUInt64Field(value: self.timestamp, fieldNumber: 1)
+    }
+    if !self.error.isEmpty {
+      try visitor.visitSingularStringField(value: self.error, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Lnrpc_TimestampedError, rhs: Lnrpc_TimestampedError) -> Bool {
+    if lhs.timestamp != rhs.timestamp {return false}
+    if lhs.error != rhs.error {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Lnrpc_ListPeersRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".ListPeersRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "latest_error"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularBoolField(value: &self.latestError)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.latestError != false {
+      try visitor.visitSingularBoolField(value: self.latestError, fieldNumber: 1)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   static func ==(lhs: Lnrpc_ListPeersRequest, rhs: Lnrpc_ListPeersRequest) -> Bool {
+    if lhs.latestError != rhs.latestError {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -6374,6 +8138,67 @@ extension Lnrpc_ListPeersResponse: SwiftProtobuf.Message, SwiftProtobuf._Message
   }
 }
 
+extension Lnrpc_PeerEventSubscription: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".PeerEventSubscription"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Lnrpc_PeerEventSubscription, rhs: Lnrpc_PeerEventSubscription) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Lnrpc_PeerEvent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".PeerEvent"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "pub_key"),
+    2: .same(proto: "type"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.pubKey)
+      case 2: try decoder.decodeSingularEnumField(value: &self.type)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.pubKey.isEmpty {
+      try visitor.visitSingularStringField(value: self.pubKey, fieldNumber: 1)
+    }
+    if self.type != .peerOnline {
+      try visitor.visitSingularEnumField(value: self.type, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Lnrpc_PeerEvent, rhs: Lnrpc_PeerEvent) -> Bool {
+    if lhs.pubKey != rhs.pubKey {return false}
+    if lhs.type != rhs.type {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Lnrpc_PeerEvent.EventType: SwiftProtobuf._ProtoNameProviding {
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "PEER_ONLINE"),
+    1: .same(proto: "PEER_OFFLINE"),
+  ]
+}
+
 extension Lnrpc_GetInfoRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".GetInfoRequest"
   static let _protobuf_nameMap = SwiftProtobuf._NameMap()
@@ -6396,117 +8221,195 @@ extension Lnrpc_GetInfoRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
 extension Lnrpc_GetInfoResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".GetInfoResponse"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "identity_pubkey"),
-    2: .same(proto: "alias"),
-    3: .same(proto: "num_pending_channels"),
-    4: .same(proto: "num_active_channels"),
-    5: .same(proto: "num_peers"),
-    6: .same(proto: "block_height"),
-    8: .same(proto: "block_hash"),
-    9: .same(proto: "synced_to_chain"),
-    10: .same(proto: "testnet"),
-    12: .same(proto: "uris"),
-    13: .same(proto: "best_header_timestamp"),
     14: .same(proto: "version"),
-    15: .same(proto: "num_inactive_channels"),
-    16: .same(proto: "chains"),
+    20: .standard(proto: "commit_hash"),
+    1: .standard(proto: "identity_pubkey"),
+    2: .same(proto: "alias"),
     17: .same(proto: "color"),
-    18: .same(proto: "synced_to_graph"),
+    3: .standard(proto: "num_pending_channels"),
+    4: .standard(proto: "num_active_channels"),
+    15: .standard(proto: "num_inactive_channels"),
+    5: .standard(proto: "num_peers"),
+    6: .standard(proto: "block_height"),
+    8: .standard(proto: "block_hash"),
+    13: .standard(proto: "best_header_timestamp"),
+    9: .standard(proto: "synced_to_chain"),
+    18: .standard(proto: "synced_to_graph"),
+    10: .same(proto: "testnet"),
+    16: .same(proto: "chains"),
+    12: .same(proto: "uris"),
+    19: .same(proto: "features"),
   ]
 
+  fileprivate class _StorageClass {
+    var _version: String = String()
+    var _commitHash: String = String()
+    var _identityPubkey: String = String()
+    var _alias: String = String()
+    var _color: String = String()
+    var _numPendingChannels: UInt32 = 0
+    var _numActiveChannels: UInt32 = 0
+    var _numInactiveChannels: UInt32 = 0
+    var _numPeers: UInt32 = 0
+    var _blockHeight: UInt32 = 0
+    var _blockHash: String = String()
+    var _bestHeaderTimestamp: Int64 = 0
+    var _syncedToChain: Bool = false
+    var _syncedToGraph: Bool = false
+    var _testnet: Bool = false
+    var _chains: [Lnrpc_Chain] = []
+    var _uris: [String] = []
+    var _features: Dictionary<UInt32,Lnrpc_Feature> = [:]
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _version = source._version
+      _commitHash = source._commitHash
+      _identityPubkey = source._identityPubkey
+      _alias = source._alias
+      _color = source._color
+      _numPendingChannels = source._numPendingChannels
+      _numActiveChannels = source._numActiveChannels
+      _numInactiveChannels = source._numInactiveChannels
+      _numPeers = source._numPeers
+      _blockHeight = source._blockHeight
+      _blockHash = source._blockHash
+      _bestHeaderTimestamp = source._bestHeaderTimestamp
+      _syncedToChain = source._syncedToChain
+      _syncedToGraph = source._syncedToGraph
+      _testnet = source._testnet
+      _chains = source._chains
+      _uris = source._uris
+      _features = source._features
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.identityPubkey)
-      case 2: try decoder.decodeSingularStringField(value: &self.alias)
-      case 3: try decoder.decodeSingularUInt32Field(value: &self.numPendingChannels)
-      case 4: try decoder.decodeSingularUInt32Field(value: &self.numActiveChannels)
-      case 5: try decoder.decodeSingularUInt32Field(value: &self.numPeers)
-      case 6: try decoder.decodeSingularUInt32Field(value: &self.blockHeight)
-      case 8: try decoder.decodeSingularStringField(value: &self.blockHash)
-      case 9: try decoder.decodeSingularBoolField(value: &self.syncedToChain)
-      case 10: try decoder.decodeSingularBoolField(value: &self.testnet)
-      case 12: try decoder.decodeRepeatedStringField(value: &self.uris)
-      case 13: try decoder.decodeSingularInt64Field(value: &self.bestHeaderTimestamp)
-      case 14: try decoder.decodeSingularStringField(value: &self.version)
-      case 15: try decoder.decodeSingularUInt32Field(value: &self.numInactiveChannels)
-      case 16: try decoder.decodeRepeatedMessageField(value: &self.chains)
-      case 17: try decoder.decodeSingularStringField(value: &self.color)
-      case 18: try decoder.decodeSingularBoolField(value: &self.syncedToGraph)
-      default: break
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._identityPubkey)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._alias)
+        case 3: try decoder.decodeSingularUInt32Field(value: &_storage._numPendingChannels)
+        case 4: try decoder.decodeSingularUInt32Field(value: &_storage._numActiveChannels)
+        case 5: try decoder.decodeSingularUInt32Field(value: &_storage._numPeers)
+        case 6: try decoder.decodeSingularUInt32Field(value: &_storage._blockHeight)
+        case 8: try decoder.decodeSingularStringField(value: &_storage._blockHash)
+        case 9: try decoder.decodeSingularBoolField(value: &_storage._syncedToChain)
+        case 10: try decoder.decodeSingularBoolField(value: &_storage._testnet)
+        case 12: try decoder.decodeRepeatedStringField(value: &_storage._uris)
+        case 13: try decoder.decodeSingularInt64Field(value: &_storage._bestHeaderTimestamp)
+        case 14: try decoder.decodeSingularStringField(value: &_storage._version)
+        case 15: try decoder.decodeSingularUInt32Field(value: &_storage._numInactiveChannels)
+        case 16: try decoder.decodeRepeatedMessageField(value: &_storage._chains)
+        case 17: try decoder.decodeSingularStringField(value: &_storage._color)
+        case 18: try decoder.decodeSingularBoolField(value: &_storage._syncedToGraph)
+        case 19: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufUInt32,Lnrpc_Feature>.self, value: &_storage._features)
+        case 20: try decoder.decodeSingularStringField(value: &_storage._commitHash)
+        default: break
+        }
       }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.identityPubkey.isEmpty {
-      try visitor.visitSingularStringField(value: self.identityPubkey, fieldNumber: 1)
-    }
-    if !self.alias.isEmpty {
-      try visitor.visitSingularStringField(value: self.alias, fieldNumber: 2)
-    }
-    if self.numPendingChannels != 0 {
-      try visitor.visitSingularUInt32Field(value: self.numPendingChannels, fieldNumber: 3)
-    }
-    if self.numActiveChannels != 0 {
-      try visitor.visitSingularUInt32Field(value: self.numActiveChannels, fieldNumber: 4)
-    }
-    if self.numPeers != 0 {
-      try visitor.visitSingularUInt32Field(value: self.numPeers, fieldNumber: 5)
-    }
-    if self.blockHeight != 0 {
-      try visitor.visitSingularUInt32Field(value: self.blockHeight, fieldNumber: 6)
-    }
-    if !self.blockHash.isEmpty {
-      try visitor.visitSingularStringField(value: self.blockHash, fieldNumber: 8)
-    }
-    if self.syncedToChain != false {
-      try visitor.visitSingularBoolField(value: self.syncedToChain, fieldNumber: 9)
-    }
-    if self.testnet != false {
-      try visitor.visitSingularBoolField(value: self.testnet, fieldNumber: 10)
-    }
-    if !self.uris.isEmpty {
-      try visitor.visitRepeatedStringField(value: self.uris, fieldNumber: 12)
-    }
-    if self.bestHeaderTimestamp != 0 {
-      try visitor.visitSingularInt64Field(value: self.bestHeaderTimestamp, fieldNumber: 13)
-    }
-    if !self.version.isEmpty {
-      try visitor.visitSingularStringField(value: self.version, fieldNumber: 14)
-    }
-    if self.numInactiveChannels != 0 {
-      try visitor.visitSingularUInt32Field(value: self.numInactiveChannels, fieldNumber: 15)
-    }
-    if !self.chains.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.chains, fieldNumber: 16)
-    }
-    if !self.color.isEmpty {
-      try visitor.visitSingularStringField(value: self.color, fieldNumber: 17)
-    }
-    if self.syncedToGraph != false {
-      try visitor.visitSingularBoolField(value: self.syncedToGraph, fieldNumber: 18)
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._identityPubkey.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._identityPubkey, fieldNumber: 1)
+      }
+      if !_storage._alias.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._alias, fieldNumber: 2)
+      }
+      if _storage._numPendingChannels != 0 {
+        try visitor.visitSingularUInt32Field(value: _storage._numPendingChannels, fieldNumber: 3)
+      }
+      if _storage._numActiveChannels != 0 {
+        try visitor.visitSingularUInt32Field(value: _storage._numActiveChannels, fieldNumber: 4)
+      }
+      if _storage._numPeers != 0 {
+        try visitor.visitSingularUInt32Field(value: _storage._numPeers, fieldNumber: 5)
+      }
+      if _storage._blockHeight != 0 {
+        try visitor.visitSingularUInt32Field(value: _storage._blockHeight, fieldNumber: 6)
+      }
+      if !_storage._blockHash.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._blockHash, fieldNumber: 8)
+      }
+      if _storage._syncedToChain != false {
+        try visitor.visitSingularBoolField(value: _storage._syncedToChain, fieldNumber: 9)
+      }
+      if _storage._testnet != false {
+        try visitor.visitSingularBoolField(value: _storage._testnet, fieldNumber: 10)
+      }
+      if !_storage._uris.isEmpty {
+        try visitor.visitRepeatedStringField(value: _storage._uris, fieldNumber: 12)
+      }
+      if _storage._bestHeaderTimestamp != 0 {
+        try visitor.visitSingularInt64Field(value: _storage._bestHeaderTimestamp, fieldNumber: 13)
+      }
+      if !_storage._version.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._version, fieldNumber: 14)
+      }
+      if _storage._numInactiveChannels != 0 {
+        try visitor.visitSingularUInt32Field(value: _storage._numInactiveChannels, fieldNumber: 15)
+      }
+      if !_storage._chains.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._chains, fieldNumber: 16)
+      }
+      if !_storage._color.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._color, fieldNumber: 17)
+      }
+      if _storage._syncedToGraph != false {
+        try visitor.visitSingularBoolField(value: _storage._syncedToGraph, fieldNumber: 18)
+      }
+      if !_storage._features.isEmpty {
+        try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufUInt32,Lnrpc_Feature>.self, value: _storage._features, fieldNumber: 19)
+      }
+      if !_storage._commitHash.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._commitHash, fieldNumber: 20)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   static func ==(lhs: Lnrpc_GetInfoResponse, rhs: Lnrpc_GetInfoResponse) -> Bool {
-    if lhs.identityPubkey != rhs.identityPubkey {return false}
-    if lhs.alias != rhs.alias {return false}
-    if lhs.numPendingChannels != rhs.numPendingChannels {return false}
-    if lhs.numActiveChannels != rhs.numActiveChannels {return false}
-    if lhs.numPeers != rhs.numPeers {return false}
-    if lhs.blockHeight != rhs.blockHeight {return false}
-    if lhs.blockHash != rhs.blockHash {return false}
-    if lhs.syncedToChain != rhs.syncedToChain {return false}
-    if lhs.testnet != rhs.testnet {return false}
-    if lhs.uris != rhs.uris {return false}
-    if lhs.bestHeaderTimestamp != rhs.bestHeaderTimestamp {return false}
-    if lhs.version != rhs.version {return false}
-    if lhs.numInactiveChannels != rhs.numInactiveChannels {return false}
-    if lhs.chains != rhs.chains {return false}
-    if lhs.color != rhs.color {return false}
-    if lhs.syncedToGraph != rhs.syncedToGraph {return false}
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._version != rhs_storage._version {return false}
+        if _storage._commitHash != rhs_storage._commitHash {return false}
+        if _storage._identityPubkey != rhs_storage._identityPubkey {return false}
+        if _storage._alias != rhs_storage._alias {return false}
+        if _storage._color != rhs_storage._color {return false}
+        if _storage._numPendingChannels != rhs_storage._numPendingChannels {return false}
+        if _storage._numActiveChannels != rhs_storage._numActiveChannels {return false}
+        if _storage._numInactiveChannels != rhs_storage._numInactiveChannels {return false}
+        if _storage._numPeers != rhs_storage._numPeers {return false}
+        if _storage._blockHeight != rhs_storage._blockHeight {return false}
+        if _storage._blockHash != rhs_storage._blockHash {return false}
+        if _storage._bestHeaderTimestamp != rhs_storage._bestHeaderTimestamp {return false}
+        if _storage._syncedToChain != rhs_storage._syncedToChain {return false}
+        if _storage._syncedToGraph != rhs_storage._syncedToGraph {return false}
+        if _storage._testnet != rhs_storage._testnet {return false}
+        if _storage._chains != rhs_storage._chains {return false}
+        if _storage._uris != rhs_storage._uris {return false}
+        if _storage._features != rhs_storage._features {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -6591,7 +8494,7 @@ extension Lnrpc_ConfirmationUpdate: SwiftProtobuf.Message, SwiftProtobuf._Messag
 extension Lnrpc_ChannelOpenUpdate: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".ChannelOpenUpdate"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "channel_point"),
+    1: .standard(proto: "channel_point"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -6620,7 +8523,7 @@ extension Lnrpc_ChannelOpenUpdate: SwiftProtobuf.Message, SwiftProtobuf._Message
 extension Lnrpc_ChannelCloseUpdate: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".ChannelCloseUpdate"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "closing_txid"),
+    1: .standard(proto: "closing_txid"),
     2: .same(proto: "success"),
   ]
 
@@ -6659,6 +8562,7 @@ extension Lnrpc_CloseChannelRequest: SwiftProtobuf.Message, SwiftProtobuf._Messa
     2: .same(proto: "force"),
     3: .standard(proto: "target_conf"),
     4: .standard(proto: "sat_per_byte"),
+    5: .standard(proto: "delivery_address"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -6668,6 +8572,7 @@ extension Lnrpc_CloseChannelRequest: SwiftProtobuf.Message, SwiftProtobuf._Messa
       case 2: try decoder.decodeSingularBoolField(value: &self.force)
       case 3: try decoder.decodeSingularInt32Field(value: &self.targetConf)
       case 4: try decoder.decodeSingularInt64Field(value: &self.satPerByte)
+      case 5: try decoder.decodeSingularStringField(value: &self.deliveryAddress)
       default: break
       }
     }
@@ -6686,6 +8591,9 @@ extension Lnrpc_CloseChannelRequest: SwiftProtobuf.Message, SwiftProtobuf._Messa
     if self.satPerByte != 0 {
       try visitor.visitSingularInt64Field(value: self.satPerByte, fieldNumber: 4)
     }
+    if !self.deliveryAddress.isEmpty {
+      try visitor.visitSingularStringField(value: self.deliveryAddress, fieldNumber: 5)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -6694,6 +8602,7 @@ extension Lnrpc_CloseChannelRequest: SwiftProtobuf.Message, SwiftProtobuf._Messa
     if lhs.force != rhs.force {return false}
     if lhs.targetConf != rhs.targetConf {return false}
     if lhs.satPerByte != rhs.satPerByte {return false}
+    if lhs.deliveryAddress != rhs.deliveryAddress {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -6702,8 +8611,8 @@ extension Lnrpc_CloseChannelRequest: SwiftProtobuf.Message, SwiftProtobuf._Messa
 extension Lnrpc_CloseStatusUpdate: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".CloseStatusUpdate"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "close_pending"),
-    3: .same(proto: "chan_close"),
+    1: .standard(proto: "close_pending"),
+    3: .standard(proto: "chan_close"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -6752,7 +8661,7 @@ extension Lnrpc_PendingUpdate: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
   static let protoMessageName: String = _protobuf_package + ".PendingUpdate"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "txid"),
-    2: .same(proto: "output_index"),
+    2: .standard(proto: "output_index"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -6783,20 +8692,63 @@ extension Lnrpc_PendingUpdate: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
   }
 }
 
+extension Lnrpc_ReadyForPsbtFunding: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".ReadyForPsbtFunding"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "funding_address"),
+    2: .standard(proto: "funding_amount"),
+    3: .same(proto: "psbt"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.fundingAddress)
+      case 2: try decoder.decodeSingularInt64Field(value: &self.fundingAmount)
+      case 3: try decoder.decodeSingularBytesField(value: &self.psbt)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.fundingAddress.isEmpty {
+      try visitor.visitSingularStringField(value: self.fundingAddress, fieldNumber: 1)
+    }
+    if self.fundingAmount != 0 {
+      try visitor.visitSingularInt64Field(value: self.fundingAmount, fieldNumber: 2)
+    }
+    if !self.psbt.isEmpty {
+      try visitor.visitSingularBytesField(value: self.psbt, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Lnrpc_ReadyForPsbtFunding, rhs: Lnrpc_ReadyForPsbtFunding) -> Bool {
+    if lhs.fundingAddress != rhs.fundingAddress {return false}
+    if lhs.fundingAmount != rhs.fundingAmount {return false}
+    if lhs.psbt != rhs.psbt {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
 extension Lnrpc_OpenChannelRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".OpenChannelRequest"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    2: .same(proto: "node_pubkey"),
-    3: .same(proto: "node_pubkey_string"),
-    4: .same(proto: "local_funding_amount"),
-    5: .same(proto: "push_sat"),
+    2: .standard(proto: "node_pubkey"),
+    3: .standard(proto: "node_pubkey_string"),
+    4: .standard(proto: "local_funding_amount"),
+    5: .standard(proto: "push_sat"),
     6: .standard(proto: "target_conf"),
     7: .standard(proto: "sat_per_byte"),
     8: .same(proto: "private"),
-    9: .same(proto: "min_htlc_msat"),
-    10: .same(proto: "remote_csv_delay"),
-    11: .same(proto: "min_confs"),
-    12: .same(proto: "spend_unconfirmed"),
+    9: .standard(proto: "min_htlc_msat"),
+    10: .standard(proto: "remote_csv_delay"),
+    11: .standard(proto: "min_confs"),
+    12: .standard(proto: "spend_unconfirmed"),
+    13: .standard(proto: "close_address"),
+    14: .standard(proto: "funding_shim"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -6813,6 +8765,8 @@ extension Lnrpc_OpenChannelRequest: SwiftProtobuf.Message, SwiftProtobuf._Messag
       case 10: try decoder.decodeSingularUInt32Field(value: &self.remoteCsvDelay)
       case 11: try decoder.decodeSingularInt32Field(value: &self.minConfs)
       case 12: try decoder.decodeSingularBoolField(value: &self.spendUnconfirmed)
+      case 13: try decoder.decodeSingularStringField(value: &self.closeAddress)
+      case 14: try decoder.decodeSingularMessageField(value: &self._fundingShim)
       default: break
       }
     }
@@ -6852,6 +8806,12 @@ extension Lnrpc_OpenChannelRequest: SwiftProtobuf.Message, SwiftProtobuf._Messag
     if self.spendUnconfirmed != false {
       try visitor.visitSingularBoolField(value: self.spendUnconfirmed, fieldNumber: 12)
     }
+    if !self.closeAddress.isEmpty {
+      try visitor.visitSingularStringField(value: self.closeAddress, fieldNumber: 13)
+    }
+    if let v = self._fundingShim {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 14)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -6867,6 +8827,8 @@ extension Lnrpc_OpenChannelRequest: SwiftProtobuf.Message, SwiftProtobuf._Messag
     if lhs.remoteCsvDelay != rhs.remoteCsvDelay {return false}
     if lhs.minConfs != rhs.minConfs {return false}
     if lhs.spendUnconfirmed != rhs.spendUnconfirmed {return false}
+    if lhs.closeAddress != rhs.closeAddress {return false}
+    if lhs._fundingShim != rhs._fundingShim {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -6875,8 +8837,10 @@ extension Lnrpc_OpenChannelRequest: SwiftProtobuf.Message, SwiftProtobuf._Messag
 extension Lnrpc_OpenStatusUpdate: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".OpenStatusUpdate"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "chan_pending"),
-    3: .same(proto: "chan_open"),
+    1: .standard(proto: "chan_pending"),
+    3: .standard(proto: "chan_open"),
+    5: .standard(proto: "psbt_fund"),
+    4: .standard(proto: "pending_chan_id"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -6898,6 +8862,15 @@ extension Lnrpc_OpenStatusUpdate: SwiftProtobuf.Message, SwiftProtobuf._MessageI
         }
         try decoder.decodeSingularMessageField(value: &v)
         if let v = v {self.update = .chanOpen(v)}
+      case 4: try decoder.decodeSingularBytesField(value: &self.pendingChanID)
+      case 5:
+        var v: Lnrpc_ReadyForPsbtFunding?
+        if let current = self.update {
+          try decoder.handleConflictingOneOf()
+          if case .psbtFund(let m) = current {v = m}
+        }
+        try decoder.decodeSingularMessageField(value: &v)
+        if let v = v {self.update = .psbtFund(v)}
       default: break
       }
     }
@@ -6910,12 +8883,422 @@ extension Lnrpc_OpenStatusUpdate: SwiftProtobuf.Message, SwiftProtobuf._MessageI
     case .chanOpen(let v)?:
       try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
     case nil: break
+    default: break
+    }
+    if !self.pendingChanID.isEmpty {
+      try visitor.visitSingularBytesField(value: self.pendingChanID, fieldNumber: 4)
+    }
+    if case .psbtFund(let v)? = self.update {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   static func ==(lhs: Lnrpc_OpenStatusUpdate, rhs: Lnrpc_OpenStatusUpdate) -> Bool {
     if lhs.update != rhs.update {return false}
+    if lhs.pendingChanID != rhs.pendingChanID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Lnrpc_KeyLocator: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".KeyLocator"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "key_family"),
+    2: .standard(proto: "key_index"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.keyFamily)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.keyIndex)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.keyFamily != 0 {
+      try visitor.visitSingularInt32Field(value: self.keyFamily, fieldNumber: 1)
+    }
+    if self.keyIndex != 0 {
+      try visitor.visitSingularInt32Field(value: self.keyIndex, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Lnrpc_KeyLocator, rhs: Lnrpc_KeyLocator) -> Bool {
+    if lhs.keyFamily != rhs.keyFamily {return false}
+    if lhs.keyIndex != rhs.keyIndex {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Lnrpc_KeyDescriptor: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".KeyDescriptor"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "raw_key_bytes"),
+    2: .standard(proto: "key_loc"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularBytesField(value: &self.rawKeyBytes)
+      case 2: try decoder.decodeSingularMessageField(value: &self._keyLoc)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.rawKeyBytes.isEmpty {
+      try visitor.visitSingularBytesField(value: self.rawKeyBytes, fieldNumber: 1)
+    }
+    if let v = self._keyLoc {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Lnrpc_KeyDescriptor, rhs: Lnrpc_KeyDescriptor) -> Bool {
+    if lhs.rawKeyBytes != rhs.rawKeyBytes {return false}
+    if lhs._keyLoc != rhs._keyLoc {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Lnrpc_ChanPointShim: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".ChanPointShim"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "amt"),
+    2: .standard(proto: "chan_point"),
+    3: .standard(proto: "local_key"),
+    4: .standard(proto: "remote_key"),
+    5: .standard(proto: "pending_chan_id"),
+    6: .standard(proto: "thaw_height"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt64Field(value: &self.amt)
+      case 2: try decoder.decodeSingularMessageField(value: &self._chanPoint)
+      case 3: try decoder.decodeSingularMessageField(value: &self._localKey)
+      case 4: try decoder.decodeSingularBytesField(value: &self.remoteKey)
+      case 5: try decoder.decodeSingularBytesField(value: &self.pendingChanID)
+      case 6: try decoder.decodeSingularUInt32Field(value: &self.thawHeight)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.amt != 0 {
+      try visitor.visitSingularInt64Field(value: self.amt, fieldNumber: 1)
+    }
+    if let v = self._chanPoint {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+    }
+    if let v = self._localKey {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+    }
+    if !self.remoteKey.isEmpty {
+      try visitor.visitSingularBytesField(value: self.remoteKey, fieldNumber: 4)
+    }
+    if !self.pendingChanID.isEmpty {
+      try visitor.visitSingularBytesField(value: self.pendingChanID, fieldNumber: 5)
+    }
+    if self.thawHeight != 0 {
+      try visitor.visitSingularUInt32Field(value: self.thawHeight, fieldNumber: 6)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Lnrpc_ChanPointShim, rhs: Lnrpc_ChanPointShim) -> Bool {
+    if lhs.amt != rhs.amt {return false}
+    if lhs._chanPoint != rhs._chanPoint {return false}
+    if lhs._localKey != rhs._localKey {return false}
+    if lhs.remoteKey != rhs.remoteKey {return false}
+    if lhs.pendingChanID != rhs.pendingChanID {return false}
+    if lhs.thawHeight != rhs.thawHeight {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Lnrpc_PsbtShim: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".PsbtShim"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "pending_chan_id"),
+    2: .standard(proto: "base_psbt"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularBytesField(value: &self.pendingChanID)
+      case 2: try decoder.decodeSingularBytesField(value: &self.basePsbt)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.pendingChanID.isEmpty {
+      try visitor.visitSingularBytesField(value: self.pendingChanID, fieldNumber: 1)
+    }
+    if !self.basePsbt.isEmpty {
+      try visitor.visitSingularBytesField(value: self.basePsbt, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Lnrpc_PsbtShim, rhs: Lnrpc_PsbtShim) -> Bool {
+    if lhs.pendingChanID != rhs.pendingChanID {return false}
+    if lhs.basePsbt != rhs.basePsbt {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Lnrpc_FundingShim: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".FundingShim"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "chan_point_shim"),
+    2: .standard(proto: "psbt_shim"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1:
+        var v: Lnrpc_ChanPointShim?
+        if let current = self.shim {
+          try decoder.handleConflictingOneOf()
+          if case .chanPointShim(let m) = current {v = m}
+        }
+        try decoder.decodeSingularMessageField(value: &v)
+        if let v = v {self.shim = .chanPointShim(v)}
+      case 2:
+        var v: Lnrpc_PsbtShim?
+        if let current = self.shim {
+          try decoder.handleConflictingOneOf()
+          if case .psbtShim(let m) = current {v = m}
+        }
+        try decoder.decodeSingularMessageField(value: &v)
+        if let v = v {self.shim = .psbtShim(v)}
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    switch self.shim {
+    case .chanPointShim(let v)?:
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+    case .psbtShim(let v)?:
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+    case nil: break
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Lnrpc_FundingShim, rhs: Lnrpc_FundingShim) -> Bool {
+    if lhs.shim != rhs.shim {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Lnrpc_FundingShimCancel: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".FundingShimCancel"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "pending_chan_id"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularBytesField(value: &self.pendingChanID)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.pendingChanID.isEmpty {
+      try visitor.visitSingularBytesField(value: self.pendingChanID, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Lnrpc_FundingShimCancel, rhs: Lnrpc_FundingShimCancel) -> Bool {
+    if lhs.pendingChanID != rhs.pendingChanID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Lnrpc_FundingPsbtVerify: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".FundingPsbtVerify"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "funded_psbt"),
+    2: .standard(proto: "pending_chan_id"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularBytesField(value: &self.fundedPsbt)
+      case 2: try decoder.decodeSingularBytesField(value: &self.pendingChanID)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.fundedPsbt.isEmpty {
+      try visitor.visitSingularBytesField(value: self.fundedPsbt, fieldNumber: 1)
+    }
+    if !self.pendingChanID.isEmpty {
+      try visitor.visitSingularBytesField(value: self.pendingChanID, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Lnrpc_FundingPsbtVerify, rhs: Lnrpc_FundingPsbtVerify) -> Bool {
+    if lhs.fundedPsbt != rhs.fundedPsbt {return false}
+    if lhs.pendingChanID != rhs.pendingChanID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Lnrpc_FundingPsbtFinalize: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".FundingPsbtFinalize"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "signed_psbt"),
+    2: .standard(proto: "pending_chan_id"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularBytesField(value: &self.signedPsbt)
+      case 2: try decoder.decodeSingularBytesField(value: &self.pendingChanID)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.signedPsbt.isEmpty {
+      try visitor.visitSingularBytesField(value: self.signedPsbt, fieldNumber: 1)
+    }
+    if !self.pendingChanID.isEmpty {
+      try visitor.visitSingularBytesField(value: self.pendingChanID, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Lnrpc_FundingPsbtFinalize, rhs: Lnrpc_FundingPsbtFinalize) -> Bool {
+    if lhs.signedPsbt != rhs.signedPsbt {return false}
+    if lhs.pendingChanID != rhs.pendingChanID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Lnrpc_FundingTransitionMsg: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".FundingTransitionMsg"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "shim_register"),
+    2: .standard(proto: "shim_cancel"),
+    3: .standard(proto: "psbt_verify"),
+    4: .standard(proto: "psbt_finalize"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1:
+        var v: Lnrpc_FundingShim?
+        if let current = self.trigger {
+          try decoder.handleConflictingOneOf()
+          if case .shimRegister(let m) = current {v = m}
+        }
+        try decoder.decodeSingularMessageField(value: &v)
+        if let v = v {self.trigger = .shimRegister(v)}
+      case 2:
+        var v: Lnrpc_FundingShimCancel?
+        if let current = self.trigger {
+          try decoder.handleConflictingOneOf()
+          if case .shimCancel(let m) = current {v = m}
+        }
+        try decoder.decodeSingularMessageField(value: &v)
+        if let v = v {self.trigger = .shimCancel(v)}
+      case 3:
+        var v: Lnrpc_FundingPsbtVerify?
+        if let current = self.trigger {
+          try decoder.handleConflictingOneOf()
+          if case .psbtVerify(let m) = current {v = m}
+        }
+        try decoder.decodeSingularMessageField(value: &v)
+        if let v = v {self.trigger = .psbtVerify(v)}
+      case 4:
+        var v: Lnrpc_FundingPsbtFinalize?
+        if let current = self.trigger {
+          try decoder.handleConflictingOneOf()
+          if case .psbtFinalize(let m) = current {v = m}
+        }
+        try decoder.decodeSingularMessageField(value: &v)
+        if let v = v {self.trigger = .psbtFinalize(v)}
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    switch self.trigger {
+    case .shimRegister(let v)?:
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+    case .shimCancel(let v)?:
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+    case .psbtVerify(let v)?:
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+    case .psbtFinalize(let v)?:
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+    case nil: break
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Lnrpc_FundingTransitionMsg, rhs: Lnrpc_FundingTransitionMsg) -> Bool {
+    if lhs.trigger != rhs.trigger {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Lnrpc_FundingStateStepResp: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".FundingStateStepResp"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Lnrpc_FundingStateStepResp, rhs: Lnrpc_FundingStateStepResp) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -6927,8 +9310,8 @@ extension Lnrpc_PendingHTLC: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
     1: .same(proto: "incoming"),
     2: .same(proto: "amount"),
     3: .same(proto: "outpoint"),
-    4: .same(proto: "maturity_height"),
-    5: .same(proto: "blocks_til_maturity"),
+    4: .standard(proto: "maturity_height"),
+    5: .standard(proto: "blocks_til_maturity"),
     6: .same(proto: "stage"),
   ]
 
@@ -7002,11 +9385,11 @@ extension Lnrpc_PendingChannelsRequest: SwiftProtobuf.Message, SwiftProtobuf._Me
 extension Lnrpc_PendingChannelsResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".PendingChannelsResponse"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "total_limbo_balance"),
-    2: .same(proto: "pending_open_channels"),
-    3: .same(proto: "pending_closing_channels"),
-    4: .same(proto: "pending_force_closing_channels"),
-    5: .same(proto: "waiting_close_channels"),
+    1: .standard(proto: "total_limbo_balance"),
+    2: .standard(proto: "pending_open_channels"),
+    3: .standard(proto: "pending_closing_channels"),
+    4: .standard(proto: "pending_force_closing_channels"),
+    5: .standard(proto: "waiting_close_channels"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -7055,13 +9438,15 @@ extension Lnrpc_PendingChannelsResponse: SwiftProtobuf.Message, SwiftProtobuf._M
 extension Lnrpc_PendingChannelsResponse.PendingChannel: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = Lnrpc_PendingChannelsResponse.protoMessageName + ".PendingChannel"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "remote_node_pub"),
-    2: .same(proto: "channel_point"),
+    1: .standard(proto: "remote_node_pub"),
+    2: .standard(proto: "channel_point"),
     3: .same(proto: "capacity"),
-    4: .same(proto: "local_balance"),
-    5: .same(proto: "remote_balance"),
-    6: .same(proto: "local_chan_reserve_sat"),
-    7: .same(proto: "remote_chan_reserve_sat"),
+    4: .standard(proto: "local_balance"),
+    5: .standard(proto: "remote_balance"),
+    6: .standard(proto: "local_chan_reserve_sat"),
+    7: .standard(proto: "remote_chan_reserve_sat"),
+    8: .same(proto: "initiator"),
+    9: .standard(proto: "commitment_type"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -7074,6 +9459,8 @@ extension Lnrpc_PendingChannelsResponse.PendingChannel: SwiftProtobuf.Message, S
       case 5: try decoder.decodeSingularInt64Field(value: &self.remoteBalance)
       case 6: try decoder.decodeSingularInt64Field(value: &self.localChanReserveSat)
       case 7: try decoder.decodeSingularInt64Field(value: &self.remoteChanReserveSat)
+      case 8: try decoder.decodeSingularEnumField(value: &self.initiator)
+      case 9: try decoder.decodeSingularEnumField(value: &self.commitmentType)
       default: break
       }
     }
@@ -7101,6 +9488,12 @@ extension Lnrpc_PendingChannelsResponse.PendingChannel: SwiftProtobuf.Message, S
     if self.remoteChanReserveSat != 0 {
       try visitor.visitSingularInt64Field(value: self.remoteChanReserveSat, fieldNumber: 7)
     }
+    if self.initiator != .unknown {
+      try visitor.visitSingularEnumField(value: self.initiator, fieldNumber: 8)
+    }
+    if self.commitmentType != .legacy {
+      try visitor.visitSingularEnumField(value: self.commitmentType, fieldNumber: 9)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -7112,6 +9505,8 @@ extension Lnrpc_PendingChannelsResponse.PendingChannel: SwiftProtobuf.Message, S
     if lhs.remoteBalance != rhs.remoteBalance {return false}
     if lhs.localChanReserveSat != rhs.localChanReserveSat {return false}
     if lhs.remoteChanReserveSat != rhs.remoteChanReserveSat {return false}
+    if lhs.initiator != rhs.initiator {return false}
+    if lhs.commitmentType != rhs.commitmentType {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -7121,10 +9516,10 @@ extension Lnrpc_PendingChannelsResponse.PendingOpenChannel: SwiftProtobuf.Messag
   static let protoMessageName: String = Lnrpc_PendingChannelsResponse.protoMessageName + ".PendingOpenChannel"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "channel"),
-    2: .same(proto: "confirmation_height"),
-    4: .same(proto: "commit_fee"),
-    5: .same(proto: "commit_weight"),
-    6: .same(proto: "fee_per_kw"),
+    2: .standard(proto: "confirmation_height"),
+    4: .standard(proto: "commit_fee"),
+    5: .standard(proto: "commit_weight"),
+    6: .standard(proto: "fee_per_kw"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -7174,7 +9569,8 @@ extension Lnrpc_PendingChannelsResponse.WaitingCloseChannel: SwiftProtobuf.Messa
   static let protoMessageName: String = Lnrpc_PendingChannelsResponse.protoMessageName + ".WaitingCloseChannel"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "channel"),
-    2: .same(proto: "limbo_balance"),
+    2: .standard(proto: "limbo_balance"),
+    3: .same(proto: "commitments"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -7182,6 +9578,7 @@ extension Lnrpc_PendingChannelsResponse.WaitingCloseChannel: SwiftProtobuf.Messa
       switch fieldNumber {
       case 1: try decoder.decodeSingularMessageField(value: &self._channel)
       case 2: try decoder.decodeSingularInt64Field(value: &self.limboBalance)
+      case 3: try decoder.decodeSingularMessageField(value: &self._commitments)
       default: break
       }
     }
@@ -7194,12 +9591,75 @@ extension Lnrpc_PendingChannelsResponse.WaitingCloseChannel: SwiftProtobuf.Messa
     if self.limboBalance != 0 {
       try visitor.visitSingularInt64Field(value: self.limboBalance, fieldNumber: 2)
     }
+    if let v = self._commitments {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   static func ==(lhs: Lnrpc_PendingChannelsResponse.WaitingCloseChannel, rhs: Lnrpc_PendingChannelsResponse.WaitingCloseChannel) -> Bool {
     if lhs._channel != rhs._channel {return false}
     if lhs.limboBalance != rhs.limboBalance {return false}
+    if lhs._commitments != rhs._commitments {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Lnrpc_PendingChannelsResponse.Commitments: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = Lnrpc_PendingChannelsResponse.protoMessageName + ".Commitments"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "local_txid"),
+    2: .standard(proto: "remote_txid"),
+    3: .standard(proto: "remote_pending_txid"),
+    4: .standard(proto: "local_commit_fee_sat"),
+    5: .standard(proto: "remote_commit_fee_sat"),
+    6: .standard(proto: "remote_pending_commit_fee_sat"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.localTxid)
+      case 2: try decoder.decodeSingularStringField(value: &self.remoteTxid)
+      case 3: try decoder.decodeSingularStringField(value: &self.remotePendingTxid)
+      case 4: try decoder.decodeSingularUInt64Field(value: &self.localCommitFeeSat)
+      case 5: try decoder.decodeSingularUInt64Field(value: &self.remoteCommitFeeSat)
+      case 6: try decoder.decodeSingularUInt64Field(value: &self.remotePendingCommitFeeSat)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.localTxid.isEmpty {
+      try visitor.visitSingularStringField(value: self.localTxid, fieldNumber: 1)
+    }
+    if !self.remoteTxid.isEmpty {
+      try visitor.visitSingularStringField(value: self.remoteTxid, fieldNumber: 2)
+    }
+    if !self.remotePendingTxid.isEmpty {
+      try visitor.visitSingularStringField(value: self.remotePendingTxid, fieldNumber: 3)
+    }
+    if self.localCommitFeeSat != 0 {
+      try visitor.visitSingularUInt64Field(value: self.localCommitFeeSat, fieldNumber: 4)
+    }
+    if self.remoteCommitFeeSat != 0 {
+      try visitor.visitSingularUInt64Field(value: self.remoteCommitFeeSat, fieldNumber: 5)
+    }
+    if self.remotePendingCommitFeeSat != 0 {
+      try visitor.visitSingularUInt64Field(value: self.remotePendingCommitFeeSat, fieldNumber: 6)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Lnrpc_PendingChannelsResponse.Commitments, rhs: Lnrpc_PendingChannelsResponse.Commitments) -> Bool {
+    if lhs.localTxid != rhs.localTxid {return false}
+    if lhs.remoteTxid != rhs.remoteTxid {return false}
+    if lhs.remotePendingTxid != rhs.remotePendingTxid {return false}
+    if lhs.localCommitFeeSat != rhs.localCommitFeeSat {return false}
+    if lhs.remoteCommitFeeSat != rhs.remoteCommitFeeSat {return false}
+    if lhs.remotePendingCommitFeeSat != rhs.remotePendingCommitFeeSat {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -7209,7 +9669,7 @@ extension Lnrpc_PendingChannelsResponse.ClosedChannel: SwiftProtobuf.Message, Sw
   static let protoMessageName: String = Lnrpc_PendingChannelsResponse.protoMessageName + ".ClosedChannel"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "channel"),
-    2: .same(proto: "closing_txid"),
+    2: .standard(proto: "closing_txid"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -7244,12 +9704,13 @@ extension Lnrpc_PendingChannelsResponse.ForceClosedChannel: SwiftProtobuf.Messag
   static let protoMessageName: String = Lnrpc_PendingChannelsResponse.protoMessageName + ".ForceClosedChannel"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "channel"),
-    2: .same(proto: "closing_txid"),
-    3: .same(proto: "limbo_balance"),
-    4: .same(proto: "maturity_height"),
-    5: .same(proto: "blocks_til_maturity"),
-    6: .same(proto: "recovered_balance"),
-    8: .same(proto: "pending_htlcs"),
+    2: .standard(proto: "closing_txid"),
+    3: .standard(proto: "limbo_balance"),
+    4: .standard(proto: "maturity_height"),
+    5: .standard(proto: "blocks_til_maturity"),
+    6: .standard(proto: "recovered_balance"),
+    8: .standard(proto: "pending_htlcs"),
+    9: .same(proto: "anchor"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -7262,6 +9723,7 @@ extension Lnrpc_PendingChannelsResponse.ForceClosedChannel: SwiftProtobuf.Messag
       case 5: try decoder.decodeSingularInt32Field(value: &self.blocksTilMaturity)
       case 6: try decoder.decodeSingularInt64Field(value: &self.recoveredBalance)
       case 8: try decoder.decodeRepeatedMessageField(value: &self.pendingHtlcs)
+      case 9: try decoder.decodeSingularEnumField(value: &self.anchor)
       default: break
       }
     }
@@ -7289,6 +9751,9 @@ extension Lnrpc_PendingChannelsResponse.ForceClosedChannel: SwiftProtobuf.Messag
     if !self.pendingHtlcs.isEmpty {
       try visitor.visitRepeatedMessageField(value: self.pendingHtlcs, fieldNumber: 8)
     }
+    if self.anchor != .limbo {
+      try visitor.visitSingularEnumField(value: self.anchor, fieldNumber: 9)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -7300,9 +9765,18 @@ extension Lnrpc_PendingChannelsResponse.ForceClosedChannel: SwiftProtobuf.Messag
     if lhs.blocksTilMaturity != rhs.blocksTilMaturity {return false}
     if lhs.recoveredBalance != rhs.recoveredBalance {return false}
     if lhs.pendingHtlcs != rhs.pendingHtlcs {return false}
+    if lhs.anchor != rhs.anchor {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
+}
+
+extension Lnrpc_PendingChannelsResponse.ForceClosedChannel.AnchorState: SwiftProtobuf._ProtoNameProviding {
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "LIMBO"),
+    1: .same(proto: "RECOVERED"),
+    2: .same(proto: "LOST"),
+  ]
 }
 
 extension Lnrpc_ChannelEventSubscription: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
@@ -7327,10 +9801,11 @@ extension Lnrpc_ChannelEventSubscription: SwiftProtobuf.Message, SwiftProtobuf._
 extension Lnrpc_ChannelEventUpdate: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".ChannelEventUpdate"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "open_channel"),
-    2: .same(proto: "closed_channel"),
-    3: .same(proto: "active_channel"),
-    4: .same(proto: "inactive_channel"),
+    1: .standard(proto: "open_channel"),
+    2: .standard(proto: "closed_channel"),
+    3: .standard(proto: "active_channel"),
+    4: .standard(proto: "inactive_channel"),
+    6: .standard(proto: "pending_open_channel"),
     5: .same(proto: "type"),
   ]
 
@@ -7370,6 +9845,14 @@ extension Lnrpc_ChannelEventUpdate: SwiftProtobuf.Message, SwiftProtobuf._Messag
         try decoder.decodeSingularMessageField(value: &v)
         if let v = v {self.channel = .inactiveChannel(v)}
       case 5: try decoder.decodeSingularEnumField(value: &self.type)
+      case 6:
+        var v: Lnrpc_PendingUpdate?
+        if let current = self.channel {
+          try decoder.handleConflictingOneOf()
+          if case .pendingOpenChannel(let m) = current {v = m}
+        }
+        try decoder.decodeSingularMessageField(value: &v)
+        if let v = v {self.channel = .pendingOpenChannel(v)}
       default: break
       }
     }
@@ -7386,9 +9869,13 @@ extension Lnrpc_ChannelEventUpdate: SwiftProtobuf.Message, SwiftProtobuf._Messag
     case .inactiveChannel(let v)?:
       try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
     case nil: break
+    default: break
     }
     if self.type != .openChannel {
       try visitor.visitSingularEnumField(value: self.type, fieldNumber: 5)
+    }
+    if case .pendingOpenChannel(let v)? = self.channel {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -7407,6 +9894,7 @@ extension Lnrpc_ChannelEventUpdate.UpdateType: SwiftProtobuf._ProtoNameProviding
     1: .same(proto: "CLOSED_CHANNEL"),
     2: .same(proto: "ACTIVE_CHANNEL"),
     3: .same(proto: "INACTIVE_CHANNEL"),
+    4: .same(proto: "PENDING_OPEN_CHANNEL"),
   ]
 }
 
@@ -7432,9 +9920,9 @@ extension Lnrpc_WalletBalanceRequest: SwiftProtobuf.Message, SwiftProtobuf._Mess
 extension Lnrpc_WalletBalanceResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".WalletBalanceResponse"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "total_balance"),
-    2: .same(proto: "confirmed_balance"),
-    3: .same(proto: "unconfirmed_balance"),
+    1: .standard(proto: "total_balance"),
+    2: .standard(proto: "confirmed_balance"),
+    3: .standard(proto: "unconfirmed_balance"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -7493,7 +9981,7 @@ extension Lnrpc_ChannelBalanceResponse: SwiftProtobuf.Message, SwiftProtobuf._Me
   static let protoMessageName: String = _protobuf_package + ".ChannelBalanceResponse"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "balance"),
-    2: .same(proto: "pending_open_balance"),
+    2: .standard(proto: "pending_open_balance"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -7538,6 +10026,11 @@ extension Lnrpc_QueryRoutesRequest: SwiftProtobuf.Message, SwiftProtobuf._Messag
     9: .standard(proto: "use_mission_control"),
     10: .standard(proto: "ignored_pairs"),
     11: .standard(proto: "cltv_limit"),
+    13: .standard(proto: "dest_custom_records"),
+    14: .standard(proto: "outgoing_chan_id"),
+    15: .standard(proto: "last_hop_pubkey"),
+    16: .standard(proto: "route_hints"),
+    17: .standard(proto: "dest_features"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -7554,6 +10047,11 @@ extension Lnrpc_QueryRoutesRequest: SwiftProtobuf.Message, SwiftProtobuf._Messag
       case 10: try decoder.decodeRepeatedMessageField(value: &self.ignoredPairs)
       case 11: try decoder.decodeSingularUInt32Field(value: &self.cltvLimit)
       case 12: try decoder.decodeSingularInt64Field(value: &self.amtMsat)
+      case 13: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufUInt64,SwiftProtobuf.ProtobufBytes>.self, value: &self.destCustomRecords)
+      case 14: try decoder.decodeSingularUInt64Field(value: &self.outgoingChanID)
+      case 15: try decoder.decodeSingularBytesField(value: &self.lastHopPubkey)
+      case 16: try decoder.decodeRepeatedMessageField(value: &self.routeHints)
+      case 17: try decoder.decodeRepeatedEnumField(value: &self.destFeatures)
       default: break
       }
     }
@@ -7593,6 +10091,21 @@ extension Lnrpc_QueryRoutesRequest: SwiftProtobuf.Message, SwiftProtobuf._Messag
     if self.amtMsat != 0 {
       try visitor.visitSingularInt64Field(value: self.amtMsat, fieldNumber: 12)
     }
+    if !self.destCustomRecords.isEmpty {
+      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufUInt64,SwiftProtobuf.ProtobufBytes>.self, value: self.destCustomRecords, fieldNumber: 13)
+    }
+    if self.outgoingChanID != 0 {
+      try visitor.visitSingularUInt64Field(value: self.outgoingChanID, fieldNumber: 14)
+    }
+    if !self.lastHopPubkey.isEmpty {
+      try visitor.visitSingularBytesField(value: self.lastHopPubkey, fieldNumber: 15)
+    }
+    if !self.routeHints.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.routeHints, fieldNumber: 16)
+    }
+    if !self.destFeatures.isEmpty {
+      try visitor.visitPackedEnumField(value: self.destFeatures, fieldNumber: 17)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -7608,6 +10121,11 @@ extension Lnrpc_QueryRoutesRequest: SwiftProtobuf.Message, SwiftProtobuf._Messag
     if lhs.useMissionControl != rhs.useMissionControl {return false}
     if lhs.ignoredPairs != rhs.ignoredPairs {return false}
     if lhs.cltvLimit != rhs.cltvLimit {return false}
+    if lhs.destCustomRecords != rhs.destCustomRecords {return false}
+    if lhs.outgoingChanID != rhs.outgoingChanID {return false}
+    if lhs.lastHopPubkey != rhs.lastHopPubkey {return false}
+    if lhs.routeHints != rhs.routeHints {return false}
+    if lhs.destFeatures != rhs.destFeatures {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -7687,7 +10205,7 @@ extension Lnrpc_QueryRoutesResponse: SwiftProtobuf.Message, SwiftProtobuf._Messa
   static let protoMessageName: String = _protobuf_package + ".QueryRoutesResponse"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "routes"),
-    2: .same(proto: "success_prob"),
+    2: .standard(proto: "success_prob"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -7721,16 +10239,17 @@ extension Lnrpc_QueryRoutesResponse: SwiftProtobuf.Message, SwiftProtobuf._Messa
 extension Lnrpc_Hop: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".Hop"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "chan_id"),
-    2: .same(proto: "chan_capacity"),
-    3: .same(proto: "amt_to_forward"),
+    1: .standard(proto: "chan_id"),
+    2: .standard(proto: "chan_capacity"),
+    3: .standard(proto: "amt_to_forward"),
     4: .same(proto: "fee"),
     5: .same(proto: "expiry"),
-    6: .same(proto: "amt_to_forward_msat"),
-    7: .same(proto: "fee_msat"),
-    8: .same(proto: "pub_key"),
-    9: .same(proto: "tlv_payload"),
-    10: .same(proto: "mpp_record"),
+    6: .standard(proto: "amt_to_forward_msat"),
+    7: .standard(proto: "fee_msat"),
+    8: .standard(proto: "pub_key"),
+    9: .standard(proto: "tlv_payload"),
+    10: .standard(proto: "mpp_record"),
+    11: .standard(proto: "custom_records"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -7746,6 +10265,7 @@ extension Lnrpc_Hop: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementation
       case 8: try decoder.decodeSingularStringField(value: &self.pubKey)
       case 9: try decoder.decodeSingularBoolField(value: &self.tlvPayload)
       case 10: try decoder.decodeSingularMessageField(value: &self._mppRecord)
+      case 11: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufUInt64,SwiftProtobuf.ProtobufBytes>.self, value: &self.customRecords)
       default: break
       }
     }
@@ -7782,6 +10302,9 @@ extension Lnrpc_Hop: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementation
     if let v = self._mppRecord {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
     }
+    if !self.customRecords.isEmpty {
+      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufUInt64,SwiftProtobuf.ProtobufBytes>.self, value: self.customRecords, fieldNumber: 11)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -7796,6 +10319,7 @@ extension Lnrpc_Hop: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementation
     if lhs.pubKey != rhs.pubKey {return false}
     if lhs.tlvPayload != rhs.tlvPayload {return false}
     if lhs._mppRecord != rhs._mppRecord {return false}
+    if lhs.customRecords != rhs.customRecords {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -7804,8 +10328,8 @@ extension Lnrpc_Hop: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementation
 extension Lnrpc_MPPRecord: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".MPPRecord"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    11: .same(proto: "payment_addr"),
-    10: .same(proto: "total_amt_msat"),
+    11: .standard(proto: "payment_addr"),
+    10: .standard(proto: "total_amt_msat"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -7839,12 +10363,12 @@ extension Lnrpc_MPPRecord: SwiftProtobuf.Message, SwiftProtobuf._MessageImplemen
 extension Lnrpc_Route: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".Route"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "total_time_lock"),
-    2: .same(proto: "total_fees"),
-    3: .same(proto: "total_amt"),
+    1: .standard(proto: "total_time_lock"),
+    2: .standard(proto: "total_fees"),
+    3: .standard(proto: "total_amt"),
     4: .same(proto: "hops"),
-    5: .same(proto: "total_fees_msat"),
-    6: .same(proto: "total_amt_msat"),
+    5: .standard(proto: "total_fees_msat"),
+    6: .standard(proto: "total_amt_msat"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -7934,8 +10458,8 @@ extension Lnrpc_NodeInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
   static let protoMessageName: String = _protobuf_package + ".NodeInfo"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "node"),
-    2: .same(proto: "num_channels"),
-    3: .same(proto: "total_capacity"),
+    2: .standard(proto: "num_channels"),
+    3: .standard(proto: "total_capacity"),
     4: .same(proto: "channels"),
   ]
 
@@ -7980,11 +10504,12 @@ extension Lnrpc_NodeInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
 extension Lnrpc_LightningNode: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".LightningNode"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "last_update"),
-    2: .same(proto: "pub_key"),
+    1: .standard(proto: "last_update"),
+    2: .standard(proto: "pub_key"),
     3: .same(proto: "alias"),
     4: .same(proto: "addresses"),
     5: .same(proto: "color"),
+    6: .same(proto: "features"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -7995,6 +10520,7 @@ extension Lnrpc_LightningNode: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
       case 3: try decoder.decodeSingularStringField(value: &self.alias)
       case 4: try decoder.decodeRepeatedMessageField(value: &self.addresses)
       case 5: try decoder.decodeSingularStringField(value: &self.color)
+      case 6: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufUInt32,Lnrpc_Feature>.self, value: &self.features)
       default: break
       }
     }
@@ -8016,6 +10542,9 @@ extension Lnrpc_LightningNode: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
     if !self.color.isEmpty {
       try visitor.visitSingularStringField(value: self.color, fieldNumber: 5)
     }
+    if !self.features.isEmpty {
+      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufUInt32,Lnrpc_Feature>.self, value: self.features, fieldNumber: 6)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -8025,6 +10554,7 @@ extension Lnrpc_LightningNode: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
     if lhs.alias != rhs.alias {return false}
     if lhs.addresses != rhs.addresses {return false}
     if lhs.color != rhs.color {return false}
+    if lhs.features != rhs.features {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -8068,13 +10598,13 @@ extension Lnrpc_NodeAddress: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
 extension Lnrpc_RoutingPolicy: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".RoutingPolicy"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "time_lock_delta"),
-    2: .same(proto: "min_htlc"),
-    3: .same(proto: "fee_base_msat"),
-    4: .same(proto: "fee_rate_milli_msat"),
+    1: .standard(proto: "time_lock_delta"),
+    2: .standard(proto: "min_htlc"),
+    3: .standard(proto: "fee_base_msat"),
+    4: .standard(proto: "fee_rate_milli_msat"),
     5: .same(proto: "disabled"),
-    6: .same(proto: "max_htlc_msat"),
-    7: .same(proto: "last_update"),
+    6: .standard(proto: "max_htlc_msat"),
+    7: .standard(proto: "last_update"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -8133,14 +10663,14 @@ extension Lnrpc_RoutingPolicy: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
 extension Lnrpc_ChannelEdge: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".ChannelEdge"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "channel_id"),
-    2: .same(proto: "chan_point"),
-    3: .same(proto: "last_update"),
-    4: .same(proto: "node1_pub"),
-    5: .same(proto: "node2_pub"),
+    1: .standard(proto: "channel_id"),
+    2: .standard(proto: "chan_point"),
+    3: .standard(proto: "last_update"),
+    4: .standard(proto: "node1_pub"),
+    5: .standard(proto: "node2_pub"),
     6: .same(proto: "capacity"),
-    7: .same(proto: "node1_policy"),
-    8: .same(proto: "node2_policy"),
+    7: .standard(proto: "node1_policy"),
+    8: .standard(proto: "node2_policy"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -8204,7 +10734,7 @@ extension Lnrpc_ChannelEdge: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
 extension Lnrpc_ChannelGraphRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".ChannelGraphRequest"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "include_unannounced"),
+    1: .standard(proto: "include_unannounced"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -8265,6 +10795,99 @@ extension Lnrpc_ChannelGraph: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
   }
 }
 
+extension Lnrpc_NodeMetricsRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".NodeMetricsRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "types"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeRepeatedEnumField(value: &self.types)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.types.isEmpty {
+      try visitor.visitPackedEnumField(value: self.types, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Lnrpc_NodeMetricsRequest, rhs: Lnrpc_NodeMetricsRequest) -> Bool {
+    if lhs.types != rhs.types {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Lnrpc_NodeMetricsResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".NodeMetricsResponse"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "betweenness_centrality"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Lnrpc_FloatMetric>.self, value: &self.betweennessCentrality)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.betweennessCentrality.isEmpty {
+      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Lnrpc_FloatMetric>.self, value: self.betweennessCentrality, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Lnrpc_NodeMetricsResponse, rhs: Lnrpc_NodeMetricsResponse) -> Bool {
+    if lhs.betweennessCentrality != rhs.betweennessCentrality {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Lnrpc_FloatMetric: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".FloatMetric"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "value"),
+    2: .standard(proto: "normalized_value"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularDoubleField(value: &self.value)
+      case 2: try decoder.decodeSingularDoubleField(value: &self.normalizedValue)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.value != 0 {
+      try visitor.visitSingularDoubleField(value: self.value, fieldNumber: 1)
+    }
+    if self.normalizedValue != 0 {
+      try visitor.visitSingularDoubleField(value: self.normalizedValue, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Lnrpc_FloatMetric, rhs: Lnrpc_FloatMetric) -> Bool {
+    if lhs.value != rhs.value {return false}
+    if lhs.normalizedValue != rhs.normalizedValue {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
 extension Lnrpc_ChanInfoRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".ChanInfoRequest"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -8316,17 +10939,17 @@ extension Lnrpc_NetworkInfoRequest: SwiftProtobuf.Message, SwiftProtobuf._Messag
 extension Lnrpc_NetworkInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".NetworkInfo"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "graph_diameter"),
-    2: .same(proto: "avg_out_degree"),
-    3: .same(proto: "max_out_degree"),
-    4: .same(proto: "num_nodes"),
-    5: .same(proto: "num_channels"),
-    6: .same(proto: "total_network_capacity"),
-    7: .same(proto: "avg_channel_size"),
-    8: .same(proto: "min_channel_size"),
-    9: .same(proto: "max_channel_size"),
-    10: .same(proto: "median_channel_size_sat"),
-    11: .same(proto: "num_zombie_chans"),
+    1: .standard(proto: "graph_diameter"),
+    2: .standard(proto: "avg_out_degree"),
+    3: .standard(proto: "max_out_degree"),
+    4: .standard(proto: "num_nodes"),
+    5: .standard(proto: "num_channels"),
+    6: .standard(proto: "total_network_capacity"),
+    7: .standard(proto: "avg_channel_size"),
+    8: .standard(proto: "min_channel_size"),
+    9: .standard(proto: "max_channel_size"),
+    10: .standard(proto: "median_channel_size_sat"),
+    11: .standard(proto: "num_zombie_chans"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -8662,11 +11285,11 @@ extension Lnrpc_ClosedChannelUpdate: SwiftProtobuf.Message, SwiftProtobuf._Messa
 extension Lnrpc_HopHint: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".HopHint"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "node_id"),
-    2: .same(proto: "chan_id"),
-    3: .same(proto: "fee_base_msat"),
-    4: .same(proto: "fee_proportional_millionths"),
-    5: .same(proto: "cltv_expiry_delta"),
+    1: .standard(proto: "node_id"),
+    2: .standard(proto: "chan_id"),
+    3: .standard(proto: "fee_base_msat"),
+    4: .standard(proto: "fee_proportional_millionths"),
+    5: .standard(proto: "cltv_expiry_delta"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -8715,7 +11338,7 @@ extension Lnrpc_HopHint: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
 extension Lnrpc_RouteHint: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".RouteHint"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "hop_hints"),
+    1: .standard(proto: "hop_hints"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -8745,27 +11368,29 @@ extension Lnrpc_Invoice: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
   static let protoMessageName: String = _protobuf_package + ".Invoice"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "memo"),
-    3: .same(proto: "r_preimage"),
-    4: .same(proto: "r_hash"),
+    3: .standard(proto: "r_preimage"),
+    4: .standard(proto: "r_hash"),
     5: .same(proto: "value"),
-    23: .same(proto: "value_msat"),
+    23: .standard(proto: "value_msat"),
     6: .same(proto: "settled"),
-    7: .same(proto: "creation_date"),
-    8: .same(proto: "settle_date"),
-    9: .same(proto: "payment_request"),
-    10: .same(proto: "description_hash"),
+    7: .standard(proto: "creation_date"),
+    8: .standard(proto: "settle_date"),
+    9: .standard(proto: "payment_request"),
+    10: .standard(proto: "description_hash"),
     11: .same(proto: "expiry"),
-    12: .same(proto: "fallback_addr"),
-    13: .same(proto: "cltv_expiry"),
-    14: .same(proto: "route_hints"),
+    12: .standard(proto: "fallback_addr"),
+    13: .standard(proto: "cltv_expiry"),
+    14: .standard(proto: "route_hints"),
     15: .same(proto: "private"),
-    16: .same(proto: "add_index"),
-    17: .same(proto: "settle_index"),
-    18: .same(proto: "amt_paid"),
-    19: .same(proto: "amt_paid_sat"),
-    20: .same(proto: "amt_paid_msat"),
+    16: .standard(proto: "add_index"),
+    17: .standard(proto: "settle_index"),
+    18: .standard(proto: "amt_paid"),
+    19: .standard(proto: "amt_paid_sat"),
+    20: .standard(proto: "amt_paid_msat"),
     21: .same(proto: "state"),
     22: .same(proto: "htlcs"),
+    24: .same(proto: "features"),
+    25: .standard(proto: "is_keysend"),
   ]
 
   fileprivate class _StorageClass {
@@ -8791,6 +11416,8 @@ extension Lnrpc_Invoice: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
     var _amtPaidMsat: Int64 = 0
     var _state: Lnrpc_Invoice.InvoiceState = .open
     var _htlcs: [Lnrpc_InvoiceHTLC] = []
+    var _features: Dictionary<UInt32,Lnrpc_Feature> = [:]
+    var _isKeysend: Bool = false
 
     static let defaultInstance = _StorageClass()
 
@@ -8819,6 +11446,8 @@ extension Lnrpc_Invoice: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
       _amtPaidMsat = source._amtPaidMsat
       _state = source._state
       _htlcs = source._htlcs
+      _features = source._features
+      _isKeysend = source._isKeysend
     }
   }
 
@@ -8856,6 +11485,8 @@ extension Lnrpc_Invoice: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
         case 21: try decoder.decodeSingularEnumField(value: &_storage._state)
         case 22: try decoder.decodeRepeatedMessageField(value: &_storage._htlcs)
         case 23: try decoder.decodeSingularInt64Field(value: &_storage._valueMsat)
+        case 24: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufUInt32,Lnrpc_Feature>.self, value: &_storage._features)
+        case 25: try decoder.decodeSingularBoolField(value: &_storage._isKeysend)
         default: break
         }
       }
@@ -8930,6 +11561,12 @@ extension Lnrpc_Invoice: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
       if _storage._valueMsat != 0 {
         try visitor.visitSingularInt64Field(value: _storage._valueMsat, fieldNumber: 23)
       }
+      if !_storage._features.isEmpty {
+        try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufUInt32,Lnrpc_Feature>.self, value: _storage._features, fieldNumber: 24)
+      }
+      if _storage._isKeysend != false {
+        try visitor.visitSingularBoolField(value: _storage._isKeysend, fieldNumber: 25)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -8961,6 +11598,8 @@ extension Lnrpc_Invoice: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
         if _storage._amtPaidMsat != rhs_storage._amtPaidMsat {return false}
         if _storage._state != rhs_storage._state {return false}
         if _storage._htlcs != rhs_storage._htlcs {return false}
+        if _storage._features != rhs_storage._features {return false}
+        if _storage._isKeysend != rhs_storage._isKeysend {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -8982,14 +11621,16 @@ extension Lnrpc_Invoice.InvoiceState: SwiftProtobuf._ProtoNameProviding {
 extension Lnrpc_InvoiceHTLC: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".InvoiceHTLC"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "chan_id"),
-    2: .same(proto: "htlc_index"),
-    3: .same(proto: "amt_msat"),
-    4: .same(proto: "accept_height"),
-    5: .same(proto: "accept_time"),
-    6: .same(proto: "resolve_time"),
-    7: .same(proto: "expiry_height"),
+    1: .standard(proto: "chan_id"),
+    2: .standard(proto: "htlc_index"),
+    3: .standard(proto: "amt_msat"),
+    4: .standard(proto: "accept_height"),
+    5: .standard(proto: "accept_time"),
+    6: .standard(proto: "resolve_time"),
+    7: .standard(proto: "expiry_height"),
     8: .same(proto: "state"),
+    9: .standard(proto: "custom_records"),
+    10: .standard(proto: "mpp_total_amt_msat"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -9003,6 +11644,8 @@ extension Lnrpc_InvoiceHTLC: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
       case 6: try decoder.decodeSingularInt64Field(value: &self.resolveTime)
       case 7: try decoder.decodeSingularInt32Field(value: &self.expiryHeight)
       case 8: try decoder.decodeSingularEnumField(value: &self.state)
+      case 9: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufUInt64,SwiftProtobuf.ProtobufBytes>.self, value: &self.customRecords)
+      case 10: try decoder.decodeSingularUInt64Field(value: &self.mppTotalAmtMsat)
       default: break
       }
     }
@@ -9033,6 +11676,12 @@ extension Lnrpc_InvoiceHTLC: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
     if self.state != .accepted {
       try visitor.visitSingularEnumField(value: self.state, fieldNumber: 8)
     }
+    if !self.customRecords.isEmpty {
+      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufUInt64,SwiftProtobuf.ProtobufBytes>.self, value: self.customRecords, fieldNumber: 9)
+    }
+    if self.mppTotalAmtMsat != 0 {
+      try visitor.visitSingularUInt64Field(value: self.mppTotalAmtMsat, fieldNumber: 10)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -9045,6 +11694,8 @@ extension Lnrpc_InvoiceHTLC: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
     if lhs.resolveTime != rhs.resolveTime {return false}
     if lhs.expiryHeight != rhs.expiryHeight {return false}
     if lhs.state != rhs.state {return false}
+    if lhs.customRecords != rhs.customRecords {return false}
+    if lhs.mppTotalAmtMsat != rhs.mppTotalAmtMsat {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -9053,9 +11704,9 @@ extension Lnrpc_InvoiceHTLC: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
 extension Lnrpc_AddInvoiceResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".AddInvoiceResponse"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "r_hash"),
-    2: .same(proto: "payment_request"),
-    16: .same(proto: "add_index"),
+    1: .standard(proto: "r_hash"),
+    2: .standard(proto: "payment_request"),
+    16: .standard(proto: "add_index"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -9094,8 +11745,8 @@ extension Lnrpc_AddInvoiceResponse: SwiftProtobuf.Message, SwiftProtobuf._Messag
 extension Lnrpc_PaymentHash: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".PaymentHash"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "r_hash_str"),
-    2: .same(proto: "r_hash"),
+    1: .standard(proto: "r_hash_str"),
+    2: .standard(proto: "r_hash"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -9129,9 +11780,9 @@ extension Lnrpc_PaymentHash: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
 extension Lnrpc_ListInvoiceRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".ListInvoiceRequest"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "pending_only"),
-    4: .same(proto: "index_offset"),
-    5: .same(proto: "num_max_invoices"),
+    1: .standard(proto: "pending_only"),
+    4: .standard(proto: "index_offset"),
+    5: .standard(proto: "num_max_invoices"),
     6: .same(proto: "reversed"),
   ]
 
@@ -9177,8 +11828,8 @@ extension Lnrpc_ListInvoiceResponse: SwiftProtobuf.Message, SwiftProtobuf._Messa
   static let protoMessageName: String = _protobuf_package + ".ListInvoiceResponse"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "invoices"),
-    2: .same(proto: "last_index_offset"),
-    3: .same(proto: "first_index_offset"),
+    2: .standard(proto: "last_index_offset"),
+    3: .standard(proto: "first_index_offset"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -9217,8 +11868,8 @@ extension Lnrpc_ListInvoiceResponse: SwiftProtobuf.Message, SwiftProtobuf._Messa
 extension Lnrpc_InvoiceSubscription: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".InvoiceSubscription"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "add_index"),
-    2: .same(proto: "settle_index"),
+    1: .standard(proto: "add_index"),
+    2: .standard(proto: "settle_index"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -9252,20 +11903,21 @@ extension Lnrpc_InvoiceSubscription: SwiftProtobuf.Message, SwiftProtobuf._Messa
 extension Lnrpc_Payment: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".Payment"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "payment_hash"),
+    1: .standard(proto: "payment_hash"),
     2: .same(proto: "value"),
-    3: .same(proto: "creation_date"),
-    4: .same(proto: "path"),
+    3: .standard(proto: "creation_date"),
     5: .same(proto: "fee"),
-    6: .same(proto: "payment_preimage"),
-    7: .same(proto: "value_sat"),
-    8: .same(proto: "value_msat"),
-    9: .same(proto: "payment_request"),
+    6: .standard(proto: "payment_preimage"),
+    7: .standard(proto: "value_sat"),
+    8: .standard(proto: "value_msat"),
+    9: .standard(proto: "payment_request"),
     10: .same(proto: "status"),
-    11: .same(proto: "fee_sat"),
-    12: .same(proto: "fee_msat"),
-    13: .same(proto: "creation_time_ns"),
+    11: .standard(proto: "fee_sat"),
+    12: .standard(proto: "fee_msat"),
+    13: .standard(proto: "creation_time_ns"),
     14: .same(proto: "htlcs"),
+    15: .standard(proto: "payment_index"),
+    16: .standard(proto: "failure_reason"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -9274,7 +11926,6 @@ extension Lnrpc_Payment: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
       case 1: try decoder.decodeSingularStringField(value: &self.paymentHash)
       case 2: try decoder.decodeSingularInt64Field(value: &self.value)
       case 3: try decoder.decodeSingularInt64Field(value: &self.creationDate)
-      case 4: try decoder.decodeRepeatedStringField(value: &self.path)
       case 5: try decoder.decodeSingularInt64Field(value: &self.fee)
       case 6: try decoder.decodeSingularStringField(value: &self.paymentPreimage)
       case 7: try decoder.decodeSingularInt64Field(value: &self.valueSat)
@@ -9285,6 +11936,8 @@ extension Lnrpc_Payment: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
       case 12: try decoder.decodeSingularInt64Field(value: &self.feeMsat)
       case 13: try decoder.decodeSingularInt64Field(value: &self.creationTimeNs)
       case 14: try decoder.decodeRepeatedMessageField(value: &self.htlcs)
+      case 15: try decoder.decodeSingularUInt64Field(value: &self.paymentIndex)
+      case 16: try decoder.decodeSingularEnumField(value: &self.failureReason)
       default: break
       }
     }
@@ -9299,9 +11952,6 @@ extension Lnrpc_Payment: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
     }
     if self.creationDate != 0 {
       try visitor.visitSingularInt64Field(value: self.creationDate, fieldNumber: 3)
-    }
-    if !self.path.isEmpty {
-      try visitor.visitRepeatedStringField(value: self.path, fieldNumber: 4)
     }
     if self.fee != 0 {
       try visitor.visitSingularInt64Field(value: self.fee, fieldNumber: 5)
@@ -9333,6 +11983,12 @@ extension Lnrpc_Payment: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
     if !self.htlcs.isEmpty {
       try visitor.visitRepeatedMessageField(value: self.htlcs, fieldNumber: 14)
     }
+    if self.paymentIndex != 0 {
+      try visitor.visitSingularUInt64Field(value: self.paymentIndex, fieldNumber: 15)
+    }
+    if self.failureReason != .failureReasonNone {
+      try visitor.visitSingularEnumField(value: self.failureReason, fieldNumber: 16)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -9340,7 +11996,6 @@ extension Lnrpc_Payment: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
     if lhs.paymentHash != rhs.paymentHash {return false}
     if lhs.value != rhs.value {return false}
     if lhs.creationDate != rhs.creationDate {return false}
-    if lhs.path != rhs.path {return false}
     if lhs.fee != rhs.fee {return false}
     if lhs.paymentPreimage != rhs.paymentPreimage {return false}
     if lhs.valueSat != rhs.valueSat {return false}
@@ -9351,6 +12006,8 @@ extension Lnrpc_Payment: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
     if lhs.feeMsat != rhs.feeMsat {return false}
     if lhs.creationTimeNs != rhs.creationTimeNs {return false}
     if lhs.htlcs != rhs.htlcs {return false}
+    if lhs.paymentIndex != rhs.paymentIndex {return false}
+    if lhs.failureReason != rhs.failureReason {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -9370,8 +12027,9 @@ extension Lnrpc_HTLCAttempt: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "status"),
     2: .same(proto: "route"),
-    3: .same(proto: "attempt_time_ns"),
-    4: .same(proto: "resolve_time_ns"),
+    3: .standard(proto: "attempt_time_ns"),
+    4: .standard(proto: "resolve_time_ns"),
+    5: .same(proto: "failure"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -9381,6 +12039,7 @@ extension Lnrpc_HTLCAttempt: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
       case 2: try decoder.decodeSingularMessageField(value: &self._route)
       case 3: try decoder.decodeSingularInt64Field(value: &self.attemptTimeNs)
       case 4: try decoder.decodeSingularInt64Field(value: &self.resolveTimeNs)
+      case 5: try decoder.decodeSingularMessageField(value: &self._failure)
       default: break
       }
     }
@@ -9399,6 +12058,9 @@ extension Lnrpc_HTLCAttempt: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
     if self.resolveTimeNs != 0 {
       try visitor.visitSingularInt64Field(value: self.resolveTimeNs, fieldNumber: 4)
     }
+    if let v = self._failure {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -9407,6 +12069,7 @@ extension Lnrpc_HTLCAttempt: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
     if lhs._route != rhs._route {return false}
     if lhs.attemptTimeNs != rhs.attemptTimeNs {return false}
     if lhs.resolveTimeNs != rhs.resolveTimeNs {return false}
+    if lhs._failure != rhs._failure {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -9424,12 +12087,18 @@ extension Lnrpc_ListPaymentsRequest: SwiftProtobuf.Message, SwiftProtobuf._Messa
   static let protoMessageName: String = _protobuf_package + ".ListPaymentsRequest"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "include_incomplete"),
+    2: .standard(proto: "index_offset"),
+    3: .standard(proto: "max_payments"),
+    4: .same(proto: "reversed"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularBoolField(value: &self.includeIncomplete)
+      case 2: try decoder.decodeSingularUInt64Field(value: &self.indexOffset)
+      case 3: try decoder.decodeSingularUInt64Field(value: &self.maxPayments)
+      case 4: try decoder.decodeSingularBoolField(value: &self.reversed)
       default: break
       }
     }
@@ -9439,11 +12108,23 @@ extension Lnrpc_ListPaymentsRequest: SwiftProtobuf.Message, SwiftProtobuf._Messa
     if self.includeIncomplete != false {
       try visitor.visitSingularBoolField(value: self.includeIncomplete, fieldNumber: 1)
     }
+    if self.indexOffset != 0 {
+      try visitor.visitSingularUInt64Field(value: self.indexOffset, fieldNumber: 2)
+    }
+    if self.maxPayments != 0 {
+      try visitor.visitSingularUInt64Field(value: self.maxPayments, fieldNumber: 3)
+    }
+    if self.reversed != false {
+      try visitor.visitSingularBoolField(value: self.reversed, fieldNumber: 4)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   static func ==(lhs: Lnrpc_ListPaymentsRequest, rhs: Lnrpc_ListPaymentsRequest) -> Bool {
     if lhs.includeIncomplete != rhs.includeIncomplete {return false}
+    if lhs.indexOffset != rhs.indexOffset {return false}
+    if lhs.maxPayments != rhs.maxPayments {return false}
+    if lhs.reversed != rhs.reversed {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -9453,12 +12134,16 @@ extension Lnrpc_ListPaymentsResponse: SwiftProtobuf.Message, SwiftProtobuf._Mess
   static let protoMessageName: String = _protobuf_package + ".ListPaymentsResponse"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "payments"),
+    2: .standard(proto: "first_index_offset"),
+    3: .standard(proto: "last_index_offset"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeRepeatedMessageField(value: &self.payments)
+      case 2: try decoder.decodeSingularUInt64Field(value: &self.firstIndexOffset)
+      case 3: try decoder.decodeSingularUInt64Field(value: &self.lastIndexOffset)
       default: break
       }
     }
@@ -9468,11 +12153,19 @@ extension Lnrpc_ListPaymentsResponse: SwiftProtobuf.Message, SwiftProtobuf._Mess
     if !self.payments.isEmpty {
       try visitor.visitRepeatedMessageField(value: self.payments, fieldNumber: 1)
     }
+    if self.firstIndexOffset != 0 {
+      try visitor.visitSingularUInt64Field(value: self.firstIndexOffset, fieldNumber: 2)
+    }
+    if self.lastIndexOffset != 0 {
+      try visitor.visitSingularUInt64Field(value: self.lastIndexOffset, fieldNumber: 3)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   static func ==(lhs: Lnrpc_ListPaymentsResponse, rhs: Lnrpc_ListPaymentsResponse) -> Bool {
     if lhs.payments != rhs.payments {return false}
+    if lhs.firstIndexOffset != rhs.firstIndexOffset {return false}
+    if lhs.lastIndexOffset != rhs.lastIndexOffset {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -9602,7 +12295,7 @@ extension Lnrpc_DebugLevelRequest: SwiftProtobuf.Message, SwiftProtobuf._Message
 extension Lnrpc_DebugLevelResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".DebugLevelResponse"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "sub_systems"),
+    1: .standard(proto: "sub_systems"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -9661,15 +12354,18 @@ extension Lnrpc_PayReq: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementat
   static let protoMessageName: String = _protobuf_package + ".PayReq"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "destination"),
-    2: .same(proto: "payment_hash"),
-    3: .same(proto: "num_satoshis"),
+    2: .standard(proto: "payment_hash"),
+    3: .standard(proto: "num_satoshis"),
     4: .same(proto: "timestamp"),
     5: .same(proto: "expiry"),
     6: .same(proto: "description"),
-    7: .same(proto: "description_hash"),
-    8: .same(proto: "fallback_addr"),
-    9: .same(proto: "cltv_expiry"),
-    10: .same(proto: "route_hints"),
+    7: .standard(proto: "description_hash"),
+    8: .standard(proto: "fallback_addr"),
+    9: .standard(proto: "cltv_expiry"),
+    10: .standard(proto: "route_hints"),
+    11: .standard(proto: "payment_addr"),
+    12: .standard(proto: "num_msat"),
+    13: .same(proto: "features"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -9685,6 +12381,9 @@ extension Lnrpc_PayReq: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementat
       case 8: try decoder.decodeSingularStringField(value: &self.fallbackAddr)
       case 9: try decoder.decodeSingularInt64Field(value: &self.cltvExpiry)
       case 10: try decoder.decodeRepeatedMessageField(value: &self.routeHints)
+      case 11: try decoder.decodeSingularBytesField(value: &self.paymentAddr)
+      case 12: try decoder.decodeSingularInt64Field(value: &self.numMsat)
+      case 13: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufUInt32,Lnrpc_Feature>.self, value: &self.features)
       default: break
       }
     }
@@ -9721,6 +12420,15 @@ extension Lnrpc_PayReq: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementat
     if !self.routeHints.isEmpty {
       try visitor.visitRepeatedMessageField(value: self.routeHints, fieldNumber: 10)
     }
+    if !self.paymentAddr.isEmpty {
+      try visitor.visitSingularBytesField(value: self.paymentAddr, fieldNumber: 11)
+    }
+    if self.numMsat != 0 {
+      try visitor.visitSingularInt64Field(value: self.numMsat, fieldNumber: 12)
+    }
+    if !self.features.isEmpty {
+      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufUInt32,Lnrpc_Feature>.self, value: self.features, fieldNumber: 13)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -9735,6 +12443,50 @@ extension Lnrpc_PayReq: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementat
     if lhs.fallbackAddr != rhs.fallbackAddr {return false}
     if lhs.cltvExpiry != rhs.cltvExpiry {return false}
     if lhs.routeHints != rhs.routeHints {return false}
+    if lhs.paymentAddr != rhs.paymentAddr {return false}
+    if lhs.numMsat != rhs.numMsat {return false}
+    if lhs.features != rhs.features {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Lnrpc_Feature: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".Feature"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    2: .same(proto: "name"),
+    3: .standard(proto: "is_required"),
+    4: .standard(proto: "is_known"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 2: try decoder.decodeSingularStringField(value: &self.name)
+      case 3: try decoder.decodeSingularBoolField(value: &self.isRequired)
+      case 4: try decoder.decodeSingularBoolField(value: &self.isKnown)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.name.isEmpty {
+      try visitor.visitSingularStringField(value: self.name, fieldNumber: 2)
+    }
+    if self.isRequired != false {
+      try visitor.visitSingularBoolField(value: self.isRequired, fieldNumber: 3)
+    }
+    if self.isKnown != false {
+      try visitor.visitSingularBoolField(value: self.isKnown, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Lnrpc_Feature, rhs: Lnrpc_Feature) -> Bool {
+    if lhs.name != rhs.name {return false}
+    if lhs.isRequired != rhs.isRequired {return false}
+    if lhs.isKnown != rhs.isKnown {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -9762,27 +12514,29 @@ extension Lnrpc_FeeReportRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageI
 extension Lnrpc_ChannelFeeReport: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".ChannelFeeReport"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .unique(proto: "chan_point", json: "channel_point"),
-    2: .same(proto: "base_fee_msat"),
-    3: .same(proto: "fee_per_mil"),
-    4: .same(proto: "fee_rate"),
+    5: .standard(proto: "chan_id"),
+    1: .standard(proto: "channel_point"),
+    2: .standard(proto: "base_fee_msat"),
+    3: .standard(proto: "fee_per_mil"),
+    4: .standard(proto: "fee_rate"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.chanPoint)
+      case 1: try decoder.decodeSingularStringField(value: &self.channelPoint)
       case 2: try decoder.decodeSingularInt64Field(value: &self.baseFeeMsat)
       case 3: try decoder.decodeSingularInt64Field(value: &self.feePerMil)
       case 4: try decoder.decodeSingularDoubleField(value: &self.feeRate)
+      case 5: try decoder.decodeSingularUInt64Field(value: &self.chanID)
       default: break
       }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.chanPoint.isEmpty {
-      try visitor.visitSingularStringField(value: self.chanPoint, fieldNumber: 1)
+    if !self.channelPoint.isEmpty {
+      try visitor.visitSingularStringField(value: self.channelPoint, fieldNumber: 1)
     }
     if self.baseFeeMsat != 0 {
       try visitor.visitSingularInt64Field(value: self.baseFeeMsat, fieldNumber: 2)
@@ -9793,11 +12547,15 @@ extension Lnrpc_ChannelFeeReport: SwiftProtobuf.Message, SwiftProtobuf._MessageI
     if self.feeRate != 0 {
       try visitor.visitSingularDoubleField(value: self.feeRate, fieldNumber: 4)
     }
+    if self.chanID != 0 {
+      try visitor.visitSingularUInt64Field(value: self.chanID, fieldNumber: 5)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   static func ==(lhs: Lnrpc_ChannelFeeReport, rhs: Lnrpc_ChannelFeeReport) -> Bool {
-    if lhs.chanPoint != rhs.chanPoint {return false}
+    if lhs.chanID != rhs.chanID {return false}
+    if lhs.channelPoint != rhs.channelPoint {return false}
     if lhs.baseFeeMsat != rhs.baseFeeMsat {return false}
     if lhs.feePerMil != rhs.feePerMil {return false}
     if lhs.feeRate != rhs.feeRate {return false}
@@ -9809,10 +12567,10 @@ extension Lnrpc_ChannelFeeReport: SwiftProtobuf.Message, SwiftProtobuf._MessageI
 extension Lnrpc_FeeReportResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".FeeReportResponse"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "channel_fees"),
-    2: .same(proto: "day_fee_sum"),
-    3: .same(proto: "week_fee_sum"),
-    4: .same(proto: "month_fee_sum"),
+    1: .standard(proto: "channel_fees"),
+    2: .standard(proto: "day_fee_sum"),
+    3: .standard(proto: "week_fee_sum"),
+    4: .standard(proto: "month_fee_sum"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -9857,11 +12615,13 @@ extension Lnrpc_PolicyUpdateRequest: SwiftProtobuf.Message, SwiftProtobuf._Messa
   static let protoMessageName: String = _protobuf_package + ".PolicyUpdateRequest"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "global"),
-    2: .same(proto: "chan_point"),
-    3: .same(proto: "base_fee_msat"),
-    4: .same(proto: "fee_rate"),
-    5: .same(proto: "time_lock_delta"),
-    6: .same(proto: "max_htlc_msat"),
+    2: .standard(proto: "chan_point"),
+    3: .standard(proto: "base_fee_msat"),
+    4: .standard(proto: "fee_rate"),
+    5: .standard(proto: "time_lock_delta"),
+    6: .standard(proto: "max_htlc_msat"),
+    7: .standard(proto: "min_htlc_msat"),
+    8: .standard(proto: "min_htlc_msat_specified"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -9884,6 +12644,8 @@ extension Lnrpc_PolicyUpdateRequest: SwiftProtobuf.Message, SwiftProtobuf._Messa
       case 4: try decoder.decodeSingularDoubleField(value: &self.feeRate)
       case 5: try decoder.decodeSingularUInt32Field(value: &self.timeLockDelta)
       case 6: try decoder.decodeSingularUInt64Field(value: &self.maxHtlcMsat)
+      case 7: try decoder.decodeSingularUInt64Field(value: &self.minHtlcMsat)
+      case 8: try decoder.decodeSingularBoolField(value: &self.minHtlcMsatSpecified)
       default: break
       }
     }
@@ -9909,6 +12671,12 @@ extension Lnrpc_PolicyUpdateRequest: SwiftProtobuf.Message, SwiftProtobuf._Messa
     if self.maxHtlcMsat != 0 {
       try visitor.visitSingularUInt64Field(value: self.maxHtlcMsat, fieldNumber: 6)
     }
+    if self.minHtlcMsat != 0 {
+      try visitor.visitSingularUInt64Field(value: self.minHtlcMsat, fieldNumber: 7)
+    }
+    if self.minHtlcMsatSpecified != false {
+      try visitor.visitSingularBoolField(value: self.minHtlcMsatSpecified, fieldNumber: 8)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -9918,6 +12686,8 @@ extension Lnrpc_PolicyUpdateRequest: SwiftProtobuf.Message, SwiftProtobuf._Messa
     if lhs.feeRate != rhs.feeRate {return false}
     if lhs.timeLockDelta != rhs.timeLockDelta {return false}
     if lhs.maxHtlcMsat != rhs.maxHtlcMsat {return false}
+    if lhs.minHtlcMsat != rhs.minHtlcMsat {return false}
+    if lhs.minHtlcMsatSpecified != rhs.minHtlcMsatSpecified {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -9945,10 +12715,10 @@ extension Lnrpc_PolicyUpdateResponse: SwiftProtobuf.Message, SwiftProtobuf._Mess
 extension Lnrpc_ForwardingHistoryRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".ForwardingHistoryRequest"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "start_time"),
-    2: .same(proto: "end_time"),
-    3: .same(proto: "index_offset"),
-    4: .same(proto: "num_max_events"),
+    1: .standard(proto: "start_time"),
+    2: .standard(proto: "end_time"),
+    3: .standard(proto: "index_offset"),
+    4: .standard(proto: "num_max_events"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -9993,14 +12763,14 @@ extension Lnrpc_ForwardingEvent: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
   static let protoMessageName: String = _protobuf_package + ".ForwardingEvent"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "timestamp"),
-    2: .same(proto: "chan_id_in"),
-    4: .same(proto: "chan_id_out"),
-    5: .same(proto: "amt_in"),
-    6: .same(proto: "amt_out"),
+    2: .standard(proto: "chan_id_in"),
+    4: .standard(proto: "chan_id_out"),
+    5: .standard(proto: "amt_in"),
+    6: .standard(proto: "amt_out"),
     7: .same(proto: "fee"),
-    8: .same(proto: "fee_msat"),
-    9: .same(proto: "amt_in_msat"),
-    10: .same(proto: "amt_out_msat"),
+    8: .standard(proto: "fee_msat"),
+    9: .standard(proto: "amt_in_msat"),
+    10: .standard(proto: "amt_out_msat"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -10069,8 +12839,8 @@ extension Lnrpc_ForwardingEvent: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
 extension Lnrpc_ForwardingHistoryResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".ForwardingHistoryResponse"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "forwarding_events"),
-    2: .same(proto: "last_offset_index"),
+    1: .standard(proto: "forwarding_events"),
+    2: .standard(proto: "last_offset_index"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -10133,8 +12903,8 @@ extension Lnrpc_ExportChannelBackupRequest: SwiftProtobuf.Message, SwiftProtobuf
 extension Lnrpc_ChannelBackup: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".ChannelBackup"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "chan_point"),
-    2: .same(proto: "chan_backup"),
+    1: .standard(proto: "chan_point"),
+    2: .standard(proto: "chan_backup"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -10168,8 +12938,8 @@ extension Lnrpc_ChannelBackup: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
 extension Lnrpc_MultiChanBackup: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".MultiChanBackup"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "chan_points"),
-    2: .same(proto: "multi_chan_backup"),
+    1: .standard(proto: "chan_points"),
+    2: .standard(proto: "multi_chan_backup"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -10222,8 +12992,8 @@ extension Lnrpc_ChanBackupExportRequest: SwiftProtobuf.Message, SwiftProtobuf._M
 extension Lnrpc_ChanBackupSnapshot: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".ChanBackupSnapshot"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "single_chan_backups"),
-    2: .same(proto: "multi_chan_backup"),
+    1: .standard(proto: "single_chan_backups"),
+    2: .standard(proto: "multi_chan_backup"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -10257,7 +13027,7 @@ extension Lnrpc_ChanBackupSnapshot: SwiftProtobuf.Message, SwiftProtobuf._Messag
 extension Lnrpc_ChannelBackups: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".ChannelBackups"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "chan_backups"),
+    1: .standard(proto: "chan_backups"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -10286,8 +13056,8 @@ extension Lnrpc_ChannelBackups: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
 extension Lnrpc_RestoreChanBackupRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".RestoreChanBackupRequest"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "chan_backups"),
-    2: .same(proto: "multi_chan_backup"),
+    1: .standard(proto: "chan_backups"),
+    2: .standard(proto: "multi_chan_backup"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -10474,6 +13244,204 @@ extension Lnrpc_BakeMacaroonResponse: SwiftProtobuf.Message, SwiftProtobuf._Mess
 
   static func ==(lhs: Lnrpc_BakeMacaroonResponse, rhs: Lnrpc_BakeMacaroonResponse) -> Bool {
     if lhs.macaroon != rhs.macaroon {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Lnrpc_Failure: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".Failure"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "code"),
+    3: .standard(proto: "channel_update"),
+    4: .standard(proto: "htlc_msat"),
+    5: .standard(proto: "onion_sha_256"),
+    6: .standard(proto: "cltv_expiry"),
+    7: .same(proto: "flags"),
+    8: .standard(proto: "failure_source_index"),
+    9: .same(proto: "height"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularEnumField(value: &self.code)
+      case 3: try decoder.decodeSingularMessageField(value: &self._channelUpdate)
+      case 4: try decoder.decodeSingularUInt64Field(value: &self.htlcMsat)
+      case 5: try decoder.decodeSingularBytesField(value: &self.onionSha256)
+      case 6: try decoder.decodeSingularUInt32Field(value: &self.cltvExpiry)
+      case 7: try decoder.decodeSingularUInt32Field(value: &self.flags)
+      case 8: try decoder.decodeSingularUInt32Field(value: &self.failureSourceIndex)
+      case 9: try decoder.decodeSingularUInt32Field(value: &self.height)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.code != .reserved {
+      try visitor.visitSingularEnumField(value: self.code, fieldNumber: 1)
+    }
+    if let v = self._channelUpdate {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+    }
+    if self.htlcMsat != 0 {
+      try visitor.visitSingularUInt64Field(value: self.htlcMsat, fieldNumber: 4)
+    }
+    if !self.onionSha256.isEmpty {
+      try visitor.visitSingularBytesField(value: self.onionSha256, fieldNumber: 5)
+    }
+    if self.cltvExpiry != 0 {
+      try visitor.visitSingularUInt32Field(value: self.cltvExpiry, fieldNumber: 6)
+    }
+    if self.flags != 0 {
+      try visitor.visitSingularUInt32Field(value: self.flags, fieldNumber: 7)
+    }
+    if self.failureSourceIndex != 0 {
+      try visitor.visitSingularUInt32Field(value: self.failureSourceIndex, fieldNumber: 8)
+    }
+    if self.height != 0 {
+      try visitor.visitSingularUInt32Field(value: self.height, fieldNumber: 9)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Lnrpc_Failure, rhs: Lnrpc_Failure) -> Bool {
+    if lhs.code != rhs.code {return false}
+    if lhs._channelUpdate != rhs._channelUpdate {return false}
+    if lhs.htlcMsat != rhs.htlcMsat {return false}
+    if lhs.onionSha256 != rhs.onionSha256 {return false}
+    if lhs.cltvExpiry != rhs.cltvExpiry {return false}
+    if lhs.flags != rhs.flags {return false}
+    if lhs.failureSourceIndex != rhs.failureSourceIndex {return false}
+    if lhs.height != rhs.height {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Lnrpc_Failure.FailureCode: SwiftProtobuf._ProtoNameProviding {
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "RESERVED"),
+    1: .same(proto: "INCORRECT_OR_UNKNOWN_PAYMENT_DETAILS"),
+    2: .same(proto: "INCORRECT_PAYMENT_AMOUNT"),
+    3: .same(proto: "FINAL_INCORRECT_CLTV_EXPIRY"),
+    4: .same(proto: "FINAL_INCORRECT_HTLC_AMOUNT"),
+    5: .same(proto: "FINAL_EXPIRY_TOO_SOON"),
+    6: .same(proto: "INVALID_REALM"),
+    7: .same(proto: "EXPIRY_TOO_SOON"),
+    8: .same(proto: "INVALID_ONION_VERSION"),
+    9: .same(proto: "INVALID_ONION_HMAC"),
+    10: .same(proto: "INVALID_ONION_KEY"),
+    11: .same(proto: "AMOUNT_BELOW_MINIMUM"),
+    12: .same(proto: "FEE_INSUFFICIENT"),
+    13: .same(proto: "INCORRECT_CLTV_EXPIRY"),
+    14: .same(proto: "CHANNEL_DISABLED"),
+    15: .same(proto: "TEMPORARY_CHANNEL_FAILURE"),
+    16: .same(proto: "REQUIRED_NODE_FEATURE_MISSING"),
+    17: .same(proto: "REQUIRED_CHANNEL_FEATURE_MISSING"),
+    18: .same(proto: "UNKNOWN_NEXT_PEER"),
+    19: .same(proto: "TEMPORARY_NODE_FAILURE"),
+    20: .same(proto: "PERMANENT_NODE_FAILURE"),
+    21: .same(proto: "PERMANENT_CHANNEL_FAILURE"),
+    22: .same(proto: "EXPIRY_TOO_FAR"),
+    23: .same(proto: "MPP_TIMEOUT"),
+    997: .same(proto: "INTERNAL_FAILURE"),
+    998: .same(proto: "UNKNOWN_FAILURE"),
+    999: .same(proto: "UNREADABLE_FAILURE"),
+  ]
+}
+
+extension Lnrpc_ChannelUpdate: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".ChannelUpdate"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "signature"),
+    2: .standard(proto: "chain_hash"),
+    3: .standard(proto: "chan_id"),
+    4: .same(proto: "timestamp"),
+    10: .standard(proto: "message_flags"),
+    5: .standard(proto: "channel_flags"),
+    6: .standard(proto: "time_lock_delta"),
+    7: .standard(proto: "htlc_minimum_msat"),
+    8: .standard(proto: "base_fee"),
+    9: .standard(proto: "fee_rate"),
+    11: .standard(proto: "htlc_maximum_msat"),
+    12: .standard(proto: "extra_opaque_data"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularBytesField(value: &self.signature)
+      case 2: try decoder.decodeSingularBytesField(value: &self.chainHash)
+      case 3: try decoder.decodeSingularUInt64Field(value: &self.chanID)
+      case 4: try decoder.decodeSingularUInt32Field(value: &self.timestamp)
+      case 5: try decoder.decodeSingularUInt32Field(value: &self.channelFlags)
+      case 6: try decoder.decodeSingularUInt32Field(value: &self.timeLockDelta)
+      case 7: try decoder.decodeSingularUInt64Field(value: &self.htlcMinimumMsat)
+      case 8: try decoder.decodeSingularUInt32Field(value: &self.baseFee)
+      case 9: try decoder.decodeSingularUInt32Field(value: &self.feeRate)
+      case 10: try decoder.decodeSingularUInt32Field(value: &self.messageFlags)
+      case 11: try decoder.decodeSingularUInt64Field(value: &self.htlcMaximumMsat)
+      case 12: try decoder.decodeSingularBytesField(value: &self.extraOpaqueData)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.signature.isEmpty {
+      try visitor.visitSingularBytesField(value: self.signature, fieldNumber: 1)
+    }
+    if !self.chainHash.isEmpty {
+      try visitor.visitSingularBytesField(value: self.chainHash, fieldNumber: 2)
+    }
+    if self.chanID != 0 {
+      try visitor.visitSingularUInt64Field(value: self.chanID, fieldNumber: 3)
+    }
+    if self.timestamp != 0 {
+      try visitor.visitSingularUInt32Field(value: self.timestamp, fieldNumber: 4)
+    }
+    if self.channelFlags != 0 {
+      try visitor.visitSingularUInt32Field(value: self.channelFlags, fieldNumber: 5)
+    }
+    if self.timeLockDelta != 0 {
+      try visitor.visitSingularUInt32Field(value: self.timeLockDelta, fieldNumber: 6)
+    }
+    if self.htlcMinimumMsat != 0 {
+      try visitor.visitSingularUInt64Field(value: self.htlcMinimumMsat, fieldNumber: 7)
+    }
+    if self.baseFee != 0 {
+      try visitor.visitSingularUInt32Field(value: self.baseFee, fieldNumber: 8)
+    }
+    if self.feeRate != 0 {
+      try visitor.visitSingularUInt32Field(value: self.feeRate, fieldNumber: 9)
+    }
+    if self.messageFlags != 0 {
+      try visitor.visitSingularUInt32Field(value: self.messageFlags, fieldNumber: 10)
+    }
+    if self.htlcMaximumMsat != 0 {
+      try visitor.visitSingularUInt64Field(value: self.htlcMaximumMsat, fieldNumber: 11)
+    }
+    if !self.extraOpaqueData.isEmpty {
+      try visitor.visitSingularBytesField(value: self.extraOpaqueData, fieldNumber: 12)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Lnrpc_ChannelUpdate, rhs: Lnrpc_ChannelUpdate) -> Bool {
+    if lhs.signature != rhs.signature {return false}
+    if lhs.chainHash != rhs.chainHash {return false}
+    if lhs.chanID != rhs.chanID {return false}
+    if lhs.timestamp != rhs.timestamp {return false}
+    if lhs.messageFlags != rhs.messageFlags {return false}
+    if lhs.channelFlags != rhs.channelFlags {return false}
+    if lhs.timeLockDelta != rhs.timeLockDelta {return false}
+    if lhs.htlcMinimumMsat != rhs.htlcMinimumMsat {return false}
+    if lhs.baseFee != rhs.baseFee {return false}
+    if lhs.feeRate != rhs.feeRate {return false}
+    if lhs.htlcMaximumMsat != rhs.htlcMaximumMsat {return false}
+    if lhs.extraOpaqueData != rhs.extraOpaqueData {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
