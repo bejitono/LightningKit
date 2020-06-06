@@ -8,29 +8,6 @@
 
 import Foundation.NSDate
 
-typealias LNSWalletMapper = LNSWalletResponseMapper
-
-protocol LNSWalletResponseMapper {
-    
-    func map(seedResponse response: Lnrpc_GenSeedResponse) -> LNSSeed
-    
-    func map(initWalletResponse response: Lnrpc_InitWalletResponse) -> Bool
-    
-    func map(unlockWalletResponse response: Lnrpc_UnlockWalletResponse) -> Bool
-    
-    func map(changePasswordResponse response: Lnrpc_ChangePasswordResponse) -> Bool
-    
-    func map(walletBalanceResponse response: Lnrpc_WalletBalanceResponse) -> LNSWalletBalance
-    
-    func map(channelBalanceResponse response: Lnrpc_ChannelBalanceResponse) -> LNSChannelBalance
-    
-    func map(transactionsResponse response: Lnrpc_TransactionDetails) -> [LNSTransaction]
-    
-    func map(newAddressResponse response: Lnrpc_NewAddressResponse) -> BTCAddress
-    
-    func map(sendCoinsResponse response: Lnrpc_SendCoinsResponse) -> LNSTransactionId
-}
-
 // MARK: - Request mapping
 
 extension Lnrpc_GenSeedRequest {
@@ -124,42 +101,53 @@ extension Lnrpc_SendCoinsRequest {
 extension LNSSeed {
     
     init(response: Lnrpc_GenSeedResponse) {
-        self = .init(phrase: response.cipherSeedMnemonic, encipheredSeed: response.encipheredSeed)
+        self = .init(
+            phrase: response.cipherSeedMnemonic,
+            encipheredSeed: response.encipheredSeed
+        )
     }
 }
 
-struct LNSWalletMapperImplementation: LNSWalletResponseMapper {
+extension Bool {
     
-    func map(seedResponse response: Lnrpc_GenSeedResponse) -> LNSSeed {
-        return LNSSeed(phrase: response.cipherSeedMnemonic, encipheredSeed: response.encipheredSeed)
+    init(initWalletResponse: Lnrpc_InitWalletResponse) {
+        self = true
     }
     
-    func map(initWalletResponse response: Lnrpc_InitWalletResponse) -> Bool {
-        return true
+    init(unlockWalletResponse: Lnrpc_UnlockWalletResponse) {
+        self = true
     }
     
-    func map(unlockWalletResponse response: Lnrpc_UnlockWalletResponse) -> Bool {
-        return true
+    init(changePasswordResponse: Lnrpc_ChangePasswordResponse) {
+        self = true
     }
+}
+
+extension LNSWalletBalance {
     
-    func map(changePasswordResponse response: Lnrpc_ChangePasswordResponse) -> Bool {
-        return true
-    }
-    
-    func map(walletBalanceResponse response: Lnrpc_WalletBalanceResponse) -> LNSWalletBalance {
-        return LNSWalletBalance(
+    init(response: Lnrpc_WalletBalanceResponse) {
+        self = .init(
             totalBalance: Int(response.totalBalance),
             confirmedBalance: Int(response.confirmedBalance),
             unconfirmedBalance: Int(response.unconfirmedBalance)
         )
     }
+}
+
+extension LNSChannelBalance {
     
-    func map(channelBalanceResponse response: Lnrpc_ChannelBalanceResponse) -> LNSChannelBalance {
-        return LNSChannelBalance(balance: Int(response.balance), pendingBalance: Int(response.pendingOpenBalance))
+    init(response: Lnrpc_ChannelBalanceResponse) {
+        self.init(
+            balance: Int(response.balance),
+            pendingBalance: Int(response.pendingOpenBalance)
+        )
     }
+}
+
+extension Array where Element == LNSTransaction {
     
-    func map(transactionsResponse response: Lnrpc_TransactionDetails) -> [LNSTransaction] {
-        return response.transactions.map {
+    init(response: Lnrpc_TransactionDetails) {
+        self = response.transactions.map {
             LNSTransaction(
                 hash: $0.txHash,
                 amount: Int($0.amount),
@@ -170,12 +158,18 @@ struct LNSWalletMapperImplementation: LNSWalletResponseMapper {
             )
         }
     }
+}
+
+extension BTCAddress {
     
-    func map(newAddressResponse response: Lnrpc_NewAddressResponse) -> BTCAddress {
-        return BTCAddress(address: response.address)
+    init(response: Lnrpc_NewAddressResponse) {
+        self = .init(address: response.address)
     }
+}
+
+extension LNSTransactionId {
     
-    func map(sendCoinsResponse response: Lnrpc_SendCoinsResponse) -> LNSTransactionId {
-        return response.txid
+    init(response: Lnrpc_SendCoinsResponse) {
+        self = response.txid
     }
 }

@@ -12,16 +12,13 @@ final class LNSWalletServiceImplementation: LNSWalletService {
     var unlocked: Bool = false
     
     private let client: LndClient
-    private let mapper: LNSWalletMapper
     
-    init(client: LndClient,
-         mapper: LNSWalletMapper) {
+    init(client: LndClient) {
         self.client = client
-        self.mapper = mapper
     }
     
     func generateSeed(completion: @escaping LNSSeedCompletion) {
-        client.request(Lnrpc_GenSeedRequest(config: nil), map: mapper.map(seedResponse:), completion: completion)
+        client.request(Lnrpc_GenSeedRequest(config: nil), map: LNSSeed.init, completion: completion)
     }
     
     func generateSeed(withConfig config: LNSSeedConfiguration, completion: @escaping LNSSeedCompletion) {
@@ -29,39 +26,39 @@ final class LNSWalletServiceImplementation: LNSWalletService {
     }
     
     func initializeWalletWith(password: String, seed: [String], completion: @escaping LNSSuccessCompletion) {
-        client.request(Lnrpc_InitWalletRequest(password: password, seed: seed), map: mapper.map(initWalletResponse:), completion: completion)
+        client.request(Lnrpc_InitWalletRequest(password: password, seed: seed), map: Bool.init(initWalletResponse:), completion: completion)
     }
     
     func unlockWallet(withPassword password: String, completion: @escaping LNSSuccessCompletion) {
-        client.request(Lnrpc_UnlockWalletRequest(password: password), map: mapper.map(unlockWalletResponse:), completion: completion)
+        client.request(Lnrpc_UnlockWalletRequest(password: password), map: Bool.init(unlockWalletResponse:), completion: completion)
     }
     
     func changeWallet(password: String, to newPassword: String, completion: @escaping LNSSuccessCompletion) {
-        client.request(Lnrpc_ChangePasswordRequest(password: password, to: newPassword), map: mapper.map(changePasswordResponse:), completion: completion)
+        client.request(Lnrpc_ChangePasswordRequest(password: password, to: newPassword), map: Bool.init(changePasswordResponse:), completion: completion)
     }
     
     func getWalletBalance(completion: @escaping LNSWalletBalanceCompletion) {
-        client.request(Lnrpc_WalletBalanceRequest(), map: mapper.map(walletBalanceResponse:), completion: completion)
+        client.request(Lnrpc_WalletBalanceRequest(), map: LNSWalletBalance.init, completion: completion)
     }
     
     func getChannelBalance(completion: @escaping LNSChannelBalanceCompletion) {
-        client.request(Lnrpc_ChannelBalanceRequest(), map: mapper.map(channelBalanceResponse:), completion: completion)
+        client.request(Lnrpc_ChannelBalanceRequest(), map: LNSChannelBalance.init, completion: completion)
     }
     
     func getTransactions(completion: @escaping LNSTransactionsCompletion) {
-        client.request(Lnrpc_GetTransactionsRequest(), map: mapper.map(transactionsResponse:), completion: completion)
+        client.request(Lnrpc_GetTransactionsRequest(), map: Array.init, completion: completion)
     }
     
     func generateNewAddress(forType type: LNSAddressType, completion: @escaping LNSNewAddressCompletion) {
-        client.request(Lnrpc_NewAddressRequest(type: type), map: mapper.map(newAddressResponse:), completion: completion)
+        client.request(Lnrpc_NewAddressRequest(type: type), map: BTCAddress.init, completion: completion)
     }
     
     // Default: p2wkh / witnessPubkeyHash
     func generateNewAddress(completion: @escaping LNSNewAddressCompletion) {
-        client.request(Lnrpc_NewAddressRequest(type: nil), map: mapper.map(newAddressResponse:), completion: completion)
+        client.request(Lnrpc_NewAddressRequest(type: nil), map: BTCAddress.init, completion: completion)
     }
     
     func sendCoins(withConfig config: LNSSendCoinsConfiguration, completion: @escaping LNSSendCoinsCompletion) {
-        client.request(Lnrpc_SendCoinsRequest(config: config), map: mapper.map(sendCoinsResponse:), completion: completion)
+        client.request(Lnrpc_SendCoinsRequest(config: config), map: LNSTransactionId.init, completion: completion)
     }
 }

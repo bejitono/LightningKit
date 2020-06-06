@@ -15,10 +15,7 @@ struct LNSServiceBuilder {
     }
 
     func buildWalletService() -> LNSWalletService {
-        return LNSWalletServiceImplementation(
-            client: lndClient,
-            mapper: LNSWalletMapperImplementation()
-        )
+        return LNSWalletServiceImplementation(client: lndClient)
     }
 
     func buildChannelService() -> LNSChannelService {
