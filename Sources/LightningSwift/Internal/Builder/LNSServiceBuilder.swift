@@ -19,9 +19,6 @@ struct LNSServiceBuilder {
     }
 
     func buildChannelService() -> LNSChannelService {
-        return LNSChannelServiceImplementation(
-            client: lndClient,
-            mapper: LNSChannelMapperImplementation()
-        )
+        return LNSChannelServiceImplementation(client: lndClient)
     }
 }

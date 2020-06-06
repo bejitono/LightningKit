@@ -9,27 +9,24 @@
 final class LNSChannelServiceImplementation: LNSChannelService {
     
     private let client: LndClient
-    private let mapper: LNSChannelMapper
     
-    init(client: LndClient,
-         mapper: LNSChannelMapper) {
+    init(client: LndClient) {
         self.client = client
-        self.mapper = mapper
     }
     
     func openChannel(withConfig config: LNSOpenChannelConfiguration, completion: @escaping LNSOpenChannelCompletion) {
-        client.request(mapper.mapOpenChannelRequest(withConfig: config), map: mapper.map(openChannelResponse:), completion: completion)
+        client.request(Lnrpc_OpenChannelRequest(config: config), map: LNSChannelPoint.init, completion: completion)
     }
     
     func closeChannel(withConfig config: LNSCloseChannelConfiguration, completion: @escaping LNSCloseChannelCompletion) {
-        client.request(mapper.mapCloseChannelRequest(withConfig: config), map: mapper.map(closeChannelResponse:), completion: completion)
+        client.request(Lnrpc_CloseChannelRequest(config: config), map: LNSCloseChannelStatusUpdate.init, completion: completion)
     }
     
     func listChannels(completion: @escaping LNSListChannelCompletion) {
-        client.request(mapper.mapListChannelsRequest(), map: mapper.map(listChannelsResponse:), completion: completion)
+        client.request(Lnrpc_ListChannelsRequest(), map: Array.init(channelsResponse:), completion: completion)
     }
     
     func listPendingChannels(completion: @escaping LNSListPendingChannelCompletion) {
-        client.request(mapper.mapPendingChannelsRequest(), map: mapper.map(pendingChannelsResponse:), completion: completion)
+        client.request(Lnrpc_PendingChannelsRequest(), map: LNSPendingChannels.init, completion: completion)
     }
 }
