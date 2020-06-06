@@ -8,28 +8,7 @@
 
 import Foundation.NSDate
 
-typealias LNSWalletMapper = LNSWalletRequestMapper & LNSWalletResponseMapper
-
-protocol LNSWalletRequestMapper {
-    
-    func mapGenerateSeedRequest(withConfig config: LNSSeedConfiguration?) -> Lnrpc_GenSeedRequest
-    
-    func mapInitWalletRequestWith(password: String, seed: [String]) -> Lnrpc_InitWalletRequest
-    
-    func mapUnlockWalletRequest(withPassword password: String) -> Lnrpc_UnlockWalletRequest
-    
-    func mapChangeRequest(password: String, to newPassword: String) -> Lnrpc_ChangePasswordRequest
-    
-    func mapWalletBalanceRequest() -> Lnrpc_WalletBalanceRequest
-    
-    func mapChannelBalanceRequest() -> Lnrpc_ChannelBalanceRequest
-    
-    func mapTransactionsRequest() -> Lnrpc_GetTransactionsRequest
-    
-    func mapNewAddressRequest(forType type: LNSAddressType?) -> Lnrpc_NewAddressRequest
-    
-    func mapSendCoinsRequest(withConfig config: LNSSendCoinsConfiguration) -> Lnrpc_SendCoinsRequest
-}
+typealias LNSWalletMapper = LNSWalletResponseMapper
 
 protocol LNSWalletResponseMapper {
     
@@ -52,74 +31,104 @@ protocol LNSWalletResponseMapper {
     func map(sendCoinsResponse response: Lnrpc_SendCoinsResponse) -> LNSTransactionId
 }
 
-struct LNSWalletMapperImplementation: LNSWalletRequestMapper {
+// MARK: - Request mapping
+
+extension Lnrpc_GenSeedRequest {
     
-    func mapGenerateSeedRequest(withConfig config: LNSSeedConfiguration?) -> Lnrpc_GenSeedRequest {
+    init(config: LNSSeedConfiguration?) {
         var req = Lnrpc_GenSeedRequest()
-        guard let config = config else { return req }
+        guard let config = config else {
+            self = req
+            return
+        }
         req.aezeedPassphrase = config.passphrase
         req.seedEntropy = config.entropy
-        return req
+        self = req
     }
+}
+
+extension Lnrpc_InitWalletRequest {
     
-    func mapInitWalletRequestWith(password: String, seed: [String]) -> Lnrpc_InitWalletRequest {
+    init(password: String, seed: [String]) {
         var req = Lnrpc_InitWalletRequest()
-        guard let passwordData = password.data(using: .utf8) else { return req }
+        guard let passwordData = password.data(using: .utf8) else {
+            self = req
+            return
+        }
         req.walletPassword = passwordData
         req.cipherSeedMnemonic = seed
         // TODO: getting error "invalid passphrase"
         //if let encipheredSeed = seed.encipheredSeed { req.aezeedPassphrase = encipheredSeed }
-        return req
+        self = req
     }
+}
+
+extension Lnrpc_ChangePasswordRequest {
     
-    func mapChangeRequest(password: String, to newPassword: String) -> Lnrpc_ChangePasswordRequest {
+    init(password: String, to newPassword: String) {
         var req = Lnrpc_ChangePasswordRequest()
         guard
             let passwordData = password.data(using: .utf8),
             let newPasswordData = newPassword .data(using: .utf8)
-        else { return req }
+        else {
+            self = req
+            return
+        }
         req.currentPassword = passwordData
         req.newPassword = newPasswordData
-        return req
+        self = req
+
     }
+}
+
+extension Lnrpc_UnlockWalletRequest {
     
-    func mapUnlockWalletRequest(withPassword password: String) -> Lnrpc_UnlockWalletRequest {
+    init(password: String) {
         var req = Lnrpc_UnlockWalletRequest()
-        guard let passwordData = password.data(using: .utf8) else { return req }
+        guard let passwordData = password.data(using: .utf8) else {
+            self = req
+            return
+        }
         req.walletPassword = passwordData
-        return req
+        self = req
     }
+}
+
+extension Lnrpc_NewAddressRequest {
     
-    func mapWalletBalanceRequest() -> Lnrpc_WalletBalanceRequest {
-        return Lnrpc_WalletBalanceRequest()
-    }
-    
-    func mapChannelBalanceRequest() -> Lnrpc_ChannelBalanceRequest {
-        return Lnrpc_ChannelBalanceRequest()
-    }
-    
-    func mapTransactionsRequest() -> Lnrpc_GetTransactionsRequest {
-        return Lnrpc_GetTransactionsRequest()
-    }
-    
-    func mapNewAddressRequest(forType type: LNSAddressType?) -> Lnrpc_NewAddressRequest {
+    init(type: LNSAddressType?) {
         var req = Lnrpc_NewAddressRequest()
-        guard let type = type else { return req }
+        guard let type = type else {
+            self = req
+            return
+        }
         req.type = type.lndAddressType
-        return req
+        self = req
     }
+}
+
+extension Lnrpc_SendCoinsRequest {
     
-    func mapSendCoinsRequest(withConfig config: LNSSendCoinsConfiguration) -> Lnrpc_SendCoinsRequest {
+    init(config: LNSSendCoinsConfiguration) {
         var req = Lnrpc_SendCoinsRequest()
         req.addr = config.address
         req.amount = Int64(config.amount)
         req.targetConf = Int32(config.targetConfirmations)
         req.sendAll = config.sendAll
-        return req
+        self = req
     }
 }
 
-extension LNSWalletMapperImplementation: LNSWalletResponseMapper {
+// MARK: - Response mapping
+
+extension LNSSeed {
+    
+    init(response: Lnrpc_GenSeedResponse) {
+        self = .init(phrase: response.cipherSeedMnemonic, encipheredSeed: response.encipheredSeed)
+    }
+}
+
+struct LNSWalletMapperImplementation: LNSWalletResponseMapper {
     
     func map(seedResponse response: Lnrpc_GenSeedResponse) -> LNSSeed {
         return LNSSeed(phrase: response.cipherSeedMnemonic, encipheredSeed: response.encipheredSeed)
