@@ -25,15 +25,15 @@ final class LNSWalletServiceImplementation: LNSWalletService {
         client.request(Lnrpc_GenSeedRequest(config: config), map: LNSSeed.init, completion: completion)
     }
     
-    func initializeWalletWith(password: String, seed: [String], completion: @escaping LNSSuccessCompletion) {
+    func initializeWith(password: String, seed: [String], completion: @escaping LNSSuccessCompletion) {
         client.request(Lnrpc_InitWalletRequest(password: password, seed: seed), map: Bool.init(initWalletResponse:), completion: completion)
     }
     
-    func unlockWallet(withPassword password: String, completion: @escaping LNSSuccessCompletion) {
+    func unlock(withPassword password: String, completion: @escaping LNSSuccessCompletion) {
         client.request(Lnrpc_UnlockWalletRequest(password: password), map: Bool.init(unlockWalletResponse:), completion: completion)
     }
     
-    func changeWallet(password: String, to newPassword: String, completion: @escaping LNSSuccessCompletion) {
+    func change(password: String, toNewPassword newPassword: String, completion: @escaping LNSSuccessCompletion) {
         client.request(Lnrpc_ChangePasswordRequest(password: password, to: newPassword), map: Bool.init(changePasswordResponse:), completion: completion)
     }
     

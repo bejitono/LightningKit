@@ -11,12 +11,12 @@ open class LightningSwift: LNSCoreService {
     public static var shared: LNSCoreService = LightningSwift()
     public let wallet: LNSWalletService
     public let channel: LNSChannelService
-    public let isRunning: Bool = false
+    public let ready: Bool = false
     
     private let client: LndClient
     private let mapper: LNSCoreMapper
 
-    open convenience init() { // TODO: Add config
+    public convenience init() { // TODO: Add config
         let lndClient = LndClientBuilder().build(.mobile)
         let serviceBuilder = LNSServiceBuilder(lndClient: lndClient)
         self.init(

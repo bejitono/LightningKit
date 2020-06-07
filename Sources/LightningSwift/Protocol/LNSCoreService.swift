@@ -21,7 +21,7 @@ public protocol LNSCoreService {
     
     var channel: LNSChannelService { get }
     
-    var isRunning: Bool { get }
+    var ready: Bool { get }
     
     func start(withConfig: LNSConfiguration)
     
