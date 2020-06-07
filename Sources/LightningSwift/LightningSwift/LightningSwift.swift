@@ -16,7 +16,7 @@ public class LightningSwift: LNSCoreService {
     private let client: LndClient
     private let mapper: LNSCoreMapper
 
-    public convenience init() {
+    public convenience init() { // TODO: Add config
         let lndClient = LndClientBuilder().build(.mobile)
         let serviceBuilder = LNSServiceBuilder(lndClient: lndClient)
         self.init(
