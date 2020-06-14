@@ -8,6 +8,12 @@
 
 import LightningSwift
 
-class LightningKit {
+final class LightningKitAPI {
+    
+}
 
+
+public enum LKError: Error {
+    case lightningNodeNotReady
+    case notImplemented
 }

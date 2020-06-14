@@ -26,6 +26,8 @@ open class LKWallet {
         // TODO: Add config: seedless, no password
     }
     
+    // MARK: - Wallet creation
+    
     /// Generates a seed with which users can recover their private keys.
     open func generateSeed(completion: @escaping (Result<Seed, Error>) -> Void) {
         client.wallet.generateSeed { [weak self] result in
@@ -67,6 +69,8 @@ open class LKWallet {
             }
         }
     }
+    
+    // MARK: - Wallet unlock
     
     /// Unlocks the wallet. This method needs to be called each time the apps starts.
     /// - Parameters:
