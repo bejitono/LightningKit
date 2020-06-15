@@ -6,9 +6,9 @@
 //  Copyright © 2019 De MicheliStefano. All rights reserved.
 //
 
-open class LightningSwift: LNSCoreService {
+open class LightningKitClient: LNSCoreService {
     
-    public static var shared: LNSCoreService = LightningSwift()
+    public static var shared: LNSCoreService = LightningKitClient()
     public let wallet: LNSWalletService
     public let channel: LNSChannelService
     public let ready: Bool = false
