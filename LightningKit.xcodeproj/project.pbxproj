@@ -27,6 +27,7 @@
 		3D6107572496FDAD004B47A4 /* LightningKitUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D6107552496FDAD004B47A4 /* LightningKitUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3D61075A2496FDAD004B47A4 /* LightningKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6107532496FDAD004B47A4 /* LightningKitUI.framework */; };
 		3D61075B2496FDAD004B47A4 /* LightningKitUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6107532496FDAD004B47A4 /* LightningKitUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3D610762249709D0004B47A4 /* SeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D610761249709D0004B47A4 /* SeedView.swift */; };
 		3D70CD9B23A4F566001BE339 /* LNSSeedConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD9A23A4F566001BE339 /* LNSSeedConfiguration.swift */; };
 		3D70CD9D23A4F57C001BE339 /* LNSSeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD9C23A4F57C001BE339 /* LNSSeed.swift */; };
 		3D70CDA123A5001A001BE339 /* LNSWalletBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CDA023A50019001BE339 /* LNSWalletBalance.swift */; };
@@ -152,6 +153,7 @@
 		3D6107532496FDAD004B47A4 /* LightningKitUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LightningKitUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D6107552496FDAD004B47A4 /* LightningKitUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LightningKitUI.h; sourceTree = "<group>"; };
 		3D6107562496FDAD004B47A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D610761249709D0004B47A4 /* SeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedView.swift; sourceTree = "<group>"; };
 		3D70CD8623A47CB9001BE339 /* LNSCoreService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LNSCoreService.swift; sourceTree = "<group>"; };
 		3D70CD8923A47CB9001BE339 /* LNSMacaroon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LNSMacaroon.swift; sourceTree = "<group>"; };
 		3D70CD8A23A47CB9001BE339 /* BTCEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTCEnvironment.swift; sourceTree = "<group>"; };
@@ -302,12 +304,14 @@
 				3D6107602496FEA5004B47A4 /* ViewModel */,
 				3D61075F2496FDCE004B47A4 /* View */,
 			);
-			path = LightningKitUI;
+			name = LightningKitUI;
+			path = Sources/LightningKitUI;
 			sourceTree = "<group>";
 		};
 		3D61075F2496FDCE004B47A4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3D610761249709D0004B47A4 /* SeedView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -711,6 +715,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D610762249709D0004B47A4 /* SeedView.swift in Sources */,
 				3D743E1D239E86DA005B2804 /* AppDelegate.swift in Sources */,
 				3D743E1F239E86DA005B2804 /* SceneDelegate.swift in Sources */,
 			);
@@ -839,7 +844,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = LightningKitUI/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/LightningKitUI/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -867,7 +872,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = LightningKitUI/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/LightningKitUI/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
