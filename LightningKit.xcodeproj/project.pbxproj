@@ -23,6 +23,7 @@
 		3D61071C2496EF93004B47A4 /* LightningKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6106FF2496EB26004B47A4 /* LightningKit.swift */; };
 		3D61071D2496EF93004B47A4 /* LKWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6107002496EB26004B47A4 /* LKWallet.swift */; };
 		3D61071E2496EF93004B47A4 /* LKChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6107012496EB26004B47A4 /* LKChannel.swift */; };
+		3D6107232496F8CE004B47A4 /* LKError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D61071F2496F670004B47A4 /* LKError.swift */; };
 		3D70CD9B23A4F566001BE339 /* LNSSeedConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD9A23A4F566001BE339 /* LNSSeedConfiguration.swift */; };
 		3D70CD9D23A4F57C001BE339 /* LNSSeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD9C23A4F57C001BE339 /* LNSSeed.swift */; };
 		3D70CDA123A5001A001BE339 /* LNSWalletBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CDA023A50019001BE339 /* LNSWalletBalance.swift */; };
@@ -59,7 +60,7 @@
 		3D743E49239E8953005B2804 /* LndAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E48239E8953005B2804 /* LndAPI.swift */; };
 		3D743E4C239E896C005B2804 /* LndMobileAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E4B239E896C005B2804 /* LndMobileAPI.swift */; };
 		3D743E4E239E89AD005B2804 /* LndCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E4D239E89AD005B2804 /* LndCallback.swift */; };
-		3D76931E23AE62A900C6D726 /* libLightningSwift.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D743E34239E8762005B2804 /* libLightningSwift.a */; };
+		3D76931E23AE62A900C6D726 /* libLightningKitClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D743E34239E8762005B2804 /* libLightningKitClient.a */; };
 		3D76934123B103D800C6D726 /* LNSAddressType+Lnrpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D76934023B103D800C6D726 /* LNSAddressType+Lnrpc.swift */; };
 		3D76934323B10B4D00C6D726 /* LNSAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D76934223B10B4D00C6D726 /* LNSAddress.swift */; };
 		3D76934523B10D2800C6D726 /* LNSConnectPeerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D76934423B10D2800C6D726 /* LNSConnectPeerConfiguration.swift */; };
@@ -71,6 +72,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3D6107212496F8A9004B47A4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3D743E11239E86DA005B2804 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3D743E33239E8762005B2804;
+			remoteInfo = LightningKitClient;
+		};
 		3D76931C23AE62A400C6D726 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3D743E11239E86DA005B2804 /* Project object */;
@@ -119,6 +127,7 @@
 		3D6107012496EB26004B47A4 /* LKChannel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKChannel.swift; sourceTree = "<group>"; };
 		3D6107062496EBFD004B47A4 /* Lndmobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lndmobile.framework; path = Sources/Lndmobile.framework; sourceTree = "<group>"; };
 		3D6107142496EF47004B47A4 /* libLightningKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLightningKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D61071F2496F670004B47A4 /* LKError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LKError.swift; sourceTree = "<group>"; };
 		3D70CD8623A47CB9001BE339 /* LNSCoreService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LNSCoreService.swift; sourceTree = "<group>"; };
 		3D70CD8923A47CB9001BE339 /* LNSMacaroon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LNSMacaroon.swift; sourceTree = "<group>"; };
 		3D70CD8A23A47CB9001BE339 /* BTCEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTCEnvironment.swift; sourceTree = "<group>"; };
@@ -149,7 +158,7 @@
 		3D743E25239E86DD005B2804 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3D743E28239E86DD005B2804 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3D743E2A239E86DD005B2804 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3D743E34239E8762005B2804 /* libLightningSwift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLightningSwift.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D743E34239E8762005B2804 /* libLightningKitClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLightningKitClient.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D743E3B239E878A005B2804 /* LndClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LndClient.swift; sourceTree = "<group>"; };
 		3D743E3E239E87B9005B2804 /* rpc.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rpc.pb.swift; sourceTree = "<group>"; };
 		3D743E45239E892F005B2804 /* LndClientImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LndClientImpl.swift; sourceTree = "<group>"; };
@@ -178,7 +187,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D76931E23AE62A900C6D726 /* libLightningSwift.a in Frameworks */,
+				3D76931E23AE62A900C6D726 /* libLightningKitClient.a in Frameworks */,
 				3D6107072496EBFE004B47A4 /* Lndmobile.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -227,6 +236,7 @@
 		3D6106FC2496EB26004B47A4 /* Error */ = {
 			isa = PBXGroup;
 			children = (
+				3D61071F2496F670004B47A4 /* LKError.swift */,
 				3D6106FD2496EB26004B47A4 /* LKWalletError.swift */,
 			);
 			path = Error;
@@ -332,12 +342,12 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		3D70CDD123ABC720001BE339 /* LightningSwift */ = {
+		3D70CDD123ABC720001BE339 /* LightningKitClient */ = {
 			isa = PBXGroup;
 			children = (
 				3D70CDD223ABC730001BE339 /* LightningKitClient.swift */,
 			);
-			path = LightningSwift;
+			path = LightningKitClient;
 			sourceTree = "<group>";
 		};
 		3D743E10239E86DA005B2804 = {
@@ -355,7 +365,7 @@
 			isa = PBXGroup;
 			children = (
 				3D743E19239E86DA005B2804 /* LightningKitApp.app */,
-				3D743E34239E8762005B2804 /* libLightningSwift.a */,
+				3D743E34239E8762005B2804 /* libLightningKitClient.a */,
 				3D6107142496EF47004B47A4 /* libLightningKit.a */,
 			);
 			name = Products;
@@ -388,7 +398,7 @@
 			children = (
 				3D70CD8323A47CB9001BE339 /* Contract */,
 				3D70CDAE23A5EC56001BE339 /* Internal */,
-				3D70CDD123ABC720001BE339 /* LightningSwift */,
+				3D70CDD123ABC720001BE339 /* LightningKitClient */,
 				3D743E3D239E87A9005B2804 /* Generated */,
 			);
 			name = LightningKitClient;
@@ -473,6 +483,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3D6107222496F8A9004B47A4 /* PBXTargetDependency */,
 			);
 			name = LightningKit;
 			productName = LightningKit;
@@ -497,9 +508,9 @@
 			productReference = 3D743E19239E86DA005B2804 /* LightningKitApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		3D743E33239E8762005B2804 /* LightningSwift */ = {
+		3D743E33239E8762005B2804 /* LightningKitClient */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3D743E38239E8762005B2804 /* Build configuration list for PBXNativeTarget "LightningSwift" */;
+			buildConfigurationList = 3D743E38239E8762005B2804 /* Build configuration list for PBXNativeTarget "LightningKitClient" */;
 			buildPhases = (
 				3D743E30239E8762005B2804 /* Sources */,
 				3D743E31239E8762005B2804 /* Frameworks */,
@@ -509,13 +520,13 @@
 			);
 			dependencies = (
 			);
-			name = LightningSwift;
+			name = LightningKitClient;
 			packageProductDependencies = (
 				3D743E41239E882B005B2804 /* SwiftProtobuf */,
 				3D743E43239E882B005B2804 /* SwiftProtobufPluginLibrary */,
 			);
 			productName = LightningSwift;
-			productReference = 3D743E34239E8762005B2804 /* libLightningSwift.a */;
+			productReference = 3D743E34239E8762005B2804 /* libLightningKitClient.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -556,7 +567,7 @@
 			projectRoot = "";
 			targets = (
 				3D743E18239E86DA005B2804 /* LightningKitApp */,
-				3D743E33239E8762005B2804 /* LightningSwift */,
+				3D743E33239E8762005B2804 /* LightningKitClient */,
 				3D6107132496EF47004B47A4 /* LightningKit */,
 			);
 		};
@@ -584,6 +595,7 @@
 				3D61071C2496EF93004B47A4 /* LightningKit.swift in Sources */,
 				3D61071D2496EF93004B47A4 /* LKWallet.swift in Sources */,
 				3D61071E2496EF93004B47A4 /* LKChannel.swift in Sources */,
+				3D6107232496F8CE004B47A4 /* LKError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -654,9 +666,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3D6107222496F8A9004B47A4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3D743E33239E8762005B2804 /* LightningKitClient */;
+			targetProxy = 3D6107212496F8A9004B47A4 /* PBXContainerItemProxy */;
+		};
 		3D76931D23AE62A400C6D726 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3D743E33239E8762005B2804 /* LightningSwift */;
+			target = 3D743E33239E8762005B2804 /* LightningKitClient */;
 			targetProxy = 3D76931C23AE62A400C6D726 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -945,7 +962,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3D743E38239E8762005B2804 /* Build configuration list for PBXNativeTarget "LightningSwift" */ = {
+		3D743E38239E8762005B2804 /* Build configuration list for PBXNativeTarget "LightningKitClient" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3D743E39239E8762005B2804 /* Debug */,

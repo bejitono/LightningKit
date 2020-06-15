@@ -6,14 +6,6 @@
 //  Copyright © 2020 De MicheliStefano. All rights reserved.
 //
 
-import LightningSwift
-
-final class LightningKitAPI {
+final class LightningKit {
     
-}
-
-
-public enum LKError: Error {
-    case lightningNodeNotReady
-    case notImplemented
 }

@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3D743E33239E8762005B2804"
-               BuildableName = "libLightningSwift.a"
-               BlueprintName = "LightningSwift"
+               BuildableName = "libLightningKitClient.a"
+               BlueprintName = "LightningKitClient"
                ReferencedContainer = "container:LightningKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -51,8 +51,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3D743E33239E8762005B2804"
-            BuildableName = "libLightningSwift.a"
-            BlueprintName = "LightningSwift"
+            BuildableName = "libLightningKitClient.a"
+            BlueprintName = "LightningKitClient"
             ReferencedContainer = "container:LightningKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
