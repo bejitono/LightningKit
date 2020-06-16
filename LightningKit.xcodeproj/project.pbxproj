@@ -72,6 +72,8 @@
 		3D76934923B2FB7C00C6D726 /* LNSChannelPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D76934823B2FB7C00C6D726 /* LNSChannelPoint.swift */; };
 		3D76934B23B2FCEB00C6D726 /* LNSChannelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D76934A23B2FCEB00C6D726 /* LNSChannelMapper.swift */; };
 		3D790AF523AC5ABD00DF1EEB /* LNSWalletMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D790AF423AC5ABD00DF1EEB /* LNSWalletMapper.swift */; };
+		3D8182552498465C00BE72BC /* SeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8182542498465C00BE72BC /* SeedViewController.swift */; };
+		3D818258249847E800BE72BC /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D818257249847E800BE72BC /* Button.swift */; };
 		3DD153B123ABC9620064A542 /* LNSWalletServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD153B023ABC9620064A542 /* LNSWalletServiceImpl.swift */; };
 /* End PBXBuildFile section */
 
@@ -198,6 +200,8 @@
 		3D76934823B2FB7C00C6D726 /* LNSChannelPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNSChannelPoint.swift; sourceTree = "<group>"; };
 		3D76934A23B2FCEB00C6D726 /* LNSChannelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNSChannelMapper.swift; sourceTree = "<group>"; };
 		3D790AF423AC5ABD00DF1EEB /* LNSWalletMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNSWalletMapper.swift; sourceTree = "<group>"; };
+		3D8182542498465C00BE72BC /* SeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedViewController.swift; sourceTree = "<group>"; };
+		3D818257249847E800BE72BC /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		3DD153B023ABC9620064A542 /* LNSWalletServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNSWalletServiceImpl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -301,6 +305,7 @@
 			children = (
 				3D6107552496FDAD004B47A4 /* LightningKitUI.h */,
 				3D6107562496FDAD004B47A4 /* Info.plist */,
+				3D8182562498478000BE72BC /* Styles */,
 				3D6107602496FEA5004B47A4 /* ViewModel */,
 				3D61075F2496FDCE004B47A4 /* View */,
 			);
@@ -312,6 +317,8 @@
 			isa = PBXGroup;
 			children = (
 				3D610761249709D0004B47A4 /* SeedView.swift */,
+				3D8182542498465C00BE72BC /* SeedViewController.swift */,
+				3D818257249847E800BE72BC /* Button.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -523,6 +530,13 @@
 			path = Mapper;
 			sourceTree = "<group>";
 		};
+		3D8182562498478000BE72BC /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
 		3DD153AF23ABC94B0064A542 /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -715,9 +729,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D818258249847E800BE72BC /* Button.swift in Sources */,
 				3D610762249709D0004B47A4 /* SeedView.swift in Sources */,
 				3D743E1D239E86DA005B2804 /* AppDelegate.swift in Sources */,
 				3D743E1F239E86DA005B2804 /* SceneDelegate.swift in Sources */,
+				3D8182552498465C00BE72BC /* SeedViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
