@@ -21,4 +21,5 @@ public protocol Color {
     var alert: UIColor { get }
     var success: UIColor { get }
     var failure: UIColor { get }
+    var shadow: UIColor { get }
 }

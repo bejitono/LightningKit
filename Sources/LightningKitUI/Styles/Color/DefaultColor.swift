@@ -21,4 +21,5 @@ public struct DefaultColor: Color {
     public var alert: UIColor = .blue
     public var success: UIColor = .blue
     public var failure: UIColor = .blue
+    public var shadow: UIColor = .lightGray
 }
