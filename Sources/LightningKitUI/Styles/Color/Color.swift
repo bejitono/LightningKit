@@ -18,8 +18,10 @@ public protocol Color {
     var secondaryBackground: UIColor { get }
     var secondaryAction: UIColor { get }
     var secondaryText: UIColor { get }
+    var lightText: UIColor { get }
     var alert: UIColor { get }
     var success: UIColor { get }
     var failure: UIColor { get }
     var shadow: UIColor { get }
+    var disabled: UIColor { get }
 }
