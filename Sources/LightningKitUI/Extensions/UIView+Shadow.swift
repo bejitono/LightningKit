@@ -11,14 +11,14 @@ import UIKit
 public extension UIView {
     
     enum DefaultStyle {
-        static let alpha: Float = 1.0
-        static let blur: CGFloat = 5.0
-        static let spread: CGFloat = 0
-        static let cornerRadius: CGFloat = 8.0
+        public static let alpha: Float = 1.0
+        public static let blur: CGFloat = 5.0
+        public static let spread: CGFloat = 0
+        public static let cornerRadius: CGFloat = 8.0
     }
     
     func applyShadow(
-        color: UIColor,
+        color: UIColor = Style.Color.shadow,
         alpha: Float = DefaultStyle.alpha,
         toSide side: Sides = .bottom,
         blur: CGFloat = DefaultStyle.blur,
@@ -39,7 +39,7 @@ public extension UIView {
     }
 }
 
-extension UIView {
+public extension UIView {
     
     enum Sides {
         case top

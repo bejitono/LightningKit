@@ -78,6 +78,7 @@
 		3D81826724984D7E00BE72BC /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D81826124984C8500BE72BC /* Color.swift */; };
 		3D81826824984D8200BE72BC /* DefaultColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D81826524984D5100BE72BC /* DefaultColor.swift */; };
 		3D81826924984D8600BE72BC /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D81826324984D3300BE72BC /* Style.swift */; };
+		3D9FAE90249D945400006770 /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9FAE8E249D8E9700006770 /* UIView+Shadow.swift */; };
 		3DD153B123ABC9620064A542 /* LNSWalletServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD153B023ABC9620064A542 /* LNSWalletServiceImpl.swift */; };
 /* End PBXBuildFile section */
 
@@ -210,6 +211,7 @@
 		3D81826124984C8500BE72BC /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		3D81826324984D3300BE72BC /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		3D81826524984D5100BE72BC /* DefaultColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultColor.swift; sourceTree = "<group>"; };
+		3D9FAE8E249D8E9700006770 /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 		3DD153B023ABC9620064A542 /* LNSWalletServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNSWalletServiceImpl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -552,6 +554,7 @@
 			isa = PBXGroup;
 			children = (
 				3D81825A2498491600BE72BC /* UIView+Transform.swift */,
+				3D9FAE8E249D8E9700006770 /* UIView+Shadow.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -750,6 +753,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D9FAE90249D945400006770 /* UIView+Shadow.swift in Sources */,
 				3D81825E24984A6100BE72BC /* SeedView.swift in Sources */,
 				3D81826824984D8200BE72BC /* DefaultColor.swift in Sources */,
 				3D81825F24984A6700BE72BC /* UIView+Transform.swift in Sources */,
