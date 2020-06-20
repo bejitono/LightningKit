@@ -46,6 +46,16 @@ open class Button: UIButton {
         }
     }
     
+    open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        applyTransform(isHighlighted: true)
+    }
+    
+    open override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        applyTransform(isHighlighted: false)
+    }
+    
     public func setTitle(_ title: String?) {
         setTitle(title, for: .normal)
     }

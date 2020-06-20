@@ -333,9 +333,7 @@
 		3D61075F2496FDCE004B47A4 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3D610761249709D0004B47A4 /* SeedListView.swift */,
-				3D6E4123249DC91200EA1E2A /* SeedPhraseView.swift */,
-				3D8182542498465C00BE72BC /* SeedViewController.swift */,
+				3D711AC8249E4C5700DA32CA /* Seed */,
 				3D818257249847E800BE72BC /* Button.swift */,
 			);
 			path = View;
@@ -443,6 +441,16 @@
 				3D70CDD223ABC730001BE339 /* LightningKitClient.swift */,
 			);
 			path = LightningKitClient;
+			sourceTree = "<group>";
+		};
+		3D711AC8249E4C5700DA32CA /* Seed */ = {
+			isa = PBXGroup;
+			children = (
+				3D610761249709D0004B47A4 /* SeedListView.swift */,
+				3D6E4123249DC91200EA1E2A /* SeedPhraseView.swift */,
+				3D8182542498465C00BE72BC /* SeedViewController.swift */,
+			);
+			path = Seed;
 			sourceTree = "<group>";
 		};
 		3D743E10239E86DA005B2804 = {
