@@ -9,8 +9,10 @@
 public struct Style {
     
     public static var Color: Color = DefaultColor()
+    public static var Font: Font = DefaultFont()
     
-    public static func setup(color: Color) {
+    public static func setup(color: Color, font: Font) {
         self.Color = color
+        self.Font = font
     }
 }

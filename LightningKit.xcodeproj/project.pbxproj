@@ -27,6 +27,9 @@
 		3D6107572496FDAD004B47A4 /* LightningKitUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D6107552496FDAD004B47A4 /* LightningKitUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3D61075A2496FDAD004B47A4 /* LightningKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6107532496FDAD004B47A4 /* LightningKitUI.framework */; };
 		3D61075B2496FDAD004B47A4 /* LightningKitUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6107532496FDAD004B47A4 /* LightningKitUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3D6E4125249DCA7A00EA1E2A /* SeedPhraseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6E4123249DC91200EA1E2A /* SeedPhraseView.swift */; };
+		3D6E412B249DDEB100EA1E2A /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6E4127249DDDB700EA1E2A /* Font.swift */; };
+		3D6E412C249DE23A00EA1E2A /* DefaultFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6E4129249DDDBF00EA1E2A /* DefaultFont.swift */; };
 		3D70CD9B23A4F566001BE339 /* LNSSeedConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD9A23A4F566001BE339 /* LNSSeedConfiguration.swift */; };
 		3D70CD9D23A4F57C001BE339 /* LNSSeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD9C23A4F57C001BE339 /* LNSSeed.swift */; };
 		3D70CDA123A5001A001BE339 /* LNSWalletBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CDA023A50019001BE339 /* LNSWalletBalance.swift */; };
@@ -73,7 +76,7 @@
 		3D790AF523AC5ABD00DF1EEB /* LNSWalletMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D790AF423AC5ABD00DF1EEB /* LNSWalletMapper.swift */; };
 		3D81825C24984A5900BE72BC /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D818257249847E800BE72BC /* Button.swift */; };
 		3D81825D24984A5C00BE72BC /* SeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8182542498465C00BE72BC /* SeedViewController.swift */; };
-		3D81825E24984A6100BE72BC /* SeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D610761249709D0004B47A4 /* SeedView.swift */; };
+		3D81825E24984A6100BE72BC /* SeedListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D610761249709D0004B47A4 /* SeedListView.swift */; };
 		3D81825F24984A6700BE72BC /* UIView+Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D81825A2498491600BE72BC /* UIView+Transform.swift */; };
 		3D81826724984D7E00BE72BC /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D81826124984C8500BE72BC /* Color.swift */; };
 		3D81826824984D8200BE72BC /* DefaultColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D81826524984D5100BE72BC /* DefaultColor.swift */; };
@@ -160,7 +163,10 @@
 		3D6107532496FDAD004B47A4 /* LightningKitUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LightningKitUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D6107552496FDAD004B47A4 /* LightningKitUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LightningKitUI.h; sourceTree = "<group>"; };
 		3D6107562496FDAD004B47A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3D610761249709D0004B47A4 /* SeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedView.swift; sourceTree = "<group>"; };
+		3D610761249709D0004B47A4 /* SeedListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedListView.swift; sourceTree = "<group>"; };
+		3D6E4123249DC91200EA1E2A /* SeedPhraseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedPhraseView.swift; sourceTree = "<group>"; };
+		3D6E4127249DDDB700EA1E2A /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		3D6E4129249DDDBF00EA1E2A /* DefaultFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFont.swift; sourceTree = "<group>"; };
 		3D70CD8623A47CB9001BE339 /* LNSCoreService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LNSCoreService.swift; sourceTree = "<group>"; };
 		3D70CD8923A47CB9001BE339 /* LNSMacaroon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LNSMacaroon.swift; sourceTree = "<group>"; };
 		3D70CD8A23A47CB9001BE339 /* BTCEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTCEnvironment.swift; sourceTree = "<group>"; };
@@ -327,7 +333,8 @@
 		3D61075F2496FDCE004B47A4 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3D610761249709D0004B47A4 /* SeedView.swift */,
+				3D610761249709D0004B47A4 /* SeedListView.swift */,
+				3D6E4123249DC91200EA1E2A /* SeedPhraseView.swift */,
 				3D8182542498465C00BE72BC /* SeedViewController.swift */,
 				3D818257249847E800BE72BC /* Button.swift */,
 			);
@@ -339,6 +346,15 @@
 			children = (
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3D6E4126249DDDA400EA1E2A /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				3D6E4127249DDDB700EA1E2A /* Font.swift */,
+				3D6E4129249DDDBF00EA1E2A /* DefaultFont.swift */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 		3D70CD8323A47CB9001BE339 /* Contract */ = {
@@ -546,6 +562,7 @@
 			children = (
 				3D81826324984D3300BE72BC /* Style.swift */,
 				3D81826A24984EFA00BE72BC /* Color */,
+				3D6E4126249DDDA400EA1E2A /* Font */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -754,11 +771,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D9FAE90249D945400006770 /* UIView+Shadow.swift in Sources */,
-				3D81825E24984A6100BE72BC /* SeedView.swift in Sources */,
+				3D81825E24984A6100BE72BC /* SeedListView.swift in Sources */,
+				3D6E412B249DDEB100EA1E2A /* Font.swift in Sources */,
 				3D81826824984D8200BE72BC /* DefaultColor.swift in Sources */,
 				3D81825F24984A6700BE72BC /* UIView+Transform.swift in Sources */,
+				3D6E412C249DE23A00EA1E2A /* DefaultFont.swift in Sources */,
 				3D81825C24984A5900BE72BC /* Button.swift in Sources */,
 				3D81826724984D7E00BE72BC /* Color.swift in Sources */,
+				3D6E4125249DCA7A00EA1E2A /* SeedPhraseView.swift in Sources */,
 				3D81826924984D8600BE72BC /* Style.swift in Sources */,
 				3D81825D24984A5C00BE72BC /* SeedViewController.swift in Sources */,
 			);
@@ -898,7 +918,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/LightningKitUI/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -926,7 +946,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/LightningKitUI/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
