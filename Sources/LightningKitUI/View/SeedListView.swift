@@ -18,7 +18,9 @@ open class SeedListView: UIView {
         static let spacing: CGFloat = 5
     }
     
-    private let seedStackView = UIStackView()
+    private let containerStackView = UIStackView()
+    private let firstSeedStackView = UIStackView()
+    private let secondSeedStackView = UIStackView()
     
     public init(seed: [String]) {
         self.seed = seed
@@ -37,7 +39,9 @@ private extension SeedListView {
     
     func setupViews() {
         setupScrollView()
-        setupSeedStackView()
+        setupContainerStackView()
+        setupFirstSeedStackView()
+        setupSecondSeedStackView()
         setupSeedLabels(withSeed: seed)
     }
     
@@ -52,23 +56,39 @@ private extension SeedListView {
         ])
     }
     
-    func setupSeedStackView() {
-        seedStackView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.addSubview(seedStackView)
+    func setupContainerStackView() {
+        containerStackView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(containerStackView)
         NSLayoutConstraint.activate([
-            seedStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: ViewConstants.padding),
-            seedStackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ViewConstants.padding),
-            seedStackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -ViewConstants.padding),
-            seedStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -ViewConstants.padding)
+            containerStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: ViewConstants.padding),
+            containerStackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ViewConstants.padding),
+            containerStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -ViewConstants.padding),
+            containerStackView.widthAnchor.constraint(greaterThanOrEqualTo: scrollView.widthAnchor, multiplier: 1, constant: -ViewConstants.padding * 2)
         ])
-        seedStackView.axis = .vertical
-        seedStackView.spacing = ViewConstants.spacing
+        containerStackView.spacing = ViewConstants.spacing
+        containerStackView.distribution = .fillEqually
+    }
+    
+    func setupFirstSeedStackView() {
+        containerStackView.addArrangedSubview(firstSeedStackView)
+        firstSeedStackView.axis = .vertical
+        firstSeedStackView.spacing = ViewConstants.spacing
+    }
+    
+    func setupSecondSeedStackView() {
+        containerStackView.addArrangedSubview(secondSeedStackView)
+        secondSeedStackView.axis = .vertical
+        secondSeedStackView.spacing = ViewConstants.spacing
     }
     
     func setupSeedLabels(withSeed seed: [String]) {
         for (index, word) in seed.enumerated() {
-            let seedPhraseView = SeedPhraseView(index: index, seedPhrase: word)
-            seedStackView.addArrangedSubview(seedPhraseView)
+            let seedPhraseView = SeedPhraseView(index: index + 1, seedPhrase: word)
+            if index < seed.count / 2 {
+                firstSeedStackView.addArrangedSubview(seedPhraseView)
+            } else {
+                secondSeedStackView.addArrangedSubview(seedPhraseView)
+            }
         }
     }
 }
