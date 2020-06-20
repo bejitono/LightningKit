@@ -10,11 +10,9 @@ import UIKit
 
 public protocol Color {
     
-    var primary: UIColor { get }
     var primaryBackground: UIColor { get }
     var primaryAction: UIColor { get }
     var primaryText: UIColor { get }
-    var secondary: UIColor { get }
     var secondaryBackground: UIColor { get }
     var secondaryAction: UIColor { get }
     var secondaryText: UIColor { get }

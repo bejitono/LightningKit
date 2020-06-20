@@ -15,7 +15,7 @@ open class SeedListView: UIView {
     
     private enum ViewConstants {
         static let padding: CGFloat = 10
-        static let spacing: CGFloat = 5
+        static let spacing: CGFloat = 7
     }
     
     private let descriptionLabel = UILabel()

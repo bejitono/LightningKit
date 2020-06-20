@@ -14,8 +14,8 @@ open class SeedPhraseView: UIView {
     public let seedPhrase: String
     
     private enum ViewConstants {
-        static let padding: CGFloat = 10
-        static let borderWidth: CGFloat = 2
+        static let padding: CGFloat = 8
+        static let borderWidth: CGFloat = 1.5
         static let spacing: CGFloat = 7
         static let indexSize: CGFloat = 25
         static let indexPadding: CGFloat = 3

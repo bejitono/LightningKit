@@ -85,7 +85,7 @@ public extension Button.Model {
             borderColor: nil,
             shadowColor: Style.Color.shadow,
             cornerRadius: 4,
-            font: UIFont.boldSystemFont(ofSize: 18)
+            font: Style.Font.subHeader
         )
     }
 }
