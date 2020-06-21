@@ -12,6 +12,7 @@ public typealias LNSSuccessCompletion = (Result<Bool, Error>) -> Void
 public typealias LNSInfoCompletion = (Result<LNSInfo, Error>) -> Void
 public typealias LNSAddInvoiceCompletion = (Result<LNSInvoice, Error>) -> Void
 public typealias LNSListPaymentsCompletion = (Result<[LNSPayment], Error>) -> Void
+public typealias LNSListInvoicesCompletion = (Result<[LNSInvoice], Error>) -> Void
 
 public protocol LNSCoreService {
     
@@ -38,6 +39,8 @@ public protocol LNSCoreService {
     func sendPayment(withRequest request: LNSEncodedPaymentRequest, completion: @escaping LNSSuccessCompletion)
 
     func listPayments(completion: @escaping LNSListPaymentsCompletion)
+    
+    func listInvoices(withRequest request: LNSListInvoicesRequest, completion: @escaping LNSListInvoicesCompletion)
     
     func connectPeer(withConfig config: LNSConnectPeerConfiguration, completion: @escaping LNSSuccessCompletion)
 }

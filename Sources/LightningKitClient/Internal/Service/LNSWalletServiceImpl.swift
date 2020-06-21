@@ -45,7 +45,7 @@ final class LNSWalletServiceImplementation: LNSWalletService {
         client.request(Lnrpc_ChannelBalanceRequest(), map: LNSChannelBalance.init, completion: completion)
     }
     
-    func getTransactions(completion: @escaping LNSTransactionsCompletion) {
+    func getTransactions(completion: @escaping LNSTransactionsCompletion) { // TODO: Update parameters: start-/end-height
         client.request(Lnrpc_GetTransactionsRequest(), map: Array.init(transactionDetails:), completion: completion)
     }
     

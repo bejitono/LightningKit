@@ -11,17 +11,19 @@ import Foundation
 public typealias LNSEncodedPaymentRequest = String
 
 public struct LNSInvoice {
-    
+        
+    public let value: BTCUnit
     public let hash: Data
     public let paymentRequest: LNSEncodedPaymentRequest
-    public let timestamp: Date
+    public let creationDate: Date
     public let expiryDate: Date
     public let state: LNSInvoiceState
 }
 
 public enum LNSInvoiceState {
     case open
-    case settled
+    case settled(amount: BTCUnit)
     case canceled
     case accepted
+    case unrecognized(Int)
 }

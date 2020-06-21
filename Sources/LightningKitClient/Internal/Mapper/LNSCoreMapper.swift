@@ -113,12 +113,13 @@ extension LNSCoreMapperImplementation: LNSCoreResponseMapper {
     }
 
     func map(addInvoiceResponse response: Lnrpc_AddInvoiceResponse) -> LNSInvoice {
-        return LNSInvoice(
+        return LNSInvoice( // TODO: Fix
+            value: .satoshi(Int(0)),
             hash: response.rHash,
             paymentRequest: response.paymentRequest,
-            timestamp: Date(), // TODO
-            expiryDate: Date(), // TODO
-            state: .open //TODO
+            creationDate: Date(),
+            expiryDate:Date(),
+            state: .open
         )
     }
 
@@ -145,5 +146,56 @@ extension LNSCoreMapperImplementation: LNSCoreResponseMapper {
     
     func map(connectPeerResponse response: Lnrpc_ConnectPeerResponse) -> Bool {
         return true
+    }
+}
+
+
+// MARK: - Request mapping
+
+extension Lnrpc_ListInvoiceRequest {
+    
+    init(request: LNSListInvoicesRequest) {
+        var req = Lnrpc_ListInvoiceRequest()
+        req.pendingOnly = request.pendingOnly
+        req.indexOffset = UInt64(request.indexOffset)
+        req.numMaxInvoices = UInt64(request.numMaxInvoices)
+        req.reversed = request.reversed
+    }
+}
+
+
+// MARK: - Response mapping
+
+extension LNSInvoice {
+    
+    init(response: Lnrpc_Invoice) {
+        self = .init(
+            value: .satoshi(Int(response.value)),
+            hash: response.rHash,
+            paymentRequest: response.paymentRequest,
+            creationDate: Date(timeIntervalSince1970: TimeInterval(response.creationDate)),
+            expiryDate:Date(timeIntervalSince1970: TimeInterval(response.expiry)),
+            state: .init(state: response.state, amountPaid: Int(response.amtPaidSat))
+        )
+    }
+}
+
+extension LNSInvoiceState {
+    
+    init(state: Lnrpc_Invoice.InvoiceState, amountPaid: Int) {
+        switch state {
+        case .open: self = .open
+        case .settled: self = .settled(amount: .satoshi(amountPaid))
+        case .canceled: self = .canceled
+        case .accepted: self = .accepted
+        case .UNRECOGNIZED(let code): self = .unrecognized(code)
+        }
+    }
+}
+
+extension Array where Element == LNSInvoice {
+    
+    init(listInvoice response: Lnrpc_ListInvoiceResponse) {
+        self = response.invoices.map(LNSInvoice.init)
     }
 }
