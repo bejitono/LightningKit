@@ -65,8 +65,8 @@ open class LightningKitClient: LNSCoreService {
         client.request(mapper.mapSendPaymentRequest(withEndcodedRequest: request), map: mapper.map(sendEncodedPaymentResponse:), completion: completion)
     }
     
-    open func listPayments(completion: @escaping LNSListPaymentsCompletion) { // TODO: add request
-        client.request(mapper.mapListPaymentsRequest(), map: mapper.map(listPaymentsResponse:), completion: completion)
+    open func listPayments(withRequest request: LNSListPaymentsRequest = LNSListPaymentsRequest(), completion: @escaping LNSListPaymentsCompletion) { // TODO: add request
+        client.request(Lnrpc_ListPaymentsRequest(request: request), map: mapper.map(listPaymentsResponse:), completion: completion)
     }
     
     public func listInvoices(withRequest request: LNSListInvoicesRequest = LNSListInvoicesRequest(), completion: @escaping LNSListInvoicesCompletion) {

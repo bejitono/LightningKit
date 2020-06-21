@@ -20,6 +20,7 @@
 		3D2AD56723BB0A1E00B3C840 /* LNSSendCoinsConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD56623BB0A1E00B3C840 /* LNSSendCoinsConfiguration.swift */; };
 		3D3496D4249F1F3400977EA4 /* LNSListInvoicesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3496D2249F1E0200977EA4 /* LNSListInvoicesRequest.swift */; };
 		3D3496D7249F230D00977EA4 /* BTCUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3496D5249F22A500977EA4 /* BTCUnit.swift */; };
+		3D396A9F249F5EA1002C2D3B /* LNSListPaymentsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D396A9C249F5DC5002C2D3B /* LNSListPaymentsRequest.swift */; };
 		3D6107072496EBFE004B47A4 /* Lndmobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6107062496EBFD004B47A4 /* Lndmobile.framework */; };
 		3D61071B2496EF93004B47A4 /* LKWalletError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6106FD2496EB26004B47A4 /* LKWalletError.swift */; };
 		3D61071C2496EF93004B47A4 /* LightningKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6106FF2496EB26004B47A4 /* LightningKit.swift */; };
@@ -158,6 +159,7 @@
 		3D2AD56623BB0A1E00B3C840 /* LNSSendCoinsConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNSSendCoinsConfiguration.swift; sourceTree = "<group>"; };
 		3D3496D2249F1E0200977EA4 /* LNSListInvoicesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNSListInvoicesRequest.swift; sourceTree = "<group>"; };
 		3D3496D5249F22A500977EA4 /* BTCUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTCUnit.swift; sourceTree = "<group>"; };
+		3D396A9C249F5DC5002C2D3B /* LNSListPaymentsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNSListPaymentsRequest.swift; sourceTree = "<group>"; };
 		3D6106FD2496EB26004B47A4 /* LKWalletError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKWalletError.swift; sourceTree = "<group>"; };
 		3D6106FF2496EB26004B47A4 /* LightningKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightningKit.swift; sourceTree = "<group>"; };
 		3D6107002496EB26004B47A4 /* LKWallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKWallet.swift; sourceTree = "<group>"; };
@@ -391,6 +393,7 @@
 				3D70CDA823A50E9F001BE339 /* LNSInfo.swift */,
 				3D70CDC223A5FDB6001BE339 /* LNSInvoice.swift */,
 				3D70CDC423A60086001BE339 /* LNSInvoiceRequest.swift */,
+				3D396A9C249F5DC5002C2D3B /* LNSListPaymentsRequest.swift */,
 				3D3496D2249F1E0200977EA4 /* LNSListInvoicesRequest.swift */,
 				3D70CD8923A47CB9001BE339 /* LNSMacaroon.swift */,
 				3D2AD55F23B9DE2E00B3C840 /* LNSOpenChannelStatusUpdate.swift */,
@@ -846,6 +849,7 @@
 				3D70CD9D23A4F57C001BE339 /* LNSSeed.swift in Sources */,
 				3D2AD56723BB0A1E00B3C840 /* LNSSendCoinsConfiguration.swift in Sources */,
 				3D70CDBD23A5F574001BE339 /* LNSServiceBuilder.swift in Sources */,
+				3D396A9F249F5EA1002C2D3B /* LNSListPaymentsRequest.swift in Sources */,
 				3D76934523B10D2800C6D726 /* LNSConnectPeerConfiguration.swift in Sources */,
 				3D70CDA323A505C5001BE339 /* LNSTransaction.swift in Sources */,
 				3D2AD55C23B9DC8A00B3C840 /* LNSCloseChannelConfiguration.swift in Sources */,

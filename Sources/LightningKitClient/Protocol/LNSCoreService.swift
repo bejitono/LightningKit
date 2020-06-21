@@ -38,7 +38,7 @@ public protocol LNSCoreService {
 
     func sendPayment(withRequest request: LNSEncodedPaymentRequest, completion: @escaping LNSSuccessCompletion)
 
-    func listPayments(completion: @escaping LNSListPaymentsCompletion)
+    func listPayments(withRequest request: LNSListPaymentsRequest, completion: @escaping LNSListPaymentsCompletion)
     
     func listInvoices(withRequest request: LNSListInvoicesRequest, completion: @escaping LNSListInvoicesCompletion)
     

@@ -20,8 +20,6 @@ protocol LNSCoreRequestMapper {
 
     func mapSendPaymentRequest(withEndcodedRequest request: LNSEncodedPaymentRequest) -> Lnrpc_SendRequest
 
-    func mapListPaymentsRequest() -> Lnrpc_ListPaymentsRequest
-
     func mapConnectPeerRequest(withConnectPeerConfig config: LNSConnectPeerConfiguration) -> Lnrpc_ConnectPeerRequest
 }
 
@@ -73,12 +71,6 @@ struct LNSCoreMapperImplementation: LNSCoreRequestMapper {
     func mapSendPaymentRequest(withEndcodedRequest request: LNSEncodedPaymentRequest) -> Lnrpc_SendRequest {
         var req = Lnrpc_SendRequest()
         req.paymentRequest = request
-        return req
-    }
-    
-    func mapListPaymentsRequest() -> Lnrpc_ListPaymentsRequest {
-        var req = Lnrpc_ListPaymentsRequest()
-        req.includeIncomplete = false
         return req
     }
     
@@ -158,6 +150,17 @@ extension Lnrpc_ListInvoiceRequest {
         req.pendingOnly = request.pendingOnly
         req.indexOffset = UInt64(request.indexOffset)
         req.numMaxInvoices = UInt64(request.numMaxInvoices)
+        req.reversed = request.reversed
+    }
+}
+
+extension Lnrpc_ListPaymentsRequest {
+    
+    init(request: LNSListPaymentsRequest) {
+        var req = Lnrpc_ListPaymentsRequest()
+        req.includeIncomplete = request.includeIncomplete
+        req.indexOffset = UInt64(request.indexOffset)
+        req.maxPayments = UInt64(request.maxPayments)
         req.reversed = request.reversed
     }
 }
