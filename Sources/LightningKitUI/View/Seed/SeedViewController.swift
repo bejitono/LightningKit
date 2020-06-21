@@ -41,7 +41,7 @@ open class SeedViewController: UIViewController {
     }
 }
 
-// MARK: - Setup Views
+// MARK: - View Setup
 
 private extension SeedViewController {
     

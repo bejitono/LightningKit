@@ -45,6 +45,7 @@ final class LNSWalletServiceImplementation: LNSWalletService {
         client.request(Lnrpc_ChannelBalanceRequest(), map: LNSChannelBalance.init, completion: completion)
     }
     
+    /// Returns a list describing all known on-chain transactions relevant to the wallet.
     func getTransactions(completion: @escaping LNSTransactionsCompletion) { // TODO: Update parameters: start-/end-height
         client.request(Lnrpc_GetTransactionsRequest(), map: Array.init(transactionDetails:), completion: completion)
     }

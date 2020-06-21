@@ -43,7 +43,7 @@ open class SeedPhraseView: UIView {
     }
 }
 
-// MARK: - Setup Views
+// MARK: - View Setup
 
 private extension SeedPhraseView {
     

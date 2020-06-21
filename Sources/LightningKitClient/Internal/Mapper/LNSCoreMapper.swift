@@ -149,7 +149,6 @@ extension LNSCoreMapperImplementation: LNSCoreResponseMapper {
     }
 }
 
-
 // MARK: - Request mapping
 
 extension Lnrpc_ListInvoiceRequest {
@@ -162,7 +161,6 @@ extension Lnrpc_ListInvoiceRequest {
         req.reversed = request.reversed
     }
 }
-
 
 // MARK: - Response mapping
 

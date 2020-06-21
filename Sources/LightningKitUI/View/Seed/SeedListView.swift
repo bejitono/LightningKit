@@ -14,8 +14,9 @@ open class SeedListView: UIView {
     public let scrollView = UIScrollView()
     
     private enum ViewConstants {
-        static let padding: CGFloat = 10
-        static let spacing: CGFloat = 7
+        static let padding: CGFloat = 20
+        static let rowSpacing: CGFloat = 10
+        static let listSpacing: CGFloat = 20
     }
     
     private let descriptionLabel = UILabel()
@@ -34,7 +35,7 @@ open class SeedListView: UIView {
     }
 }
 
-// MARK: - Setup Views
+// MARK: - View Setup
 
 private extension SeedListView {
     
@@ -78,24 +79,24 @@ private extension SeedListView {
         scrollView.addSubview(containerStackView)
         NSLayoutConstraint.activate([
             containerStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: ViewConstants.padding),
-            containerStackView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: ViewConstants.padding * 2),
+            containerStackView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: ViewConstants.padding * 1.5),
             containerStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -ViewConstants.padding),
             containerStackView.widthAnchor.constraint(greaterThanOrEqualTo: scrollView.widthAnchor, multiplier: 1, constant: -ViewConstants.padding * 2)
         ])
-        containerStackView.spacing = ViewConstants.spacing
+        containerStackView.spacing = ViewConstants.listSpacing
         containerStackView.distribution = .fillEqually
     }
     
     func setupFirstSeedStackView() {
         containerStackView.addArrangedSubview(firstSeedStackView)
         firstSeedStackView.axis = .vertical
-        firstSeedStackView.spacing = ViewConstants.spacing
+        firstSeedStackView.spacing = ViewConstants.rowSpacing
     }
     
     func setupSecondSeedStackView() {
         containerStackView.addArrangedSubview(secondSeedStackView)
         secondSeedStackView.axis = .vertical
-        secondSeedStackView.spacing = ViewConstants.spacing
+        secondSeedStackView.spacing = ViewConstants.rowSpacing
     }
     
     func setupSeedLabels(withSeed seed: [String]) {
