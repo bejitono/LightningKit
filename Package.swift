@@ -26,12 +26,12 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
             name: "LightningKit",
-            dependencies: ["LightningKitClient", "SwiftProtobuf"]),
+            dependencies: ["LightningKitClient"]),
         .target(
             name: "LightningKitUI",
             dependencies: []),
          .target(
             name: "LightningKitClient",
-            dependencies: [])
+            dependencies: ["SwiftProtobuf"])
     ]
 )
