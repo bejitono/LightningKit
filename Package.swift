@@ -29,7 +29,7 @@ let package = Package(
             dependencies: ["LightningKitClient", "SwiftProtobuf"]),
         .target(
             name: "LightningKitUI",
-            dependencies: ["UIKit"]),
+            dependencies: []),
          .target(
             name: "LightningKitClient",
             dependencies: [])
