@@ -13,7 +13,7 @@ let package = Package(
         .library(
             name: "LightningKitUI",
             type: .dynamic,
-            targets: ["LightningKitUI"),
+            targets: ["LightningKitUI"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
