@@ -27,6 +27,18 @@
 		3D61071D2496EF93004B47A4 /* LKWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6107002496EB26004B47A4 /* LKWallet.swift */; };
 		3D61071E2496EF93004B47A4 /* LKChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6107012496EB26004B47A4 /* LKChannel.swift */; };
 		3D6107232496F8CE004B47A4 /* LKError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D61071F2496F670004B47A4 /* LKError.swift */; };
+		3D67FB1224A6FCB9009D0350 /* UIView+Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D81825A2498491600BE72BC /* UIView+Transform.swift */; };
+		3D67FB1324A70122009D0350 /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9FAE8E249D8E9700006770 /* UIView+Shadow.swift */; };
+		3D67FB1424A70127009D0350 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D81826324984D3300BE72BC /* Style.swift */; };
+		3D67FB1524A7012C009D0350 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D81826124984C8500BE72BC /* Color.swift */; };
+		3D67FB1624A7012F009D0350 /* DefaultColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D81826524984D5100BE72BC /* DefaultColor.swift */; };
+		3D67FB1724A70133009D0350 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6E4127249DDDB700EA1E2A /* Font.swift */; };
+		3D67FB1824A70136009D0350 /* DefaultFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6E4129249DDDBF00EA1E2A /* DefaultFont.swift */; };
+		3D67FB1924A7013B009D0350 /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD406A3249EEE0D009C01C9 /* TransactionTableViewCell.swift */; };
+		3D67FB1A24A7013F009D0350 /* SeedListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D610761249709D0004B47A4 /* SeedListView.swift */; };
+		3D67FB1B24A70142009D0350 /* SeedPhraseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6E4123249DC91200EA1E2A /* SeedPhraseView.swift */; };
+		3D67FB1C24A70146009D0350 /* SeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8182542498465C00BE72BC /* SeedViewController.swift */; };
+		3D67FB1D24A7014A009D0350 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D818257249847E800BE72BC /* Button.swift */; };
 		3D70CD9B23A4F566001BE339 /* LNSSeedConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD9A23A4F566001BE339 /* LNSSeedConfiguration.swift */; };
 		3D70CD9D23A4F57C001BE339 /* LNSSeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD9C23A4F57C001BE339 /* LNSSeed.swift */; };
 		3D70CDA123A5001A001BE339 /* LNSWalletBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CDA023A50019001BE339 /* LNSWalletBalance.swift */; };
@@ -332,7 +344,8 @@
 				3D6107602496FEA5004B47A4 /* ViewModel */,
 				3D61075F2496FDCE004B47A4 /* View */,
 			);
-			path = LightningKitUI;
+			name = LightningKitUI;
+			path = Sources/LightningKitUI;
 			sourceTree = "<group>";
 		};
 		3D6E4126249DDDA400EA1E2A /* Font */ = {
@@ -758,6 +771,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D67FB1B24A70142009D0350 /* SeedPhraseView.swift in Sources */,
+				3D67FB1824A70136009D0350 /* DefaultFont.swift in Sources */,
+				3D67FB1324A70122009D0350 /* UIView+Shadow.swift in Sources */,
+				3D67FB1924A7013B009D0350 /* TransactionTableViewCell.swift in Sources */,
+				3D67FB1524A7012C009D0350 /* Color.swift in Sources */,
+				3D67FB1724A70133009D0350 /* Font.swift in Sources */,
+				3D67FB1A24A7013F009D0350 /* SeedListView.swift in Sources */,
+				3D67FB1D24A7014A009D0350 /* Button.swift in Sources */,
+				3D67FB1424A70127009D0350 /* Style.swift in Sources */,
+				3D67FB1624A7012F009D0350 /* DefaultColor.swift in Sources */,
+				3D67FB1224A6FCB9009D0350 /* UIView+Transform.swift in Sources */,
+				3D67FB1C24A70146009D0350 /* SeedViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
