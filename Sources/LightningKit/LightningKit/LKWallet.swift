@@ -21,7 +21,7 @@ open class LKWallet {
     private var seed: Seed?
     private let client: LNSCoreService
     
-    init(client: LNSCoreService = LightningKitClient.shared) {
+    public init(client: LNSCoreService = LightningKitClient.shared) {
         self.client = client
         // TODO: Add config: seedless, no password
     }
