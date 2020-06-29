@@ -19,7 +19,6 @@ open class SeedListView: UIView {
         static let listSpacing: CGFloat = 20
     }
     
-    private let descriptionLabel = UILabel()
     private let containerStackView = UIStackView()
     private let firstSeedStackView = UIStackView()
     private let secondSeedStackView = UIStackView()
@@ -41,7 +40,6 @@ private extension SeedListView {
     
     func setupViews() {
         setupScrollView()
-        setupDescription()
         setupContainerStackView()
         setupFirstSeedStackView()
         setupSecondSeedStackView()
@@ -59,27 +57,12 @@ private extension SeedListView {
         ])
     }
     
-    func setupDescription() {
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.addSubview(descriptionLabel)
-        NSLayoutConstraint.activate([
-            descriptionLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: ViewConstants.padding),
-            descriptionLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ViewConstants.padding),
-            descriptionLabel.widthAnchor.constraint(lessThanOrEqualTo: scrollView.widthAnchor, multiplier: 1, constant: -ViewConstants.padding * 2)
-        ])
-        descriptionLabel.text = "This seed phrase enables you to recover the keys to your funds. Please write down your seed phrase in a safe place. You won't be able to access this seed phrase after you proceed from this screen." // TODO: Localize
-        descriptionLabel.textColor = Style.Color.primaryText
-        descriptionLabel.font = Style.Font.bodyRegular
-        descriptionLabel.numberOfLines = 0
-        descriptionLabel.textAlignment = .center
-    }
-    
     func setupContainerStackView() {
         containerStackView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(containerStackView)
         NSLayoutConstraint.activate([
             containerStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: ViewConstants.padding),
-            containerStackView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: ViewConstants.padding * 1.5),
+            containerStackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ViewConstants.padding * 1.5),
             containerStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -ViewConstants.padding),
             containerStackView.widthAnchor.constraint(greaterThanOrEqualTo: scrollView.widthAnchor, multiplier: 1, constant: -ViewConstants.padding * 2)
         ])
