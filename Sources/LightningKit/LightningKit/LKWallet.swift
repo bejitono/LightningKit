@@ -41,7 +41,7 @@ open class LKWallet {
         }
     }
     
-    /// Creates a new wallet without a password. The password will be internall genrated and saved on the device.
+    /// Creates a new wallet without a password. The password will be internally generated and saved on the device.
     open func create(completion: @escaping (Result<Void, Error>) -> Void) {
         return completion(Result.failure(LKError.notImplemented))
     }
