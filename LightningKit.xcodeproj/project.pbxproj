@@ -10,6 +10,8 @@
 		0B9389E323AE201D00D392AF /* LNSCoreMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9389E223AE201C00D392AF /* LNSCoreMapper.swift */; };
 		0BC0BC6F23ADBB2E009B9E58 /* LNSClientType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC0BC6E23ADBB2E009B9E58 /* LNSClientType.swift */; };
 		0BC0BC7123ADBBA5009B9E58 /* LndClientBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC0BC7023ADBBA5009B9E58 /* LndClientBuilder.swift */; };
+		3D140DDF24C2C29C00C2AE68 /* SeedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D140DDE24C2C29C00C2AE68 /* SeedStore.swift */; };
+		3D140DE224C2C2DE00C2AE68 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 3D140DE124C2C2DE00C2AE68 /* KeychainAccess */; };
 		3D2AD55823B3233D00B3C840 /* LNSChannelServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD55723B3233D00B3C840 /* LNSChannelServiceImpl.swift */; };
 		3D2AD55A23B86D8A00B3C840 /* LNSChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD55923B86D8A00B3C840 /* LNSChannel.swift */; };
 		3D2AD55C23B9DC8A00B3C840 /* LNSCloseChannelConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD55B23B9DC8A00B3C840 /* LNSCloseChannelConfiguration.swift */; };
@@ -141,6 +143,7 @@
 		0B9389E223AE201C00D392AF /* LNSCoreMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LNSCoreMapper.swift; sourceTree = "<group>"; };
 		0BC0BC6E23ADBB2E009B9E58 /* LNSClientType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LNSClientType.swift; sourceTree = "<group>"; };
 		0BC0BC7023ADBBA5009B9E58 /* LndClientBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LndClientBuilder.swift; sourceTree = "<group>"; };
+		3D140DDE24C2C29C00C2AE68 /* SeedStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedStore.swift; sourceTree = "<group>"; };
 		3D2AD55723B3233D00B3C840 /* LNSChannelServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNSChannelServiceImpl.swift; sourceTree = "<group>"; };
 		3D2AD55923B86D8A00B3C840 /* LNSChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNSChannel.swift; sourceTree = "<group>"; };
 		3D2AD55B23B9DC8A00B3C840 /* LNSCloseChannelConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNSCloseChannelConfiguration.swift; sourceTree = "<group>"; };
@@ -241,6 +244,7 @@
 			files = (
 				3D74495B24AAC40B00CB42C9 /* libLightningKit.a in Frameworks */,
 				3D3A326024A8842D004B64FF /* libLightningKitUI.a in Frameworks */,
+				3D140DE224C2C2DE00C2AE68 /* KeychainAccess in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +260,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D140DDD24C2C28E00C2AE68 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				3D140DDE24C2C29C00C2AE68 /* SeedStore.swift */,
+			);
+			path = Internal;
+			sourceTree = "<group>";
+		};
 		3D2AD56323BAF81B00B3C840 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -307,6 +319,7 @@
 		3D6107152496EF47004B47A4 /* LightningKit */ = {
 			isa = PBXGroup;
 			children = (
+				3D140DDD24C2C28E00C2AE68 /* Internal */,
 				3D6106FB2496EB26004B47A4 /* Protocol */,
 				3D6106FE2496EB26004B47A4 /* LightningKit */,
 			);
@@ -662,6 +675,9 @@
 			dependencies = (
 			);
 			name = LightningKitApp;
+			packageProductDependencies = (
+				3D140DE124C2C2DE00C2AE68 /* KeychainAccess */,
+			);
 			productName = LightningSwift;
 			productReference = 3D743E19239E86DA005B2804 /* LightningKitApp.app */;
 			productType = "com.apple.product-type.application";
@@ -722,6 +738,7 @@
 			mainGroup = 3D743E10239E86DA005B2804;
 			packageReferences = (
 				3D743E40239E882B005B2804 /* XCRemoteSwiftPackageReference "swift-protobuf" */,
+				3D140DE024C2C2DE00C2AE68 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 			);
 			productRefGroup = 3D743E1A239E86DA005B2804 /* Products */;
 			projectDirPath = "";
@@ -785,6 +802,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D743E1D239E86DA005B2804 /* AppDelegate.swift in Sources */,
+				3D140DDF24C2C29C00C2AE68 /* SeedStore.swift in Sources */,
 				3D743E1F239E86DA005B2804 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1190,6 +1208,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3D140DE024C2C2DE00C2AE68 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.0;
+			};
+		};
 		3D743E40239E882B005B2804 /* XCRemoteSwiftPackageReference "swift-protobuf" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-protobuf.git";
@@ -1201,6 +1227,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3D140DE124C2C2DE00C2AE68 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3D140DE024C2C2DE00C2AE68 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
 		3D743E41239E882B005B2804 /* SwiftProtobuf */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3D743E40239E882B005B2804 /* XCRemoteSwiftPackageReference "swift-protobuf" */;
