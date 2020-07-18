@@ -337,19 +337,11 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		3D6107602496FEA5004B47A4 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		3D67FB0C24A6FA5B009D0350 /* LightningKitUI */ = {
 			isa = PBXGroup;
 			children = (
 				3D818259249848FC00BE72BC /* Extensions */,
 				3D8182562498478000BE72BC /* Styles */,
-				3D6107602496FEA5004B47A4 /* ViewModel */,
 				3D61075F2496FDCE004B47A4 /* View */,
 			);
 			name = LightningKitUI;
