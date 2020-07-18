@@ -77,23 +77,23 @@ open class LKChannel {
     }
     
     
-    func openChannel(withConfig config: LNSOpenChannelConfiguration, completion: @escaping (Result<LNSChannelPoint, Error>) -> Void) {
+    open func openChannel(withConfig config: LNSOpenChannelConfiguration, completion: @escaping (Result<LNSChannelPoint, Error>) -> Void) {
         client.request(Lnrpc_OpenChannelRequest(config: config), map: LNSChannelPoint.init, completion: completion)
     }
     
-    func closeChannel(withConfig config: LNSCloseChannelConfiguration, completion: @escaping (Result<LNSCloseChannelStatusUpdate, Error>) -> Void) {
+    open func closeChannel(withConfig config: LNSCloseChannelConfiguration, completion: @escaping (Result<LNSCloseChannelStatusUpdate, Error>) -> Void) {
         client.request(Lnrpc_CloseChannelRequest(config: config), map: LNSCloseChannelStatusUpdate.init, completion: completion)
     }
     
-    func listChannels(completion: @escaping (Result<[LNSChannel], Error>) -> Void) {
+    open func listChannels(completion: @escaping (Result<[LNSChannel], Error>) -> Void) {
         client.request(Lnrpc_ListChannelsRequest(), map: Array.init(channelsResponse:), completion: completion)
     }
     
-    func listPendingChannels(completion: @escaping (Result<LNSPendingChannels, Error>) -> Void) {
+    open func listPendingChannels(completion: @escaping (Result<LNSPendingChannels, Error>) -> Void) {
         client.request(Lnrpc_PendingChannelsRequest(), map: LNSPendingChannels.init, completion: completion)
     }
     
-    func getBalance(completion: @escaping (Result<LNSChannelBalance, Error>) -> Void) {
+    open func getBalance(completion: @escaping (Result<LNSChannelBalance, Error>) -> Void) {
         client.request(Lnrpc_ChannelBalanceRequest(), map: LNSChannelBalance.init, completion: completion)
     }
 }

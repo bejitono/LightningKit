@@ -14,6 +14,7 @@ open class LKWallet {
         static let minPasswordLength = 8
     }
     
+    public static var shared: LKWallet = LKWallet()
     public var unlocked: Bool = false
     
     private let seedStore: SeedStore
