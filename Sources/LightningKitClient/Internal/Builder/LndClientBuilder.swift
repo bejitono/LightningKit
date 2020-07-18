@@ -6,9 +6,11 @@
 //  Copyright © 2019 De MicheliStefano. All rights reserved.
 //
 
-struct LndClientBuilder {
+public struct LndClientBuilder {
+    
+    public init() { }
 
-    func build(_ type: LNSClientType) -> LndClient {
+    public func build(_ type: LNSClientType) -> LndClient {
         switch type {
         case .mobile: return buildMobileClient()
         default: return buildMobileClient()

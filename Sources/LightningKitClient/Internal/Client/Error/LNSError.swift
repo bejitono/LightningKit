@@ -1,4 +1,3 @@
-//
 //  LNSError.swift
 //  LightningSwift
 //

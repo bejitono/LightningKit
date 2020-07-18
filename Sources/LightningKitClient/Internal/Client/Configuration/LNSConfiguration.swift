@@ -21,7 +21,7 @@ public struct LNSConfiguration {
     }
 }
 
-extension LNSConfiguration {
+public extension LNSConfiguration {
     
     static var defaultConfig: LNSConfiguration {
         return .init(macaroon: nil, btcEnvironment: .testnet, btcNode: .neutrino)

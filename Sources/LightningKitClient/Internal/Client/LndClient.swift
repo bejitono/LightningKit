@@ -8,7 +8,7 @@
 
 import SwiftProtobuf
 
-protocol LndClient {
+public protocol LndClient {
     
     func start(withConfig: LNSConfiguration)
     
