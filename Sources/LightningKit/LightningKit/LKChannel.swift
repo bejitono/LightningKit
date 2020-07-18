@@ -28,4 +28,26 @@ open class LKChannel {
             }
         }
     }
+    
+    open func getPeers(completion: @escaping (Result<LNSInfo, Error>) -> Void) {
+        client.getInfo { (result) in
+            switch result {
+            case .success(let info):
+                completion(Result.success(info))
+            case .failure(let error):
+                completion(Result.failure(error))
+            }
+        }
+    }
+    
+    open func getTransactions(completion: @escaping (Result<[LNSTransaction], Error>) -> Void) {
+        client.wallet.getTransactions { (result) in
+            switch result {
+            case .success(let transactions):
+                completion(Result.success(transactions))
+            case .failure(let error):
+                completion(Result.failure(error))
+            }
+        }
+    }
 }

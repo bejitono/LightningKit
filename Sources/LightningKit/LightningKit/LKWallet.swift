@@ -139,4 +139,15 @@ open class LKWallet {
     open func unlock(completion: @escaping (Result<Void, Error>) -> Void) {
         return completion(Result.failure(LKError.notImplemented))
     }
+    
+    open func getBalance(completion: @escaping (Result<LNSWalletBalance, Error>) -> Void) {
+        client.wallet.getWalletBalance { (result) in
+            switch result {
+            case .success(let balance):
+                completion(Result.success(balance))
+            case .failure(let error):
+                completion(Result.failure(error))
+            }
+        }
+    }
 }
