@@ -10,24 +10,11 @@
 		0BC0BC7123ADBBA5009B9E58 /* LndClientBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC0BC7023ADBBA5009B9E58 /* LndClientBuilder.swift */; };
 		3D140DE224C2C2DE00C2AE68 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 3D140DE124C2C2DE00C2AE68 /* KeychainAccess */; };
 		3D2AD56523BAF85C00B3C840 /* Message+Lndmobile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD56423BAF85C00B3C840 /* Message+Lndmobile.swift */; };
-		3D3A326024A8842D004B64FF /* libLightningKitUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D67FB0B24A6FA5B009D0350 /* libLightningKitUI.a */; };
 		3D61071B2496EF93004B47A4 /* LKWalletError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6106FD2496EB26004B47A4 /* LKWalletError.swift */; };
 		3D61071C2496EF93004B47A4 /* LightningKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6106FF2496EB26004B47A4 /* LightningKit.swift */; };
 		3D61071D2496EF93004B47A4 /* LKWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6107002496EB26004B47A4 /* LKWallet.swift */; };
 		3D61071E2496EF93004B47A4 /* LKChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6107012496EB26004B47A4 /* LKChannel.swift */; };
 		3D6107232496F8CE004B47A4 /* LKError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D61071F2496F670004B47A4 /* LKError.swift */; };
-		3D67FB1224A6FCB9009D0350 /* UIView+Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D81825A2498491600BE72BC /* UIView+Transform.swift */; };
-		3D67FB1324A70122009D0350 /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9FAE8E249D8E9700006770 /* UIView+Shadow.swift */; };
-		3D67FB1424A70127009D0350 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D81826324984D3300BE72BC /* Style.swift */; };
-		3D67FB1524A7012C009D0350 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D81826124984C8500BE72BC /* Color.swift */; };
-		3D67FB1624A7012F009D0350 /* DefaultColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D81826524984D5100BE72BC /* DefaultColor.swift */; };
-		3D67FB1724A70133009D0350 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6E4127249DDDB700EA1E2A /* Font.swift */; };
-		3D67FB1824A70136009D0350 /* DefaultFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6E4129249DDDBF00EA1E2A /* DefaultFont.swift */; };
-		3D67FB1924A7013B009D0350 /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD406A3249EEE0D009C01C9 /* TransactionTableViewCell.swift */; };
-		3D67FB1A24A7013F009D0350 /* SeedListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D610761249709D0004B47A4 /* SeedListView.swift */; };
-		3D67FB1B24A70142009D0350 /* SeedPhraseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6E4123249DC91200EA1E2A /* SeedPhraseView.swift */; };
-		3D67FB1C24A70146009D0350 /* SeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8182542498465C00BE72BC /* SeedViewController.swift */; };
-		3D67FB1D24A7014A009D0350 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D818257249847E800BE72BC /* Button.swift */; };
 		3D70CDB223A5ECD7001BE339 /* LNSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD9823A4F428001BE339 /* LNSError.swift */; };
 		3D70CDB423A5ECDC001BE339 /* LNSWalletError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD9E23A4FD08001BE339 /* LNSWalletError.swift */; };
 		3D70CDC723A60129001BE339 /* LNSTransactionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CDC623A60129001BE339 /* LNSTransactionError.swift */; };
@@ -81,6 +68,21 @@
 		3DA6C08724C2E8D10019F763 /* LNSMacaroon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD8923A47CB9001BE339 /* LNSMacaroon.swift */; };
 		3DA6C08924C2E8FF0019F763 /* BTCNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD8B23A47CB9001BE339 /* BTCNode.swift */; };
 		3DA6C08A24C2E8FF0019F763 /* BTCEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD8A23A47CB9001BE339 /* BTCEnvironment.swift */; };
+		3DA6C09424C2FC8C0019F763 /* LightningKitUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DA6C09224C2FC8C0019F763 /* LightningKitUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3DA6C09724C2FC8C0019F763 /* LightningKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DA6C09024C2FC8C0019F763 /* LightningKitUI.framework */; };
+		3DA6C09824C2FC8C0019F763 /* LightningKitUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3DA6C09024C2FC8C0019F763 /* LightningKitUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3DA6C09C24C2FCB40019F763 /* UIView+Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D81825A2498491600BE72BC /* UIView+Transform.swift */; };
+		3DA6C09D24C2FCB40019F763 /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9FAE8E249D8E9700006770 /* UIView+Shadow.swift */; };
+		3DA6C09E24C2FCB40019F763 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D81826324984D3300BE72BC /* Style.swift */; };
+		3DA6C09F24C2FCB40019F763 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D81826124984C8500BE72BC /* Color.swift */; };
+		3DA6C0A024C2FCB40019F763 /* DefaultColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D81826524984D5100BE72BC /* DefaultColor.swift */; };
+		3DA6C0A124C2FCB40019F763 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6E4127249DDDB700EA1E2A /* Font.swift */; };
+		3DA6C0A224C2FCB40019F763 /* DefaultFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6E4129249DDDBF00EA1E2A /* DefaultFont.swift */; };
+		3DA6C0A324C2FCB40019F763 /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD406A3249EEE0D009C01C9 /* TransactionTableViewCell.swift */; };
+		3DA6C0A424C2FCB40019F763 /* SeedListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D610761249709D0004B47A4 /* SeedListView.swift */; };
+		3DA6C0A524C2FCB40019F763 /* SeedPhraseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6E4123249DC91200EA1E2A /* SeedPhraseView.swift */; };
+		3DA6C0A624C2FCB40019F763 /* SeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8182542498465C00BE72BC /* SeedViewController.swift */; };
+		3DA6C0A724C2FCB40019F763 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D818257249847E800BE72BC /* Button.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +92,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 3D743E33239E8762005B2804;
 			remoteInfo = LightningKitClient;
+		};
+		3DA6C09524C2FC8C0019F763 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3D743E11239E86DA005B2804 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3DA6C08F24C2FC8C0019F763;
+			remoteInfo = LightningKitUI1;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -109,17 +118,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				3DA6C09824C2FC8C0019F763 /* LightningKitUI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D67FB0924A6FA5B009D0350 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "include/$(PRODUCT_NAME)";
-			dstSubfolderSpec = 16;
-			files = (
-			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		3D743E32239E8762005B2804 /* CopyFiles */ = {
@@ -156,7 +157,6 @@
 		3D6107142496EF47004B47A4 /* libLightningKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLightningKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D61071F2496F670004B47A4 /* LKError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LKError.swift; sourceTree = "<group>"; };
 		3D610761249709D0004B47A4 /* SeedListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedListView.swift; sourceTree = "<group>"; };
-		3D67FB0B24A6FA5B009D0350 /* libLightningKitUI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLightningKitUI.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D6E4123249DC91200EA1E2A /* SeedPhraseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedPhraseView.swift; sourceTree = "<group>"; };
 		3D6E4127249DDDB700EA1E2A /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		3D6E4129249DDDBF00EA1E2A /* DefaultFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFont.swift; sourceTree = "<group>"; };
@@ -206,6 +206,9 @@
 		3D81826324984D3300BE72BC /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		3D81826524984D5100BE72BC /* DefaultColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultColor.swift; sourceTree = "<group>"; };
 		3D9FAE8E249D8E9700006770 /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
+		3DA6C09024C2FC8C0019F763 /* LightningKitUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LightningKitUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DA6C09224C2FC8C0019F763 /* LightningKitUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LightningKitUI.h; sourceTree = "<group>"; };
+		3DA6C09324C2FC8C0019F763 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3DD406A3249EEE0D009C01C9 /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -218,19 +221,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3D67FB0824A6FA5B009D0350 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3D743E16239E86DA005B2804 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DA6C09724C2FC8C0019F763 /* LightningKitUI.framework in Frameworks */,
 				3D74495B24AAC40B00CB42C9 /* libLightningKit.a in Frameworks */,
-				3D3A326024A8842D004B64FF /* libLightningKitUI.a in Frameworks */,
 				3D140DE224C2C2DE00C2AE68 /* KeychainAccess in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -241,6 +237,13 @@
 			files = (
 				3D743E44239E882B005B2804 /* SwiftProtobufPluginLibrary in Frameworks */,
 				3D743E42239E882B005B2804 /* SwiftProtobuf in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DA6C08D24C2FC8C0019F763 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,17 +328,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		3D67FB0C24A6FA5B009D0350 /* LightningKitUI */ = {
-			isa = PBXGroup;
-			children = (
-				3D818259249848FC00BE72BC /* Extensions */,
-				3D8182562498478000BE72BC /* Styles */,
-				3D61075F2496FDCE004B47A4 /* View */,
-			);
-			name = LightningKitUI;
-			path = Sources/LightningKitUI;
-			sourceTree = "<group>";
-		};
 		3D6E4126249DDDA400EA1E2A /* Font */ = {
 			isa = PBXGroup;
 			children = (
@@ -413,7 +405,7 @@
 				3D743E1B239E86DA005B2804 /* LightningKitApp */,
 				3D743E35239E8762005B2804 /* LightningKitClient */,
 				3D6107152496EF47004B47A4 /* LightningKit */,
-				3D67FB0C24A6FA5B009D0350 /* LightningKitUI */,
+				3DA6C09124C2FC8C0019F763 /* LightningKitUI */,
 				3D743E1A239E86DA005B2804 /* Products */,
 				3D743E4F239E8A57005B2804 /* Frameworks */,
 			);
@@ -425,7 +417,7 @@
 				3D743E19239E86DA005B2804 /* LightningKitApp.app */,
 				3D743E34239E8762005B2804 /* libLightningKitClient.a */,
 				3D6107142496EF47004B47A4 /* libLightningKit.a */,
-				3D67FB0B24A6FA5B009D0350 /* libLightningKitUI.a */,
+				3DA6C09024C2FC8C0019F763 /* LightningKitUI.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -562,6 +554,19 @@
 			path = Configuration;
 			sourceTree = "<group>";
 		};
+		3DA6C09124C2FC8C0019F763 /* LightningKitUI */ = {
+			isa = PBXGroup;
+			children = (
+				3DA6C09224C2FC8C0019F763 /* LightningKitUI.h */,
+				3DA6C09324C2FC8C0019F763 /* Info.plist */,
+				3D818259249848FC00BE72BC /* Extensions */,
+				3D8182562498478000BE72BC /* Styles */,
+				3D61075F2496FDCE004B47A4 /* View */,
+			);
+			name = LightningKitUI;
+			path = Sources/LightningKitUI;
+			sourceTree = "<group>";
+		};
 		3DD406A2249EEC3D009C01C9 /* Transaction */ = {
 			isa = PBXGroup;
 			children = (
@@ -571,6 +576,17 @@
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		3DA6C08B24C2FC8C0019F763 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DA6C09424C2FC8C0019F763 /* LightningKitUI.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		3D6107132496EF47004B47A4 /* LightningKit */ = {
@@ -591,23 +607,6 @@
 			productReference = 3D6107142496EF47004B47A4 /* libLightningKit.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		3D67FB0A24A6FA5B009D0350 /* LightningKitUI */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3D67FB0F24A6FA5B009D0350 /* Build configuration list for PBXNativeTarget "LightningKitUI" */;
-			buildPhases = (
-				3D67FB0724A6FA5B009D0350 /* Sources */,
-				3D67FB0824A6FA5B009D0350 /* Frameworks */,
-				3D67FB0924A6FA5B009D0350 /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = LightningKitUI;
-			productName = LightningKitUI;
-			productReference = 3D67FB0B24A6FA5B009D0350 /* libLightningKitUI.a */;
-			productType = "com.apple.product-type.library.static";
-		};
 		3D743E18239E86DA005B2804 /* LightningKitApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D743E2D239E86DD005B2804 /* Build configuration list for PBXNativeTarget "LightningKitApp" */;
@@ -620,6 +619,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3DA6C09624C2FC8C0019F763 /* PBXTargetDependency */,
 			);
 			name = LightningKitApp;
 			packageProductDependencies = (
@@ -650,6 +650,24 @@
 			productReference = 3D743E34239E8762005B2804 /* libLightningKitClient.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		3DA6C08F24C2FC8C0019F763 /* LightningKitUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3DA6C09924C2FC8C0019F763 /* Build configuration list for PBXNativeTarget "LightningKitUI" */;
+			buildPhases = (
+				3DA6C08B24C2FC8C0019F763 /* Headers */,
+				3DA6C08C24C2FC8C0019F763 /* Sources */,
+				3DA6C08D24C2FC8C0019F763 /* Frameworks */,
+				3DA6C08E24C2FC8C0019F763 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LightningKitUI;
+			productName = LightningKitUI1;
+			productReference = 3DA6C09024C2FC8C0019F763 /* LightningKitUI.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -663,14 +681,14 @@
 					3D6107132496EF47004B47A4 = {
 						CreatedOnToolsVersion = 11.5;
 					};
-					3D67FB0A24A6FA5B009D0350 = {
-						CreatedOnToolsVersion = 11.5;
-					};
 					3D743E18239E86DA005B2804 = {
 						CreatedOnToolsVersion = 11.3;
 					};
 					3D743E33239E8762005B2804 = {
 						CreatedOnToolsVersion = 11.3;
+					};
+					3DA6C08F24C2FC8C0019F763 = {
+						CreatedOnToolsVersion = 11.5;
 					};
 				};
 			};
@@ -694,7 +712,7 @@
 				3D743E18239E86DA005B2804 /* LightningKitApp */,
 				3D743E33239E8762005B2804 /* LightningKitClient */,
 				3D6107132496EF47004B47A4 /* LightningKit */,
-				3D67FB0A24A6FA5B009D0350 /* LightningKitUI */,
+				3DA6C08F24C2FC8C0019F763 /* LightningKitUI */,
 			);
 		};
 /* End PBXProject section */
@@ -707,6 +725,13 @@
 				3D743E29239E86DD005B2804 /* LaunchScreen.storyboard in Resources */,
 				3D743E26239E86DD005B2804 /* Preview Assets.xcassets in Resources */,
 				3D743E23239E86DD005B2804 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DA6C08E24C2FC8C0019F763 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -754,25 +779,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3D67FB0724A6FA5B009D0350 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3D67FB1B24A70142009D0350 /* SeedPhraseView.swift in Sources */,
-				3D67FB1824A70136009D0350 /* DefaultFont.swift in Sources */,
-				3D67FB1324A70122009D0350 /* UIView+Shadow.swift in Sources */,
-				3D67FB1924A7013B009D0350 /* TransactionTableViewCell.swift in Sources */,
-				3D67FB1524A7012C009D0350 /* Color.swift in Sources */,
-				3D67FB1724A70133009D0350 /* Font.swift in Sources */,
-				3D67FB1A24A7013F009D0350 /* SeedListView.swift in Sources */,
-				3D67FB1D24A7014A009D0350 /* Button.swift in Sources */,
-				3D67FB1424A70127009D0350 /* Style.swift in Sources */,
-				3D67FB1624A7012F009D0350 /* DefaultColor.swift in Sources */,
-				3D67FB1224A6FCB9009D0350 /* UIView+Transform.swift in Sources */,
-				3D67FB1C24A70146009D0350 /* SeedViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3D743E15239E86DA005B2804 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -806,6 +812,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3DA6C08C24C2FC8C0019F763 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DA6C0A524C2FCB40019F763 /* SeedPhraseView.swift in Sources */,
+				3DA6C0A224C2FCB40019F763 /* DefaultFont.swift in Sources */,
+				3DA6C09D24C2FCB40019F763 /* UIView+Shadow.swift in Sources */,
+				3DA6C0A324C2FCB40019F763 /* TransactionTableViewCell.swift in Sources */,
+				3DA6C09F24C2FCB40019F763 /* Color.swift in Sources */,
+				3DA6C0A124C2FCB40019F763 /* Font.swift in Sources */,
+				3DA6C0A424C2FCB40019F763 /* SeedListView.swift in Sources */,
+				3DA6C0A724C2FCB40019F763 /* Button.swift in Sources */,
+				3DA6C09E24C2FCB40019F763 /* Style.swift in Sources */,
+				3DA6C0A024C2FCB40019F763 /* DefaultColor.swift in Sources */,
+				3DA6C09C24C2FCB40019F763 /* UIView+Transform.swift in Sources */,
+				3DA6C0A624C2FCB40019F763 /* SeedViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -813,6 +838,11 @@
 			isa = PBXTargetDependency;
 			target = 3D743E33239E8762005B2804 /* LightningKitClient */;
 			targetProxy = 3D6107212496F8A9004B47A4 /* PBXContainerItemProxy */;
+		};
+		3DA6C09624C2FC8C0019F763 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3DA6C08F24C2FC8C0019F763 /* LightningKitUI */;
+			targetProxy = 3DA6C09524C2FC8C0019F763 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -842,32 +872,6 @@
 			name = Debug;
 		};
 		3D61071A2496EF47004B47A4 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		3D67FB1024A6FA5B009D0350 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		3D67FB1124A6FA5B009D0350 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -1005,6 +1009,7 @@
 		3D743E2E239E86DD005B2804 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "";
@@ -1035,6 +1040,7 @@
 		3D743E2F239E86DD005B2804 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "";
@@ -1098,6 +1104,64 @@
 			};
 			name = Release;
 		};
+		3DA6C09A24C2FC8C0019F763 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 84BULQXU2Q;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Sources/LightningKitUI/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.SignalLightning.LightningKitUI;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		3DA6C09B24C2FC8C0019F763 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 84BULQXU2Q;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Sources/LightningKitUI/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.SignalLightning.LightningKitUI;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1106,15 +1170,6 @@
 			buildConfigurations = (
 				3D6107192496EF47004B47A4 /* Debug */,
 				3D61071A2496EF47004B47A4 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3D67FB0F24A6FA5B009D0350 /* Build configuration list for PBXNativeTarget "LightningKitUI" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3D67FB1024A6FA5B009D0350 /* Debug */,
-				3D67FB1124A6FA5B009D0350 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1142,6 +1197,15 @@
 			buildConfigurations = (
 				3D743E39239E8762005B2804 /* Debug */,
 				3D743E3A239E8762005B2804 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3DA6C09924C2FC8C0019F763 /* Build configuration list for PBXNativeTarget "LightningKitUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DA6C09A24C2FC8C0019F763 /* Debug */,
+				3DA6C09B24C2FC8C0019F763 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
