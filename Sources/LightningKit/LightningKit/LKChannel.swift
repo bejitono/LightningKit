@@ -14,19 +14,15 @@ open class LKChannel {
     public let ready: Bool = false
     
     private let client: LndClient
-    private let mapper: LNSCoreMapper
 
     public convenience init() { // TODO: Add config
         self.init(
-            client: LndClientBuilder().build(.mobile),
-            mapper: LNSCoreMapperImplementation()
+            client: LndClientBuilder().build(.mobile)
         )
     }
     
-    init(client: LndClient,
-         mapper: LNSCoreMapper) {
+    init(client: LndClient) {
         self.client = client
-        self.mapper = mapper
     }
     
     open func start(withConfig config: LNSConfiguration) {
@@ -48,23 +44,35 @@ open class LKChannel {
     
     /// Returns general information concerning the lightning node.
     open func getInfo(completion: @escaping (Result<LNSInfo, Error>) -> Void) {
-        client.request(mapper.mapGetInfoRequest(), map: mapper.map(getInfoResponse:), completion: completion)
+        client.request(Lnrpc_GetInfoRequest(), map: LNSInfo.init, completion: completion)
     }
 
     open func addInvoice(withRequest request: LNSInvoiceRequest, completion: @escaping (Result<LNSInvoice, Error>) -> Void) {
-        client.request(mapper.mapAddInvoiceRequest(withRequest: request), map: mapper.map(addInvoiceResponse:), completion: completion)
+        client.request(Lnrpc_Invoice(request: request), map: LNSInvoice.init, completion: completion)
     }
 
-    open func sendPayment(withRequest request: LNSPaymentRequest, completion: @escaping (Result<Bool, Error>) -> Void) {
-        client.request(mapper.mapSendPaymentRequest(withRequest: request), map: mapper.map(sendPaymentResponse:), completion: completion)
+    open func sendPayment(withRequest request: LNSPaymentRequest, completion: @escaping (Result<Void, Error>) -> Void) {
+        client.request(Lnrpc_SendRequest(request: request), map: Bool.init(sendPaymentResponse:))  { result in
+            switch result {
+            case .success(_):
+                completion(Result.success(()))
+            case .failure(let error): completion(Result.failure(error))
+            }
+        }
     }
 
-    open func sendPayment(withRequest request: LNSEncodedPaymentRequest, completion: @escaping (Result<Bool, Error>) -> Void) {
-        client.request(mapper.mapSendPaymentRequest(withEndcodedRequest: request), map: mapper.map(sendEncodedPaymentResponse:), completion: completion)
+    open func sendPayment(withRequest request: LNSEncodedPaymentRequest, completion: @escaping (Result<Void, Error>) -> Void) {
+        client.request(Lnrpc_SendRequest(request: request), map: Bool.init(sendPaymentResponse:))  { result in
+            switch result {
+            case .success(_):
+                completion(Result.success(()))
+            case .failure(let error): completion(Result.failure(error))
+            }
+        }
     }
     
     open func listPayments(withRequest request: LNSListPaymentsRequest = LNSListPaymentsRequest(), completion: @escaping (Result<[LNSPayment], Error>) -> Void) { // TODO: add request
-        client.request(Lnrpc_ListPaymentsRequest(request: request), map: mapper.map(listPaymentsResponse:), completion: completion)
+        client.request(Lnrpc_ListPaymentsRequest(request: request), map: Array.init(listPayments:), completion: completion)
     }
     
     open func listInvoices(withRequest request: LNSListInvoicesRequest = LNSListInvoicesRequest(), completion: @escaping (Result<[LNSInvoice], Error>) -> Void) {
@@ -72,10 +80,15 @@ open class LKChannel {
     }
     
     /// Returns a list of currently active peers.
-    open func connectPeer(withConfig config: LNSConnectPeerConfiguration, completion: @escaping (Result<Bool, Error>) -> Void) {
-        client.request(mapper.mapConnectPeerRequest(withConnectPeerConfig: config), map: mapper.map(connectPeerResponse:), completion: completion)
+    open func connectPeer(withConfig config: LNSConnectPeerConfiguration, completion: @escaping (Result<Void, Error>) -> Void) {
+        client.request(Lnrpc_ConnectPeerRequest(request: config), map: Bool.init(connectPeerResponse:))   { result in
+            switch result {
+            case .success(_):
+                completion(Result.success(()))
+            case .failure(let error): completion(Result.failure(error))
+            }
+        }
     }
-    
     
     open func openChannel(withConfig config: LNSOpenChannelConfiguration, completion: @escaping (Result<LNSChannelPoint, Error>) -> Void) {
         client.request(Lnrpc_OpenChannelRequest(config: config), map: LNSChannelPoint.init, completion: completion)

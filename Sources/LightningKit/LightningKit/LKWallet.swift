@@ -100,10 +100,6 @@ open class LKWallet {
     ///   - password: 8-digit password
     ///   - seed: Seed generated with generateSeed(completion:)
     open func createWith(password: String, seed: [String], completion: @escaping (Result<Void, Error>) -> Void) {
-//        guard !client.ready else {
-//            return completion(Result.failure(LKError.lightningNodeNotReady))
-//        }
-
         guard password.count > Constants.minPasswordLength else {
             return completion(Result.failure(LKWalletError.invalidPassword))
         }

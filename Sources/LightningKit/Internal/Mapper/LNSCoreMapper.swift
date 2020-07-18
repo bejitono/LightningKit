@@ -9,43 +9,23 @@
 import Foundation
 import LightningKitClient
 
-typealias LNSCoreMapper = LNSCoreRequestMapper & LNSCoreResponseMapper
+// MARK: - Request mapping
 
-protocol LNSCoreRequestMapper {
-
-    func mapGetInfoRequest() -> Lnrpc_GetInfoRequest
+extension Lnrpc_ListInvoiceRequest {
     
-    func mapAddInvoiceRequest(withRequest request: LNSInvoiceRequest) -> Lnrpc_Invoice
-
-    func mapSendPaymentRequest(withRequest request: LNSPaymentRequest) -> Lnrpc_SendRequest
-
-    func mapSendPaymentRequest(withEndcodedRequest request: LNSEncodedPaymentRequest) -> Lnrpc_SendRequest
-
-    func mapConnectPeerRequest(withConnectPeerConfig config: LNSConnectPeerConfiguration) -> Lnrpc_ConnectPeerRequest
-}
-
-protocol LNSCoreResponseMapper {
-
-    func map(getInfoResponse resp: Lnrpc_GetInfoResponse) -> LNSInfo
-
-    func map(addInvoiceResponse response: Lnrpc_AddInvoiceResponse) -> LNSInvoice
-
-    func map(sendPaymentResponse response: Lnrpc_SendResponse) -> Bool
-
-    func map(sendEncodedPaymentResponse response: Lnrpc_SendResponse) -> Bool
-
-    func map(listPaymentsResponse response: Lnrpc_ListPaymentsResponse) -> [LNSPayment]
-
-    func map(connectPeerResponse response: Lnrpc_ConnectPeerResponse) -> Bool
-}
-
-struct LNSCoreMapperImplementation: LNSCoreRequestMapper {
-
-    func mapGetInfoRequest() -> Lnrpc_GetInfoRequest {
-        return Lnrpc_GetInfoRequest()
+    init(request: LNSListInvoicesRequest) {
+        var req = Lnrpc_ListInvoiceRequest()
+        req.pendingOnly = request.pendingOnly
+        req.indexOffset = UInt64(request.indexOffset)
+        req.numMaxInvoices = UInt64(request.numMaxInvoices)
+        req.reversed = request.reversed
+        self = req
     }
+}
 
-    func mapAddInvoiceRequest(withRequest request: LNSInvoiceRequest) -> Lnrpc_Invoice {
+extension Lnrpc_Invoice {
+    
+    init(request: LNSInvoiceRequest) {
         var req = Lnrpc_Invoice()
         req.value = Int64(request.amount) // TODO: sat, msat?
         req.creationDate = Int64(Date().timeIntervalSince1970)
@@ -54,40 +34,66 @@ struct LNSCoreMapperImplementation: LNSCoreRequestMapper {
             req.memo = memo
             req.settleDate = Int64(timestamp)
         }
-        return req
+        self = req
     }
+}
 
-    func mapSendPaymentRequest(withRequest request: LNSPaymentRequest) -> Lnrpc_SendRequest {
+extension Lnrpc_ListPaymentsRequest {
+    
+    init(request: LNSListPaymentsRequest) {
+        var req = Lnrpc_ListPaymentsRequest()
+        req.includeIncomplete = request.includeIncomplete
+        req.indexOffset = UInt64(request.indexOffset)
+        req.maxPayments = UInt64(request.maxPayments)
+        req.reversed = request.reversed
+        self = req
+    }
+}
+
+extension Lnrpc_SendRequest {
+    
+    init(request: LNSPaymentRequest) {
         var req = Lnrpc_SendRequest()
         guard
             let paymentHashData = request.paymentHash.data(using: .utf8),
             let destinationData = request.destination.data(using: .utf8)
-            else { return req }
+        else {
+            self = req
+            return
+        }
         req.paymentHash = paymentHashData
         req.dest = destinationData
         req.amt = Int64(request.amount)
-        return req
-    }
-
-    func mapSendPaymentRequest(withEndcodedRequest request: LNSEncodedPaymentRequest) -> Lnrpc_SendRequest {
-        var req = Lnrpc_SendRequest()
-        req.paymentRequest = request
-        return req
-    }
-    
-    func mapConnectPeerRequest(withConnectPeerConfig config: LNSConnectPeerConfiguration) -> Lnrpc_ConnectPeerRequest {
-        var req = Lnrpc_ConnectPeerRequest()
-        req.addr.pubkey = config.address.pubkey
-        req.addr.host = config.address.host
-        req.perm = config.permanent
-        return req
+        self = req
     }
 }
 
-extension LNSCoreMapperImplementation: LNSCoreResponseMapper {
+extension Lnrpc_SendRequest {
+    
+    init(request: LNSEncodedPaymentRequest) {
+        var req = Lnrpc_SendRequest()
+        req.paymentRequest = request
+        self = req
+    }
+}
 
-    func map(getInfoResponse resp: Lnrpc_GetInfoResponse) -> LNSInfo {
-        return LNSInfo(
+extension Lnrpc_ConnectPeerRequest {
+    
+    init(request: LNSConnectPeerConfiguration) {
+        var req = Lnrpc_ConnectPeerRequest()
+        req.addr.pubkey = request.address.pubkey
+        req.addr.host = request.address.host
+        req.perm = request.permanent
+        self = req
+    }
+}
+
+// MARK: - Response mapping
+
+extension LNSInfo {
+    
+    init(resp: Lnrpc_GetInfoResponse) {
+        self = .init(
             pubKey: resp.identityPubkey,
             alias: resp.alias,
             numPendingChannels: Int(resp.numPendingChannels),
@@ -104,69 +110,7 @@ extension LNSCoreMapperImplementation: LNSCoreResponseMapper {
             version: resp.version
         )
     }
-
-    func map(addInvoiceResponse response: Lnrpc_AddInvoiceResponse) -> LNSInvoice {
-        return LNSInvoice( // TODO: Fix
-            value: .satoshi(Int(0)),
-            hash: response.rHash,
-            paymentRequest: response.paymentRequest,
-            creationDate: Date(),
-            expiryDate:Date(),
-            state: .open
-        )
-    }
-
-    func map(sendPaymentResponse response: Lnrpc_SendResponse) -> Bool {
-        return true
-    }
-
-    func map(sendEncodedPaymentResponse response: Lnrpc_SendResponse) -> Bool {
-        return true
-    }
-    
-    func map(listPaymentsResponse response: Lnrpc_ListPaymentsResponse) -> [LNSPayment] {
-        return response.payments.map {
-            LNSPayment(
-                paymentHash: $0.paymentHash,
-                memo: nil,
-                amount: Int($0.value),
-                date: Date(timeIntervalSince1970: TimeInterval($0.creationDate)),
-                fees: Int($0.fee),
-                preimage: $0.paymentPreimage
-            )
-        }
-    }
-    
-    func map(connectPeerResponse response: Lnrpc_ConnectPeerResponse) -> Bool {
-        return true
-    }
 }
-
-// MARK: - Request mapping
-
-extension Lnrpc_ListInvoiceRequest {
-    
-    init(request: LNSListInvoicesRequest) {
-        var req = Lnrpc_ListInvoiceRequest()
-        req.pendingOnly = request.pendingOnly
-        req.indexOffset = UInt64(request.indexOffset)
-        req.numMaxInvoices = UInt64(request.numMaxInvoices)
-        req.reversed = request.reversed
-    }
-}
-
-extension Lnrpc_ListPaymentsRequest {
-    
-    init(request: LNSListPaymentsRequest) {
-        var req = Lnrpc_ListPaymentsRequest()
-        req.includeIncomplete = request.includeIncomplete
-        req.indexOffset = UInt64(request.indexOffset)
-        req.maxPayments = UInt64(request.maxPayments)
-        req.reversed = request.reversed
-    }
-}
-
-// MARK: - Response mapping
 
 extension LNSInvoice {
     
@@ -199,5 +143,32 @@ extension Array where Element == LNSInvoice {
     
     init(listInvoice response: Lnrpc_ListInvoiceResponse) {
         self = response.invoices.map(LNSInvoice.init)
+    }
+}
+
+extension Array where Element == LNSPayment {
+    
+    init(listPayments response: Lnrpc_ListPaymentsResponse) {
+        self = response.payments.map {
+            .init(
+                paymentHash: $0.paymentHash,
+                memo: nil,
+                amount: Int($0.value),
+                date: Date(timeIntervalSince1970: TimeInterval($0.creationDate)),
+                fees: Int($0.fee),
+                preimage: $0.paymentPreimage
+            )
+        }
+    }
+}
+
+extension Bool {
+    
+    init(sendPaymentResponse: Lnrpc_SendResponse) {
+        self = true
+    }
+    
+    init(connectPeerResponse: Lnrpc_ConnectPeerResponse) {
+        self = true
     }
 }
