@@ -92,4 +92,8 @@ open class LKChannel {
     func listPendingChannels(completion: @escaping (Result<LNSPendingChannels, Error>) -> Void) {
         client.request(Lnrpc_PendingChannelsRequest(), map: LNSPendingChannels.init, completion: completion)
     }
+    
+    func getBalance(completion: @escaping (Result<LNSChannelBalance, Error>) -> Void) {
+        client.request(Lnrpc_ChannelBalanceRequest(), map: LNSChannelBalance.init, completion: completion)
+    }
 }
