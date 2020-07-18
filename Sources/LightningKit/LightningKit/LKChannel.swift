@@ -33,6 +33,7 @@ open class LKChannel {
         client.start(withConfig: .defaultConfig)
     }
 
+    /// Sends a shutdown request to the interrupt handler, triggering a graceful shutdown of the daemon.
     open func stop() {
         client.stop()
     }
@@ -47,10 +48,13 @@ open class LKChannel {
         client.request(Lnrpc_GetInfoRequest(), map: LNSInfo.init, completion: completion)
     }
 
+    /// Attempts to add a new invoice to the invoice database. Any duplicated invoices are rejected,
+    /// therefore all invoices must have a unique payment preimage.
     open func addInvoice(withRequest request: LNSInvoiceRequest, completion: @escaping (Result<LNSInvoice, Error>) -> Void) {
         client.request(Lnrpc_Invoice(request: request), map: LNSInvoice.init, completion: completion)
     }
 
+    /// Attempts to route a payment described by the passed PaymentRequest to the final destination.
     open func sendPayment(withRequest request: LNSPaymentRequest, completion: @escaping (Result<Void, Error>) -> Void) {
         client.request(Lnrpc_SendRequest(request: request), map: Bool.init(sendPaymentResponse:))  { result in
             switch result {
@@ -60,7 +64,8 @@ open class LKChannel {
             }
         }
     }
-
+    
+    /// Attempts to route a payment described by the passed PaymentRequest to the final destination.
     open func sendPayment(withRequest request: LNSEncodedPaymentRequest, completion: @escaping (Result<Void, Error>) -> Void) {
         client.request(Lnrpc_SendRequest(request: request), map: Bool.init(sendPaymentResponse:))  { result in
             switch result {
@@ -71,10 +76,12 @@ open class LKChannel {
         }
     }
     
+    /// Returns a list of all outgoing payments.
     open func listPayments(withRequest request: LNSListPaymentsRequest = LNSListPaymentsRequest(), completion: @escaping (Result<[LNSPayment], Error>) -> Void) { // TODO: add request
         client.request(Lnrpc_ListPaymentsRequest(request: request), map: Array.init(listPayments:), completion: completion)
     }
     
+    /// Returns a list of all the invoices currently stored within the database.
     open func listInvoices(withRequest request: LNSListInvoicesRequest = LNSListInvoicesRequest(), completion: @escaping (Result<[LNSInvoice], Error>) -> Void) {
         client.request(Lnrpc_ListInvoiceRequest(request: request), map: Array.init(listInvoice:), completion: completion)
     }
@@ -90,14 +97,17 @@ open class LKChannel {
         }
     }
     
+    /// Attempts to open a singly funded channel specified in the request to a remote peer.
     open func openChannel(withConfig config: LNSOpenChannelConfiguration, completion: @escaping (Result<LNSChannelPoint, Error>) -> Void) {
         client.request(Lnrpc_OpenChannelRequest(config: config), map: LNSChannelPoint.init, completion: completion)
     }
     
+    /// Attempts to close an active channel identified by its channel outpoint
     open func closeChannel(withConfig config: LNSCloseChannelConfiguration, completion: @escaping (Result<LNSCloseChannelStatusUpdate, Error>) -> Void) {
         client.request(Lnrpc_CloseChannelRequest(config: config), map: LNSCloseChannelStatusUpdate.init, completion: completion)
     }
     
+    /// Returns a description of all the open channels that this node is a participant in.
     open func listChannels(completion: @escaping (Result<[LNSChannel], Error>) -> Void) {
         client.request(Lnrpc_ListChannelsRequest(), map: Array.init(channelsResponse:), completion: completion)
     }
@@ -106,6 +116,7 @@ open class LKChannel {
         client.request(Lnrpc_PendingChannelsRequest(), map: LNSPendingChannels.init, completion: completion)
     }
     
+    /// Returns the total funds available across all open channels in satoshis.
     open func getBalance(completion: @escaping (Result<LNSChannelBalance, Error>) -> Void) {
         client.request(Lnrpc_ChannelBalanceRequest(), map: LNSChannelBalance.init, completion: completion)
     }

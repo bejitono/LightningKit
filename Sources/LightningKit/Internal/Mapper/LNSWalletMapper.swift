@@ -164,7 +164,7 @@ extension Array where Element == LNSTransaction {
 extension BTCAddress {
     
     init(response: Lnrpc_NewAddressResponse) {
-        self = .init(address: response.address)
+        self.init(address: response.address)
     }
 }
 

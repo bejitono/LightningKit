@@ -40,6 +40,7 @@ open class LKWallet {
         client.request(Lnrpc_GenSeedRequest(config: nil), map: LNSSeed.init, completion: completion)
     }
     
+    /// Generates a seed with which users can recover their private keys.
     func generateSeed(withConfig config: LNSSeedConfiguration, completion: @escaping (Result<LNSSeed, Error>) -> Void) {
         client.request(Lnrpc_GenSeedRequest(config: config), map: LNSSeed.init, completion: completion)
     }
@@ -138,6 +139,7 @@ open class LKWallet {
         return completion(Result.failure(LKError.notImplemented))
     }
     
+    /// Returns the wallet's balance.
     open func getBalance(completion: @escaping (Result<LNSWalletBalance, Error>) -> Void) {
         client.request(Lnrpc_WalletBalanceRequest(), map: LNSWalletBalance.init, completion: completion)
     }
@@ -147,15 +149,17 @@ open class LKWallet {
         client.request(Lnrpc_GetTransactionsRequest(), map: Array.init(transactionDetails:), completion: completion)
     }
     
+    ///  Executes a request to send coins to a particular address
     open func sendCoins(withConfig config: LNSSendCoinsConfiguration, completion: @escaping (Result<LNSTransactionId, Error>) -> Void) {
         client.request(Lnrpc_SendCoinsRequest(config: config), map: LNSTransactionId.init, completion: completion)
     }
     
+    ///  Creates a new address under control of the local wallet.
     func generateNewAddress(forType type: LNSAddressType, completion: @escaping (Result<BTCAddress, Error>) -> Void) {
         client.request(Lnrpc_NewAddressRequest(type: type), map: BTCAddress.init, completion: completion)
     }
 
-    // Default: p2wkh / witnessPubkeyHash
+    ///  Creates a new address under control of the local wallet. Default address type: p2wkh / witnessPubkeyHash
     func generateNewAddress(completion: @escaping (Result<BTCAddress, Error>) -> Void) {
         client.request(Lnrpc_NewAddressRequest(type: nil), map: BTCAddress.init, completion: completion)
     }

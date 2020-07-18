@@ -93,7 +93,7 @@ extension Lnrpc_ConnectPeerRequest {
 extension LNSInfo {
     
     init(resp: Lnrpc_GetInfoResponse) {
-        self = .init(
+        self.init(
             pubKey: resp.identityPubkey,
             alias: resp.alias,
             numPendingChannels: Int(resp.numPendingChannels),
@@ -115,7 +115,7 @@ extension LNSInfo {
 extension LNSInvoice {
     
     init(response: Lnrpc_Invoice) {
-        self = .init(
+        self.init(
             value: .satoshi(Int(response.value)),
             hash: response.rHash,
             paymentRequest: response.paymentRequest,

@@ -20,33 +20,6 @@ public struct LNSChannel {
     public let isPrivate: Bool
     public let csvDelay: Int
     //public let closeAddress: String
-    
-//    public init(id: Int,
-//                active: Bool,
-//                localBalance: Int,
-//                remoteBalance: Int,
-//                capacity: Int,
-//                remotePubKey: String,
-//                channelPoint: String,
-//                totalSent: Int,
-//                totalReceived: Int,
-//                isPrivate: Bool,
-//                csvDelay: Int
-//                //closeAddress: String
-//    ) {
-//        self.id = id
-//        self.active = active
-//        self.localBalance = localBalance
-//        self.remoteBalance = remoteBalance
-//        self.capacity = capacity
-//        self.remotePubKey = remotePubKey
-//        self.channelPoint = channelPoint
-//        self.totalSent = totalSent
-//        self.totalReceived = totalReceived
-//        self.isPrivate = isPrivate
-//        self.csvDelay = csvDelay
-//        //self.closeAddress = closeAddress
-//    }
 }
 
 public struct LNSPendingChannels {
@@ -55,16 +28,6 @@ public struct LNSPendingChannels {
     public let pendingClosingChannels: [LNSPendingCloseChannel]
     public let pendingForceClosingChannels: [LNSPendingCloseChannel]
     public let waitingCloseChannels: [LNSPendingChannel]
-    
-//    public init(pendingOpenChannels: [LNSPendingChannel],
-//                pendingClosingChannels: [LNSPendingCloseChannel],
-//                pendingForceClosingChannels: [LNSPendingCloseChannel],
-//                waitingCloseChannels: [LNSPendingChannel]) {
-//        self.pendingOpenChannels = pendingOpenChannels
-//        self.pendingClosingChannels = pendingClosingChannels
-//        self.pendingForceClosingChannels = pendingForceClosingChannels
-//        self.waitingCloseChannels = waitingCloseChannels
-//    }
 }
 
 public struct LNSPendingCloseChannel {
