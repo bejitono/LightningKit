@@ -381,17 +381,6 @@
 			path = Error;
 			sourceTree = "<group>";
 		};
-		3D70CDAE23A5EC56001BE339 /* Internal */ = {
-			isa = PBXGroup;
-			children = (
-				3D743E4A239E8957005B2804 /* API */,
-				3D70CDBA23A5F52B001BE339 /* Builder */,
-				3D743E47239E8942005B2804 /* Client */,
-				3D70CDCE23ABC38F001BE339 /* Utils */,
-			);
-			path = Internal;
-			sourceTree = "<group>";
-		};
 		3D70CDBA23A5F52B001BE339 /* Builder */ = {
 			isa = PBXGroup;
 			children = (
@@ -466,8 +455,11 @@
 		3D743E35239E8762005B2804 /* LightningKitClient */ = {
 			isa = PBXGroup;
 			children = (
-				3D70CDAE23A5EC56001BE339 /* Internal */,
+				3D743E4A239E8957005B2804 /* API */,
+				3D70CDBA23A5F52B001BE339 /* Builder */,
+				3D743E47239E8942005B2804 /* Client */,
 				3D743E3D239E87A9005B2804 /* Generated */,
+				3D70CDCE23ABC38F001BE339 /* Utils */,
 			);
 			name = LightningKitClient;
 			path = Sources/LightningKitClient;
