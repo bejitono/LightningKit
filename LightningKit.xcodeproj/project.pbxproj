@@ -300,6 +300,8 @@
 			children = (
 				3D6107002496EB26004B47A4 /* LKWallet.swift */,
 				3D6107012496EB26004B47A4 /* LKChannel.swift */,
+				3D6106FC2496EB26004B47A4 /* Error */,
+				3D70CD8723A47CB9001BE339 /* Model */,
 			);
 			path = LightningKit;
 			sourceTree = "<group>";
@@ -308,7 +310,6 @@
 			isa = PBXGroup;
 			children = (
 				3D140DDD24C2C28E00C2AE68 /* Internal */,
-				3D6106FB2496EB26004B47A4 /* Protocol */,
 				3D6106FE2496EB26004B47A4 /* LightningKit */,
 			);
 			name = LightningKit;
@@ -320,6 +321,7 @@
 			children = (
 				3DD406A2249EEC3D009C01C9 /* Transaction */,
 				3D711AC8249E4C5700DA32CA /* Seed */,
+				3D4BBCA824CD16640098B5D1 /* Wallet */,
 				3D818257249847E800BE72BC /* Button.swift */,
 			);
 			path = View;
@@ -821,9 +823,11 @@
 				3DA6C0A424C2FCB40019F763 /* SeedListView.swift in Sources */,
 				3DA6C0A724C2FCB40019F763 /* Button.swift in Sources */,
 				3DA6C09E24C2FCB40019F763 /* Style.swift in Sources */,
+				3D4BBCAE24CD186B0098B5D1 /* WalletViewController.swift in Sources */,
 				3DA6C0A024C2FCB40019F763 /* DefaultColor.swift in Sources */,
 				3DA6C09C24C2FCB40019F763 /* UIView+Transform.swift in Sources */,
 				3DA6C0A624C2FCB40019F763 /* SeedViewController.swift in Sources */,
+				3D4BBCAB24CD16750098B5D1 /* BalanceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

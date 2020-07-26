@@ -102,7 +102,7 @@ open class LKChannel {
         client.request(Lnrpc_OpenChannelRequest(config: config), map: LNSChannelPoint.init, completion: completion)
     }
     
-    /// Attempts to close an active channel identified by its channel outpoint
+    /// Attempts to close an active channel identified by its channel outpoint.
     open func closeChannel(withConfig config: LNSCloseChannelConfiguration, completion: @escaping (Result<LNSCloseChannelStatusUpdate, Error>) -> Void) {
         client.request(Lnrpc_CloseChannelRequest(config: config), map: LNSCloseChannelStatusUpdate.init, completion: completion)
     }
