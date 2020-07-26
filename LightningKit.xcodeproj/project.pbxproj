@@ -12,6 +12,7 @@
 		3D2AD56523BAF85C00B3C840 /* Message+Lndmobile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD56423BAF85C00B3C840 /* Message+Lndmobile.swift */; };
 		3D4BBCAB24CD16750098B5D1 /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4BBCA924CD166F0098B5D1 /* BalanceView.swift */; };
 		3D4BBCAE24CD186B0098B5D1 /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4BBCAC24CD18550098B5D1 /* WalletViewController.swift */; };
+		3D4BBCB224CD27200098B5D1 /* TransactionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4BBCB124CD27200098B5D1 /* TransactionsTableViewController.swift */; };
 		3D61071B2496EF93004B47A4 /* LKWalletError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6106FD2496EB26004B47A4 /* LKWalletError.swift */; };
 		3D61071D2496EF93004B47A4 /* LKWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6107002496EB26004B47A4 /* LKWallet.swift */; };
 		3D61071E2496EF93004B47A4 /* LKChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6107012496EB26004B47A4 /* LKChannel.swift */; };
@@ -153,6 +154,7 @@
 		3D3A325B24A88339004B64FF /* Lndmobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lndmobile.framework; path = ../Desktop/Lndmobile.framework; sourceTree = "<group>"; };
 		3D4BBCA924CD166F0098B5D1 /* BalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceView.swift; sourceTree = "<group>"; };
 		3D4BBCAC24CD18550098B5D1 /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
+		3D4BBCB124CD27200098B5D1 /* TransactionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsTableViewController.swift; sourceTree = "<group>"; };
 		3D6106FD2496EB26004B47A4 /* LKWalletError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKWalletError.swift; sourceTree = "<group>"; };
 		3D6107002496EB26004B47A4 /* LKWallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKWallet.swift; sourceTree = "<group>"; };
 		3D6107012496EB26004B47A4 /* LKChannel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKChannel.swift; sourceTree = "<group>"; };
@@ -517,23 +519,23 @@
 			path = Mapper;
 			sourceTree = "<group>";
 		};
-		3D8182562498478000BE72BC /* Styles */ = {
+		3D8182562498478000BE72BC /* Style */ = {
 			isa = PBXGroup;
 			children = (
 				3D81826324984D3300BE72BC /* Style.swift */,
 				3D81826A24984EFA00BE72BC /* Color */,
 				3D6E4126249DDDA400EA1E2A /* Font */,
 			);
-			path = Styles;
+			path = Style;
 			sourceTree = "<group>";
 		};
-		3D818259249848FC00BE72BC /* Extensions */ = {
+		3D818259249848FC00BE72BC /* Extension */ = {
 			isa = PBXGroup;
 			children = (
 				3D81825A2498491600BE72BC /* UIView+Transform.swift */,
 				3D9FAE8E249D8E9700006770 /* UIView+Shadow.swift */,
 			);
-			path = Extensions;
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		3D81826A24984EFA00BE72BC /* Color */ = {
@@ -562,8 +564,8 @@
 			children = (
 				3DA6C09224C2FC8C0019F763 /* LightningKitUI.h */,
 				3DA6C09324C2FC8C0019F763 /* Info.plist */,
-				3D818259249848FC00BE72BC /* Extensions */,
-				3D8182562498478000BE72BC /* Styles */,
+				3D818259249848FC00BE72BC /* Extension */,
+				3D8182562498478000BE72BC /* Style */,
 				3D61075F2496FDCE004B47A4 /* View */,
 			);
 			name = LightningKitUI;
@@ -574,6 +576,7 @@
 			isa = PBXGroup;
 			children = (
 				3DD406A3249EEE0D009C01C9 /* TransactionTableViewCell.swift */,
+				3D4BBCB124CD27200098B5D1 /* TransactionsTableViewController.swift */,
 			);
 			path = Transaction;
 			sourceTree = "<group>";
@@ -823,6 +826,7 @@
 				3DA6C09D24C2FCB40019F763 /* UIView+Shadow.swift in Sources */,
 				3DA6C0A324C2FCB40019F763 /* TransactionTableViewCell.swift in Sources */,
 				3DA6C09F24C2FCB40019F763 /* Color.swift in Sources */,
+				3D4BBCB224CD27200098B5D1 /* TransactionsTableViewController.swift in Sources */,
 				3DA6C0A124C2FCB40019F763 /* Font.swift in Sources */,
 				3DA6C0A424C2FCB40019F763 /* SeedListView.swift in Sources */,
 				3DA6C0A724C2FCB40019F763 /* Button.swift in Sources */,

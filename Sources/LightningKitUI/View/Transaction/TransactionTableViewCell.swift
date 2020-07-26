@@ -59,6 +59,7 @@ open class TransactionTableViewCell: UITableViewCell {
 private extension TransactionTableViewCell {
     
     func setupViews() {
+        selectionStyle = .none
         setupContainerStackView()
         setupTextStackView()
         setupTxAmountStackView()
