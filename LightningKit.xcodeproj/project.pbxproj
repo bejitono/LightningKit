@@ -10,6 +10,8 @@
 		0BC0BC7123ADBBA5009B9E58 /* LndClientBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC0BC7023ADBBA5009B9E58 /* LndClientBuilder.swift */; };
 		3D140DE224C2C2DE00C2AE68 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 3D140DE124C2C2DE00C2AE68 /* KeychainAccess */; };
 		3D2AD56523BAF85C00B3C840 /* Message+Lndmobile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD56423BAF85C00B3C840 /* Message+Lndmobile.swift */; };
+		3D4BBCAB24CD16750098B5D1 /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4BBCA924CD166F0098B5D1 /* BalanceView.swift */; };
+		3D4BBCAE24CD186B0098B5D1 /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4BBCAC24CD18550098B5D1 /* WalletViewController.swift */; };
 		3D61071B2496EF93004B47A4 /* LKWalletError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6106FD2496EB26004B47A4 /* LKWalletError.swift */; };
 		3D61071D2496EF93004B47A4 /* LKWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6107002496EB26004B47A4 /* LKWallet.swift */; };
 		3D61071E2496EF93004B47A4 /* LKChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6107012496EB26004B47A4 /* LKChannel.swift */; };
@@ -149,6 +151,8 @@
 		3D3496D5249F22A500977EA4 /* BTCUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTCUnit.swift; sourceTree = "<group>"; };
 		3D396A9C249F5DC5002C2D3B /* LNSListPaymentsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNSListPaymentsRequest.swift; sourceTree = "<group>"; };
 		3D3A325B24A88339004B64FF /* Lndmobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lndmobile.framework; path = ../Desktop/Lndmobile.framework; sourceTree = "<group>"; };
+		3D4BBCA924CD166F0098B5D1 /* BalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceView.swift; sourceTree = "<group>"; };
+		3D4BBCAC24CD18550098B5D1 /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
 		3D6106FD2496EB26004B47A4 /* LKWalletError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKWalletError.swift; sourceTree = "<group>"; };
 		3D6107002496EB26004B47A4 /* LKWallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKWallet.swift; sourceTree = "<group>"; };
 		3D6107012496EB26004B47A4 /* LKChannel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKChannel.swift; sourceTree = "<group>"; };
@@ -277,13 +281,13 @@
 			path = Configuration;
 			sourceTree = "<group>";
 		};
-		3D6106FB2496EB26004B47A4 /* Protocol */ = {
+		3D4BBCA824CD16640098B5D1 /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
-				3D70CD8723A47CB9001BE339 /* Model */,
-				3D6106FC2496EB26004B47A4 /* Error */,
+				3D4BBCA924CD166F0098B5D1 /* BalanceView.swift */,
+				3D4BBCAC24CD18550098B5D1 /* WalletViewController.swift */,
 			);
-			path = Protocol;
+			path = Wallet;
 			sourceTree = "<group>";
 		};
 		3D6106FC2496EB26004B47A4 /* Error */ = {
