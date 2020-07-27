@@ -17,6 +17,8 @@
 		3D61071D2496EF93004B47A4 /* LKWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6107002496EB26004B47A4 /* LKWallet.swift */; };
 		3D61071E2496EF93004B47A4 /* LKChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6107012496EB26004B47A4 /* LKChannel.swift */; };
 		3D6107232496F8CE004B47A4 /* LKError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D61071F2496F670004B47A4 /* LKError.swift */; };
+		3D622B0024CEBAC300CDF5CF /* KeypadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D622AFF24CEBAC300CDF5CF /* KeypadView.swift */; };
+		3D622B0224CEC50E00CDF5CF /* KeypadDigitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D622B0124CEC50E00CDF5CF /* KeypadDigitView.swift */; };
 		3D70CDB223A5ECD7001BE339 /* LNSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD9823A4F428001BE339 /* LNSError.swift */; };
 		3D70CDB423A5ECDC001BE339 /* LNSWalletError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD9E23A4FD08001BE339 /* LNSWalletError.swift */; };
 		3D70CDC723A60129001BE339 /* LNSTransactionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CDC623A60129001BE339 /* LNSTransactionError.swift */; };
@@ -161,6 +163,8 @@
 		3D6107142496EF47004B47A4 /* libLightningKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLightningKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D61071F2496F670004B47A4 /* LKError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LKError.swift; sourceTree = "<group>"; };
 		3D610761249709D0004B47A4 /* SeedListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedListView.swift; sourceTree = "<group>"; };
+		3D622AFF24CEBAC300CDF5CF /* KeypadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeypadView.swift; sourceTree = "<group>"; };
+		3D622B0124CEC50E00CDF5CF /* KeypadDigitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeypadDigitView.swift; sourceTree = "<group>"; };
 		3D6E4123249DC91200EA1E2A /* SeedPhraseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedPhraseView.swift; sourceTree = "<group>"; };
 		3D6E4127249DDDB700EA1E2A /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		3D6E4129249DDDBF00EA1E2A /* DefaultFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFont.swift; sourceTree = "<group>"; };
@@ -325,12 +329,22 @@
 		3D61075F2496FDCE004B47A4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3D622AFE24CEB99B00CDF5CF /* Keyboard */,
 				3DD406A2249EEC3D009C01C9 /* Transaction */,
 				3D711AC8249E4C5700DA32CA /* Seed */,
 				3D4BBCA824CD16640098B5D1 /* Wallet */,
 				3D818257249847E800BE72BC /* Button.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		3D622AFE24CEB99B00CDF5CF /* Keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				3D622AFF24CEBAC300CDF5CF /* KeypadView.swift */,
+				3D622B0124CEC50E00CDF5CF /* KeypadDigitView.swift */,
+			);
+			path = Keyboard;
 			sourceTree = "<group>";
 		};
 		3D6E4126249DDDA400EA1E2A /* Font */ = {
@@ -824,7 +838,9 @@
 				3DA6C0A524C2FCB40019F763 /* SeedPhraseView.swift in Sources */,
 				3DA6C0A224C2FCB40019F763 /* DefaultFont.swift in Sources */,
 				3DA6C09D24C2FCB40019F763 /* UIView+Shadow.swift in Sources */,
+				3D622B0224CEC50E00CDF5CF /* KeypadDigitView.swift in Sources */,
 				3DA6C0A324C2FCB40019F763 /* TransactionTableViewCell.swift in Sources */,
+				3D622B0024CEBAC300CDF5CF /* KeypadView.swift in Sources */,
 				3DA6C09F24C2FCB40019F763 /* Color.swift in Sources */,
 				3D4BBCB224CD27200098B5D1 /* TransactionsTableViewController.swift in Sources */,
 				3DA6C0A124C2FCB40019F763 /* Font.swift in Sources */,
