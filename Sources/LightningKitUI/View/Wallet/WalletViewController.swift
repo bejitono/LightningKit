@@ -18,10 +18,13 @@ open class WalletViewController: UIViewController {
     weak var delegate: WalletViewControllerDelegate?
     
     private enum ViewConstants {
-        static let padding: CGFloat = 8
+        static let padding: CGFloat = 16
+        static let spacing: CGFloat = 8
     }
     
+    private let containerStackView = UIStackView()
     private let balanceView = BalanceView()
+    private let walletActionsView = UIView() // TODO
     private let transactionsStackView = UIStackView()
     private let transactionsHeaderLabel = UILabel()
     private let seeAllTransactionsLabel = UILabel()
@@ -56,43 +59,37 @@ private extension WalletViewController {
     
     func setupViews() {
         super.viewDidLoad()
+        setupContainerStackView()
         setupBalanceView()
-        setupTransactionsOverview()
+        setupWalletActionsView()
         setupTransactionsLabels()
+        setupTransactionsOverview()
         view.backgroundColor = Style.Color.primaryBackground
     }
     
-    func setupBalanceView() {
-        balanceView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(balanceView)
+    func setupContainerStackView() {
+        containerStackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(containerStackView)
         NSLayoutConstraint.activate([
-            balanceView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            balanceView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -ViewConstants.padding),
-            balanceView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: ViewConstants.padding),
-            balanceView.heightAnchor.constraint(equalToConstant: 200)
+            containerStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            containerStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -ViewConstants.padding),
+            containerStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            containerStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: ViewConstants.padding)
         ])
+        
+        containerStackView.axis = .vertical
+        containerStackView.spacing = ViewConstants.spacing
     }
     
-    func setupTransactionsOverview() {
-        transactionsStackView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(transactionsStackView)
-        NSLayoutConstraint.activate([
-            transactionsStackView.topAnchor.constraint(equalTo: balanceView.bottomAnchor),
-            transactionsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -ViewConstants.padding),
-            transactionsStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            transactionsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: ViewConstants.padding)
-        ])
-        
-        let headerStackView = UIStackView()
-        headerStackView.addArrangedSubview(transactionsHeaderLabel)
-        headerStackView.addArrangedSubview(seeAllTransactionsLabel)
-        
-        transactionsStackView.addArrangedSubview(headerStackView)
-        transactionsStackView.addArrangedSubview(transactionsOverviewTableView.view)
-        
-        transactionsStackView.axis = .vertical
-        
-        headerStackView.distribution = .fillProportionally
+    func setupBalanceView() {
+        containerStackView.addArrangedSubview(balanceView)
+        balanceView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+    }
+    
+    func setupWalletActionsView() {
+        containerStackView.addArrangedSubview(walletActionsView)
+        walletActionsView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        walletActionsView.backgroundColor = .red
     }
     
     func setupTransactionsLabels() {
@@ -105,5 +102,20 @@ private extension WalletViewController {
         seeAllTransactionsLabel.textColor = Style.Color.primaryAction
         seeAllTransactionsLabel.isUserInteractionEnabled = true
         seeAllTransactionsLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action:  #selector(didTapSeeAllTx)))
+    }
+    
+    func setupTransactionsOverview() {
+        containerStackView.addArrangedSubview(transactionsStackView)
+        
+        let headerStackView = UIStackView()
+        headerStackView.addArrangedSubview(transactionsHeaderLabel)
+        headerStackView.addArrangedSubview(seeAllTransactionsLabel)
+        
+        transactionsStackView.addArrangedSubview(headerStackView)
+        transactionsStackView.addArrangedSubview(transactionsOverviewTableView.view)
+        
+        transactionsStackView.axis = .vertical
+        
+        headerStackView.distribution = .fillProportionally
     }
 }

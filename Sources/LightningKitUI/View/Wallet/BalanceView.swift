@@ -14,6 +14,7 @@ open class BalanceView: UIView {
         static let padding: CGFloat = 8
     }
     
+    private let containerView = UIView()
     private let containerStackView = UIStackView()
     private let headerLabel = UILabel()
     private let amountLabel = UILabel()
@@ -38,18 +39,29 @@ open class BalanceView: UIView {
 private extension BalanceView {
     
     func setupViews() {
+        setupContainerView()
         setupContainerStackView()
         setupLabels()
     }
     
+    func setupContainerView() {
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(containerView)
+        NSLayoutConstraint.activate([
+            containerView.topAnchor.constraint(equalTo: topAnchor),
+            containerView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            containerView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            containerView.leadingAnchor.constraint(equalTo: leadingAnchor)
+        ])
+    }
+    
     func setupContainerStackView() {
         containerStackView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(containerStackView)
+        containerView.addSubview(containerStackView)
         NSLayoutConstraint.activate([
-            containerStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            containerStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            containerStackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
-            containerStackView.leadingAnchor.constraint(equalTo: leadingAnchor)
+            containerStackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            containerStackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            containerStackView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor)
         ])
         
         containerStackView.spacing = ViewConstants.padding
