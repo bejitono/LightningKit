@@ -18,6 +18,7 @@ open class KeypadView: UIView {
         static let underLineAnimationAlpha: CGFloat = 1
         static let transformScale: CGFloat = 1.8
         static let animationDuration = TimeInterval(0.08)
+        static let minimumPressDuration = TimeInterval(0.2)
     }
     
     private let underlineView = UIView()
@@ -32,16 +33,39 @@ open class KeypadView: UIView {
     }
     
     @objc
-    private func animate() {
+    private func animateOnTap() {
         UIView.animate(withDuration: ViewConstants.animationDuration, animations: {
-            self.contentView.transform = CGAffineTransform(scaleX: ViewConstants.transformScale, y: ViewConstants.transformScale)
-            self.underlineView.alpha = ViewConstants.underLineAnimationAlpha
+            self.scaleContentView()
         }) { _ in
             UIView.animate(withDuration: ViewConstants.animationDuration) {
-                self.contentView.transform = CGAffineTransform.identity
-                self.underlineView.alpha = ViewConstants.underLineAlpha
+                self.descaleContentView()
             }
         }
+    }
+    
+    @objc
+    private func animateOnLongPress(sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            UIView.animate(withDuration: ViewConstants.animationDuration) {
+                self.scaleContentView()
+            }
+            return
+        } else if sender.state == .ended {
+            UIView.animate(withDuration: ViewConstants.animationDuration) {
+                self.descaleContentView()
+            }
+            return
+        }
+    }
+    
+    private func scaleContentView() {
+        contentView.transform = CGAffineTransform(scaleX: ViewConstants.transformScale, y: ViewConstants.transformScale)
+        underlineView.alpha = ViewConstants.underLineAnimationAlpha
+    }
+    
+    private func descaleContentView() {
+        contentView.transform = CGAffineTransform.identity
+        underlineView.alpha = ViewConstants.underLineAlpha
     }
 }
 
@@ -50,9 +74,9 @@ open class KeypadView: UIView {
 private extension KeypadView {
     
     func setupViews() {
-        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(animate)))
         setupUnderlineView()
         setupDigitView()
+        setupGestureRecognizers()
     }
     
     func setupDigitView() {
@@ -78,5 +102,12 @@ private extension KeypadView {
         
         underlineView.backgroundColor = Style.Color.primaryText
         underlineView.alpha = ViewConstants.underLineAlpha
+    }
+    
+    func setupGestureRecognizers() {
+        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(animateOnTap)))
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(animateOnLongPress))
+        longPressRecognizer.minimumPressDuration = ViewConstants.minimumPressDuration
+        addGestureRecognizer(longPressRecognizer)
     }
 }
