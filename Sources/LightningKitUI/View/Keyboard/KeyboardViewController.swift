@@ -83,11 +83,11 @@ private extension KeyboardViewController {
     
     func lowerKeypadViews() -> UIStackView {
         let row = rowStackView()
-        let dotKeypadView = KeypadDigitView(digit: 0)
+        let dotKeypadView = KeypadStringView(string: ".")
         dotKeypadView.delegate = self
         let zeroKeypadView = KeypadDigitView(digit: 0)
         zeroKeypadView.delegate = self
-        let deleteKeypadView = KeypadDigitView(digit: 0)
+        let deleteKeypadView = KeypadStringView(string: "<") // TODO: Add remove icon
         deleteKeypadView.delegate = self
         [dotKeypadView, zeroKeypadView, deleteKeypadView].forEach { row.addArrangedSubview($0) }
         return row
@@ -107,5 +107,27 @@ extension KeyboardViewController: KeypadDigitViewDelegate {
     
     public func didTap(digit: Int) {
         delegate?.didTap(digit: digit)
+    }
+}
+
+// MARK: - KeypadStringViewDelegate
+
+extension KeyboardViewController: KeypadStringViewDelegate {
+    
+    public func didTap(string: String) {
+        if string == "." {
+            delegate?.didTapDot()
+        } else if string == "<" {
+            delegate?.didTapDelete()
+        }
+    }
+}
+
+// MARK: - KeypadImageViewDelegate
+
+extension KeyboardViewController: KeypadImageViewDelegate {
+    
+    public func didTapImage() {
+        
     }
 }
