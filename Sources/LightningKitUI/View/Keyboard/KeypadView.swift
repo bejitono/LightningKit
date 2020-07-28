@@ -14,8 +14,8 @@ open class KeypadView: UIView {
     var tapBlock: (() -> Void)?
     
     private enum ViewConstants {
-        static let underlineHeight: CGFloat = 1
-        static let underLineAlpha: CGFloat = 0.5
+        static let underlineHeight: CGFloat = 1.5
+        static let underLineAlpha: CGFloat = 0.3
         static let underLineAnimationAlpha: CGFloat = 1
         static let transformScale: CGFloat = 1.8
         static let animationDuration = TimeInterval(0.08)

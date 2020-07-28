@@ -23,6 +23,11 @@ open class KeyboardViewController: UIViewController {
         static let buttonHeight: CGFloat = 45
     }
     
+    private enum KeypadSymobls: String {
+        case dot = "."
+        case delete = "<"
+    }
+    
     private let containerStackView = UIStackView()
     
     public init() {
@@ -83,11 +88,11 @@ private extension KeyboardViewController {
     
     func lowerKeypadViews() -> UIStackView {
         let row = rowStackView()
-        let dotKeypadView = KeypadStringView(string: ".")
+        let dotKeypadView = KeypadStringView(string: KeypadSymobls.dot.rawValue)
         dotKeypadView.delegate = self
         let zeroKeypadView = KeypadDigitView(digit: 0)
         zeroKeypadView.delegate = self
-        let deleteKeypadView = KeypadStringView(string: "<") // TODO: Add remove icon
+        let deleteKeypadView = KeypadStringView(string: KeypadSymobls.delete.rawValue) // TODO: Add remove icon
         deleteKeypadView.delegate = self
         [dotKeypadView, zeroKeypadView, deleteKeypadView].forEach { row.addArrangedSubview($0) }
         return row
@@ -115,9 +120,9 @@ extension KeyboardViewController: KeypadDigitViewDelegate {
 extension KeyboardViewController: KeypadStringViewDelegate {
     
     public func didTap(string: String) {
-        if string == "." {
+        if string == KeypadSymobls.dot.rawValue {
             delegate?.didTapDot()
-        } else if string == "<" {
+        } else if string == KeypadSymobls.delete.rawValue {
             delegate?.didTapDelete()
         }
     }
