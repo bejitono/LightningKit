@@ -12,7 +12,6 @@ protocol WalletViewControllerDelegate: AnyObject {
     func didTapSeeAllTransactions()
 }
 
-
 open class WalletViewController: UIViewController {
     
     weak var delegate: WalletViewControllerDelegate?

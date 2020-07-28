@@ -8,18 +8,27 @@
 
 import UIKit
 
+public protocol KeypadDigitViewDelegate: AnyObject {
+    func didTap(digit: Int)
+}
+
 open class KeypadDigitView: KeypadView {
     
-    init(digit: String) {
+    public let digit: Int
+    public weak var delegate: KeypadDigitViewDelegate?
+    
+    init(digit: Int) {
+        self.digit = digit
         super.init()
-        setupDigitView(digit: digit)
+        setupDigitView()
+        tapBlock = { self.delegate?.didTap(digit: digit) }
     }
     
     required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupDigitView(digit: String) {
+    private func setupDigitView() {
         let digitLabel = UILabel()
         digitLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(digitLabel)
@@ -31,7 +40,7 @@ open class KeypadDigitView: KeypadView {
         ])
         
         digitLabel.font = UIFont.systemFont(ofSize: 40)
-        digitLabel.text = digit
+        digitLabel.text = String(digit)
         digitLabel.textColor = Style.Color.primaryText
         digitLabel.textAlignment = .center
     }

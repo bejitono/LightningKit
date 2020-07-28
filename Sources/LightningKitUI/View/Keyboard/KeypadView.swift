@@ -11,6 +11,7 @@ import UIKit
 open class KeypadView: UIView {
     
     public let contentView = UIView()
+    var tapBlock: (() -> Void)?
     
     private enum ViewConstants {
         static let underlineHeight: CGFloat = 1
@@ -40,6 +41,7 @@ open class KeypadView: UIView {
             UIView.animate(withDuration: ViewConstants.animationDuration) {
                 self.descaleContentView()
             }
+            self.tapBlock?()
         }
     }
     
@@ -49,12 +51,11 @@ open class KeypadView: UIView {
             UIView.animate(withDuration: ViewConstants.animationDuration) {
                 self.scaleContentView()
             }
-            return
         } else if sender.state == .ended {
             UIView.animate(withDuration: ViewConstants.animationDuration) {
                 self.descaleContentView()
             }
-            return
+            self.tapBlock?()
         }
     }
     
