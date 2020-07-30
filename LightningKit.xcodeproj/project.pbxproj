@@ -22,10 +22,12 @@
 		3D622B0424D01B7400CDF5CF /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D622B0324D01B7400CDF5CF /* KeyboardViewController.swift */; };
 		3D622B0624D0265800CDF5CF /* KeypadStringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D622B0524D0265800CDF5CF /* KeypadStringView.swift */; };
 		3D622B0824D0275D00CDF5CF /* KeypadImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D622B0724D0275D00CDF5CF /* KeypadImageView.swift */; };
+		3D622B0A24D057EC00CDF5CF /* TxAmountDigitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D622B0924D057EC00CDF5CF /* TxAmountDigitView.swift */; };
 		3D70CDB223A5ECD7001BE339 /* LNSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD9823A4F428001BE339 /* LNSError.swift */; };
 		3D70CDB423A5ECDC001BE339 /* LNSWalletError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD9E23A4FD08001BE339 /* LNSWalletError.swift */; };
 		3D70CDC723A60129001BE339 /* LNSTransactionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CDC623A60129001BE339 /* LNSTransactionError.swift */; };
 		3D70CDD023ABC3A8001BE339 /* LndArgumentParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CDCF23ABC3A8001BE339 /* LndArgumentParser.swift */; };
+		3D70F65124D1AEC600BB8A21 /* TxAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70F64F24D1AC0800BB8A21 /* TxAmountView.swift */; };
 		3D743E1D239E86DA005B2804 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E1C239E86DA005B2804 /* AppDelegate.swift */; };
 		3D743E1F239E86DA005B2804 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E1E239E86DA005B2804 /* SceneDelegate.swift */; };
 		3D743E23239E86DD005B2804 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D743E22239E86DD005B2804 /* Assets.xcassets */; };
@@ -171,6 +173,7 @@
 		3D622B0324D01B7400CDF5CF /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		3D622B0524D0265800CDF5CF /* KeypadStringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeypadStringView.swift; sourceTree = "<group>"; };
 		3D622B0724D0275D00CDF5CF /* KeypadImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeypadImageView.swift; sourceTree = "<group>"; };
+		3D622B0924D057EC00CDF5CF /* TxAmountDigitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TxAmountDigitView.swift; sourceTree = "<group>"; };
 		3D6E4123249DC91200EA1E2A /* SeedPhraseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedPhraseView.swift; sourceTree = "<group>"; };
 		3D6E4127249DDDB700EA1E2A /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		3D6E4129249DDDBF00EA1E2A /* DefaultFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFont.swift; sourceTree = "<group>"; };
@@ -192,6 +195,7 @@
 		3D70CDC623A60129001BE339 /* LNSTransactionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNSTransactionError.swift; sourceTree = "<group>"; };
 		3D70CDC823A60233001BE339 /* LNSPaymentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNSPaymentRequest.swift; sourceTree = "<group>"; };
 		3D70CDCF23ABC3A8001BE339 /* LndArgumentParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LndArgumentParser.swift; sourceTree = "<group>"; };
+		3D70F64F24D1AC0800BB8A21 /* TxAmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TxAmountView.swift; sourceTree = "<group>"; };
 		3D743E19239E86DA005B2804 /* LightningKitApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightningKitApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D743E1C239E86DA005B2804 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D743E1E239E86DA005B2804 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -298,6 +302,8 @@
 			children = (
 				3D4BBCA924CD166F0098B5D1 /* BalanceView.swift */,
 				3D4BBCAC24CD18550098B5D1 /* WalletViewController.swift */,
+				3D622B0924D057EC00CDF5CF /* TxAmountDigitView.swift */,
+				3D70F64F24D1AC0800BB8A21 /* TxAmountView.swift */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -846,6 +852,7 @@
 			files = (
 				3DA6C0A524C2FCB40019F763 /* SeedPhraseView.swift in Sources */,
 				3DA6C0A224C2FCB40019F763 /* DefaultFont.swift in Sources */,
+				3D70F65124D1AEC600BB8A21 /* TxAmountView.swift in Sources */,
 				3DA6C09D24C2FCB40019F763 /* UIView+Shadow.swift in Sources */,
 				3D622B0224CEC50E00CDF5CF /* KeypadDigitView.swift in Sources */,
 				3DA6C0A324C2FCB40019F763 /* TransactionTableViewCell.swift in Sources */,
@@ -857,6 +864,7 @@
 				3DA6C0A424C2FCB40019F763 /* SeedListView.swift in Sources */,
 				3DA6C0A724C2FCB40019F763 /* Button.swift in Sources */,
 				3D622B0824D0275D00CDF5CF /* KeypadImageView.swift in Sources */,
+				3D622B0A24D057EC00CDF5CF /* TxAmountDigitView.swift in Sources */,
 				3DA6C09E24C2FCB40019F763 /* Style.swift in Sources */,
 				3D4BBCAE24CD186B0098B5D1 /* WalletViewController.swift in Sources */,
 				3D622B0424D01B7400CDF5CF /* KeyboardViewController.swift in Sources */,
