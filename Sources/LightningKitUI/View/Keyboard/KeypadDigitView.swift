@@ -39,7 +39,7 @@ open class KeypadDigitView: KeypadView {
             digitLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor)
         ])
         
-        digitLabel.font = UIFont.systemFont(ofSize: 40)
+        digitLabel.font = UIFont.systemFont(ofSize: 40) // TODO
         digitLabel.text = String(digit)
         digitLabel.textColor = Style.Color.primaryText
         digitLabel.textAlignment = .center
