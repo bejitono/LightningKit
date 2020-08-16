@@ -10,6 +10,10 @@ import UIKit
 
 open class TxAmountView: UIView {
     
+    private enum ViewConstants {
+        static let animationDuration: TimeInterval = 0.1
+    }
+    
     private var amount: [Int] = []
     private var amountViews: [TxAmountDigitView] = []
     private let amountStackView = UIStackView()
@@ -27,8 +31,9 @@ open class TxAmountView: UIView {
         let digitView = TxAmountDigitView(digit: digit)
         amountStackView.addArrangedSubview(digitView)
         amountViews.append(digitView)
-        layoutIfNeeded()
-        digitView.animateEntry()
+        animatedLayoutIfNeeded { _ in
+            digitView.animateEntry()
+        }
     }
     
     open func pop() {
@@ -36,7 +41,16 @@ open class TxAmountView: UIView {
         digitView.animateDeparture {
             self.amountStackView.removeArrangedSubview(digitView)
             digitView.removeFromSuperview()
+            self.animatedLayoutIfNeeded()
         }
+    }
+    
+    func animatedLayoutIfNeeded(completion: ((Bool) -> Void)? = nil) {
+        UIView.animate(
+            withDuration: ViewConstants.animationDuration,
+            animations: { self.layoutIfNeeded() },
+            completion: completion
+        )
     }
 }
 
