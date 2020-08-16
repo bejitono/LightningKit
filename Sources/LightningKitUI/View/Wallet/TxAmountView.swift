@@ -17,6 +17,8 @@ open class TxAmountView: UIView {
     private var amount: [Int] = []
     private var amountViews: [TxAmountDigitView] = []
     private let amountStackView = UIStackView()
+    private let leftSpacer = UIView()
+    private let rightSpacer = UIView()
     
     public init() {
         super.init(frame: .zero)
@@ -29,7 +31,7 @@ open class TxAmountView: UIView {
     
     open func append(digit: Int) {
         let digitView = TxAmountDigitView(digit: digit)
-        amountStackView.addArrangedSubview(digitView)
+        amountStackView.insertArrangedSubview(digitView, at: amountStackView.subviews.count - 1)
         amountViews.append(digitView)
         animatedLayoutIfNeeded { _ in
             digitView.animateEntry()
@@ -44,6 +46,11 @@ open class TxAmountView: UIView {
             self.animatedLayoutIfNeeded()
         }
     }
+}
+
+// MARK: - Animation
+
+private extension TxAmountView {
     
     func animatedLayoutIfNeeded(completion: ((Bool) -> Void)? = nil) {
         UIView.animate(
@@ -71,7 +78,9 @@ private extension TxAmountView {
             amountStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
             amountStackView.leadingAnchor.constraint(equalTo: leadingAnchor)
         ])
-        
-        amountStackView.distribution = .fillProportionally
+        amountStackView.addArrangedSubview(leftSpacer)
+        amountStackView.addArrangedSubview(rightSpacer)
+        leftSpacer.widthAnchor.constraint(equalTo: rightSpacer.widthAnchor).isActive = true
+        amountStackView.distribution = .fill
     }
 }

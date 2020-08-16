@@ -102,7 +102,7 @@ private extension TxAmountDigitView {
         enteredDigitYAnchor = digitLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
         enteredDigitYAnchor?.isActive = false
         
-        digitLabel.font = UIFont.boldSystemFont(ofSize: 80) // TODO: Use styles
+        digitLabel.font = UIFont.boldSystemFont(ofSize: 70) // TODO: Use styles
         digitLabel.text = String(digit)
         digitLabel.textColor = Style.Color.primaryText
         digitLabel.textAlignment = .center
