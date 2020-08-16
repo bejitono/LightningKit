@@ -23,7 +23,7 @@ open class TxAmountView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func append(digit: Int) {
+    open func append(digit: Int) {
         let digitView = TxAmountDigitView(digit: digit)
         amountStackView.addArrangedSubview(digitView)
         amountViews.append(digitView)
@@ -31,7 +31,7 @@ open class TxAmountView: UIView {
         digitView.animateEntry()
     }
     
-    func pop() {
+    open func pop() {
         guard let digitView = amountViews.popLast() else { return }
         digitView.animateDeparture {
             self.amountStackView.removeArrangedSubview(digitView)
