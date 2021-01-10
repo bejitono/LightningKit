@@ -92,6 +92,8 @@
 		3DA6C0A524C2FCB40019F763 /* SeedPhraseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6E4123249DC91200EA1E2A /* SeedPhraseView.swift */; };
 		3DA6C0A624C2FCB40019F763 /* SeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8182542498465C00BE72BC /* SeedViewController.swift */; };
 		3DA6C0A724C2FCB40019F763 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D818257249847E800BE72BC /* Button.swift */; };
+		3DBA6EEE25AAAE590069B954 /* walletunlocker.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA6EED25AAAE590069B954 /* walletunlocker.pb.swift */; };
+		3DBA6EEF25AAAE590069B954 /* walletunlocker.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA6EED25AAAE590069B954 /* walletunlocker.pb.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -227,6 +229,7 @@
 		3DA6C09024C2FC8C0019F763 /* LightningKitUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LightningKitUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DA6C09224C2FC8C0019F763 /* LightningKitUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LightningKitUI.h; sourceTree = "<group>"; };
 		3DA6C09324C2FC8C0019F763 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3DBA6EED25AAAE590069B954 /* walletunlocker.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = walletunlocker.pb.swift; sourceTree = "<group>"; };
 		3DD406A3249EEE0D009C01C9 /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -495,6 +498,7 @@
 			isa = PBXGroup;
 			children = (
 				3D743E3E239E87B9005B2804 /* rpc.pb.swift */,
+				3DBA6EED25AAAE590069B954 /* walletunlocker.pb.swift */,
 			);
 			path = Generated;
 			sourceTree = "<group>";
@@ -807,6 +811,7 @@
 				3DA6C06724C2E5240019F763 /* LNSAddressType+Lnrpc.swift in Sources */,
 				3DA6C06D24C2E7E50019F763 /* LNSAddress.swift in Sources */,
 				3DA6C07524C2E7E50019F763 /* LNSInvoiceRequest.swift in Sources */,
+				3DBA6EEF25AAAE590069B954 /* walletunlocker.pb.swift in Sources */,
 				3DA6C07024C2E7E50019F763 /* LNSChannelPoint.swift in Sources */,
 				3DA6C08024C2E7F00019F763 /* LNSConnectPeerConfiguration.swift in Sources */,
 				3D6107232496F8CE004B47A4 /* LKError.swift in Sources */,
@@ -834,6 +839,7 @@
 				3DA6C08A24C2E8FF0019F763 /* BTCEnvironment.swift in Sources */,
 				3D743E4E239E89AD005B2804 /* LndCallback.swift in Sources */,
 				3DA6C08624C2E8B90019F763 /* LNSClientType.swift in Sources */,
+				3DBA6EEE25AAAE590069B954 /* walletunlocker.pb.swift in Sources */,
 				3DA6C08524C2E8960019F763 /* LNSConfiguration.swift in Sources */,
 				3D743E46239E892F005B2804 /* LndClientImpl.swift in Sources */,
 				3D70CDD023ABC3A8001BE339 /* LndArgumentParser.swift in Sources */,
