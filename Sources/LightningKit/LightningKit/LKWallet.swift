@@ -22,7 +22,7 @@ open class LKWallet {
 
     public convenience init() { // TODO: Add config
         self.init(
-            client: LndClientBuilder().build(.mobile), // TODO get shared instance
+            client: LndClientBuilder().build(for: .mobile), // TODO get shared instance
             seedStore: SeedStoreImpl()
         )
     }

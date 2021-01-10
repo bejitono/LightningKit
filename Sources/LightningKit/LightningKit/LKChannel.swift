@@ -17,7 +17,7 @@ open class LKChannel {
 
     public convenience init() { // TODO: Add config
         self.init(
-            client: LndClientBuilder().build(.mobile)
+            client: LndClientBuilder().build(for: .mobile)
         )
     }
     

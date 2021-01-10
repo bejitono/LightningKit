@@ -10,7 +10,7 @@ public struct LndClientBuilder {
     
     public init() { }
 
-    public func build(_ type: LNSClientType) -> LndClient {
+    public func build(for type: LNSClientType) -> LndClient {
         switch type {
         case .mobile: return buildMobileClient()
         default: return buildMobileClient()

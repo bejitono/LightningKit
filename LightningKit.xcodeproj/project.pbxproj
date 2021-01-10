@@ -639,6 +639,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3D0BE9CC25AAEB7B008B353C /* PBXTargetDependency */,
 				3D6107222496F8A9004B47A4 /* PBXTargetDependency */,
 			);
 			name = LightningKit;
@@ -884,6 +885,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3D0BE9CC25AAEB7B008B353C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 3D0BE9CB25AAEB7B008B353C /* KeychainAccess */;
+		};
 		3D6107222496F8A9004B47A4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3D743E33239E8762005B2804 /* LightningKitClient */;
@@ -1282,6 +1287,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3D0BE9CB25AAEB7B008B353C /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3D140DE024C2C2DE00C2AE68 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
 		3D140DE124C2C2DE00C2AE68 /* KeychainAccess */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3D140DE024C2C2DE00C2AE68 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
