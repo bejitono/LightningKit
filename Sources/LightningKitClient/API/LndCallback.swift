@@ -37,10 +37,19 @@ final class LndCallback<Response: SwiftProtobuf.Message>: NSObject, LndmobileCal
 
 final class LndEmptyCallback: NSObject, LndmobileCallbackProtocol {
     
+    private let completion: ((Result<Void, Error>) -> Void)?
+    
+    init(_ completion: ((Result<Void, Error>) -> Void)? = nil) {
+        self.completion = completion
+    }
+    
     func onError(_ error: Error?) {
         guard let error = error else { return }
+        completion?(Result.failure(LNSError.unknown))
         print(error)
     }
 
-    func onResponse(_ data: Data?) { }
+    func onResponse(_ data: Data?) {
+        completion?(Result.success(()))
+    }
 }

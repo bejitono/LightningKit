@@ -11,11 +11,19 @@ import SwiftProtobuf
 
 final class LndMobileAPI: LndAPI {
     
-    func start(withArgs args: String?) {
-        // TODO: Change as it will have two callbacks:
-        // once when wallet unlocker is ready, and once rpcserver is ready
-        // TODO: Add completion closure for when lnd has started
-        LndmobileStart(args, LndEmptyCallback(), LndEmptyCallback())
+    func start(withArgs args: String?, completion: @escaping (Result<Void, Error>) -> Void) {
+        // The unlockerReady callback is called when the WalletUnlocker service is
+        // ready, and rpcReady is called after the wallet has been unlocked and lnd is
+        // ready to accept RPC calls. So we only wait for the unlockerReady callback.
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
+        let walletUnlockerCallback = LndEmptyCallback(completion)
+        
+        LndmobileStart(
+            args,
+            walletUnlockerCallback,
+            LndEmptyCallback()
+        )
     }
     
     func stop() {

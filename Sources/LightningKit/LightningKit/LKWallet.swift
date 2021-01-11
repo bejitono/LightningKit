@@ -136,6 +136,7 @@ open class LKWallet {
     
     /// Unlocks the wallet with the auto-genereated password saved in the keychain. This method needs to be called each time the apps starts.
     open func unlock(completion: @escaping (Result<Void, Error>) -> Void) {
+        // TODO: Use keychain password
         return completion(Result.failure(LKError.notImplemented))
     }
     

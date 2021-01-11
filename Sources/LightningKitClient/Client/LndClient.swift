@@ -10,7 +10,7 @@ import SwiftProtobuf
 
 public protocol LndClient {
     
-    func start(withConfig: LNSConfiguration)
+    func start(withConfig: LNSConfiguration, completion: @escaping (Result<Void, Error>) -> Void)
     
     func stop()
     

@@ -19,9 +19,9 @@ final class LndClientImplementation: LndClient {
         self.argParser = argParser
     }
     
-    func start(withConfig config: LNSConfiguration) {
+    func start(withConfig config: LNSConfiguration, completion: @escaping (Result<Void, Error>) -> Void) {
         let args = argParser.parse(config: config)
-        api.start(withArgs: args)
+        api.start(withArgs: args) { completion($0) }
     }
     
     func stop() {

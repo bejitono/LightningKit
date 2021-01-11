@@ -25,12 +25,12 @@ open class LKChannel {
         self.client = client
     }
     
-    open func start(withConfig config: LNSConfiguration) {
-        client.start(withConfig: config)
+    open func start(withConfig config: LNSConfiguration, completion: @escaping (Result<Void, Error>) -> Void) {
+        client.start(withConfig: config) { completion($0) }
     }
     
-    open func start() {
-        client.start(withConfig: .defaultConfig)
+    open func start(completion: @escaping (Result<Void, Error>) -> Void) {
+        client.start(withConfig: .defaultConfig) { completion($0) }
     }
 
     /// Sends a shutdown request to the interrupt handler, triggering a graceful shutdown of the daemon.
