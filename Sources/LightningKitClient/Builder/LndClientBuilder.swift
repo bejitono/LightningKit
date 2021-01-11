@@ -8,22 +8,19 @@
 
 public struct LndClientBuilder {
     
+    var mobileClient: LndClient {
+        LndClientImplementation(
+            api: LndMobileAPI(),
+            argParser: LndArgumentParserImplementation()
+        )
+    }
+    
     public init() { }
 
     public func build(for type: LNSClientType) -> LndClient {
         switch type {
-        case .mobile: return buildMobileClient()
-        default: return buildMobileClient()
+        case .mobile: return mobileClient
+        default: return mobileClient
         }
-    }
-}
-
-private extension LndClientBuilder {
-    
-    func buildMobileClient() -> LndClient {
-        return LndClientImplementation(
-            api: LndMobileAPI(),
-            argParser: LndArgumentParserImplementation()
-        )
     }
 }
