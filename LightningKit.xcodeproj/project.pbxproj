@@ -42,7 +42,6 @@
 		3D743E4C239E896C005B2804 /* LndMobileAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E4B239E896C005B2804 /* LndMobileAPI.swift */; };
 		3D743E4E239E89AD005B2804 /* LndCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E4D239E89AD005B2804 /* LndCallback.swift */; };
 		3D74495B24AAC40B00CB42C9 /* libLightningKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6107142496EF47004B47A4 /* libLightningKit.a */; };
-		3D74495D24AAC41F00CB42C9 /* libLightningKitClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D743E34239E8762005B2804 /* libLightningKitClient.a */; };
 		3DA6C06324C2C4EE0019F763 /* SeedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D140DDE24C2C29C00C2AE68 /* SeedStore.swift */; };
 		3DA6C06424C2E5180019F763 /* LNSChannelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D76934A23B2FCEB00C6D726 /* LNSChannelMapper.swift */; };
 		3DA6C06524C2E51C0019F763 /* LNSCoreMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9389E223AE201C00D392AF /* LNSCoreMapper.swift */; };
@@ -238,7 +237,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D74495D24AAC41F00CB42C9 /* libLightningKitClient.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
