@@ -33,9 +33,6 @@ let package = Package(
             dependencies: []),
          .target(
             name: "LightningKitClient",
-            dependencies: ["SwiftProtobuf", "KeychainAccess"],
-            linkerSettings: [
-                .linkedFramework("Lndmobile")
-            ])
+            dependencies: ["SwiftProtobuf", "KeychainAccess", "Lndmobile"])
     ]
 )

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0BC0BC7123ADBBA5009B9E58 /* LndClientBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC0BC7023ADBBA5009B9E58 /* LndClientBuilder.swift */; };
-		3D140DE224C2C2DE00C2AE68 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 3D140DE124C2C2DE00C2AE68 /* KeychainAccess */; };
 		3D2AD56523BAF85C00B3C840 /* Message+Lndmobile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD56423BAF85C00B3C840 /* Message+Lndmobile.swift */; };
 		3D4BBCAB24CD16750098B5D1 /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4BBCA924CD166F0098B5D1 /* BalanceView.swift */; };
 		3D4BBCAE24CD186B0098B5D1 /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4BBCAC24CD18550098B5D1 /* WalletViewController.swift */; };
@@ -41,7 +40,6 @@
 		3D743E49239E8953005B2804 /* LndAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E48239E8953005B2804 /* LndAPI.swift */; };
 		3D743E4C239E896C005B2804 /* LndMobileAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E4B239E896C005B2804 /* LndMobileAPI.swift */; };
 		3D743E4E239E89AD005B2804 /* LndCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E4D239E89AD005B2804 /* LndCallback.swift */; };
-		3D74495B24AAC40B00CB42C9 /* libLightningKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6107142496EF47004B47A4 /* libLightningKit.a */; };
 		3DA6C06324C2C4EE0019F763 /* SeedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D140DDE24C2C29C00C2AE68 /* SeedStore.swift */; };
 		3DA6C06424C2E5180019F763 /* LNSChannelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D76934A23B2FCEB00C6D726 /* LNSChannelMapper.swift */; };
 		3DA6C06524C2E51C0019F763 /* LNSCoreMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9389E223AE201C00D392AF /* LNSCoreMapper.swift */; };
@@ -102,6 +100,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 3D743E33239E8762005B2804;
 			remoteInfo = LightningKitClient;
+		};
+		3D75FC0E25ABF383005DA010 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3D743E11239E86DA005B2804 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3D6107132496EF47004B47A4;
+			remoteInfo = LightningKit;
 		};
 		3DA6C09524C2FC8C0019F763 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -245,8 +250,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DA6C09724C2FC8C0019F763 /* LightningKitUI.framework in Frameworks */,
-				3D74495B24AAC40B00CB42C9 /* libLightningKit.a in Frameworks */,
-				3D140DE224C2C2DE00C2AE68 /* KeychainAccess in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -657,11 +660,11 @@
 			buildRules = (
 			);
 			dependencies = (
+				3D75FC0F25ABF383005DA010 /* PBXTargetDependency */,
 				3DA6C09624C2FC8C0019F763 /* PBXTargetDependency */,
 			);
 			name = LightningKitApp;
 			packageProductDependencies = (
-				3D140DE124C2C2DE00C2AE68 /* KeychainAccess */,
 			);
 			productName = LightningSwift;
 			productReference = 3D743E19239E86DA005B2804 /* LightningKitApp.app */;
@@ -891,6 +894,11 @@
 			isa = PBXTargetDependency;
 			target = 3D743E33239E8762005B2804 /* LightningKitClient */;
 			targetProxy = 3D6107212496F8A9004B47A4 /* PBXContainerItemProxy */;
+		};
+		3D75FC0F25ABF383005DA010 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3D6107132496EF47004B47A4 /* LightningKit */;
+			targetProxy = 3D75FC0E25ABF383005DA010 /* PBXContainerItemProxy */;
 		};
 		3DA6C09624C2FC8C0019F763 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1286,11 +1294,6 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		3D0BE9CB25AAEB7B008B353C /* KeychainAccess */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3D140DE024C2C2DE00C2AE68 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
-			productName = KeychainAccess;
-		};
-		3D140DE124C2C2DE00C2AE68 /* KeychainAccess */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3D140DE024C2C2DE00C2AE68 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
 			productName = KeychainAccess;
