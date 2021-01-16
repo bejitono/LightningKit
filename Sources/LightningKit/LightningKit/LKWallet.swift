@@ -71,7 +71,7 @@ open class LKWallet {
         }
     }
     
-    /// Creates a new wallet without a password. Password has to be minimum 8-digits long.
+    /// Creates a new wallet with a password. Password has to be minimum 8-digits long.
     /// A seed will be generated and saved to the Keychain.
     /// - Parameters:
     ///   - password: 8-digit password

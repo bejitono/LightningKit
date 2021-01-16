@@ -12,6 +12,8 @@ import SwiftProtobuf
 extension SwiftProtobuf.Message {
     
     func send<Response>(completion: @escaping (Result<Response, Error>) -> Void) throws where Response: SwiftProtobuf.Message {
+        // TODO: This is just a workaround. Request message types can't be compared because the incoming message is
+        // created in LightningKit whereas the compared message is a type in LightningKitClient
         switch self {
         case is Lnrpc_GenSeedRequest: LndmobileGenSeed(try? self.serializedData(), LndCallback(completion))
         case is Lnrpc_InitWalletRequest: LndmobileInitWallet(try? self.serializedData(), LndCallback(completion))
