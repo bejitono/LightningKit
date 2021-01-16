@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0BC0BC7123ADBBA5009B9E58 /* LndClientBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC0BC7023ADBBA5009B9E58 /* LndClientBuilder.swift */; };
-		3D2AD56523BAF85C00B3C840 /* Message+Lndmobile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD56423BAF85C00B3C840 /* Message+Lndmobile.swift */; };
 		3D4BBCAB24CD16750098B5D1 /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4BBCA924CD166F0098B5D1 /* BalanceView.swift */; };
 		3D4BBCAE24CD186B0098B5D1 /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4BBCAC24CD18550098B5D1 /* WalletViewController.swift */; };
 		3D4BBCB224CD27200098B5D1 /* TransactionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4BBCB124CD27200098B5D1 /* TransactionsTableViewController.swift */; };
@@ -22,24 +20,28 @@
 		3D622B0624D0265800CDF5CF /* KeypadStringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D622B0524D0265800CDF5CF /* KeypadStringView.swift */; };
 		3D622B0824D0275D00CDF5CF /* KeypadImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D622B0724D0275D00CDF5CF /* KeypadImageView.swift */; };
 		3D622B0A24D057EC00CDF5CF /* TxAmountDigitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D622B0924D057EC00CDF5CF /* TxAmountDigitView.swift */; };
-		3D70CDB223A5ECD7001BE339 /* LNSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD9823A4F428001BE339 /* LNSError.swift */; };
-		3D70CDB423A5ECDC001BE339 /* LNSWalletError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD9E23A4FD08001BE339 /* LNSWalletError.swift */; };
-		3D70CDC723A60129001BE339 /* LNSTransactionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CDC623A60129001BE339 /* LNSTransactionError.swift */; };
-		3D70CDD023ABC3A8001BE339 /* LndArgumentParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CDCF23ABC3A8001BE339 /* LndArgumentParser.swift */; };
+		3D6837A625B2E74C0043CC73 /* LndClientBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC0BC7023ADBBA5009B9E58 /* LndClientBuilder.swift */; };
+		3D6837A925B2E7510043CC73 /* LndCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E4D239E89AD005B2804 /* LndCallback.swift */; };
+		3D6837AA25B2E7510043CC73 /* LndAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E48239E8953005B2804 /* LndAPI.swift */; };
+		3D6837AB25B2E7510043CC73 /* LndMobileAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E4B239E896C005B2804 /* LndMobileAPI.swift */; };
+		3D6837AE25B2E7730043CC73 /* LNSMacaroon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD8923A47CB9001BE339 /* LNSMacaroon.swift */; };
+		3D6837AF25B2E7730043CC73 /* LndClientImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E45239E892F005B2804 /* LndClientImpl.swift */; };
+		3D6837B025B2E7730043CC73 /* LndArgumentParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CDCF23ABC3A8001BE339 /* LndArgumentParser.swift */; };
+		3D6837B125B2E7730043CC73 /* LNSConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD8C23A47CB9001BE339 /* LNSConfiguration.swift */; };
+		3D6837B225B2E7730043CC73 /* LNSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD9823A4F428001BE339 /* LNSError.swift */; };
+		3D6837B325B2E7730043CC73 /* BTCNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD8B23A47CB9001BE339 /* BTCNode.swift */; };
+		3D6837B425B2E7730043CC73 /* BTCEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD8A23A47CB9001BE339 /* BTCEnvironment.swift */; };
+		3D6837B525B2E7730043CC73 /* LNSWalletError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD9E23A4FD08001BE339 /* LNSWalletError.swift */; };
+		3D6837B625B2E7730043CC73 /* Message+Lndmobile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD56423BAF85C00B3C840 /* Message+Lndmobile.swift */; };
+		3D6837B725B2E7730043CC73 /* LNSTransactionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CDC623A60129001BE339 /* LNSTransactionError.swift */; };
+		3D6837B825B2E7730043CC73 /* LNSClientType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC0BC6E23ADBB2E009B9E58 /* LNSClientType.swift */; };
+		3D6837B925B2E7730043CC73 /* LndClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E3B239E878A005B2804 /* LndClient.swift */; };
 		3D70F65124D1AEC600BB8A21 /* TxAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70F64F24D1AC0800BB8A21 /* TxAmountView.swift */; };
 		3D743E1D239E86DA005B2804 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E1C239E86DA005B2804 /* AppDelegate.swift */; };
 		3D743E1F239E86DA005B2804 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E1E239E86DA005B2804 /* SceneDelegate.swift */; };
 		3D743E23239E86DD005B2804 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D743E22239E86DD005B2804 /* Assets.xcassets */; };
 		3D743E26239E86DD005B2804 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D743E25239E86DD005B2804 /* Preview Assets.xcassets */; };
 		3D743E29239E86DD005B2804 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D743E27239E86DD005B2804 /* LaunchScreen.storyboard */; };
-		3D743E3C239E878A005B2804 /* LndClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E3B239E878A005B2804 /* LndClient.swift */; };
-		3D743E3F239E87B9005B2804 /* rpc.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E3E239E87B9005B2804 /* rpc.pb.swift */; };
-		3D743E42239E882B005B2804 /* SwiftProtobuf in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = 3D743E41239E882B005B2804 /* SwiftProtobuf */; };
-		3D743E44239E882B005B2804 /* SwiftProtobufPluginLibrary in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = 3D743E43239E882B005B2804 /* SwiftProtobufPluginLibrary */; };
-		3D743E46239E892F005B2804 /* LndClientImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E45239E892F005B2804 /* LndClientImpl.swift */; };
-		3D743E49239E8953005B2804 /* LndAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E48239E8953005B2804 /* LndAPI.swift */; };
-		3D743E4C239E896C005B2804 /* LndMobileAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E4B239E896C005B2804 /* LndMobileAPI.swift */; };
-		3D743E4E239E89AD005B2804 /* LndCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D743E4D239E89AD005B2804 /* LndCallback.swift */; };
 		3DA6C06324C2C4EE0019F763 /* SeedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D140DDE24C2C29C00C2AE68 /* SeedStore.swift */; };
 		3DA6C06424C2E5180019F763 /* LNSChannelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D76934A23B2FCEB00C6D726 /* LNSChannelMapper.swift */; };
 		3DA6C06524C2E51C0019F763 /* LNSCoreMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9389E223AE201C00D392AF /* LNSCoreMapper.swift */; };
@@ -69,11 +71,6 @@
 		3DA6C08224C2E7F00019F763 /* LNSOpenChannelConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D76934623B2F8C400C6D726 /* LNSOpenChannelConfiguration.swift */; };
 		3DA6C08324C2E7F00019F763 /* LNSSeedConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD9A23A4F566001BE339 /* LNSSeedConfiguration.swift */; };
 		3DA6C08424C2E7F00019F763 /* LNSSendCoinsConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD56623BB0A1E00B3C840 /* LNSSendCoinsConfiguration.swift */; };
-		3DA6C08524C2E8960019F763 /* LNSConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD8C23A47CB9001BE339 /* LNSConfiguration.swift */; };
-		3DA6C08624C2E8B90019F763 /* LNSClientType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC0BC6E23ADBB2E009B9E58 /* LNSClientType.swift */; };
-		3DA6C08724C2E8D10019F763 /* LNSMacaroon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD8923A47CB9001BE339 /* LNSMacaroon.swift */; };
-		3DA6C08924C2E8FF0019F763 /* BTCNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD8B23A47CB9001BE339 /* BTCNode.swift */; };
-		3DA6C08A24C2E8FF0019F763 /* BTCEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70CD8A23A47CB9001BE339 /* BTCEnvironment.swift */; };
 		3DA6C09424C2FC8C0019F763 /* LightningKitUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DA6C09224C2FC8C0019F763 /* LightningKitUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3DA6C09724C2FC8C0019F763 /* LightningKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DA6C09024C2FC8C0019F763 /* LightningKitUI.framework */; };
 		3DA6C09824C2FC8C0019F763 /* LightningKitUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3DA6C09024C2FC8C0019F763 /* LightningKitUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -89,18 +86,11 @@
 		3DA6C0A524C2FCB40019F763 /* SeedPhraseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6E4123249DC91200EA1E2A /* SeedPhraseView.swift */; };
 		3DA6C0A624C2FCB40019F763 /* SeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8182542498465C00BE72BC /* SeedViewController.swift */; };
 		3DA6C0A724C2FCB40019F763 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D818257249847E800BE72BC /* Button.swift */; };
-		3DBA6EEE25AAAE590069B954 /* walletunlocker.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA6EED25AAAE590069B954 /* walletunlocker.pb.swift */; };
 		3DBA6EEF25AAAE590069B954 /* walletunlocker.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA6EED25AAAE590069B954 /* walletunlocker.pb.swift */; };
+		3DC54CA825B2EB6900455F01 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 3DC54CA725B2EB6900455F01 /* KeychainAccess */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3D6107212496F8A9004B47A4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3D743E11239E86DA005B2804 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3D743E33239E8762005B2804;
-			remoteInfo = LightningKitClient;
-		};
 		3D75FC0E25ABF383005DA010 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3D743E11239E86DA005B2804 /* Project object */;
@@ -136,15 +126,6 @@
 				3DA6C09824C2FC8C0019F763 /* LightningKitUI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D743E32239E8762005B2804 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "include/$(PRODUCT_NAME)";
-			dstSubfolderSpec = 16;
-			files = (
-			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -209,7 +190,6 @@
 		3D743E25239E86DD005B2804 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3D743E28239E86DD005B2804 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3D743E2A239E86DD005B2804 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3D743E34239E8762005B2804 /* libLightningKitClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLightningKitClient.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D743E3B239E878A005B2804 /* LndClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LndClient.swift; sourceTree = "<group>"; };
 		3D743E3E239E87B9005B2804 /* rpc.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rpc.pb.swift; sourceTree = "<group>"; };
 		3D743E45239E892F005B2804 /* LndClientImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LndClientImpl.swift; sourceTree = "<group>"; };
@@ -249,16 +229,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DC54CA825B2EB6900455F01 /* KeychainAccess in Frameworks */,
 				3DA6C09724C2FC8C0019F763 /* LightningKitUI.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D743E31239E8762005B2804 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3D743E44239E882B005B2804 /* SwiftProtobufPluginLibrary in Frameworks */,
-				3D743E42239E882B005B2804 /* SwiftProtobuf in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +309,7 @@
 			children = (
 				3D140DDD24C2C28E00C2AE68 /* Internal */,
 				3D6106FE2496EB26004B47A4 /* LightningKit */,
+				3D68379525B2E66C0043CC73 /* LightningKitClient */,
 			);
 			name = LightningKit;
 			path = Sources/LightningKit;
@@ -364,6 +337,18 @@
 				3D622B0524D0265800CDF5CF /* KeypadStringView.swift */,
 			);
 			path = Keyboard;
+			sourceTree = "<group>";
+		};
+		3D68379525B2E66C0043CC73 /* LightningKitClient */ = {
+			isa = PBXGroup;
+			children = (
+				3D743E4A239E8957005B2804 /* API */,
+				3D70CDBA23A5F52B001BE339 /* Builder */,
+				3D743E47239E8942005B2804 /* Client */,
+				3D743E3D239E87A9005B2804 /* Generated */,
+				3D70CDCE23ABC38F001BE339 /* Utils */,
+			);
+			path = LightningKitClient;
 			sourceTree = "<group>";
 		};
 		3D6E4126249DDDA400EA1E2A /* Font */ = {
@@ -441,7 +426,6 @@
 			isa = PBXGroup;
 			children = (
 				3D743E1B239E86DA005B2804 /* LightningKitApp */,
-				3D743E35239E8762005B2804 /* LightningKitClient */,
 				3D6107152496EF47004B47A4 /* LightningKit */,
 				3DA6C09124C2FC8C0019F763 /* LightningKitUI */,
 				3D743E1A239E86DA005B2804 /* Products */,
@@ -453,7 +437,6 @@
 			isa = PBXGroup;
 			children = (
 				3D743E19239E86DA005B2804 /* LightningKitApp.app */,
-				3D743E34239E8762005B2804 /* libLightningKitClient.a */,
 				3D6107142496EF47004B47A4 /* libLightningKit.a */,
 				3DA6C09024C2FC8C0019F763 /* LightningKitUI.framework */,
 			);
@@ -480,19 +463,6 @@
 				3D743E25239E86DD005B2804 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		3D743E35239E8762005B2804 /* LightningKitClient */ = {
-			isa = PBXGroup;
-			children = (
-				3D743E4A239E8957005B2804 /* API */,
-				3D70CDBA23A5F52B001BE339 /* Builder */,
-				3D743E47239E8942005B2804 /* Client */,
-				3D743E3D239E87A9005B2804 /* Generated */,
-				3D70CDCE23ABC38F001BE339 /* Utils */,
-			);
-			name = LightningKitClient;
-			path = Sources/LightningKitClient;
 			sourceTree = "<group>";
 		};
 		3D743E3D239E87A9005B2804 /* Generated */ = {
@@ -640,8 +610,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				3D0BE9CC25AAEB7B008B353C /* PBXTargetDependency */,
-				3D6107222496F8A9004B47A4 /* PBXTargetDependency */,
+				3DC54CAE25B2EB8400455F01 /* PBXTargetDependency */,
+				3DC54CAC25B2EB7B00455F01 /* PBXTargetDependency */,
 			);
 			name = LightningKit;
 			productName = LightningKit;
@@ -665,31 +635,11 @@
 			);
 			name = LightningKitApp;
 			packageProductDependencies = (
+				3DC54CA725B2EB6900455F01 /* KeychainAccess */,
 			);
 			productName = LightningSwift;
 			productReference = 3D743E19239E86DA005B2804 /* LightningKitApp.app */;
 			productType = "com.apple.product-type.application";
-		};
-		3D743E33239E8762005B2804 /* LightningKitClient */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3D743E38239E8762005B2804 /* Build configuration list for PBXNativeTarget "LightningKitClient" */;
-			buildPhases = (
-				3D743E30239E8762005B2804 /* Sources */,
-				3D743E31239E8762005B2804 /* Frameworks */,
-				3D743E32239E8762005B2804 /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = LightningKitClient;
-			packageProductDependencies = (
-				3D743E41239E882B005B2804 /* SwiftProtobuf */,
-				3D743E43239E882B005B2804 /* SwiftProtobufPluginLibrary */,
-			);
-			productName = LightningSwift;
-			productReference = 3D743E34239E8762005B2804 /* libLightningKitClient.a */;
-			productType = "com.apple.product-type.library.static";
 		};
 		3DA6C08F24C2FC8C0019F763 /* LightningKitUI */ = {
 			isa = PBXNativeTarget;
@@ -725,9 +675,6 @@
 					3D743E18239E86DA005B2804 = {
 						CreatedOnToolsVersion = 11.3;
 					};
-					3D743E33239E8762005B2804 = {
-						CreatedOnToolsVersion = 11.3;
-					};
 					3DA6C08F24C2FC8C0019F763 = {
 						CreatedOnToolsVersion = 11.5;
 					};
@@ -744,14 +691,13 @@
 			mainGroup = 3D743E10239E86DA005B2804;
 			packageReferences = (
 				3D743E40239E882B005B2804 /* XCRemoteSwiftPackageReference "swift-protobuf" */,
-				3D140DE024C2C2DE00C2AE68 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+				3DC54CA625B2EB6900455F01 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 			);
 			productRefGroup = 3D743E1A239E86DA005B2804 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				3D743E18239E86DA005B2804 /* LightningKitApp */,
-				3D743E33239E8762005B2804 /* LightningKitClient */,
 				3D6107132496EF47004B47A4 /* LightningKit */,
 				3DA6C08F24C2FC8C0019F763 /* LightningKitUI */,
 			);
@@ -783,11 +729,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D6837A625B2E74C0043CC73 /* LndClientBuilder.swift in Sources */,
+				3D6837AB25B2E7510043CC73 /* LndMobileAPI.swift in Sources */,
+				3D6837B425B2E7730043CC73 /* BTCEnvironment.swift in Sources */,
 				3DA6C08124C2E7F00019F763 /* LNSCloseChannelConfiguration.swift in Sources */,
 				3DA6C07D24C2E7E50019F763 /* LNSTransaction.swift in Sources */,
 				3D61071B2496EF93004B47A4 /* LKWalletError.swift in Sources */,
+				3D6837AF25B2E7730043CC73 /* LndClientImpl.swift in Sources */,
 				3DA6C06F24C2E7E50019F763 /* LNSChannelBalance.swift in Sources */,
 				3DA6C07B24C2E7E50019F763 /* LNSPaymentRequest.swift in Sources */,
+				3D6837B925B2E7730043CC73 /* LndClient.swift in Sources */,
 				3DA6C06E24C2E7E50019F763 /* LNSChannel.swift in Sources */,
 				3DA6C06624C2E51F0019F763 /* LNSWalletMapper.swift in Sources */,
 				3DA6C08324C2E7F00019F763 /* LNSSeedConfiguration.swift in Sources */,
@@ -796,23 +747,34 @@
 				3DA6C07924C2E7E50019F763 /* LNSOpenChannelStatusUpdate.swift in Sources */,
 				3DA6C07424C2E7E50019F763 /* LNSInvoice.swift in Sources */,
 				3DA6C07724C2E7E50019F763 /* LNSListInvoicesRequest.swift in Sources */,
+				3D6837B725B2E7730043CC73 /* LNSTransactionError.swift in Sources */,
 				3DA6C07624C2E7E50019F763 /* LNSListPaymentsRequest.swift in Sources */,
 				3DA6C08424C2E7F00019F763 /* LNSSendCoinsConfiguration.swift in Sources */,
 				3DA6C07E24C2E7E50019F763 /* LNSWalletBalance.swift in Sources */,
+				3D6837AA25B2E7510043CC73 /* LndAPI.swift in Sources */,
 				3DA6C07324C2E7E50019F763 /* LNSInfo.swift in Sources */,
+				3D6837B225B2E7730043CC73 /* LNSError.swift in Sources */,
 				3D61071D2496EF93004B47A4 /* LKWallet.swift in Sources */,
 				3DA6C07A24C2E7E50019F763 /* LNSPayment.swift in Sources */,
+				3D6837B025B2E7730043CC73 /* LndArgumentParser.swift in Sources */,
+				3D6837B825B2E7730043CC73 /* LNSClientType.swift in Sources */,
 				3DA6C07C24C2E7E50019F763 /* LNSSeed.swift in Sources */,
 				3DA6C06824C2E7000019F763 /* rpc.pb.swift in Sources */,
+				3D6837B625B2E7730043CC73 /* Message+Lndmobile.swift in Sources */,
 				3DA6C07224C2E7E50019F763 /* LNSCloseChannelStatusUpdate.swift in Sources */,
 				3DA6C06924C2E7E50019F763 /* BTCAddress.swift in Sources */,
 				3DA6C06C24C2E7E50019F763 /* BTCUnit.swift in Sources */,
 				3DA6C06424C2E5180019F763 /* LNSChannelMapper.swift in Sources */,
 				3D61071E2496EF93004B47A4 /* LKChannel.swift in Sources */,
 				3DA6C06324C2C4EE0019F763 /* SeedStore.swift in Sources */,
+				3D6837AE25B2E7730043CC73 /* LNSMacaroon.swift in Sources */,
 				3DA6C06724C2E5240019F763 /* LNSAddressType+Lnrpc.swift in Sources */,
+				3D6837B125B2E7730043CC73 /* LNSConfiguration.swift in Sources */,
 				3DA6C06D24C2E7E50019F763 /* LNSAddress.swift in Sources */,
 				3DA6C07524C2E7E50019F763 /* LNSInvoiceRequest.swift in Sources */,
+				3D6837A925B2E7510043CC73 /* LndCallback.swift in Sources */,
+				3D6837B325B2E7730043CC73 /* BTCNode.swift in Sources */,
+				3D6837B525B2E7730043CC73 /* LNSWalletError.swift in Sources */,
 				3DBA6EEF25AAAE590069B954 /* walletunlocker.pb.swift in Sources */,
 				3DA6C07024C2E7E50019F763 /* LNSChannelPoint.swift in Sources */,
 				3DA6C08024C2E7F00019F763 /* LNSConnectPeerConfiguration.swift in Sources */,
@@ -826,31 +788,6 @@
 			files = (
 				3D743E1D239E86DA005B2804 /* AppDelegate.swift in Sources */,
 				3D743E1F239E86DA005B2804 /* SceneDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D743E30239E8762005B2804 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3D70CDB223A5ECD7001BE339 /* LNSError.swift in Sources */,
-				3D70CDC723A60129001BE339 /* LNSTransactionError.swift in Sources */,
-				0BC0BC7123ADBBA5009B9E58 /* LndClientBuilder.swift in Sources */,
-				3D743E3F239E87B9005B2804 /* rpc.pb.swift in Sources */,
-				3DA6C08924C2E8FF0019F763 /* BTCNode.swift in Sources */,
-				3DA6C08A24C2E8FF0019F763 /* BTCEnvironment.swift in Sources */,
-				3D743E4E239E89AD005B2804 /* LndCallback.swift in Sources */,
-				3DA6C08624C2E8B90019F763 /* LNSClientType.swift in Sources */,
-				3DBA6EEE25AAAE590069B954 /* walletunlocker.pb.swift in Sources */,
-				3DA6C08524C2E8960019F763 /* LNSConfiguration.swift in Sources */,
-				3D743E46239E892F005B2804 /* LndClientImpl.swift in Sources */,
-				3D70CDD023ABC3A8001BE339 /* LndArgumentParser.swift in Sources */,
-				3D70CDB423A5ECDC001BE339 /* LNSWalletError.swift in Sources */,
-				3D2AD56523BAF85C00B3C840 /* Message+Lndmobile.swift in Sources */,
-				3D743E4C239E896C005B2804 /* LndMobileAPI.swift in Sources */,
-				3D743E3C239E878A005B2804 /* LndClient.swift in Sources */,
-				3DA6C08724C2E8D10019F763 /* LNSMacaroon.swift in Sources */,
-				3D743E49239E8953005B2804 /* LndAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -886,15 +823,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3D0BE9CC25AAEB7B008B353C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 3D0BE9CB25AAEB7B008B353C /* KeychainAccess */;
-		};
-		3D6107222496F8A9004B47A4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3D743E33239E8762005B2804 /* LightningKitClient */;
-			targetProxy = 3D6107212496F8A9004B47A4 /* PBXContainerItemProxy */;
-		};
 		3D75FC0F25ABF383005DA010 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3D6107132496EF47004B47A4 /* LightningKit */;
@@ -904,6 +832,14 @@
 			isa = PBXTargetDependency;
 			target = 3DA6C08F24C2FC8C0019F763 /* LightningKitUI */;
 			targetProxy = 3DA6C09524C2FC8C0019F763 /* PBXContainerItemProxy */;
+		};
+		3DC54CAC25B2EB7B00455F01 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 3DC54CAB25B2EB7B00455F01 /* KeychainAccess */;
+		};
+		3DC54CAE25B2EB8400455F01 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 3DC54CAD25B2EB8400455F01 /* SwiftProtobuf */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1129,42 +1065,6 @@
 			};
 			name = Release;
 		};
-		3D743E39239E8762005B2804 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 84BULQXU2Q;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SRCROOT)/**",
-					"$(inherited)",
-				);
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		3D743E3A239E8762005B2804 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 84BULQXU2Q;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SRCROOT)/**",
-					"$(inherited)",
-				);
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		3DA6C09A24C2FC8C0019F763 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1253,15 +1153,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3D743E38239E8762005B2804 /* Build configuration list for PBXNativeTarget "LightningKitClient" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3D743E39239E8762005B2804 /* Debug */,
-				3D743E3A239E8762005B2804 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		3DA6C09924C2FC8C0019F763 /* Build configuration list for PBXNativeTarget "LightningKitUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1274,14 +1165,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		3D140DE024C2C2DE00C2AE68 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.2.0;
-			};
-		};
 		3D743E40239E882B005B2804 /* XCRemoteSwiftPackageReference "swift-protobuf" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-protobuf.git";
@@ -1290,23 +1173,31 @@
 				minimumVersion = 1.7.0;
 			};
 		};
+		3DC54CA625B2EB6900455F01 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		3D0BE9CB25AAEB7B008B353C /* KeychainAccess */ = {
+		3DC54CA725B2EB6900455F01 /* KeychainAccess */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3D140DE024C2C2DE00C2AE68 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			package = 3DC54CA625B2EB6900455F01 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
 			productName = KeychainAccess;
 		};
-		3D743E41239E882B005B2804 /* SwiftProtobuf */ = {
+		3DC54CAB25B2EB7B00455F01 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3DC54CA625B2EB6900455F01 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
+		3DC54CAD25B2EB8400455F01 /* SwiftProtobuf */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3D743E40239E882B005B2804 /* XCRemoteSwiftPackageReference "swift-protobuf" */;
 			productName = SwiftProtobuf;
-		};
-		3D743E43239E882B005B2804 /* SwiftProtobufPluginLibrary */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3D743E40239E882B005B2804 /* XCRemoteSwiftPackageReference "swift-protobuf" */;
-			productName = SwiftProtobufPluginLibrary;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

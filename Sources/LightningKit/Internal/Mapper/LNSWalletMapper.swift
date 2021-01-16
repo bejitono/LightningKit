@@ -7,7 +7,6 @@
 //
 
 import Foundation.NSDate
-import LightningKitClient
 
 // MARK: - Request mapping
 

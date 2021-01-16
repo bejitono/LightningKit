@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import LightningKitClient
 
 public struct LNSPaymentRequest {
     

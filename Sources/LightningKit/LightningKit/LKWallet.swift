@@ -6,8 +6,6 @@
 //  Copyright © 2020 De MicheliStefano. All rights reserved.
 //
 
-import LightningKitClient
-
 open class LKWallet {
     
     private enum Constants {

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import LightningKitClient
 
 // MARK: - Request mapping
 
