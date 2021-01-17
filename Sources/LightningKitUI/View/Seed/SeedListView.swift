@@ -10,7 +10,6 @@ import UIKit
 
 open class SeedListView: UIView {
     
-    public let seed: [String]
     public let scrollView = UIScrollView()
     
     private enum ViewConstants {
@@ -23,14 +22,17 @@ open class SeedListView: UIView {
     private let firstSeedStackView = UIStackView()
     private let secondSeedStackView = UIStackView()
     
-    public init(seed: [String]) {
-        self.seed = seed
+    public override init(frame: CGRect = .zero) {
         super.init(frame: .zero)
         setupViews()
     }
     
     required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    open func set(seed: [String]) {
+        setupSeedLabels(withSeed: seed)
     }
 }
 
@@ -43,7 +45,6 @@ private extension SeedListView {
         setupContainerStackView()
         setupFirstSeedStackView()
         setupSecondSeedStackView()
-        setupSeedLabels(withSeed: seed)
     }
     
     func setupScrollView() {

@@ -22,11 +22,10 @@ open class SeedViewController: UIViewController {
         static let bottomInset: CGFloat = 55
     }
     
-    private let seedView: SeedListView
+    private let seedView = SeedListView()
     private let buttonView = Button()
     
-    public init(seed: [String]) {
-        seedView = SeedListView(seed: seed)
+    public init() {
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -38,6 +37,10 @@ open class SeedViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         buttonView.delegate = self
+    }
+    
+    open func set(seed: [String]) {
+        seedView.set(seed: seed)
     }
 }
 
